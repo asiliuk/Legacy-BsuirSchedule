@@ -125,4 +125,20 @@
     }
 }
 
+- (void)resetDatabase {
+    NSArray *persistentStores = [self.persistentStoreCoordinator persistentStores];
+    for (NSPersistentStore *store in persistentStores) {
+        NSError *error;
+        NSURL *storeURL = store.URL;
+        [_persistentStoreCoordinator removePersistentStore:store error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+        if (error) {
+            NSLog(@"Error: %@",error.localizedDescription);
+        }
+    }
+    _persistentStoreCoordinator = nil;
+    _managedObjectModel = nil;
+    _managedObjectContext = nil;
+}
+
 @end

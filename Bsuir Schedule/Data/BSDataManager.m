@@ -11,10 +11,10 @@
 #import "XMLDictionary.h"
 
 @interface BSDataManager()
-@property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 @end
 @implementation BSDataManager
-
+@dynamic context;
 + (instancetype)sharedInstance {
     
     static id sharedObject = nil;
@@ -30,12 +30,8 @@
     return [[self class] sharedInstance];
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
-    }
-    return self;
+- (NSManagedObjectContext*)context {
+    return [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
 }
 
 //==============================================APP DELEGATE METHODS===========================================
@@ -50,66 +46,91 @@
 
 //===============================================SCHEDULE PARSING===========================================
 #pragma mark - Schedule parsing
+#define UPDATE_INTERVAL 7*24*3600
+
+- (BOOL)scheduleNeedUpdate {
+    NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUpdate];
+    NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
+    return  !lastUpdate || timeInterval > UPDATE_INTERVAL;
+}
 
 - (void)scheduleForGroupNumber:(NSString *)groupNumber withComplitionHandler:(void (^)(void))complitionHandler {
-    NSData *data;
-    NSURL *scheduleLocalURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[groupNumber stringByAppendingString:@".schedule"]];
+//    NSURL *scheduleLocalURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[groupNumber stringByAppendingString:@".schedule"]];
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[scheduleLocalURL path]]) {
-        data = [NSData dataWithContentsOfURL:scheduleLocalURL];
-    } else {
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:[scheduleLocalURL path]]) {
+//        data = [NSData dataWithContentsOfURL:scheduleLocalURL];
+//    } else {
+//        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:groupNumber]];
+//        data = [NSData dataWithContentsOfURL:url];
+//        [data writeToURL:scheduleLocalURL atomically:YES];
+//    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        NSData *data;
         NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:groupNumber]];
         data = [NSData dataWithContentsOfURL:url];
-        [data writeToURL:scheduleLocalURL atomically:YES];
-    }
-    NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
-    
-    
-    NSArray *scheduleData = dict[kScheduleModel];
-    for (NSDictionary *dayData in scheduleData) {
-        NSString *dayName = dayData[kDayName];
-        BSDayOfWeek *day = [[BSDataManager sharedInstance] dayWithName:dayName createIfNotExists:YES];
-        NSArray *subjects = dayData[kDaySchedule];
-        for (NSDictionary *subjectData in subjects) {
-            NSString *subjectName = subjectData[kSubjectName];
-            NSString *subjectType = subjectData[kSubjectType];
-            NSInteger subgroupNumber = [subjectData[kSubjectNumSubgroup] integerValue];
-            NSString *subjectAuditoryAddress = subjectData[kSubjectAuditory];
-            BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:subjectAuditoryAddress createIfNotExists:YES];
-            BSSubject *subject = [[BSDataManager sharedInstance] subjectWithName:subjectName createIfNotExists:YES];
-            NSDictionary *lecturerData = subjectData[kLecturer];
-            BSLecturer *lecturer;
-            if (lecturerData) {
-                lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
-                if (!lecturer) {
-                    lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
-                                                                              midleName:lecturerData[kLecturerMiddleName]
-                                                                               lastName:lecturerData[kLecturerLastName]
-                                                                             department:@""//lecturerData[kLecturerDepartment]
-                                                                             lecturerID:[lecturerData[kLecturerID] integerValue]];
-                    
+        NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
+        if (dict) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [(AppDelegate*)[UIApplication sharedApplication].delegate resetDatabase];
+            });
+            NSArray *scheduleData = dict[kScheduleModel];
+            for (NSDictionary *dayData in scheduleData) {
+                NSString *dayName = dayData[kDayName];
+                BSDayOfWeek *day = [[BSDataManager sharedInstance] dayWithName:dayName createIfNotExists:YES];
+                NSArray *subjects = dayData[kDaySchedule];
+                for (NSDictionary *subjectData in subjects) {
+                    NSString *subjectName = subjectData[kSubjectName];
+                    NSString *subjectType = subjectData[kSubjectType];
+                    NSInteger subgroupNumber = [subjectData[kSubjectNumSubgroup] integerValue];
+                    NSString *subjectAuditoryAddress = subjectData[kSubjectAuditory];
+                    BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:subjectAuditoryAddress createIfNotExists:YES];
+                    BSSubject *subject = [[BSDataManager sharedInstance] subjectWithName:subjectName createIfNotExists:YES];
+                    NSDictionary *lecturerData = subjectData[kLecturer];
+                    BSLecturer *lecturer;
+                    if (lecturerData) {
+                        lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
+                        if (!lecturer) {
+                            lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
+                                                                                      midleName:lecturerData[kLecturerMiddleName]
+                                                                                       lastName:lecturerData[kLecturerLastName]
+                                                                                     department:@""//lecturerData[kLecturerDepartment]
+                                                                                     lecturerID:[lecturerData[kLecturerID] integerValue]];
+                            
+                        }
+                    }
+                    NSString *startEndTime = subjectData[kSubjectTime];
+                    startEndTime = [startEndTime stringByReplacingOccurrencesOfString:@" " withString:@""];
+                    NSArray *pairTime = [startEndTime componentsSeparatedByString:@"-"];
+                    NSString *startTime = [pairTime firstObject];
+                    NSString *endTime = [pairTime lastObject];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"HH:mm"];
+                    NSLog(@"Time %@ %@ %@ %@", startTime, endTime, [formatter dateFromString:startTime],[formatter dateFromString:endTime]);
+                    NSMutableSet *weekNumbers = [NSMutableSet set];
+                    id weekNumbersData = subjectData[kSubjectWeeks];
+                    if ([weekNumbersData isKindOfClass:[NSString class]]) {
+                        weekNumbersData = @[weekNumbersData];
+                    }
+                    for (NSString *weekNumberData in weekNumbersData) {
+                        [weekNumbers addObject:[[BSDataManager sharedInstance] weekNumberWithNumber:[weekNumberData integerValue] createIfNotExists:YES]];
+                    }
+                    [[BSDataManager sharedInstance] addPairWithStartTime:[formatter dateFromString:startTime]
+                                                                 endTime:[formatter dateFromString:endTime]
+                                                          subgroupNumber:subgroupNumber
+                                                             subjectType:subjectType
+                                                              inAuditory:auditory
+                                                                   atDay:day
+                                                                 subject:subject
+                                                                lecturer:lecturer
+                                                                   weeks:weekNumbers];
                 }
             }
-            NSString *startEndTime = subjectData[kSubjectTime];
-            startEndTime = [startEndTime stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSArray *pairTime = [startEndTime componentsSeparatedByString:@"-"];
-            NSString *startTime = [pairTime firstObject];
-            NSString *endTime = [pairTime lastObject];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"HH:mm"];
-            NSLog(@"Time %@ %@ %@ %@", startTime, endTime, [formatter dateFromString:startTime],[formatter dateFromString:endTime]);
-
-            [[BSDataManager sharedInstance] addPairWithStartTime:[formatter dateFromString:startTime]
-                                                         endTime:[formatter dateFromString:endTime]
-                                                  subgroupNumber:subgroupNumber
-                                                     subjectType:subjectType
-                                                      inAuditory:auditory
-                                                           atDay:day
-                                                         subject:subject
-                                                        lecturer:lecturer];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastUpdate];
         }
-    }
-    complitionHandler();
+        dispatch_async(dispatch_get_main_queue(), complitionHandler);
+    });
 }
 
 //===============================================SUBJECT===========================================
@@ -269,6 +290,7 @@
                           atDay:(BSDayOfWeek *)day
                         subject:(BSSubject *)subject
                        lecturer:(BSLecturer *)lecturer
+                          weeks:(NSSet *)weeks
 {
     BSPair *pair;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
@@ -297,9 +319,44 @@
         pair.day = day;
         pair.subject = subject;
         pair.lecturer = lecturer;
+        [pair addWeeks:weeks];
     }
     [self.context save:nil];
     return pair;
 }
 
+//===============================================WEEKNUMBERS===========================================
+#pragma mark - Week Numbers
+
+- (NSArray*)weekNumbers {
+    NSFetchRequest *weekNumbersRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSWeekNumber class])];
+    NSError *error;
+    NSArray *weekNumbers = [self.context executeFetchRequest:weekNumbersRequest error:&error];
+    if (error) {
+        NSLog(@"Error in fetch week numbers %@", error.localizedDescription);
+    }
+    return weekNumbers;
+}
+
+- (BSWeekNumber*)weekNumberWithNumber:(NSInteger)weekNumber createIfNotExists:(BOOL)createIfNotExists {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSWeekNumber class])];
+    request.predicate = [NSPredicate predicateWithFormat:@"weekNumber == %@", @(weekNumber)];
+    BSWeekNumber *weekNumberObj;
+    NSError *error;
+    NSArray *weekNumbers = [self.context executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error in auditory fetch: %@", error.localizedDescription);
+    } else if ([weekNumbers count] > 0) {
+        weekNumberObj = [weekNumbers lastObject];
+    } else if (createIfNotExists) {
+        weekNumberObj = [self addWeekNumberWithNumber:weekNumber];
+    }
+    return weekNumberObj;
+}
+
+- (BSWeekNumber*)addWeekNumberWithNumber:(NSInteger)weekNumber {
+    BSWeekNumber *weekNumberObj = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSWeekNumber class]) inManagedObjectContext:self.context];
+    weekNumberObj.weekNumber = @(weekNumber);
+    return weekNumberObj;
+}
 @end

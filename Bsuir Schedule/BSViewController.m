@@ -25,6 +25,7 @@
         NSArray *d = [[BSDataManager sharedInstance] days];
         NSArray *aud = [[BSDataManager sharedInstance] auditories];
         NSArray *pairs = [[BSDataManager sharedInstance] pairs];
+        NSArray *weeks = [[BSDataManager sharedInstance] weekNumbers];
         BSDayOfWeek *day = d[0];
         NSInteger weekNum = 4;
         for (BSDayOfWeek *day in d) {
@@ -32,13 +33,17 @@
             NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
             NSArray *pairs = [day.pairs sortedArrayUsingDescriptors:@[sortD]];
             for (BSPair *p in pairs) {
-                NSLog(@"%@ %@ %@", p.subject.name, p.subjectType, p.lecturer.lastName);
+                NSString *weeks = @"";
+                for (BSWeekNumber *weekNumber in p.weeks) {
+                    weeks = [weeks stringByAppendingString:[NSString stringWithFormat:@" %ld",[weekNumber.weekNumber integerValue]]];
+                }
+                NSLog(@"%@ %@ %@ %@", p.subject.name, p.subjectType, p.lecturer.lastName, weeks);
             }
         }
 
     }];
     
-
+    NSLog(@"%d",[[BSDataManager sharedInstance] scheduleNeedUpdate]);
     // Do any additional setup after loading the view, typically from a nib.
 }
 

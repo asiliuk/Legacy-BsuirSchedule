@@ -1,5 +1,5 @@
 //
-//  BSDayOfWeek.h
+//  BSWeekNumber.h
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 17.11.14.
@@ -11,13 +11,13 @@
 
 @class BSPair;
 
-@interface BSDayOfWeek : NSManagedObject
+@interface BSWeekNumber : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * weekNumber;
 @property (nonatomic, retain) NSSet *pairs;
 @end
 
-@interface BSDayOfWeek (CoreDataGeneratedAccessors)
+@interface BSWeekNumber (CoreDataGeneratedAccessors)
 
 - (void)addPairsObject:(BSPair *)value;
 - (void)removePairsObject:(BSPair *)value;

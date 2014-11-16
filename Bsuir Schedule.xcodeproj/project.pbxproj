@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D15010501A19140A00174928 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = D150104F1A19140A00174928 /* BSLecturer.m */; };
-		D15010531A19140B00174928 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D15010521A19140B00174928 /* BSAuditory.m */; };
-		D15010561A19140B00174928 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = D15010551A19140B00174928 /* BSPair.m */; };
-		D15010591A19140B00174928 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = D15010581A19140B00174928 /* BSDayOfWeek.m */; };
-		D150105C1A19140B00174928 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D150105B1A19140B00174928 /* BSSubject.m */; };
 		D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
 		D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2231A1824900055B0D3 /* AppDelegate.m */; };
@@ -22,6 +17,12 @@
 		D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */; };
 		D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */; };
 		D19EB2581A1824AF0055B0D3 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2511A1824AF0055B0D3 /* ScheduleData.xcdatamodeld */; };
+		D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20B91A1966A100100B64 /* BSSubject.m */; };
+		D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */; };
+		D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BF1A1966A200100B64 /* BSAuditory.m */; };
+		D1AF20C31A1966A200100B64 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */; };
+		D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C51A1966A200100B64 /* BSLecturer.m */; };
+		D1AF20C91A1966A200100B64 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C81A1966A200100B64 /* BSPair.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,16 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D150104E1A19140A00174928 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
-		D150104F1A19140A00174928 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
-		D15010511A19140B00174928 /* BSAuditory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAuditory.h; sourceTree = "<group>"; };
-		D15010521A19140B00174928 /* BSAuditory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAuditory.m; sourceTree = "<group>"; };
-		D15010541A19140B00174928 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
-		D15010551A19140B00174928 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
-		D15010571A19140B00174928 /* BSDayOfWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayOfWeek.h; sourceTree = "<group>"; };
-		D15010581A19140B00174928 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
-		D150105A1A19140B00174928 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
-		D150105B1A19140B00174928 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
 		D1608FBA1A18C0FA008B3216 /* BSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDataManager.h; sourceTree = "<group>"; };
 		D1608FBB1A18C0FA008B3216 /* BSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDataManager.m; sourceTree = "<group>"; };
 		D19EB21B1A1824900055B0D3 /* Bsuir Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bsuir Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +55,18 @@
 		D19EB24A1A18249C0055B0D3 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		D19EB2521A1824AF0055B0D3 /* ScheduleData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleData.xcdatamodel; sourceTree = "<group>"; };
+		D1AF20B81A1966A100100B64 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
+		D1AF20B91A1966A100100B64 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
+		D1AF20BB1A1966A100100B64 /* BSWeekNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWeekNumber.h; sourceTree = "<group>"; };
+		D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWeekNumber.m; sourceTree = "<group>"; };
+		D1AF20BE1A1966A200100B64 /* BSAuditory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAuditory.h; sourceTree = "<group>"; };
+		D1AF20BF1A1966A200100B64 /* BSAuditory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAuditory.m; sourceTree = "<group>"; };
+		D1AF20C11A1966A200100B64 /* BSDayOfWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayOfWeek.h; sourceTree = "<group>"; };
+		D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
+		D1AF20C41A1966A200100B64 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
+		D1AF20C51A1966A200100B64 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
+		D1AF20C71A1966A200100B64 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
+		D1AF20C81A1966A200100B64 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,16 +170,18 @@
 			isa = PBXGroup;
 			children = (
 				D19EB2511A1824AF0055B0D3 /* ScheduleData.xcdatamodeld */,
-				D150105A1A19140B00174928 /* BSSubject.h */,
-				D150105B1A19140B00174928 /* BSSubject.m */,
-				D15010571A19140B00174928 /* BSDayOfWeek.h */,
-				D15010581A19140B00174928 /* BSDayOfWeek.m */,
-				D15010541A19140B00174928 /* BSPair.h */,
-				D15010551A19140B00174928 /* BSPair.m */,
-				D15010511A19140B00174928 /* BSAuditory.h */,
-				D15010521A19140B00174928 /* BSAuditory.m */,
-				D150104E1A19140A00174928 /* BSLecturer.h */,
-				D150104F1A19140A00174928 /* BSLecturer.m */,
+				D1AF20C71A1966A200100B64 /* BSPair.h */,
+				D1AF20C81A1966A200100B64 /* BSPair.m */,
+				D1AF20C41A1966A200100B64 /* BSLecturer.h */,
+				D1AF20C51A1966A200100B64 /* BSLecturer.m */,
+				D1AF20C11A1966A200100B64 /* BSDayOfWeek.h */,
+				D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */,
+				D1AF20BE1A1966A200100B64 /* BSAuditory.h */,
+				D1AF20BF1A1966A200100B64 /* BSAuditory.m */,
+				D1AF20BB1A1966A100100B64 /* BSWeekNumber.h */,
+				D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */,
+				D1AF20B81A1966A100100B64 /* BSSubject.h */,
+				D1AF20B91A1966A100100B64 /* BSSubject.m */,
 				D1608FBA1A18C0FA008B3216 /* BSDataManager.h */,
 				D1608FBB1A18C0FA008B3216 /* BSDataManager.m */,
 			);
@@ -284,15 +289,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
-				D15010501A19140A00174928 /* BSLecturer.m in Sources */,
+				D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
 				D19EB2581A1824AF0055B0D3 /* ScheduleData.xcdatamodeld in Sources */,
-				D150105C1A19140B00174928 /* BSSubject.m in Sources */,
-				D15010591A19140B00174928 /* BSDayOfWeek.m in Sources */,
+				D1AF20C31A1966A200100B64 /* BSDayOfWeek.m in Sources */,
+				D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */,
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
-				D15010561A19140B00174928 /* BSPair.m in Sources */,
-				D15010531A19140B00174928 /* BSAuditory.m in Sources */,
 				D19EB22A1A1824910055B0D3 /* BSViewController.m in Sources */,
+				D1AF20C91A1966A200100B64 /* BSPair.m in Sources */,
+				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
+				D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
