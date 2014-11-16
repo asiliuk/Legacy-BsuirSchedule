@@ -6,59 +6,45 @@
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "XMLDictionary.h"
-#import <CoreData/CoreData.h>
-#import "AppDelegate.h"
+#import "BSViewController.h"
+#import "BSDataManager.h"
 
-static NSString * const kScheduleModel = @"scheduleModel";
 
-static NSString * const kDayName = @"weekDay";
-static NSString * const kDaySchedule = @"schedule";
-
-static NSString * const kSubjectType = @"lessonType";
-static NSString * const kSubjectTime = @"lessonTime";
-static NSString * const kSubjectName = @"subject";
-static NSString * const kSubjectNumSubgroup = @"subject";
-
-static NSString * const kLecturer = @"employee";
-static NSString * const kLecturerID = @"id";
-static NSString * const kLecturerLastName = @"lastName";
-static NSString * const kLecturerMiddleName = @"middleName";
-static NSString * const kLecturerFirstName = @"firstName";
-
-@interface ViewController ()
+@interface BSViewController ()
 
 @end
 
-@implementation ViewController
+@implementation BSViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSManagedObjectContext *context =  [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
-    NSEntityDescription *sub = [NSEntityDescription insertNewObjectForEntityForName:@"Subject" inManagedObjectContext:context];
-    sub.name = @"test";
-    
-    NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:@"Subject"];
-    NSPredicate *p = [NSPredicate predicateWithFormat:@"name == %@",@"test"];
-    r.predicate = p;
-    NSArray *a = [context executeFetchRequest:r error:nil];
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.bsuir.by/schedule/rest/schedule/151004"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
-    NSArray *schedule = dict[kScheduleModel];
-    for (NSDictionary *day in schedule) {
-        NSString *dayName = day[kDayName];
-        NSArray *subjects = day[kDaySchedule];
-        for (NSDictionary *subject in subjects) {
-            NSString *lessonType = subject[kSubjectType];
-            NSDictionary *lecturer = subject[kLecturer];
-            NSLog(@"%@ %@ %@", lecturer[kLecturerLastName], lecturer[kLecturerMiddleName], lecturer[kLecturerFirstName]);
-
+    NSString *groupNumber = @"151004";
+    [[BSDataManager sharedInstance] scheduleForGroupNumber:groupNumber withComplitionHandler:^{
+        NSArray *l = [[BSDataManager sharedInstance] lectures];
+        NSArray *s = [[BSDataManager sharedInstance] subjects];
+        NSArray *d = [[BSDataManager sharedInstance] days];
+        NSArray *aud = [[BSDataManager sharedInstance] auditories];
+        NSArray *pairs = [[BSDataManager sharedInstance] pairs];
+        BSDayOfWeek *day = d[0];
+        NSInteger weekNum = 4;
+        for (BSDayOfWeek *day in d) {
+            NSLog(@"---------------");
+            NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+            NSArray *pairs = [day.pairs sortedArrayUsingDescriptors:@[sortD]];
+            for (BSPair *p in pairs) {
+                NSLog(@"%@ %@ %@", p.subject.name, p.subjectType, p.lecturer.lastName);
+            }
         }
-    }
+
+    }];
+    
+
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (NSURL *)applicationDocumentsDirectory {
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.saute.Bsuir_Schedule" in the application's documents directory.
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (void)didReceiveMemoryWarning {
