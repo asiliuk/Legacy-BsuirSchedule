@@ -1,16 +1,16 @@
 //
-//  Auditory.m
+//  BSAuditory.m
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "Auditory.h"
-#import "SubjectToDay.h"
+#import "BSAuditory.h"
+#import "BSPair.h"
 
 
-@implementation Auditory
+@implementation BSAuditory
 
 @dynamic address;
 @dynamic subjectsSchedule;

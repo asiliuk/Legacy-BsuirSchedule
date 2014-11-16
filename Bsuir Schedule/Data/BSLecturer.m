@@ -1,21 +1,22 @@
 //
-//  Lecturer.m
+//  BSLecturer.m
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "Lecturer.h"
-#import "Subject.h"
+#import "BSLecturer.h"
+#import "BSPair.h"
 
 
-@implementation Lecturer
+@implementation BSLecturer
 
 @dynamic academicDepartment;
 @dynamic firstName;
 @dynamic lastName;
+@dynamic lecturerID;
 @dynamic middleName;
-@dynamic subjects;
+@dynamic pairs;
 
 @end

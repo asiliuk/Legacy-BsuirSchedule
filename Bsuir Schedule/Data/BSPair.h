@@ -1,5 +1,5 @@
 //
-//  SubjectToDay.h
+//  BSPair.h
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Day, Subject;
+@class BSAuditory, BSDayOfWeek, BSLecturer, BSSubject;
 
-@interface SubjectToDay : NSManagedObject
+@interface BSPair : NSManagedObject
 
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSNumber * subgroupNumber;
 @property (nonatomic, retain) NSString * subjectType;
-@property (nonatomic, retain) NSManagedObject *auditory;
-@property (nonatomic, retain) Day *day;
-@property (nonatomic, retain) Subject *subject;
+@property (nonatomic, retain) BSAuditory *auditory;
+@property (nonatomic, retain) BSDayOfWeek *day;
+@property (nonatomic, retain) BSSubject *subject;
+@property (nonatomic, retain) BSLecturer *lecturer;
 
 @end

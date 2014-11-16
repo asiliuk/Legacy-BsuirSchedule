@@ -1,5 +1,5 @@
 //
-//  Lecturer.h
+//  BSLecturer.h
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
@@ -9,22 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Subject;
+@class BSPair;
 
-@interface Lecturer : NSManagedObject
+@interface BSLecturer : NSManagedObject
 
 @property (nonatomic, retain) NSString * academicDepartment;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSNumber * lecturerID;
 @property (nonatomic, retain) NSString * middleName;
-@property (nonatomic, retain) NSSet *subjects;
+@property (nonatomic, retain) NSSet *pairs;
 @end
 
-@interface Lecturer (CoreDataGeneratedAccessors)
+@interface BSLecturer (CoreDataGeneratedAccessors)
 
-- (void)addSubjectsObject:(Subject *)value;
-- (void)removeSubjectsObject:(Subject *)value;
-- (void)addSubjects:(NSSet *)values;
-- (void)removeSubjects:(NSSet *)values;
+- (void)addPairsObject:(BSPair *)value;
+- (void)removePairsObject:(BSPair *)value;
+- (void)addPairs:(NSSet *)values;
+- (void)removePairs:(NSSet *)values;
 
 @end

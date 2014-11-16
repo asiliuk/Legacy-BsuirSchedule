@@ -1,5 +1,5 @@
 //
-//  Auditory.h
+//  BSAuditory.h
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class SubjectToDay;
+@class BSPair;
 
-@interface Auditory : NSManagedObject
+@interface BSAuditory : NSManagedObject
 
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSSet *subjectsSchedule;
 @end
 
-@interface Auditory (CoreDataGeneratedAccessors)
+@interface BSAuditory (CoreDataGeneratedAccessors)
 
-- (void)addSubjectsScheduleObject:(SubjectToDay *)value;
-- (void)removeSubjectsScheduleObject:(SubjectToDay *)value;
+- (void)addSubjectsScheduleObject:(BSPair *)value;
+- (void)removeSubjectsScheduleObject:(BSPair *)value;
 - (void)addSubjectsSchedule:(NSSet *)values;
 - (void)removeSubjectsSchedule:(NSSet *)values;
 

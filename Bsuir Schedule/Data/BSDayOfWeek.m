@@ -1,18 +1,18 @@
 //
-//  Day.m
+//  BSDayOfWeek.m
 //  Bsuir Schedule
 //
 //  Created by Anton Siliuk on 16.11.14.
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "Day.h"
-#import "SubjectToDay.h"
+#import "BSDayOfWeek.h"
+#import "BSPair.h"
 
 
-@implementation Day
+@implementation BSDayOfWeek
 
 @dynamic name;
-@dynamic subjectSchedule;
+@dynamic pairs;
 
 @end
