@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Auditory" representedClassName="Auditory" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subjectsSchedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubjectToDay" inverseName="auditory" inverseEntity="SubjectToDay" syncable="YES"/>
+    </entity>
+    <entity name="Day" representedClassName="Day" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subjectSchedule" optional="YES" transient="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubjectToDay" inverseName="day" inverseEntity="SubjectToDay" syncable="YES"/>
+    </entity>
+    <entity name="Lecturer" representedClassName="Lecturer" syncable="YES">
+        <attribute name="academicDepartment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subject" inverseName="lecturer" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <entity name="Subject" representedClassName="Subject" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="daysSchedule" optional="YES" transient="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubjectToDay" inverseName="subject" inverseEntity="SubjectToDay" syncable="YES"/>
+        <relationship name="lecturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lecturer" inverseName="subjects" inverseEntity="Lecturer" syncable="YES"/>
+    </entity>
+    <entity name="SubjectToDay" representedClassName="SubjectToDay" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="subgroupNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="subjectType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="auditory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Auditory" inverseName="subjectsSchedule" inverseEntity="Auditory" syncable="YES"/>
+        <relationship name="day" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="subjectSchedule" inverseEntity="Day" syncable="YES"/>
+        <relationship name="subject" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="daysSchedule" inverseEntity="Subject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Auditory" positionX="-36" positionY="27" width="128" height="75"/>
+        <element name="Day" positionX="-18" positionY="36" width="128" height="73"/>
+        <element name="Lecturer" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Subject" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="SubjectToDay" positionX="0" positionY="63" width="128" height="148"/>
+    </elements>
+</model>
