@@ -7,7 +7,12 @@
 //
 
 #import "BSLecturer+Thumbnail.h"
+#import "NSString+Transiterate.h"
 
 @implementation BSLecturer (Thumbnail)
-
+- (UIImage*)thumbnail {
+    NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName];
+    NSLog(@"%@", [thumbName toLatinWithDictionary]); // outputs "russkij âzyk"
+    return [UIImage imageNamed:[thumbName toLatinWithDictionary]];
+}
 @end

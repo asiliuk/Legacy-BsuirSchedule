@@ -7,7 +7,7 @@
 //
 
 #import "BSLecturer.h"
-
+#import <UIKit/UIKit.h>
 @interface BSLecturer (Thumbnail)
-
+- (UIImage*)thumbnail;
 @end
