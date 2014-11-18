@@ -12,6 +12,7 @@
 
 @interface BSDataManager()
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSArray *weekDays;
 @end
 @implementation BSDataManager
 @dynamic context;
@@ -32,6 +33,15 @@
 
 - (NSManagedObjectContext*)context {
     return [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.weekDays = @[@"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота", @"Воскресенье"];
+    }
+    return self;
 }
 
 //==============================================APP DELEGATE METHODS===========================================
@@ -222,6 +232,10 @@
     return [self.context executeFetchRequest:daysRequest error:nil];
 }
 
+- (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {
+    return [self dayWithName:[self.weekDays objectAtIndex:dayIndex] createIfNotExists:createIfNotExists];
+}
+
 - (BSDayOfWeek*)dayWithName:(NSString *)dayName createIfNotExists:(BOOL)createIfNotExists{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSDayOfWeek class])];
     request.predicate = [NSPredicate predicateWithFormat:@"name == %@", dayName];
@@ -242,6 +256,10 @@
     BSDayOfWeek *day = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSDayOfWeek class]) inManagedObjectContext:self.context];
     day.name = dayName;
     return day;
+}
+
+- (NSInteger)indexForDayName:(NSString *)dayName {
+    return [self.weekDays indexOfObject:dayName];
 }
 
 //===============================================AUDITORY===========================================
@@ -359,4 +377,34 @@
     weekNumberObj.weekNumber = @(weekNumber);
     return weekNumberObj;
 }
+
+- (BSWeekNumber*)currentWeek {
+    return [self weekNumberWithNumber:[self currentWeekNumber] createIfNotExists:YES];
+}
+
+#define START_DAY 1
+#define START_MONTH 9
+- (NSInteger)currentWeekNumber {
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
+    
+    NSDateComponents *today = [gregorian components:calendarUnits fromDate:[NSDate date]];
+    today.day -= [today weekday];
+
+    NSDateComponents *firstDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
+    firstDay.day =  START_DAY;
+    firstDay.month = START_MONTH;
+    firstDay.day -= [firstDay weekday];
+
+    NSTimeInterval timePased = [[gregorian dateFromComponents:today] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
+    if (timePased < 0) {
+        firstDay.year -= 1;
+    }
+    timePased = [[gregorian dateFromComponents:today] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
+    NSInteger weeksPast = timePased / (7*24*3600);
+    NSInteger weekNum = (weeksPast % 4) + 1;
+    return weekNum;
+}
+
 @end

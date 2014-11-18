@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     NSString *groupNumber = @"151004";
     [[BSDataManager sharedInstance] scheduleForGroupNumber:groupNumber withComplitionHandler:^{
         self.days = [[BSDataManager sharedInstance] days];

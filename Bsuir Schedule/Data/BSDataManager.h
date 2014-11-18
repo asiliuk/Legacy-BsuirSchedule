@@ -64,7 +64,9 @@ static NSString * const kLecturerFirstName = @"firstName";
 //-------------------------------Day---------------------------------
 - (NSArray*)days;
 - (BSDayOfWeek*)dayWithName:(NSString*)dayName createIfNotExists:(BOOL)createIfNotExists;
+- (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists;
 - (BSDayOfWeek*)addDayWithName:(NSString*)dayName;
+- (NSInteger)indexForDayName:(NSString*)dayName;
 //-------------------------------Auditory---------------------------------
 - (NSArray*)auditories;
 - (BSAuditory*)auditoryWithAddress:(NSString*)address createIfNotExists:(BOOL)createIfNotExists;
@@ -85,5 +87,6 @@ static NSString * const kLecturerFirstName = @"firstName";
 - (NSArray*)weekNumbers;
 - (BSWeekNumber*)weekNumberWithNumber:(NSInteger)weekNumber createIfNotExists:(BOOL)createIfNotExists;
 - (BSWeekNumber*)addWeekNumberWithNumber:(NSInteger)weekNumber;
+- (BSWeekNumber*)currentWeek;
 
 @end
