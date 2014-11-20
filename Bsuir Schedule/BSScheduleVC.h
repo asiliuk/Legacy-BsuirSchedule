@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BSViewController : UIViewController
+@interface BSScheduleVC : UIViewController
 
 
 @end
