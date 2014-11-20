@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="BSAuditory" representedClassName="BSAuditory" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="subjectsSchedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="auditory" inverseEntity="BSPair" syncable="YES"/>
@@ -18,9 +18,9 @@
     </entity>
     <entity name="BSPair" representedClassName="BSPair" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="pairType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="subgroupNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="subjectType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="auditory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSAuditory" inverseName="subjectsSchedule" inverseEntity="BSAuditory" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSDayOfWeek" inverseName="pairs" inverseEntity="BSDayOfWeek" syncable="YES"/>
         <relationship name="lecturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSLecturer" inverseName="pairs" inverseEntity="BSLecturer" syncable="YES"/>
@@ -39,7 +39,7 @@
         <element name="BSAuditory" positionX="-36" positionY="27" width="128" height="73"/>
         <element name="BSDayOfWeek" positionX="-18" positionY="36" width="128" height="73"/>
         <element name="BSLecturer" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="BSPair" positionX="0" positionY="63" width="128" height="178"/>
+        <element name="BSPair" positionX="0" positionY="63" width="128" height="180"/>
         <element name="BSSubject" positionX="-54" positionY="-9" width="128" height="73"/>
         <element name="BSWeekNumber" positionX="-27" positionY="81" width="128" height="73"/>
     </elements>

@@ -13,7 +13,8 @@
 #import "BSLecturer.h"
 #import "BSDayOfWeek.h"
 #import "BSAuditory.h"
-#import "BSPair.h"
+#import "BSPair+Type.h"
+#import "BSPair+Color.h"
 #import "BSWeekNumber.h"
 
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
@@ -76,7 +77,7 @@ static NSString * const kLecturerFirstName = @"firstName";
 - (BSPair*)addPairWithStartTime:(NSDate*)startTime
                         endTime:(NSDate*)endTime
                  subgroupNumber:(NSInteger)subgroupNumber
-                    subjectType:(NSString*)subjectType
+                   pairTypeName:(NSString*)pairTypeName
                      inAuditory:(BSAuditory*)auditory
                           atDay:(BSDayOfWeek*)day
                         subject:(BSSubject*)subject

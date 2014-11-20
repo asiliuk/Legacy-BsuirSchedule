@@ -2,7 +2,7 @@
 //  BSPair.m
 //  Bsuir Schedule
 //
-//  Created by Anton Siliuk on 17.11.14.
+//  Created by Anton Siliuk on 19.11.14.
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 @dynamic endTime;
 @dynamic startTime;
 @dynamic subgroupNumber;
-@dynamic subjectType;
+@dynamic pairType;
 @dynamic auditory;
 @dynamic day;
 @dynamic lecturer;

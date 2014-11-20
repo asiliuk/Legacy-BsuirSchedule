@@ -11,8 +11,8 @@
 
 @implementation BSLecturer (Thumbnail)
 - (UIImage*)thumbnail {
-    NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName];
-    NSLog(@"%@", [thumbName toLatinWithDictionary]); // outputs "russkij âzyk"
+    NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@.jpg", self.lastName, self.firstName, self.middleName];
+    NSLog(@"%@", [thumbName toLatinWithDictionary]);
     return [UIImage imageNamed:[thumbName toLatinWithDictionary]];
 }
 @end
