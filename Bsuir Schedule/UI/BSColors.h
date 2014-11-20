@@ -15,6 +15,8 @@
 #define BS_YELLOW UIColor(240, 197, 78, 1.0)
 #define BS_BLUE UIColor(50, 149, 191, 1.0)
 #define BS_PURPLE UIColor(149, 91, 165, 1.0)
-
+#define BS_GRAY UIColor(130, 138, 151, 1.0)
+#define BS_BLUE_GRAY UIColor(69, 101, 152, 1.0)
+#define BS_LIGHT_BLUE UIColor(229, 235, 251, 1.0)
 
 #endif

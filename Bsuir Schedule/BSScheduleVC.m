@@ -14,14 +14,17 @@
 #import "BSLecturer+Thumbnail.h"
 #import "NSString+Transiterate.h"
 
+#import "BSSettingsVC.h"
+
 
 
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *days;
+//@property (strong, nonatomic) NSArray *days;
+@property (strong, nonatomic) NSFetchedResultsController *frc;
 @end
 
 @implementation BSScheduleVC
@@ -43,15 +46,30 @@ static NSString * const kCellID = @"Pair cell id";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
                                                                       NSFontAttributeName: titleFont}];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tools"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettingsScreen)];
+    settingsButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = settingsButton;
+    
     NSString *groupNumber = @"151004";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
+    NSFetchRequest *pairRequest = [[NSFetchRequest alloc] initWithEntityName:@"BSPair"];
+    BSWeekNumber *curentWeek = [[BSDataManager sharedInstance] currentWeek];
+    pairRequest.predicate = [NSPredicate predicateWithFormat:@"weeks contains[c] %@", curentWeek];
+    pairRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"day" ascending:YES]];
+    [pairRequest setReturnsObjectsAsFaults:NO];
+    [pairRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObjects:@"lecturer", @"subject", nil]];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:pairRequest managedObjectContext:[BSDataManager sharedInstance].context sectionNameKeyPath:@"day" cacheName:nil];
+    self.frc.delegate = self;
+    if ([[BSDataManager sharedInstance]scheduleNeedUpdateForGroup:groupNumber]) {
+        [[BSDataManager sharedInstance] scheduleForGroupNumber:groupNumber withComplitionHandler:^{
+            [self.frc performFetch:nil];
+//            [self.tableView reloadData];
+        }];
+    } else {
+        [self.frc performFetch:nil];
+    }
 
-    [[BSDataManager sharedInstance] scheduleForGroupNumber:groupNumber withComplitionHandler:^{
-        self.days = [[BSDataManager sharedInstance] days];
-        [self.tableView reloadData];
-    }];
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -67,6 +85,7 @@ static NSString * const kCellID = @"Pair cell id";
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table View
 
@@ -83,18 +102,17 @@ static NSString * const kCellID = @"Pair cell id";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.days count];
+    return [[self.frc sections] count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    BSWeekNumber *weekNumber = [[BSDataManager sharedInstance] currentWeek];
-    return [[self pairsInDay:self.days[section] forWeekNum:weekNumber] count];
+//    BSWeekNumber *weekNumber = [[BSDataManager sharedInstance] currentWeek];
+    return [[[[self.frc sections] objectAtIndex:section] objects] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
-    BSWeekNumber *weekNumber = [[BSDataManager sharedInstance] currentWeek];
-    BSPair *pair = [[self pairsInDay:self.days[indexPath.section] forWeekNum:weekNumber] objectAtIndex:indexPath.row];
+    BSPair *pair = [self.frc objectAtIndexPath:indexPath];
     BSLecturer *lecturer = pair.lecturer;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"hh:mm"];
@@ -136,6 +154,46 @@ static NSString * const kCellID = @"Pair cell id";
             [pairCell makeSelected:NO];
         }
     }
+}
+
+#define HEADER_HEIGHT 30.0
+#define HEADER_LABEL_FONT_SIZE 17.0
+#define HEADER_LABEL_OFFSET_X 10.0
+#define HEADER_LABEL_OFFSET_Y 5.0
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, HEADER_HEIGHT)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(HEADER_LABEL_OFFSET_X, HEADER_LABEL_OFFSET_Y,
+                                                               tableView.frame.size.width, HEADER_HEIGHT)];
+    [label setFont:[UIFont fontWithName:@"OpenSans" size:HEADER_LABEL_FONT_SIZE]];
+    NSString *string = [[[self.frc sections] objectAtIndex:section] name];
+    [label setText:string];
+    [label setTextColor:BS_GRAY];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor clearColor]];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return HEADER_HEIGHT+5.0;
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
+
+//===============================================UI===========================================
+#pragma mark - UI
+
+#define SETTINGS_SCREEN_ANIMATION_DURATION 0.4
+- (void)showSettingsScreen {
+    BSSettingsVC *settingsVC = [[BSSettingsVC alloc] init];
+    [self.navigationController addChildViewController:settingsVC];
+    [self.navigationController.view addSubview:settingsVC.view];
+    settingsVC.view.frame = self.navigationController.view.bounds;
+    [settingsVC viewDidAppear:YES];
+
 }
 
 @end

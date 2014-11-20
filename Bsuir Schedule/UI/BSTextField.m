@@ -18,4 +18,12 @@
 }
 */
 
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return [self editingRectForBounds:bounds];
+}
+#define INSET 10.0
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset( bounds, INSET, 0);
+}
+
 @end

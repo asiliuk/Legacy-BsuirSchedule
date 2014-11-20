@@ -20,6 +20,10 @@
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
 
 static NSString * const kLastUpdate = @"last update";
+static NSString * const kCurrentScheduleGroup = @"Current schedule group";
+static NSString * const kUserGroup = @"user group number";
+static NSString * const kUserSubgroup = @"user subgroup number";
+
 static NSString * const kScheduleModel = @"scheduleModel";
 
 static NSString * const kDayName = @"weekDay";
@@ -41,9 +45,11 @@ static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
 @interface BSDataManager : NSObject
+@property (strong, nonatomic, readonly) NSManagedObjectContext *context;
+
 //-------------------------------Methods---------------------------------
 + (instancetype)sharedInstance;
-- (BOOL)scheduleNeedUpdate;
+- (BOOL)scheduleNeedUpdateForGroup:(NSString*)groupNumber;;
 - (void)scheduleForGroupNumber:(NSString*)groupNumber withComplitionHandler:(void(^)(void))complitionHandler;
 
 //-------------------------------Subject---------------------------------

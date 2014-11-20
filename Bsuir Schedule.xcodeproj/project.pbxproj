@@ -20,6 +20,8 @@
 		D11F67531A1D56FC0068317F /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D11F67481A1D56FC0068317F /* OpenSans-SemiboldItalic.ttf */; };
 		D11F67561A1D743A0068317F /* BSScheduleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11F67551A1D743A0068317F /* BSScheduleVC.xib */; };
 		D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
+		D16DD2981A1E1E1600C61DDD /* BSSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */; };
+		D16DD2991A1E1E1600C61DDD /* BSSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */; };
 		D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D18AE80D1A1BFC88003007EF /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = D18AE80C1A1BFC88003007EF /* BSPair.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
@@ -41,6 +43,7 @@
 		D1E5C72E1A1BE41B009E5552 /* BSPairCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C72C1A1BE41B009E5552 /* BSPairCell.m */; };
 		D1E5C72F1A1BE41B009E5552 /* BSPairCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */; };
 		D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
+		D1E873D91A1E3F1F007F056F /* BSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E873D81A1E3F1F007F056F /* BSTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		D11F67551A1D743A0068317F /* BSScheduleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSScheduleVC.xib; sourceTree = "<group>"; };
 		D1608FBA1A18C0FA008B3216 /* BSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDataManager.h; sourceTree = "<group>"; };
 		D1608FBB1A18C0FA008B3216 /* BSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDataManager.m; sourceTree = "<group>"; };
+		D16DD2951A1E1E1600C61DDD /* BSSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSettingsVC.h; sourceTree = "<group>"; };
+		D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSettingsVC.m; sourceTree = "<group>"; };
+		D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSSettingsVC.xib; sourceTree = "<group>"; };
 		D170BD131A1BF9690068E67C /* BSPair+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Color.h"; sourceTree = "<group>"; };
 		D170BD141A1BF9690068E67C /* BSPair+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Color.m"; sourceTree = "<group>"; };
 		D18AE80B1A1BFC88003007EF /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
@@ -109,6 +115,8 @@
 		D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSPairCell.xib; sourceTree = "<group>"; };
 		D1E5C7301A1BF341009E5552 /* BSPair+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Type.h"; sourceTree = "<group>"; };
 		D1E5C7311A1BF341009E5552 /* BSPair+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Type.m"; sourceTree = "<group>"; };
+		D1E873D71A1E3F1F007F056F /* BSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTextField.h; sourceTree = "<group>"; };
+		D1E873D81A1E3F1F007F056F /* BSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,13 +283,18 @@
 			isa = PBXGroup;
 			children = (
 				D11F673D1A1D56FC0068317F /* Fonts */,
+				D11F67541A1D5D480068317F /* BSColors.h */,
 				D1E5C72B1A1BE41B009E5552 /* BSPairCell.h */,
 				D1E5C72C1A1BE41B009E5552 /* BSPairCell.m */,
 				D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */,
-				D11F67541A1D5D480068317F /* BSColors.h */,
 				D19EB2281A1824910055B0D3 /* BSScheduleVC.h */,
 				D19EB2291A1824910055B0D3 /* BSScheduleVC.m */,
 				D11F67551A1D743A0068317F /* BSScheduleVC.xib */,
+				D16DD2951A1E1E1600C61DDD /* BSSettingsVC.h */,
+				D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */,
+				D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */,
+				D1E873D71A1E3F1F007F056F /* BSTextField.h */,
+				D1E873D81A1E3F1F007F056F /* BSTextField.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 				D11F67561A1D743A0068317F /* BSScheduleVC.xib in Resources */,
 				D11F674B1A1D56FC0068317F /* OpenSans-BoldItalic.ttf in Resources */,
 				D11F67501A1D56FC0068317F /* OpenSans-LightItalic.ttf in Resources */,
+				D16DD2991A1E1E1600C61DDD /* BSSettingsVC.xib in Resources */,
 				D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +429,8 @@
 				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
 				D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
+				D1E873D91A1E3F1F007F056F /* BSTextField.m in Sources */,
+				D16DD2981A1E1E1600C61DDD /* BSSettingsVC.m in Sources */,
 				D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
