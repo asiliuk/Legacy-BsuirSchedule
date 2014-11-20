@@ -39,7 +39,9 @@ static NSString * const kCellID = @"Pair cell id";
     self.title = @"Расписание";
     
     [self.navigationController.navigationBar setBarTintColor:BS_BLUE];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                                      NSFontAttributeName: titleFont}];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
     NSString *groupNumber = @"151004";

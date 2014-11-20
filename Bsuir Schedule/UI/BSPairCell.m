@@ -30,6 +30,9 @@
 #define OFFSET 10.0
 #define ANIMATION_DURATION 0.3
 - (void)makeSelected:(BOOL)selected {
+    if (self.lecturerNameLabel.hidden || [self.lecturerNameLabel.text isEqual:@""]) {
+        return;
+    }
     CGRect lecturerIVFrame = self.lecturerIV.frame;
     CGRect lecturerNameFrame = self.lecturerNameLabel.frame;
 
