@@ -142,7 +142,7 @@ static NSString * const kCellID = @"Pair cell id";
 - (void)loadScheduleForNextDaysCount:(NSInteger)daysCount {
     NSDate *dayDate = [NSDate dateWithTimeIntervalSinceNow:-(1 + PREVIOUS_DAY_COUNT)*DAY_STEP]; // to show two previous days
     if ([self.daysWithWeekNumber count] > 0) {
-        [[self.daysWithWeekNumber lastObject] date];
+        dayDate = [[self.daysWithWeekNumber lastObject] date];
     }
     NSInteger daysAdded = 0;
     while (daysAdded < daysCount) {
