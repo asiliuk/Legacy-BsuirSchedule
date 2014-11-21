@@ -7,7 +7,7 @@
 //
 
 #import "BSPair+Color.h"
-#import "BSColors.h"
+#import "BSConstants.h"
 
 @implementation BSPair (Color)
 - (UIColor*)colorForPairType {

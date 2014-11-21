@@ -21,6 +21,5 @@
 - (void)resetDatabase;
 - (NSURL *)applicationDocumentsDirectory;
 
-
 @end
 

@@ -38,7 +38,7 @@
 {
     self = [super init];
     if (self) {
-        self.weekDays = @[@"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота", @"Воскресенье"];
+        self.weekDays = @[@"Воскресенье", @"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота"];
     }
     return self;
 }
@@ -61,10 +61,10 @@
     NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUpdate];
     NSString *currentScheduleGroup = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentScheduleGroup];
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
-    return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL&& [currentScheduleGroup isEqual:groupNumber]);
+    return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL && [currentScheduleGroup isEqual:groupNumber]);
 }
 
-- (void)scheduleForGroupNumber:(NSString *)groupNumber withComplitionHandler:(void (^)(void))complitionHandler {
+- (void)scheduleForGroupNumber:(NSString *)groupNumber withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
 //    NSURL *scheduleLocalURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[groupNumber stringByAppendingString:@".schedule"]];
     
 //    if ([[NSFileManager defaultManager] fileExistsAtPath:[scheduleLocalURL path]]) {
@@ -89,7 +89,10 @@
             for (NSDictionary *dayData in scheduleData) {
                 NSString *dayName = dayData[kDayName];
                 BSDayOfWeek *day = [[BSDataManager sharedInstance] dayWithName:dayName createIfNotExists:YES];
-                NSArray *subjects = dayData[kDaySchedule];
+                id subjects = dayData[kDaySchedule];
+                if (![subjects isKindOfClass:[NSArray class]]) {
+                    subjects = @[subjects];
+                }
                 for (NSDictionary *subjectData in subjects) {
                     NSString *subjectName = subjectData[kSubjectName];
                     NSString *pairType = subjectData[kSubjectType];
@@ -143,8 +146,10 @@
             }
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastUpdate];
             [[NSUserDefaults standardUserDefaults] setObject:groupNumber forKey:kCurrentScheduleGroup];
+            if (success) dispatch_async(dispatch_get_main_queue(), success);
+        } else if (failure) {
+            dispatch_async(dispatch_get_main_queue(), failure);
         }
-        dispatch_async(dispatch_get_main_queue(), complitionHandler);
     });
 }
 
@@ -241,6 +246,13 @@
 
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {
     return [self dayWithName:[self.weekDays objectAtIndex:dayIndex] createIfNotExists:createIfNotExists];
+}
+
+- (BSDayOfWeek*)dayWithDate:(NSDate*)date {
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
+    NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
+    return [self dayWithIndex:([dateComponents weekday]-1) createIfNotExists:NO];
 }
 
 - (BSDayOfWeek*)dayWithName:(NSString *)dayName createIfNotExists:(BOOL)createIfNotExists{
@@ -388,32 +400,32 @@
 }
 
 - (BSWeekNumber*)currentWeek {
-    return [self weekNumberWithNumber:[self currentWeekNumber] createIfNotExists:YES];
+    return [self weekNumberWithDate:[NSDate date]];
 }
 
 #define START_DAY 1
 #define START_MONTH 9
-- (NSInteger)currentWeekNumber {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
-    
-    NSDateComponents *today = [gregorian components:calendarUnits fromDate:[NSDate date]];
-    today.day -= [today weekday];
 
+
+- (BSWeekNumber*)weekNumberWithDate:(NSDate *)date {
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
+    NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
+    dateComponents.day -= [dateComponents weekday];
+    
     NSDateComponents *firstDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
     firstDay.day =  START_DAY;
     firstDay.month = START_MONTH;
     firstDay.day -= [firstDay weekday];
-
-    NSTimeInterval timePased = [[gregorian dateFromComponents:today] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
+    
+    NSTimeInterval timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
     if (timePased < 0) {
         firstDay.year -= 1;
     }
-    timePased = [[gregorian dateFromComponents:today] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
+    timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
     NSInteger weeksPast = timePased / (7*24*3600);
     NSInteger weekNum = (weeksPast % 4) + 1;
-    return weekNum;
+    return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
 }
 
 @end

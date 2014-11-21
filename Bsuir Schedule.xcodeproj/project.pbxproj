@@ -21,7 +21,6 @@
 		D11F67561A1D743A0068317F /* BSScheduleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11F67551A1D743A0068317F /* BSScheduleVC.xib */; };
 		D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
 		D16DD2981A1E1E1600C61DDD /* BSSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */; };
-		D16DD2991A1E1E1600C61DDD /* BSSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */; };
 		D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D18AE80D1A1BFC88003007EF /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = D18AE80C1A1BFC88003007EF /* BSPair.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
@@ -44,6 +43,11 @@
 		D1E5C72F1A1BE41B009E5552 /* BSPairCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */; };
 		D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
 		D1E873D91A1E3F1F007F056F /* BSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E873D81A1E3F1F007F056F /* BSTextField.m */; };
+		D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E873DE1A1EBB3C007F056F /* Localizable.strings */; };
+		D1E873E01A1ED92D007F056F /* BSSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E873E21A1ED92D007F056F /* BSSettingsVC.xib */; };
+		D1F4B7791A1EE3BA00EB1E62 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */; };
+		D1F4B77C1A1EF27600EB1E62 /* NSDate+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B77B1A1EF27600EB1E62 /* NSDate+Compare.m */; };
+		D1F4B77F1A1EFDBC00EB1E62 /* BSTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B77E1A1EFDBC00EB1E62 /* BSTriangleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,13 +72,12 @@
 		D11F67461A1D56FC0068317F /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		D11F67471A1D56FC0068317F /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		D11F67481A1D56FC0068317F /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		D11F67541A1D5D480068317F /* BSColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSColors.h; sourceTree = "<group>"; };
+		D11F67541A1D5D480068317F /* BSConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSConstants.h; path = ../UI/BSConstants.h; sourceTree = "<group>"; };
 		D11F67551A1D743A0068317F /* BSScheduleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSScheduleVC.xib; sourceTree = "<group>"; };
 		D1608FBA1A18C0FA008B3216 /* BSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDataManager.h; sourceTree = "<group>"; };
 		D1608FBB1A18C0FA008B3216 /* BSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDataManager.m; sourceTree = "<group>"; };
 		D16DD2951A1E1E1600C61DDD /* BSSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSettingsVC.h; sourceTree = "<group>"; };
 		D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSettingsVC.m; sourceTree = "<group>"; };
-		D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSSettingsVC.xib; sourceTree = "<group>"; };
 		D170BD131A1BF9690068E67C /* BSPair+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Color.h"; sourceTree = "<group>"; };
 		D170BD141A1BF9690068E67C /* BSPair+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Color.m"; sourceTree = "<group>"; };
 		D18AE80B1A1BFC88003007EF /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
@@ -115,8 +118,19 @@
 		D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSPairCell.xib; sourceTree = "<group>"; };
 		D1E5C7301A1BF341009E5552 /* BSPair+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Type.h"; sourceTree = "<group>"; };
 		D1E5C7311A1BF341009E5552 /* BSPair+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Type.m"; sourceTree = "<group>"; };
-		D1E873D71A1E3F1F007F056F /* BSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTextField.h; sourceTree = "<group>"; };
-		D1E873D81A1E3F1F007F056F /* BSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTextField.m; sourceTree = "<group>"; };
+		D1E873D71A1E3F1F007F056F /* BSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSTextField.h; path = ../UI/BSTextField.h; sourceTree = "<group>"; };
+		D1E873D81A1E3F1F007F056F /* BSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSTextField.m; path = ../UI/BSTextField.m; sourceTree = "<group>"; };
+		D1E873DD1A1EBB3C007F056F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D1E873DF1A1EBBEC007F056F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D1E873E11A1ED92D007F056F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BSSettingsVC.xib; sourceTree = "<group>"; };
+		D1E873E41A1ED930007F056F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BSSettingsVC.strings; sourceTree = "<group>"; };
+		D1E873E61A1ED932007F056F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/BSSettingsVC.strings; sourceTree = "<group>"; };
+		D1F4B7771A1EE3B900EB1E62 /* BSDayWithWeekNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayWithWeekNum.h; sourceTree = "<group>"; };
+		D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayWithWeekNum.m; sourceTree = "<group>"; };
+		D1F4B77A1A1EF27600EB1E62 /* NSDate+Compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Compare.h"; path = "../UI/NSDate+Compare.h"; sourceTree = "<group>"; };
+		D1F4B77B1A1EF27600EB1E62 /* NSDate+Compare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Compare.m"; path = "../UI/NSDate+Compare.m"; sourceTree = "<group>"; };
+		D1F4B77D1A1EFDBC00EB1E62 /* BSTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTriangleView.h; sourceTree = "<group>"; };
+		D1F4B77E1A1EFDBC00EB1E62 /* BSTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTriangleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +199,8 @@
 				D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */,
 				D1AF20B81A1966A100100B64 /* BSSubject.h */,
 				D1AF20B91A1966A100100B64 /* BSSubject.m */,
+				D1F4B7771A1EE3B900EB1E62 /* BSDayWithWeekNum.h */,
+				D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -210,6 +226,7 @@
 		D19EB21D1A1824900055B0D3 /* Bsuir Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				D1F4B7801A1EFDD900EB1E62 /* Utils */,
 				D1DE31601A1A9F66000038B0 /* UI */,
 				D19EB24D1A1824AF0055B0D3 /* Data */,
 				D19EB2471A18249C0055B0D3 /* 3rd party */,
@@ -218,6 +235,7 @@
 				D19EB22E1A1824910055B0D3 /* Images.xcassets */,
 				D19EB2301A1824910055B0D3 /* LaunchScreen.xib */,
 				D19EB21E1A1824900055B0D3 /* Supporting Files */,
+				D1E873DE1A1EBB3C007F056F /* Localizable.strings */,
 			);
 			path = "Bsuir Schedule";
 			sourceTree = "<group>";
@@ -283,7 +301,6 @@
 			isa = PBXGroup;
 			children = (
 				D11F673D1A1D56FC0068317F /* Fonts */,
-				D11F67541A1D5D480068317F /* BSColors.h */,
 				D1E5C72B1A1BE41B009E5552 /* BSPairCell.h */,
 				D1E5C72C1A1BE41B009E5552 /* BSPairCell.m */,
 				D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */,
@@ -292,11 +309,23 @@
 				D11F67551A1D743A0068317F /* BSScheduleVC.xib */,
 				D16DD2951A1E1E1600C61DDD /* BSSettingsVC.h */,
 				D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */,
-				D16DD2971A1E1E1600C61DDD /* BSSettingsVC.xib */,
-				D1E873D71A1E3F1F007F056F /* BSTextField.h */,
-				D1E873D81A1E3F1F007F056F /* BSTextField.m */,
+				D1E873E21A1ED92D007F056F /* BSSettingsVC.xib */,
+				D1F4B77D1A1EFDBC00EB1E62 /* BSTriangleView.h */,
+				D1F4B77E1A1EFDBC00EB1E62 /* BSTriangleView.m */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		D1F4B7801A1EFDD900EB1E62 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D11F67541A1D5D480068317F /* BSConstants.h */,
+				D1E873D71A1E3F1F007F056F /* BSTextField.h */,
+				D1E873D81A1E3F1F007F056F /* BSTextField.m */,
+				D1F4B77A1A1EF27600EB1E62 /* NSDate+Compare.h */,
+				D1F4B77B1A1EF27600EB1E62 /* NSDate+Compare.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +377,7 @@
 				TargetAttributes = {
 					D19EB21A1A1824900055B0D3 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 636FUHDF2R;
 					};
 					D19EB2361A1824910055B0D3 = {
 						CreatedOnToolsVersion = 6.1;
@@ -362,6 +392,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = D19EB2121A1824900055B0D3;
 			productRefGroup = D19EB21C1A1824900055B0D3 /* Products */;
@@ -385,6 +416,7 @@
 				D11F674A1A1D56FC0068317F /* OpenSans-Bold.ttf in Resources */,
 				D11F674C1A1D56FC0068317F /* OpenSans-ExtraBold.ttf in Resources */,
 				D1E5C72F1A1BE41B009E5552 /* BSPairCell.xib in Resources */,
+				D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */,
 				D11F674F1A1D56FC0068317F /* OpenSans-Light.ttf in Resources */,
 				D19EB2321A1824910055B0D3 /* LaunchScreen.xib in Resources */,
 				D19EB22F1A1824910055B0D3 /* Images.xcassets in Resources */,
@@ -394,7 +426,7 @@
 				D11F67561A1D743A0068317F /* BSScheduleVC.xib in Resources */,
 				D11F674B1A1D56FC0068317F /* OpenSans-BoldItalic.ttf in Resources */,
 				D11F67501A1D56FC0068317F /* OpenSans-LightItalic.ttf in Resources */,
-				D16DD2991A1E1E1600C61DDD /* BSSettingsVC.xib in Resources */,
+				D1E873E01A1ED92D007F056F /* BSSettingsVC.xib in Resources */,
 				D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +449,7 @@
 				D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */,
 				D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */,
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
+				D1F4B7791A1EE3BA00EB1E62 /* BSDayWithWeekNum.m in Sources */,
 				D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
 				D19EB2581A1824AF0055B0D3 /* ScheduleData.xcdatamodeld in Sources */,
@@ -427,7 +460,9 @@
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
 				D19EB22A1A1824910055B0D3 /* BSScheduleVC.m in Sources */,
 				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
+				D1F4B77F1A1EFDBC00EB1E62 /* BSTriangleView.m in Sources */,
 				D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */,
+				D1F4B77C1A1EF27600EB1E62 /* NSDate+Compare.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
 				D1E873D91A1E3F1F007F056F /* BSTextField.m in Sources */,
 				D16DD2981A1E1E1600C61DDD /* BSSettingsVC.m in Sources */,
@@ -460,6 +495,25 @@
 				D19EB2311A1824910055B0D3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		D1E873DE1A1EBB3C007F056F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1E873DD1A1EBB3C007F056F /* Base */,
+				D1E873DF1A1EBBEC007F056F /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D1E873E21A1ED92D007F056F /* BSSettingsVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1E873E11A1ED92D007F056F /* Base */,
+				D1E873E41A1ED930007F056F /* en */,
+				D1E873E61A1ED932007F056F /* ru */,
+			);
+			name = BSSettingsVC.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -545,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -556,6 +611,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

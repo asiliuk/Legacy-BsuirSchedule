@@ -8,7 +8,7 @@
 
 #import "BSSettingsVC.h"
 #import "BSDataManager.h"
-#import "BSColors.h"
+#import "BSConstants.h"
 
 @interface BSSettingsVC ()
 @property (strong, nonatomic) IBOutlet UIView *centerView;
@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *groupNumberTF;
 @property (strong, nonatomic) IBOutlet UITextField *subgroupNumberTF;
 
+@property (nonatomic) BOOL dataChanged;
+
+@property (strong, nonatomic) UIDynamicAnimator *animator;
 @end
 
 @implementation BSSettingsVC
@@ -26,7 +29,9 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+        
+        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+        self.dataChanged = NO;
     }
     return self;
 }
@@ -42,6 +47,10 @@
     self.subgroupNumberTF.layer.borderWidth = BORDER_WIDTH;
     self.subgroupNumberTF.layer.cornerRadius = BORDER_WIDTH;
     self.subgroupNumberTF.layer.borderColor = BS_LIGHT_BLUE.CGColor;
+    
+    [self.groupNumberTF setText:[[NSUserDefaults standardUserDefaults] objectForKey:kUserGroup]];
+    [self.subgroupNumberTF setText:[[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -58,7 +67,6 @@
 
 
 #define ANIMATION_DURATION_SHOW 0.4
-#define ANIMATION_DURATION_HIDE 1.2
 
 - (void)showCenterView {
     self.centerView.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
@@ -78,18 +86,29 @@
 - (void)dismissWithChanges:(BOOL)changes {
     [self.view endEditing:YES];
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:ANIMATION_DURATION_HIDE delay:0.0 usingSpringWithDamping:1.2 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+
+    UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[self.centerView] mode:UIPushBehaviorModeInstantaneous];
+    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.centerView]];
+    UIDynamicItemBehavior *di = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
+    di.action =  ^{
         typeof(weakSelf) self = weakSelf;
-        CGAffineTransform rotate = CGAffineTransformMakeRotation(((changes) ? 1 : -1)*M_PI/3.0);
-        CGFloat moveX = ((changes) ? 1 : -1)*self.centerView.frame.size.height;
-        CGFloat moveY = CGRectGetMaxY(self.view.frame) + self.centerView.frame.size.width/2.0 - self.centerView.frame.origin.y;
-        CGAffineTransform move = CGAffineTransformMakeTranslation(moveX, moveY);
-        self.centerView.transform = CGAffineTransformConcat(rotate, move);
-        self.blackBack.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
+        if (CGRectGetMinY(self.centerView.frame) >= CGRectGetMaxY(self.view.frame)) {
+            [self.delegate settingsScreen:self dismissWithChanges:changes];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+        } else {
+            self.blackBack.alpha = 1-  CGRectGetMidY(self.centerView.frame) / CGRectGetHeight(self.view.frame);
+        }
+    };
+
+    [push setAngle:((changes) ? 0 : M_PI) magnitude:30.0];
+    gravity.magnitude = 10.0;
+    [di addAngularVelocity:((changes) ? 1 : -1)*5 forItem:self.centerView];
+
+    [self.animator addBehavior:di];
+    [self.animator addBehavior:gravity];
+    [self.animator addBehavior:push];
+
 }
 
 - (void)shakeView:(UIView*)view amplitude:(CGPoint)amplitude {
@@ -102,6 +121,17 @@
     [animation setToValue:[NSValue valueWithCGPoint:
                            CGPointMake([view center].x + amplitude.x, [view center].y + amplitude.y)]];
     [[view layer] addAnimation:animation forKey:@"position"];
+    
+    CABasicAnimation *colorAnimation = [CABasicAnimation
+                                        animationWithKeyPath:@"backgroundColor"];
+    colorAnimation.duration = 0.3;
+    colorAnimation.fillMode = kCAFillModeForwards;
+    colorAnimation.removedOnCompletion = NO;
+    colorAnimation.fromValue = (id)[UIColor whiteColor].CGColor;
+    colorAnimation.toValue = (id)BS_LIGHT_BLUE.CGColor;
+    colorAnimation.autoreverses = YES;
+    colorAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [[view layer] addAnimation:colorAnimation forKey:@"backgroundColor"];
 }
 
 //===============================================ACTIONS===========================================
@@ -127,8 +157,12 @@
     } else {
         [[NSUserDefaults standardUserDefaults] setObject:self.groupNumberTF.text forKey:kUserGroup];
         [[NSUserDefaults standardUserDefaults] setObject:self.subgroupNumberTF.text forKey:kUserSubgroup];
-        [self dismissWithChanges:YES];
+        [self dismissWithChanges:self.dataChanged];
     }
+}
+
+- (IBAction)editingChanged:(id)sender {
+    self.dataChanged = YES;
 }
 
 
@@ -156,14 +190,5 @@
         weakSelf.centerView.center = self.view.center;
     }];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

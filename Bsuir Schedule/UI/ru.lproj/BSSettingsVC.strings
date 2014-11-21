@@ -1,0 +1,12 @@
+
+/* Class = "IBUIButton"; normalTitle = "Отмена"; ObjectID = "fcL-Pl-Adi"; */
+"fcL-Pl-Adi.normalTitle" = "Отмена";
+
+/* Class = "IBUILabel"; text = "Подгруппа"; ObjectID = "qEn-By-98g"; */
+"qEn-By-98g.text" = "Подгруппа";
+
+/* Class = "IBUILabel"; text = "Группа"; ObjectID = "w4R-9S-6DC"; */
+"w4R-9S-6DC.text" = "Группа";
+
+/* Class = "IBUIButton"; normalTitle = "ОК"; ObjectID = "zcV-DP-UF2"; */
+"zcV-DP-UF2.normalTitle" = "ОК";

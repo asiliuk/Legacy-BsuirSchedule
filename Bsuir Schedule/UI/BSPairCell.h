@@ -14,10 +14,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *auditoryLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
 @property (strong, nonatomic) IBOutlet UIView *pairView;
-@property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
 @property (strong, nonatomic) IBOutlet UILabel *lecturerNameLabel;
+
+@property (strong, nonatomic) UIColor *pairTypeIndicatorColor;
 
 @property (nonatomic) BOOL showingLecturerName;
 - (void)makeSelected:(BOOL)selected;
-
+- (void)makeCurrentPairCell:(BOOL)isCurrent;
 @end

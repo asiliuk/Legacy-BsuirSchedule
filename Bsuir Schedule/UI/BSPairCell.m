@@ -7,9 +7,12 @@
 //
 
 #import "BSPairCell.h"
+#import "BSTriangleView.h"
 
 @interface BSPairCell()
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet BSTriangleView *triangleView;
+@property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
 @end
 @implementation BSPairCell
 @dynamic timeText;
@@ -25,6 +28,7 @@
     self.pairView.layer.masksToBounds = YES;
     
     self.showingLecturerName = NO;
+//    [self makeCurrentPairCell:NO];
 }
 
 #define OFFSET 10.0
@@ -81,19 +85,35 @@
     return [self.timeLabel.attributedText string];
 }
 
-#define LINE_SPACING 0.0
+#define LINE_HEIGHT 16.0
+#define FONT_SIZE 16.0
 - (void)setTimeText:(NSString *)timeText {
     NSMutableAttributedString* attrTimeString = [[NSMutableAttributedString alloc] initWithString:timeText];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineSpacing:LINE_SPACING];
+    [style setMaximumLineHeight:LINE_HEIGHT];
     [style setAlignment:NSTextAlignmentCenter];
     [attrTimeString addAttribute:NSParagraphStyleAttributeName
                        value:style
                        range:NSMakeRange(0, [timeText length])];
     [attrTimeString addAttribute:NSFontAttributeName
-                           value:self.timeLabel.font
+                           value:[UIFont fontWithName:@"OpenSans-Light" size:FONT_SIZE]
                            range:NSMakeRange(0, [timeText length])];
     self.timeLabel.attributedText = attrTimeString;
 }
+
+- (void)makeCurrentPairCell:(BOOL)isCurrent {
+    if (isCurrent) {
+        self.triangleView.hidden = NO;
+    } else {
+        self.triangleView.hidden = YES;
+    }
+}
+
+- (void)setPairTypeIndicatorColor:(UIColor *)pairTypeIndicatorColor{
+    _pairTypeIndicatorColor = pairTypeIndicatorColor;
+    self.pairTypeIndicator.backgroundColor = pairTypeIndicatorColor;
+    self.triangleView.fillColor = pairTypeIndicatorColor;
+}
+
 
 @end

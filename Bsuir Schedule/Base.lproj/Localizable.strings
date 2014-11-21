@@ -1,0 +1,21 @@
+/*
+  Localized.strings
+  Bsuir Schedule
+
+  Created by Anton Siliuk on 21.11.14.
+  Copyright (c) 2014 Saute. All rights reserved.
+*/
+
+"L_Schedule" = "Schedule";
+"L_LoadError" = "Can't load schedule.";
+"L_Error" = "Error";
+"L_Ok" = "OK";
+"L_Today" = "Today";
+
+"Воскресенье" = "Sunday";
+"Понедельник" = "Monday";
+"Вторник" = "Tuesday";
+"Среда" = "Wednesday";
+"Четверг" = "Thursday";
+"Пятница" = "Friday";
+"Суббота" = "Saturday";

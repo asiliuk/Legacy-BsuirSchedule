@@ -32,7 +32,7 @@ static NSString * const kDaySchedule = @"schedule";
 static NSString * const kSubjectType = @"lessonType";
 static NSString * const kSubjectTime = @"lessonTime";
 static NSString * const kSubjectName = @"subject";
-static NSString * const kSubjectNumSubgroup = @"subject";
+static NSString * const kSubjectNumSubgroup = @"numSubgroup";
 static NSString * const kSubjectAuditory = @"auditory";
 static NSString * const kSubjectWeeks = @"weekNumber";
 
@@ -50,7 +50,7 @@ static NSString * const kLecturerFirstName = @"firstName";
 //-------------------------------Methods---------------------------------
 + (instancetype)sharedInstance;
 - (BOOL)scheduleNeedUpdateForGroup:(NSString*)groupNumber;;
-- (void)scheduleForGroupNumber:(NSString*)groupNumber withComplitionHandler:(void(^)(void))complitionHandler;
+- (void)scheduleForGroupNumber:(NSString*)groupNumber withSuccess:(void(^)(void))success failure:(void(^)(void))failure;
 
 //-------------------------------Subject---------------------------------
 - (NSArray*)subjects;
@@ -70,6 +70,7 @@ static NSString * const kLecturerFirstName = @"firstName";
                            lecturerID:(NSInteger)lecturerID;
 //-------------------------------Day---------------------------------
 - (NSArray*)days;
+- (BSDayOfWeek*)dayWithDate:(NSDate*)date;
 - (BSDayOfWeek*)dayWithName:(NSString*)dayName createIfNotExists:(BOOL)createIfNotExists;
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists;
 - (BSDayOfWeek*)addDayWithName:(NSString*)dayName;
@@ -95,5 +96,6 @@ static NSString * const kLecturerFirstName = @"firstName";
 - (BSWeekNumber*)weekNumberWithNumber:(NSInteger)weekNumber createIfNotExists:(BOOL)createIfNotExists;
 - (BSWeekNumber*)addWeekNumberWithNumber:(NSInteger)weekNumber;
 - (BSWeekNumber*)currentWeek;
+- (BSWeekNumber*)weekNumberWithDate:(NSDate*)date;
 
 @end
