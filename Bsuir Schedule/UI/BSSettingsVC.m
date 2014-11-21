@@ -67,16 +67,15 @@
 #define ANIMATION_DURATION_SHOW 0.4
 
 - (void)showCenterView {
-    self.centerView.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
-    CGRect centerViewFrame = self.centerView.frame;
-    centerViewFrame.origin.y = CGRectGetMaxY(self.view.frame);
-    self.centerView.frame = centerViewFrame;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    self.centerView.center = CGPointMake(screenBounds.size.width/2.0,
+                                         screenBounds.size.height + self.centerView.frame.size.height / 2.0);
     self.blackBack.alpha = 0.0;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:ANIMATION_DURATION_SHOW delay:0.0 usingSpringWithDamping:1.2 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         typeof(weakSelf) self = weakSelf;
         self.blackBack.alpha = 0.5;
-        self.centerView.center = self.view.center;
+        self.centerView.center = CGPointMake(screenBounds.size.width/2.0, screenBounds.size.height / 2.0);
     } completion:^(BOOL finished) {
     }];
 }

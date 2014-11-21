@@ -203,7 +203,7 @@ static NSString * const kCellID = @"Pair cell id";
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
     BSLecturer *lecturer = pair.lecturer;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm"];
+    [formatter setDateFormat:@"HH:mm"];
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
     [cell setTimeText:timeString];
     [cell.subjectNameLabel setText:pair.subject.name];
@@ -311,9 +311,8 @@ static NSString * const kCellID = @"Pair cell id";
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         settingsVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
     } else {
-        settingsVC.modalPresentationStyle = UIModalPresentationCurrentContext;;
+        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
     }
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:settingsVC animated:NO completion:nil];
     settingsVC.delegate = self;
 
