@@ -274,8 +274,6 @@ static NSString * const kCellID = @"Pair cell id";
     }
 }
 
-
-
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:section];
@@ -315,10 +313,8 @@ static NSString * const kCellID = @"Pair cell id";
     } else {
         settingsVC.modalPresentationStyle = UIModalPresentationCurrentContext;;
     }
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self.navigationController presentViewController:settingsVC animated:NO completion:nil];
-    settingsVC.view.frame = self.navigationController.view.bounds;
+    [self presentViewController:settingsVC animated:NO completion:nil];
     settingsVC.delegate = self;
 
 }

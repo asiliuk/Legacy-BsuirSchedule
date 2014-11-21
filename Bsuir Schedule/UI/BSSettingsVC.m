@@ -59,12 +59,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self showCenterView];
 }
-
 
 #define ANIMATION_DURATION_SHOW 0.4
 
@@ -83,6 +81,7 @@
     }];
 }
 
+#define ANIMATION_DURATION 0.5
 - (void)dismissWithChanges:(BOOL)changes {
     [self.view endEditing:YES];
     __weak typeof(self) weakSelf = self;
@@ -90,16 +89,17 @@
     UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[self.centerView] mode:UIPushBehaviorModeInstantaneous];
     UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.centerView]];
     UIDynamicItemBehavior *di = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
-    di.action =  ^{
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         typeof(weakSelf) self = weakSelf;
-        if (CGRectGetMinY(self.centerView.frame) >= CGRectGetMaxY(self.view.bounds)) {
+        self.blackBack.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        typeof(weakSelf) self = weakSelf;
+        if (finished) {
             [self.delegate settingsScreen:self dismissWithChanges:changes];
             [self dismissViewControllerAnimated:NO completion:nil];
-        } else {
-            self.blackBack.alpha = 1 - CGRectGetMidY(self.centerView.frame) / CGRectGetHeight(self.view.frame);
         }
-    };
-
+    }];
+    
     [push setAngle:((changes) ? 0 : M_PI) magnitude:30.0];
     gravity.magnitude = 10.0;
     [di addAngularVelocity:((changes) ? 1 : -1)*5 forItem:self.centerView];
