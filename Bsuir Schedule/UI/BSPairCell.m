@@ -104,6 +104,7 @@
 - (void)makeCurrentPairCell:(BOOL)isCurrent {
     if (isCurrent) {
         self.triangleView.hidden = NO;
+        [self.triangleView setNeedsDisplay];
     } else {
         self.triangleView.hidden = YES;
     }
