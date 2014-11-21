@@ -92,12 +92,11 @@
     UIDynamicItemBehavior *di = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
     di.action =  ^{
         typeof(weakSelf) self = weakSelf;
-        if (CGRectGetMinY(self.centerView.frame) >= CGRectGetMaxY(self.view.frame)) {
+        if (CGRectGetMinY(self.centerView.frame) >= CGRectGetMaxY(self.view.bounds)) {
             [self.delegate settingsScreen:self dismissWithChanges:changes];
-            [self.view removeFromSuperview];
-            [self removeFromParentViewController];
+            [self dismissViewControllerAnimated:NO completion:nil];
         } else {
-            self.blackBack.alpha = 1-  CGRectGetMidY(self.centerView.frame) / CGRectGetHeight(self.view.frame);
+            self.blackBack.alpha = 1 - CGRectGetMidY(self.centerView.frame) / CGRectGetHeight(self.view.frame);
         }
     };
 
@@ -163,6 +162,10 @@
 
 - (IBAction)editingChanged:(id)sender {
     self.dataChanged = YES;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 

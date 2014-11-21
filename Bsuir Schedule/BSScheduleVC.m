@@ -88,6 +88,10 @@ static NSString * const kCellID = @"Pair cell id";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self getScheduleData];
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]) {
+        [self showSettingsScreen];
+    }
 
 }
 
@@ -152,13 +156,6 @@ static NSString * const kCellID = @"Pair cell id";
             [self.daysWithWeekNumber addObject:dayWithWeekNum];
             daysAdded++;
         }
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]) {
-        [self showSettingsScreen];
     }
 }
 
@@ -313,11 +310,16 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)showSettingsScreen {
     BSSettingsVC *settingsVC = [[BSSettingsVC alloc] init];
-    [self.navigationController addChildViewController:settingsVC];
-    [self.navigationController.view addSubview:settingsVC.view];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        settingsVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    } else {
+        settingsVC.modalPresentationStyle = UIModalPresentationCurrentContext;;
+    }
+    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self.navigationController presentViewController:settingsVC animated:NO completion:nil];
     settingsVC.view.frame = self.navigationController.view.bounds;
     settingsVC.delegate = self;
-    [settingsVC viewDidAppear:YES];
 
 }
 
