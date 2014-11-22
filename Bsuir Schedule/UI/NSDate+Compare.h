@@ -11,4 +11,6 @@
 @interface NSDate (Compare)
 - (BOOL)isEqualToDateWithoutTime:(NSDate*)date;
 - (BOOL)isTimeBetweenTime:(NSDate *)firstDate andTime:(NSDate *)secondDate;
+- (NSDate*)onlyTime;
+- (NSComparisonResult)compareTime:(NSDate*)date;
 @end

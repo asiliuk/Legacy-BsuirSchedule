@@ -30,18 +30,22 @@
 }
 
 - (BOOL)isTimeBetweenTime:(NSDate *)firstDate andTime:(NSDate *)secondDate {
-    NSDate *myTime = [self onlyTimeFromDate:self];
-    NSDate *firstTime = [self onlyTimeFromDate:firstDate];
-    NSDate *secondTime = [self onlyTimeFromDate:secondDate];
+    NSDate *myTime = [self onlyTime];
+    NSDate *firstTime = [firstDate onlyTime];
+    NSDate *secondTime = [secondDate onlyTime];
     return [myTime compare:firstTime] == NSOrderedDescending && [myTime compare:secondTime] == NSOrderedAscending;
 }
 
-- (NSDate*)onlyTimeFromDate:(NSDate*)date {
+- (NSDate*)onlyTime {
     unsigned int flags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     NSCalendar* calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents* components = [calendar components:flags fromDate:date];
+    NSDateComponents* components = [calendar components:flags fromDate:self];
     
     return [calendar dateFromComponents:components];
+}
+
+- (NSComparisonResult)compareTime:(NSDate*)date {
+    return [[self onlyTime] compare:[date onlyTime]];
 }
 @end
