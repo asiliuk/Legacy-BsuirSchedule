@@ -16,4 +16,5 @@
 @property (strong, nonatomic) NSDate *date;
 
 - (instancetype)initWithDate:(NSDate*)date;
+- (NSArray*)pairs;
 @end

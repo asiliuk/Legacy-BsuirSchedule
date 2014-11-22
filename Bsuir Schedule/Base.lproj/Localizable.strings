@@ -11,6 +11,8 @@
 "L_Error" = "Error";
 "L_Ok" = "OK";
 "L_Today" = "Today";
+"L_Tomorrow" = "Tomorrow";
+"L_Week" = "Week";
 
 "Воскресенье" = "Sunday";
 "Понедельник" = "Monday";

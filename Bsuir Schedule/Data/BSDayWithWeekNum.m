@@ -20,5 +20,16 @@
     }
     return self;
 }
-
+- (NSArray*)pairs {
+    NSNumber *subgroupNumber = @([[[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup] integerValue]);
+    NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
+    NSMutableArray *weekPairs = [NSMutableArray array];
+    for (BSPair *pair in pairs) {
+        if ([pair.weeks containsObject:self.weekNumber] && ([pair.subgroupNumber isEqual:@(0)] || [pair.subgroupNumber isEqual:subgroupNumber])) {
+            [weekPairs addObject:pair];
+        }
+    }
+    return weekPairs;
+}
 @end

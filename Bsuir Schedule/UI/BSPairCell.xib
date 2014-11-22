@@ -57,8 +57,8 @@
                             <color key="textColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALALA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLw-ah-UPz">
-                            <rect key="frame" x="320" y="24" width="162" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLw-ah-UPz">
+                            <rect key="frame" x="320" y="24" width="240" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                             <color key="textColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,7 +72,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qjf-zk-jnw">
-                            <rect key="frame" x="262" y="10" width="50" height="50"/>
+                            <rect key="frame" x="260" y="10" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="6kp-Sz-6En" customClass="BSTriangleView">

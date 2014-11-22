@@ -30,8 +30,8 @@ static NSString * const kCellID = @"Pair cell id";
 #define ANIMATION_DURATION 0.3
 #define SETTINGS_SCREEN_ANIMATION_DURATION 0.4
 
-#define HEADER_HEIGHT 30.0
-#define HEADER_LABEL_FONT_SIZE 19.0
+#define HEADER_HEIGHT 25.0
+#define HEADER_LABEL_FONT_SIZE 17.0
 #define HEADER_LABEL_OFFSET_X 10.0
 #define HEADER_LABEL_OFFSET_Y 5.0
 
@@ -152,7 +152,7 @@ static NSString * const kCellID = @"Pair cell id";
     while (daysAdded < daysCount) {
         dayDate = [dayDate dateByAddingTimeInterval:DAY_STEP];
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
-        if (dayWithWeekNum.dayOfWeek && [[self pairsInDayWithWeekNum:dayWithWeekNum] count] > 0) {
+        if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0) {
             [self.daysWithWeekNumber addObject:dayWithWeekNum];
             daysAdded++;
         }
@@ -175,31 +175,19 @@ static NSString * const kCellID = @"Pair cell id";
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table View
 
-- (NSArray*)pairsInDayWithWeekNum:(BSDayWithWeekNum*)dayWithWeek {
-    NSNumber *subgroupNumber = @([[[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup] integerValue]);
-    NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-    NSArray *pairs = [dayWithWeek.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
-    NSMutableArray *weekPairs = [NSMutableArray array];
-    for (BSPair *pair in pairs) {
-        if ([pair.weeks containsObject:dayWithWeek.weekNumber] && ([pair.subgroupNumber isEqual:@(0)] || [pair.subgroupNumber isEqual:subgroupNumber])) {
-            [weekPairs addObject:pair];
-        }
-    }
-    return weekPairs;
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.daysWithWeekNumber count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self pairsInDayWithWeekNum:[self.daysWithWeekNumber objectAtIndex:section]] count];
+    return [[[self.daysWithWeekNumber objectAtIndex:section] pairs] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPath.section];
-    NSArray *pairs = [self pairsInDayWithWeekNum:dayWithWeekNum];
+    NSArray *pairs = [dayWithWeekNum pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
     BSLecturer *lecturer = pair.lecturer;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -277,7 +265,9 @@ static NSString * const kCellID = @"Pair cell id";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:section];
-    BOOL currentDay = [[NSDate date] isEqualToDateWithoutTime:dayWithWeekNum.date];
+    NSDate *now = [NSDate date];
+    BOOL currentDay = [now isEqualToDateWithoutTime:dayWithWeekNum.date];
+    BOOL tomorrow = [[now dateByAddingTimeInterval:24*3600] isEqualToDateWithoutTime:dayWithWeekNum.date];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
     
@@ -286,15 +276,26 @@ static NSString * const kCellID = @"Pair cell id";
                                                                tableView.frame.size.width, HEADER_HEIGHT)];
     [label setFont:[UIFont fontWithName:@"OpenSans" size:HEADER_LABEL_FONT_SIZE]];
 
-    [label setTextColor:(currentDay) ? BS_RED : BS_GRAY];
+    [label setTextColor:BS_GRAY];
     [view addSubview:label];
     [view setBackgroundColor:[UIColor clearColor]];
     
-    NSString *dayInfoString = [NSString stringWithFormat:@"%@  %@",
+    NSString *dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
                                NSLocalizedString([dayWithWeekNum.dayOfWeek name], nil),
-                               [df stringFromDate:dayWithWeekNum.date]];
-    if (currentDay) {
-        dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Today", nil), dayInfoString];
+                               [df stringFromDate:dayWithWeekNum.date],
+                               NSLocalizedString(@"L_Week", nil),
+                               dayWithWeekNum.weekNumber.weekNumber];
+    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
+    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
+    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending;
+    if (!todayPairsEnded) {
+        if (currentDay) {
+            dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Today", nil), dayInfoString];
+            [label setTextColor:BS_RED];
+        }
+    } else if (tomorrow) {
+        dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Tomorrow", nil), dayInfoString];
+        [label setTextColor:BS_RED];
     }
     [label setText:dayInfoString];
     return view;
