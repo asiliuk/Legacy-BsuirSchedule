@@ -416,6 +416,8 @@
     NSDateComponents *firstDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
     firstDay.day =  START_DAY;
     firstDay.month = START_MONTH;
+    NSDate *firstDayDate = [gregorian dateFromComponents:firstDay];
+    firstDay = [gregorian components:calendarUnits fromDate:firstDayDate]; // to reload weekDay unit
     firstDay.day -= [firstDay weekday];
     
     NSTimeInterval timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
