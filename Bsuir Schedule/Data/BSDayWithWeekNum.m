@@ -8,6 +8,7 @@
 
 #import "BSDayWithWeekNum.h"
 #import "BSDataManager.h"
+#import "NSDate+Compare.h"
 
 @implementation BSDayWithWeekNum
 
@@ -31,5 +32,14 @@
         }
     }
     return weekPairs;
+}
+
+- (BOOL)isEqual:(BSDayWithWeekNum *)object {
+    BOOL equal = NO;
+    BOOL equalWeekDay = [self.dayOfWeek isEqual:object.dayOfWeek] || (self.dayOfWeek == nil && object.dayOfWeek == nil);
+    BOOL equalWeekNum = [self.weekNumber isEqual:object.weekNumber] || (self.weekNumber == nil && object.weekNumber == nil);
+    BOOL equalDate = [self.date isEqualToDateWithoutTime:object.date];
+    equal = equalWeekDay && equalWeekNum && equalDate;
+    return equal;
 }
 @end

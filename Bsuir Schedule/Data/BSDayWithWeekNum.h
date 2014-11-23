@@ -17,4 +17,5 @@
 
 - (instancetype)initWithDate:(NSDate*)date;
 - (NSArray*)pairs;
+- (BOOL)isEqual:(BSDayWithWeekNum*)object;
 @end

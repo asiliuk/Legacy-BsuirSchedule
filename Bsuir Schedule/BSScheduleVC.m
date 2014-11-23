@@ -22,7 +22,7 @@
 static NSString * const kCellID = @"Pair cell id";
 
 #define DAYS_LOAD_STEP 10
-#define DAY_STEP 24*3600
+#define DAY_IN_SECONDS 24*3600
 #define PREVIOUS_DAY_COUNT 2
 
 #define OFFSET 10.0
@@ -41,6 +41,7 @@ static NSString * const kCellID = @"Pair cell id";
 @property (strong, nonatomic) NSMutableArray *daysWithWeekNumber;
 
 @property (strong, nonatomic) UIView *loadindicatorView;
+@property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
 @end
 
 @implementation BSScheduleVC
@@ -92,6 +93,8 @@ static NSString * const kCellID = @"Pair cell id";
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]) {
         [self showSettingsScreen];
     }
+    
+
 
 }
 
@@ -132,25 +135,42 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)updateSchedule {
     [self hideLoadingView];
+    NSDate *now = [NSDate date];
+    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
+    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
+    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [today.pairs count] == 0;
+    if (!(todayPairsEnded || today.dayOfWeek == nil)) {
+        self.dayToHighlight = today;
+    } else {
+        self.dayToHighlight = [[BSDayWithWeekNum alloc] initWithDate:[now dateByAddingTimeInterval:DAY_IN_SECONDS]];
+    }
+    
     self.daysWithWeekNumber = nil;
     [self loadScheduleForNextDaysCount:DAYS_LOAD_STEP];
     
     [self.tableView reloadData];
-    if ([self.daysWithWeekNumber count] > PREVIOUS_DAY_COUNT) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:PREVIOUS_DAY_COUNT]
-                              atScrollPosition:UITableViewScrollPositionTop
-                                      animated:YES];
+    NSInteger highlightedSectionIndex = 0;
+    for (NSInteger index = 0; index < [self.daysWithWeekNumber count]; index++) {
+        BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:index];
+        if ([dayWithWeekNum isEqual:self.dayToHighlight]) {
+            highlightedSectionIndex = index;
+            break;
+        }
     }
+
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:highlightedSectionIndex]
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
 }
 
 - (void)loadScheduleForNextDaysCount:(NSInteger)daysCount {
-    NSDate *dayDate = [NSDate dateWithTimeIntervalSinceNow:-(1 + PREVIOUS_DAY_COUNT)*DAY_STEP]; // to show two previous days
+    NSDate *dayDate = [NSDate dateWithTimeIntervalSinceNow:-(1 + PREVIOUS_DAY_COUNT)*DAY_IN_SECONDS]; // to show two previous days
     if ([self.daysWithWeekNumber count] > 0) {
         dayDate = [[self.daysWithWeekNumber lastObject] date];
     }
     NSInteger daysAdded = 0;
     while (daysAdded < daysCount) {
-        dayDate = [dayDate dateByAddingTimeInterval:DAY_STEP];
+        dayDate = [dayDate dateByAddingTimeInterval:DAY_IN_SECONDS];
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
         if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0) {
             [self.daysWithWeekNumber addObject:dayWithWeekNum];
@@ -267,7 +287,8 @@ static NSString * const kCellID = @"Pair cell id";
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:section];
     NSDate *now = [NSDate date];
     BOOL currentDay = [now isEqualToDateWithoutTime:dayWithWeekNum.date];
-    BOOL tomorrow = [[now dateByAddingTimeInterval:24*3600] isEqualToDateWithoutTime:dayWithWeekNum.date];
+    BOOL tomorrow = [[now dateByAddingTimeInterval:DAY_IN_SECONDS] isEqualToDateWithoutTime:dayWithWeekNum.date];
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
     
@@ -285,16 +306,12 @@ static NSString * const kCellID = @"Pair cell id";
                                [df stringFromDate:dayWithWeekNum.date],
                                NSLocalizedString(@"L_Week", nil),
                                dayWithWeekNum.weekNumber.weekNumber];
-    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
-    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
-    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending;
-    if (!todayPairsEnded) {
+    if ([dayWithWeekNum isEqual:self.dayToHighlight]) {
         if (currentDay) {
             dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Today", nil), dayInfoString];
-            [label setTextColor:BS_RED];
+        } else if (tomorrow) {
+            dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Tomorrow", nil), dayInfoString];
         }
-    } else if (tomorrow) {
-        dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Tomorrow", nil), dayInfoString];
         [label setTextColor:BS_RED];
     }
     [label setText:dayInfoString];
