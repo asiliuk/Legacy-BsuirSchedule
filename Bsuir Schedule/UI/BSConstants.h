@@ -9,6 +9,22 @@
 #ifndef Bsuir_Schedule_BSConstants_h
 #define Bsuir_Schedule_BSConstants_h
 
+#define DAYS_LOAD_STEP 10
+#define DAY_IN_SECONDS 24*3600
+#define PREVIOUS_DAY_COUNT 2
+
+#define OFFSET 10.0
+
+#define ANIMATION_DURATION 0.3
+#define SETTINGS_SCREEN_ANIMATION_DURATION 0.4
+
+#define HEADER_HEIGHT 25.0
+#define HEADER_LABEL_FONT_SIZE 17.0
+#define HEADER_LABEL_OFFSET_X 10.0
+#define HEADER_LABEL_OFFSET_Y 5.0
+
+#define CELL_HEIGHT 72.0
+
 //-------------------------------COLORS---------------------------------
 #define UIColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define BS_RED UIColor(241, 90, 90, 1.0)
@@ -27,5 +43,33 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+//-------------------------------SCHEDULE KEYS---------------------------------
+static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
+
+static NSString * const kLastUpdate = @"last update";
+static NSString * const kCurrentScheduleGroup = @"Current schedule group";
+static NSString * const kUserGroup = @"user group number";
+static NSString * const kUserSubgroup = @"user subgroup number";
+
+static NSString * const kScheduleModel = @"scheduleModel";
+
+static NSString * const kDayName = @"weekDay";
+static NSString * const kDaySchedule = @"schedule";
+
+static NSString * const kSubjectType = @"lessonType";
+static NSString * const kSubjectTime = @"lessonTime";
+static NSString * const kSubjectName = @"subject";
+static NSString * const kSubjectNumSubgroup = @"numSubgroup";
+static NSString * const kSubjectAuditory = @"auditory";
+static NSString * const kSubjectWeeks = @"weekNumber";
+
+static NSString * const kLecturer = @"employee";
+static NSString * const kLecturerID = @"id";
+static NSString * const kLecturerDepartment = @"academicDepartment";
+
+static NSString * const kLecturerLastName = @"lastName";
+static NSString * const kLecturerMiddleName = @"middleName";
+static NSString * const kLecturerFirstName = @"firstName";
 
 #endif

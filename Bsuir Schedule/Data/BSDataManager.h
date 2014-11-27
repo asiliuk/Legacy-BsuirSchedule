@@ -10,48 +10,25 @@
 #import <CoreData/CoreData.h>
 
 #import "BSSubject.h"
-#import "BSLecturer.h"
+#import "BSLecturer+Thumbnail.h"
 #import "BSDayOfWeek.h"
 #import "BSAuditory.h"
 #import "BSPair+Type.h"
 #import "BSPair+Color.h"
 #import "BSWeekNumber.h"
-
-static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
-
-static NSString * const kLastUpdate = @"last update";
-static NSString * const kCurrentScheduleGroup = @"Current schedule group";
-static NSString * const kUserGroup = @"user group number";
-static NSString * const kUserSubgroup = @"user subgroup number";
-
-static NSString * const kScheduleModel = @"scheduleModel";
-
-static NSString * const kDayName = @"weekDay";
-static NSString * const kDaySchedule = @"schedule";
-
-static NSString * const kSubjectType = @"lessonType";
-static NSString * const kSubjectTime = @"lessonTime";
-static NSString * const kSubjectName = @"subject";
-static NSString * const kSubjectNumSubgroup = @"numSubgroup";
-static NSString * const kSubjectAuditory = @"auditory";
-static NSString * const kSubjectWeeks = @"weekNumber";
-
-static NSString * const kLecturer = @"employee";
-static NSString * const kLecturerID = @"id";
-static NSString * const kLecturerDepartment = @"academicDepartment";
-
-static NSString * const kLecturerLastName = @"lastName";
-static NSString * const kLecturerMiddleName = @"middleName";
-static NSString * const kLecturerFirstName = @"firstName";
+#import "BSDayWithWeekNum.h"
 
 @interface BSDataManager : NSObject
-@property (strong, nonatomic, readonly) NSManagedObjectContext *context;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+- (void)saveContext;
+- (void)resetDatabase;
+- (NSURL *)storeURLBase;
 //-------------------------------Methods---------------------------------
 + (instancetype)sharedInstance;
-- (BOOL)scheduleNeedUpdateForGroup:(NSString*)groupNumber;;
-- (void)scheduleForGroupNumber:(NSString*)groupNumber withSuccess:(void(^)(void))success failure:(void(^)(void))failure;
-
+- (BSDayWithWeekNum*)dayToHighlight;
 //-------------------------------Subject---------------------------------
 - (NSArray*)subjects;
 - (BSSubject*)subjectWithName:(NSString *)name createIfNotExists:(BOOL)createIfNotExists;

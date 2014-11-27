@@ -21,3 +21,5 @@
 "Четверг" = "Thu.";
 "Пятница" = "Fri.";
 "Суббота" = "Sat.";
+
+"CFBundleDisplayName" = "App Name";

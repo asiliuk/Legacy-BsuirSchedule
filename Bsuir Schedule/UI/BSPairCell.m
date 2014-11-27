@@ -8,11 +8,13 @@
 
 #import "BSPairCell.h"
 #import "BSTriangleView.h"
+#import "NSDate+Compare.h"
 
 @interface BSPairCell()
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet BSTriangleView *triangleView;
 @property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
+@property (strong, nonatomic) UIVisualEffectView *effectView;
 @end
 @implementation BSPairCell
 @dynamic timeText;
@@ -32,7 +34,7 @@
 }
 
 #define OFFSET 10.0
-#define ANIMATION_DURATION 0.3
+#define PAIR_CELL_ANIMATION_DURATION 0.3
 - (void)makeSelected:(BOOL)selected {
     if (self.lecturerNameLabel.hidden || [self.lecturerNameLabel.text isEqual:@""]) {
         return;
@@ -52,22 +54,22 @@
     CGFloat rotateAngelPart = ((self.showingLecturerName) ? 1 : -1)*2*M_PI/3.0;
     
     [UIView beginAnimations:@"lecturer IV animations 1" context:nil];
-    [UIView setAnimationDuration:ANIMATION_DURATION];
+    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
     self.lecturerIV.transform = CGAffineTransformMakeRotation(rotateAngelPart);
     [UIView commitAnimations];
 
     [UIView beginAnimations:@"lecturer IV animations 2" context:nil];
-    [UIView setAnimationDuration:ANIMATION_DURATION];
+    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
     self.lecturerIV.transform = CGAffineTransformMakeRotation(2*rotateAngelPart);
     [UIView commitAnimations];
 
     [UIView beginAnimations:@"lecturer IV animations 3" context:nil];
-    [UIView setAnimationDuration:ANIMATION_DURATION];
+    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
     self.lecturerIV.transform = CGAffineTransformMakeRotation(3*rotateAngelPart);
     [UIView commitAnimations];
 
     [UIView beginAnimations:@"Movement animations" context:nil];
-    [UIView setAnimationDuration:ANIMATION_DURATION];
+    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
     self.lecturerIV.frame = lecturerIVFrame;
     self.lecturerNameLabel.frame = lecturerNameFrame;
     self.subjectNameLabel.alpha = (selected) ? 0.0 : 1.0;
@@ -116,5 +118,50 @@
     self.triangleView.fillColor = pairTypeIndicatorColor;
 }
 
+- (void)setupWithPair:(BSPair*)pair cellForCurrentDay:(BOOL)cellForCurrentDay{
+    BSLecturer *lecturer = pair.lecturer;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
+    [self setTimeText:timeString];
+    [self.subjectNameLabel setText:pair.subject.name];
+    [self.auditoryLabel setText:pair.auditory.address];
+    UIImage *thumbnail = [lecturer thumbnail];
+    [self.lecturerIV setImage:thumbnail];
+    self.lecturerIV.hidden = thumbnail == nil;
+    CGRect subjectNameFrame = self.subjectNameLabel.frame;
+    subjectNameFrame.size.width = CGRectGetMaxX(self.frame) - subjectNameFrame.origin.x - OFFSET;
+    if (thumbnail != nil) {
+        subjectNameFrame.size.width -= (CGRectGetWidth(self.lecturerIV.frame) + OFFSET);
+    }
+    self.lecturerNameLabel.hidden = lecturer == nil;
+    self.subjectNameLabel.frame = subjectNameFrame;
+    
+    if (lecturer) {
+        [self.lecturerNameLabel setText:[NSString stringWithFormat:@"%@ %@.%@.",
+                                         lecturer.lastName,
+                                         [lecturer.firstName substringToIndex:1],
+                                         [lecturer.middleName substringToIndex:1]]];
+    }
+    self.pairTypeIndicatorColor = [pair colorForPairType];
+    NSDate *today = [NSDate date];
+    BOOL currentPair = [today isTimeBetweenTime:pair.startTime andTime:pair.endTime] && cellForCurrentDay;
+    [self makeCurrentPairCell:currentPair];
+}
+
+- (void)updateUIForWidget {
+    self.timeLabel.textColor = [UIColor whiteColor];
+    self.subjectNameLabel.textColor = [UIColor whiteColor];
+    self.auditoryLabel.textColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
+    self.pairView.backgroundColor = [UIColor clearColor];
+    if (!self.effectView) {
+        UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
+        self.effectView.frame = self.pairView.bounds;
+        [self.pairView addSubview:self.effectView];
+        [self.pairView sendSubviewToBack:self.effectView];
+    }
+}
 
 @end

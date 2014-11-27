@@ -9,6 +9,7 @@
 #import "BSDayWithWeekNum.h"
 #import "BSDataManager.h"
 #import "NSDate+Compare.h"
+#import "BSConstants.h"
 
 @implementation BSDayWithWeekNum
 

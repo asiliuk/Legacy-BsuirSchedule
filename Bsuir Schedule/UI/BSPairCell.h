@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSDataManager.h"
 
 @interface BSPairCell : UITableViewCell
 @property (strong, nonatomic) NSString *timeText;
@@ -21,4 +22,7 @@
 @property (nonatomic) BOOL showingLecturerName;
 - (void)makeSelected:(BOOL)selected;
 - (void)makeCurrentPairCell:(BOOL)isCurrent;
+
+- (void)setupWithPair:(BSPair*)pair cellForCurrentDay:(BOOL)cellForCurrentDay;
+- (void)updateUIForWidget;
 @end

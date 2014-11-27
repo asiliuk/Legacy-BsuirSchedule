@@ -17,23 +17,10 @@
 #import "NSDate+Compare.h"
 
 #import "BSSettingsVC.h"
+#import "BSScheduleParser.h"
 
 
 static NSString * const kCellID = @"Pair cell id";
-
-#define DAYS_LOAD_STEP 10
-#define DAY_IN_SECONDS 24*3600
-#define PREVIOUS_DAY_COUNT 2
-
-#define OFFSET 10.0
-
-#define ANIMATION_DURATION 0.3
-#define SETTINGS_SCREEN_ANIMATION_DURATION 0.4
-
-#define HEADER_HEIGHT 25.0
-#define HEADER_LABEL_FONT_SIZE 17.0
-#define HEADER_LABEL_OFFSET_X 10.0
-#define HEADER_LABEL_OFFSET_Y 5.0
 
 
 @interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSSettingsVCDelegate>
@@ -101,9 +88,9 @@ static NSString * const kCellID = @"Pair cell id";
 - (void)getScheduleData {
     NSString *groupNumber = [[NSUserDefaults standardUserDefaults] objectForKey:kUserGroup];
     if (groupNumber) {
-        if ([[BSDataManager sharedInstance]scheduleNeedUpdateForGroup:groupNumber]) {
+        if ([BSScheduleParser scheduleNeedUpdateForGroup:groupNumber]) {
             [self showLoadingView];
-            [[BSDataManager sharedInstance] scheduleForGroupNumber:groupNumber withSuccess:^{
+            [BSScheduleParser scheduleForGroupNumber:groupNumber withSuccess:^{
                 [self updateSchedule];
             } failure:^{
                 [self hideLoadingView];
@@ -135,15 +122,7 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)updateSchedule {
     [self hideLoadingView];
-    NSDate *now = [NSDate date];
-    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
-    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
-    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [today.pairs count] == 0;
-    if (!(todayPairsEnded || today.dayOfWeek == nil)) {
-        self.dayToHighlight = today;
-    } else {
-        self.dayToHighlight = [[BSDayWithWeekNum alloc] initWithDate:[now dateByAddingTimeInterval:DAY_IN_SECONDS]];
-    }
+    self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlight];
     
     self.daysWithWeekNumber = nil;
     [self loadScheduleForNextDaysCount:DAYS_LOAD_STEP];
@@ -209,34 +188,8 @@ static NSString * const kCellID = @"Pair cell id";
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPath.section];
     NSArray *pairs = [dayWithWeekNum pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
-    BSLecturer *lecturer = pair.lecturer;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
-    NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
-    [cell setTimeText:timeString];
-    [cell.subjectNameLabel setText:pair.subject.name];
-    [cell.auditoryLabel setText:pair.auditory.address];
-    UIImage *thumbnail = [lecturer thumbnail];
-    [cell.lecturerIV setImage:thumbnail];
-        cell.lecturerIV.hidden = thumbnail == nil;
-    CGRect subjectNameFrame = cell.subjectNameLabel.frame;
-    subjectNameFrame.size.width = CGRectGetMaxX(cell.frame) - subjectNameFrame.origin.x - OFFSET;
-    if (thumbnail != nil) {
-        subjectNameFrame.size.width -= (CGRectGetWidth(cell.lecturerIV.frame) + OFFSET);
-    }
-    cell.lecturerNameLabel.hidden = lecturer == nil;
-    cell.subjectNameLabel.frame = subjectNameFrame;
-
-    if (lecturer) {
-        [cell.lecturerNameLabel setText:[NSString stringWithFormat:@"%@ %@.%@.",
-                                         lecturer.lastName,
-                                         [lecturer.firstName substringToIndex:1],
-                                         [lecturer.middleName substringToIndex:1]]];
-    }
-    cell.pairTypeIndicatorColor = [pair colorForPairType];
-    NSDate *today = [NSDate date];
-    BOOL currentPair = [today isTimeBetweenTime:pair.startTime andTime:pair.endTime] && [today isEqualToDateWithoutTime:dayWithWeekNum.date];
-    [cell makeCurrentPairCell:currentPair];
+    
+    [cell setupWithPair:pair cellForCurrentDay:[[NSDate date] isEqualToDateWithoutTime:dayWithWeekNum.date]];
     return cell;
 }
 

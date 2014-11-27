@@ -7,12 +7,23 @@
 //
 
 #import "NSDate+Compare.h"
-
+#import "BSConstants.h"
+#import <UIKit/UIDevice.h>
 @implementation NSDate (Compare)
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (BOOL)isEqualToDateWithoutTime:(NSDate*)date {
     BOOL equal = NO;
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    
+    NSInteger comps;
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+    } else {
+        comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
+    }
     
     NSDateComponents *date1Components = [calendar components:comps
                                                     fromDate: self];
@@ -28,6 +39,7 @@
     }
     return equal;
 }
+#pragma GCC diagnostic pop
 
 - (BOOL)isTimeBetweenTime:(NSDate *)firstDate andTime:(NSDate *)secondDate {
     NSDate *myTime = [self onlyTime];

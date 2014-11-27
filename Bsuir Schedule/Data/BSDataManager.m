@@ -9,12 +9,14 @@
 #import "BSDataManager.h"
 #import "AppDelegate.h"
 #import "XMLDictionary.h"
+#import "BSConstants.h"
+#import "NSDate+Compare.h"
 
 @interface BSDataManager()
 @property (strong, nonatomic) NSArray *weekDays;
 @end
 @implementation BSDataManager
-@dynamic context;
+
 + (instancetype)sharedInstance {
     
     static id sharedObject = nil;
@@ -30,10 +32,6 @@
     return [[self class] sharedInstance];
 }
 
-- (NSManagedObjectContext*)context {
-    return [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
-}
-
 - (instancetype)init
 {
     self = [super init];
@@ -43,114 +41,18 @@
     return self;
 }
 
-//==============================================APP DELEGATE METHODS===========================================
-#pragma mark - App Delegate methods
-- (void)saveContext {
-    [(AppDelegate*)[UIApplication sharedApplication].delegate saveContext];
- }
-
-- (NSURL*)applicationDocumentsDirectory {
-    return [(AppDelegate*)[UIApplication sharedApplication].delegate applicationDocumentsDirectory];
-}
-
-//===============================================SCHEDULE PARSING===========================================
-#pragma mark - Schedule parsing
-#define UPDATE_INTERVAL 7*24*3600
-
-- (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber {
-    NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUpdate];
-    NSString *currentScheduleGroup = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentScheduleGroup];
-    NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
-    return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL && [currentScheduleGroup isEqual:groupNumber]);
-}
-
-- (void)scheduleForGroupNumber:(NSString *)groupNumber withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
-//    NSURL *scheduleLocalURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:[groupNumber stringByAppendingString:@".schedule"]];
-    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:[scheduleLocalURL path]]) {
-//        data = [NSData dataWithContentsOfURL:scheduleLocalURL];
-//    } else {
-//        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:groupNumber]];
-//        data = [NSData dataWithContentsOfURL:url];
-//        [data writeToURL:scheduleLocalURL atomically:YES];
-//    }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *data;
-        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:groupNumber]];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        data = [NSData dataWithContentsOfURL:url];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
-        if (dict) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [(AppDelegate*)[UIApplication sharedApplication].delegate resetDatabase];
-            });
-            NSArray *scheduleData = dict[kScheduleModel];
-            for (NSDictionary *dayData in scheduleData) {
-                NSString *dayName = dayData[kDayName];
-                BSDayOfWeek *day = [[BSDataManager sharedInstance] dayWithName:dayName createIfNotExists:YES];
-                id subjects = dayData[kDaySchedule];
-                if (![subjects isKindOfClass:[NSArray class]]) {
-                    subjects = @[subjects];
-                }
-                for (NSDictionary *subjectData in subjects) {
-                    NSString *subjectName = subjectData[kSubjectName];
-                    NSString *pairType = subjectData[kSubjectType];
-                    NSString *subgroupNumberString = subjectData[kSubjectNumSubgroup];
-                    NSInteger subgroupNumber = 0;
-                    if (subgroupNumberString && ![subgroupNumberString isEqualToString:@""]) {
-                        subgroupNumber = [subgroupNumberString integerValue];
-                    }
-                    NSString *subjectAuditoryAddress = subjectData[kSubjectAuditory];
-                    BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:subjectAuditoryAddress createIfNotExists:YES];
-                    BSSubject *subject = [[BSDataManager sharedInstance] subjectWithName:subjectName createIfNotExists:YES];
-                    NSDictionary *lecturerData = subjectData[kLecturer];
-                    BSLecturer *lecturer;
-                    if (lecturerData) {
-                        lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
-                        if (!lecturer) {
-                            lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
-                                                                                      midleName:lecturerData[kLecturerMiddleName]
-                                                                                       lastName:lecturerData[kLecturerLastName]
-                                                                                     department:@""//lecturerData[kLecturerDepartment]
-                                                                                     lecturerID:[lecturerData[kLecturerID] integerValue]];
-                            
-                        }
-                    }
-                    NSString *startEndTime = subjectData[kSubjectTime];
-                    startEndTime = [startEndTime stringByReplacingOccurrencesOfString:@" " withString:@""];
-                    NSArray *pairTime = [startEndTime componentsSeparatedByString:@"-"];
-                    NSString *startTime = [pairTime firstObject];
-                    NSString *endTime = [pairTime lastObject];
-                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    [formatter setDateFormat:@"HH:mm"];
-                    NSLog(@"Time %@ %@ %@ %@", startTime, endTime, [formatter dateFromString:startTime],[formatter dateFromString:endTime]);
-                    NSMutableSet *weekNumbers = [NSMutableSet set];
-                    id weekNumbersData = subjectData[kSubjectWeeks];
-                    if ([weekNumbersData isKindOfClass:[NSString class]]) {
-                        weekNumbersData = @[weekNumbersData];
-                    }
-                    for (NSString *weekNumberData in weekNumbersData) {
-                        [weekNumbers addObject:[[BSDataManager sharedInstance] weekNumberWithNumber:[weekNumberData integerValue] createIfNotExists:YES]];
-                    }
-                    [[BSDataManager sharedInstance] addPairWithStartTime:[formatter dateFromString:startTime]
-                                                                 endTime:[formatter dateFromString:endTime]
-                                                          subgroupNumber:subgroupNumber
-                                                             pairTypeName:pairType
-                                                              inAuditory:auditory
-                                                                   atDay:day
-                                                                 subject:subject
-                                                                lecturer:lecturer
-                                                                   weeks:weekNumbers];
-                }
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastUpdate];
-            [[NSUserDefaults standardUserDefaults] setObject:groupNumber forKey:kCurrentScheduleGroup];
-            if (success) dispatch_async(dispatch_get_main_queue(), success);
-        } else if (failure) {
-            dispatch_async(dispatch_get_main_queue(), failure);
-        }
-    });
+- (BSDayWithWeekNum*)dayToHighlight {
+    BSDayWithWeekNum *dayToHighlight;
+    NSDate *now = [NSDate date];
+    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
+    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
+    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [today.pairs count] == 0;
+    if (!(todayPairsEnded || today.dayOfWeek == nil)) {
+        dayToHighlight = today;
+    } else {
+        dayToHighlight = [[BSDayWithWeekNum alloc] initWithDate:[now dateByAddingTimeInterval:DAY_IN_SECONDS]];
+    }
+    return dayToHighlight;
 }
 
 //===============================================SUBJECT===========================================
@@ -158,7 +60,7 @@
 
 - (NSArray*)subjects {
     NSFetchRequest *subjectsRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSSubject class])];
-    return [self.context executeFetchRequest:subjectsRequest error:nil];
+    return [self.managedObjectContext executeFetchRequest:subjectsRequest error:nil];
 }
 
 - (BSSubject*)subjectWithName:(NSString *)name createIfNotExists:(BOOL)createIfNotExists{
@@ -167,7 +69,7 @@
     NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"name == %@", name];
     request.predicate = namePredicate;
     NSError *error;
-    NSArray *results = [self.context executeFetchRequest:request error:&error];
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in subject fetch: %@", error.localizedDescription);
     }else if ([results count] > 0) {
@@ -179,7 +81,7 @@
 }
 
 - (BSSubject*)addSubjectWithName:(NSString *)name {
-    BSSubject *subject = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSSubject class]) inManagedObjectContext:self.context];
+    BSSubject *subject = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSSubject class]) inManagedObjectContext:self.managedObjectContext];
     subject.name = name;
     return subject;
 }
@@ -189,7 +91,7 @@
 
 - (NSArray*)lectures {
     NSFetchRequest *lecturesRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSLecturer class])];
-    return [self.context executeFetchRequest:lecturesRequest error:nil];
+    return [self.managedObjectContext executeFetchRequest:lecturesRequest error:nil];
 }
 
 - (BSLecturer*)lecturerWithID:(NSInteger)lecturerID {
@@ -209,7 +111,7 @@
     request.predicate = predicate;
     BSLecturer *lecturer;
     NSError *error;
-    NSArray *lecturers = [self.context executeFetchRequest:request error:&error];
+    NSArray *lecturers = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in lectures fetch: %@", error.localizedDescription);
     } else if ([lecturers count] > 0) {
@@ -225,7 +127,7 @@
                            department:(NSString *)department
                            lecturerID:(NSInteger)lecturerID
 {
-    BSLecturer *lecturer = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSLecturer class]) inManagedObjectContext:self.context];
+    BSLecturer *lecturer = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSLecturer class]) inManagedObjectContext:self.managedObjectContext];
     lecturer.firstName = firstName;
     lecturer.middleName = middleName;
     lecturer.lastName = lastName;
@@ -241,7 +143,7 @@
     NSFetchRequest *daysRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSDayOfWeek class])];
     [daysRequest setReturnsObjectsAsFaults:NO];
     [daysRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObjects:@"pairs", nil]];
-    return [self.context executeFetchRequest:daysRequest error:nil];
+    return [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
 }
 
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {
@@ -260,7 +162,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"name == %@", dayName];
     BSDayOfWeek *day;
     NSError *error;
-    NSArray *days = [self.context executeFetchRequest:request error:&error];
+    NSArray *days = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in days fetch: %@", error.localizedDescription);
     } else if ([days count] > 0) {
@@ -272,7 +174,7 @@
 }
 
 - (BSDayOfWeek*)addDayWithName:(NSString *)dayName {
-    BSDayOfWeek *day = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSDayOfWeek class]) inManagedObjectContext:self.context];
+    BSDayOfWeek *day = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSDayOfWeek class]) inManagedObjectContext:self.managedObjectContext];
     day.name = dayName;
     return day;
 }
@@ -286,7 +188,7 @@
 
 - (NSArray*)auditories {
     NSFetchRequest *auditoriesRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSAuditory class])];
-    return [self.context executeFetchRequest:auditoriesRequest error:nil];
+    return [self.managedObjectContext executeFetchRequest:auditoriesRequest error:nil];
 }
 
 - (BSAuditory*)auditoryWithAddress:(NSString *)address createIfNotExists:(BOOL)createIfNotExists {
@@ -294,7 +196,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"address == %@", address];
     BSAuditory *auditory;
     NSError *error;
-    NSArray *auditories = [self.context executeFetchRequest:request error:&error];
+    NSArray *auditories = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in auditory fetch: %@", error.localizedDescription);
     } else if ([auditories count] > 0) {
@@ -306,7 +208,7 @@
 }
 
 - (BSAuditory*)addAuditoryWithAddress:(NSString *)address {
-    BSAuditory *auditory = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSAuditory class]) inManagedObjectContext:self.context];
+    BSAuditory *auditory = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSAuditory class]) inManagedObjectContext:self.managedObjectContext];
     auditory.address = address;
     return auditory;
 }
@@ -316,7 +218,7 @@
 
 - (NSArray*)pairs {
     NSFetchRequest *pairsRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
-    return [self.context executeFetchRequest:pairsRequest error:nil];
+    return [self.managedObjectContext executeFetchRequest:pairsRequest error:nil];
 }
 
 - (BSPair*)addPairWithStartTime:(NSDate *)startTime
@@ -343,13 +245,13 @@
     request.predicate = pairPredicate;
 
     NSError *error;
-    NSArray *pairs = [self.context executeFetchRequest:request error:&error];
+    NSArray *pairs = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in pairs fetch: %@", error.localizedDescription);
     } else if (pairs && [pairs count] > 0) {
         pair = [pairs lastObject];
     } else {
-        pair = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSPair class]) inManagedObjectContext:self.context];
+        pair = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSPair class]) inManagedObjectContext:self.managedObjectContext];
         pair.startTime = startTime;
         pair.endTime = endTime;
         pair.subgroupNumber = @(subgroupNumber);
@@ -360,7 +262,7 @@
         pair.lecturer = lecturer;
         [pair addWeeks:weeks];
     }
-    [self.context save:nil];
+    [self saveContext];
     return pair;
 }
 
@@ -370,7 +272,7 @@
 - (NSArray*)weekNumbers {
     NSFetchRequest *weekNumbersRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSWeekNumber class])];
     NSError *error;
-    NSArray *weekNumbers = [self.context executeFetchRequest:weekNumbersRequest error:&error];
+    NSArray *weekNumbers = [self.managedObjectContext executeFetchRequest:weekNumbersRequest error:&error];
     if (error) {
         NSLog(@"Error in fetch week numbers %@", error.localizedDescription);
     }
@@ -382,7 +284,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"weekNumber == %@", @(weekNumber)];
     BSWeekNumber *weekNumberObj;
     NSError *error;
-    NSArray *weekNumbers = [self.context executeFetchRequest:request error:&error];
+    NSArray *weekNumbers = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in auditory fetch: %@", error.localizedDescription);
     } else if ([weekNumbers count] > 0) {
@@ -394,7 +296,7 @@
 }
 
 - (BSWeekNumber*)addWeekNumberWithNumber:(NSInteger)weekNumber {
-    BSWeekNumber *weekNumberObj = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSWeekNumber class]) inManagedObjectContext:self.context];
+    BSWeekNumber *weekNumberObj = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSWeekNumber class]) inManagedObjectContext:self.managedObjectContext];
     weekNumberObj.weekNumber = @(weekNumber);
     return weekNumberObj;
 }
@@ -428,6 +330,108 @@
     NSInteger weeksPast = timePased / (7*24*3600);
     NSInteger weekNum = (weeksPast % 4) + 1;
     return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
+}
+//===============================================CORE DATA STACK===========================================
+#pragma mark - Core Data stack
+
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (NSURL *)storeURLBase {
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.saute.Bsuir_Schedule" in the application's documents directory.
+    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.schedule_container"];
+}
+
+- (NSManagedObjectModel *)managedObjectModel {
+    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ScheduleData" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    
+    // Create the coordinator and store
+    
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSURL *storeURL = [[self storeURLBase] URLByAppendingPathComponent:@"ScheduleData.sqlite"];
+    NSError *error = nil;
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    NSDictionary *pragmaOptions = [NSDictionary dictionaryWithObject:@"MEMORY" forKey:@"journal_mode"];
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+                             pragmaOptions, NSSQLitePragmasOption, nil];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        // Report any error we got.
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
+        dict[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        // Replace this with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
+
+- (NSManagedObjectContext *)managedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _managedObjectContext;
+}
+
+#pragma mark - Core Data Saving support
+
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
+- (void)resetDatabase {
+    NSArray *persistentStores = [self.persistentStoreCoordinator persistentStores];
+    for (NSPersistentStore *store in persistentStores) {
+        NSError *error;
+        NSURL *storeURL = store.URL;
+        [_persistentStoreCoordinator removePersistentStore:store error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+        if (error) {
+            NSLog(@"Error: %@",error.localizedDescription);
+        }
+    }
+    _persistentStoreCoordinator = nil;
+    _managedObjectModel = nil;
+    _managedObjectContext = nil;
 }
 
 @end

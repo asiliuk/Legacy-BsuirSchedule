@@ -80,7 +80,7 @@
     }];
 }
 
-#define ANIMATION_DURATION 0.5
+#define SETTINGS_ANIMATION_DURATION 0.5
 - (void)dismissWithChanges:(BOOL)changes {
     [self.view endEditing:YES];
     __weak typeof(self) weakSelf = self;
@@ -88,7 +88,7 @@
     UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[self.centerView] mode:UIPushBehaviorModeInstantaneous];
     UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.centerView]];
     UIDynamicItemBehavior *di = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+    [UIView animateWithDuration:SETTINGS_ANIMATION_DURATION animations:^{
         typeof(weakSelf) self = weakSelf;
         self.blackBack.alpha = 0.0;
     } completion:^(BOOL finished) {
@@ -170,7 +170,7 @@
 
 //===============================================KEYBOARD===========================================
 #pragma mark - Keyboard
-#define OFFSET 30.0
+#define SETTINGS_OFFSET 30.0
 
 - (void)keyboardWillShow:(NSNotification*)notification {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -180,7 +180,7 @@
     [UIView animateWithDuration:keyboardAnimationDuration animations:^{
         typeof(weakSelf) self = weakSelf;
         CGRect centerViewFrame = self.centerView.frame;
-        centerViewFrame.origin.y -= (intersection.size.height + OFFSET);
+        centerViewFrame.origin.y -= (intersection.size.height + SETTINGS_OFFSET);
         self.centerView.frame = centerViewFrame;
     }];
     
