@@ -125,7 +125,9 @@ static NSString * const kCellID = @"Pair cell id";
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlight];
     
     self.daysWithWeekNumber = nil;
-    [self loadScheduleForNextDaysCount:DAYS_LOAD_STEP];
+    
+    [self loadScheduleForDaysCount:PREVIOUS_DAY_COUNT backwards:YES];
+    [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
     
     [self.tableView reloadData];
     NSInteger highlightedSectionIndex = 0;
@@ -142,19 +144,29 @@ static NSString * const kCellID = @"Pair cell id";
                                   animated:YES];
 }
 
-- (void)loadScheduleForNextDaysCount:(NSInteger)daysCount {
-    NSDate *dayDate = [NSDate dateWithTimeIntervalSinceNow:-(1 + PREVIOUS_DAY_COUNT)*DAY_IN_SECONDS]; // to show two previous days
+- (void)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
+    NSDate *now = [NSDate date];
+    NSDate *dayDate = now; // to show two previous days
     if ([self.daysWithWeekNumber count] > 0) {
-        dayDate = [[self.daysWithWeekNumber lastObject] date];
+        if (backwards) {
+            dayDate = [[self.daysWithWeekNumber firstObject] date];
+        } else {
+            dayDate = [[[self.daysWithWeekNumber lastObject] date] dateByAddingTimeInterval:DAY_IN_SECONDS];
+        }
     }
     NSInteger daysAdded = 0;
     while (daysAdded < daysCount) {
-        dayDate = [dayDate dateByAddingTimeInterval:DAY_IN_SECONDS];
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
-        if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0) {
-            [self.daysWithWeekNumber addObject:dayWithWeekNum];
+        if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0 && !([dayDate isEqual:now] && backwards)) {
+            if (backwards) {
+                [self.daysWithWeekNumber insertObject:dayWithWeekNum atIndex:0];
+            } else {
+                [self.daysWithWeekNumber addObject:dayWithWeekNum];
+
+            }
             daysAdded++;
         }
+        dayDate = [dayDate dateByAddingTimeInterval:(backwards ? -1 : 1)*DAY_IN_SECONDS];
     }
 }
 
@@ -220,7 +232,7 @@ static NSString * const kCellID = @"Pair cell id";
 - (void)scrollingFinishScrollView:(UIScrollView*)scrollView {
     if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
         NSLog(@"load more rows");
-        [self loadScheduleForNextDaysCount:DAYS_LOAD_STEP];
+        [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.daysWithWeekNumber.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
         [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
     }

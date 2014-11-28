@@ -41,16 +41,23 @@
     return self;
 }
 
+#define MAX_INTERVAL_TO_HIGHLIGHT 10
 - (BSDayWithWeekNum*)dayToHighlight {
     BSDayWithWeekNum *dayToHighlight;
     NSDate *now = [NSDate date];
-    BSDayWithWeekNum *today = [[BSDayWithWeekNum alloc] initWithDate:now];
-    NSDate *todayLastPairEnd = [[[today pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
-    BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [today.pairs count] == 0;
-    if (!(todayPairsEnded || today.dayOfWeek == nil)) {
-        dayToHighlight = today;
-    } else {
-        dayToHighlight = [[BSDayWithWeekNum alloc] initWithDate:[now dateByAddingTimeInterval:DAY_IN_SECONDS]];
+    for (NSInteger dayIndex = 0; dayIndex < MAX_INTERVAL_TO_HIGHLIGHT; dayIndex++) {
+        NSDate *dayDate = [now dateByAddingTimeInterval:DAY_IN_SECONDS*dayIndex];
+        BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
+        if (dayWithWeekNum && [dayWithWeekNum.pairs count] > 0) {
+            BOOL today = [now isEqual:dayDate];
+            NSDate *todayLastPairEnd = [[[dayWithWeekNum pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
+            BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [dayWithWeekNum.pairs count] == 0;
+            if (!(today && (todayPairsEnded || dayWithWeekNum.dayOfWeek == nil))) {
+                    dayToHighlight = dayWithWeekNum;
+                    break;
+                
+            }
+        }
     }
     return dayToHighlight;
 }
