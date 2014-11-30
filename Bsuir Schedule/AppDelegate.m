@@ -23,7 +23,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BSScheduleVC alloc] init]];
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 

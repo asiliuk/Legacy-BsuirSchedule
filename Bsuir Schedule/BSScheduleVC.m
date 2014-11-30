@@ -77,7 +77,8 @@ static NSString * const kCellID = @"Pair cell id";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self getScheduleData];
     
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]) {
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    if (![sharedDefaults objectForKey:kUserSubgroup]) {
         [self showSettingsScreen];
     }
     
@@ -86,7 +87,8 @@ static NSString * const kCellID = @"Pair cell id";
 }
 
 - (void)getScheduleData {
-    NSString *groupNumber = [[NSUserDefaults standardUserDefaults] objectForKey:kUserGroup];
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSString *groupNumber = [sharedDefaults objectForKey:kUserGroup];
     if (groupNumber) {
         if ([BSScheduleParser scheduleNeedUpdateForGroup:groupNumber]) {
             [self showLoadingView];

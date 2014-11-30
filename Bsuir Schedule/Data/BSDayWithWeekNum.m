@@ -23,7 +23,8 @@
     return self;
 }
 - (NSArray*)pairs {
-    NSNumber *subgroupNumber = @([[[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup] integerValue]);
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSNumber *subgroupNumber = @([[sharedDefaults objectForKey:kUserSubgroup] integerValue]);
     NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
     NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
     NSMutableArray *weekPairs = [NSMutableArray array];

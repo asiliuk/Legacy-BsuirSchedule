@@ -48,8 +48,9 @@
     self.subgroupNumberTF.layer.cornerRadius = BORDER_WIDTH;
     self.subgroupNumberTF.layer.borderColor = BS_LIGHT_BLUE.CGColor;
     
-    [self.groupNumberTF setText:[[NSUserDefaults standardUserDefaults] objectForKey:kUserGroup]];
-    [self.subgroupNumberTF setText:[[NSUserDefaults standardUserDefaults] objectForKey:kUserSubgroup]];
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    [self.groupNumberTF setText:[sharedDefaults objectForKey:kUserGroup]];
+    [self.subgroupNumberTF setText:[sharedDefaults objectForKey:kUserSubgroup]];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -153,8 +154,9 @@
     } else if ([self.subgroupNumberTF.text isEqual:@""]) {
         [self shakeView:self.subgroupNumberTF amplitude:CGPointMake(10, 0)];
     } else {
-        [[NSUserDefaults standardUserDefaults] setObject:self.groupNumberTF.text forKey:kUserGroup];
-        [[NSUserDefaults standardUserDefaults] setObject:self.subgroupNumberTF.text forKey:kUserSubgroup];
+        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+        [sharedDefaults setObject:self.groupNumberTF.text forKey:kUserGroup];
+        [sharedDefaults setObject:self.subgroupNumberTF.text forKey:kUserSubgroup];
         [self dismissWithChanges:self.dataChanged];
     }
 }

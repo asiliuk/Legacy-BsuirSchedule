@@ -20,8 +20,9 @@
 #define UPDATE_INTERVAL 7*24*3600
 
 + (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber {
-    NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUpdate];
-    NSString *currentScheduleGroup = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentScheduleGroup];
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSDate *lastUpdate = [sharedDefaults objectForKey:kLastUpdate];
+    NSString *currentScheduleGroup = [sharedDefaults objectForKey:kCurrentScheduleGroup];
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
     return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL && [currentScheduleGroup isEqual:groupNumber]);
 }
@@ -97,8 +98,10 @@
                                                                    weeks:weekNumbers];
                 }
             }
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastUpdate];
-            [[NSUserDefaults standardUserDefaults] setObject:groupNumber forKey:kCurrentScheduleGroup];
+            [[BSDataManager sharedInstance] saveContext];
+            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+            [sharedDefaults setObject:[NSDate date] forKey:kLastUpdate];
+            [sharedDefaults setObject:groupNumber forKey:kCurrentScheduleGroup];
             if (success) dispatch_async(dispatch_get_main_queue(), success);
         } else if (failure) {
             dispatch_async(dispatch_get_main_queue(), failure);

@@ -347,7 +347,7 @@
 
 - (NSURL *)storeURLBase {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.saute.Bsuir_Schedule" in the application's documents directory.
-    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.schedule_container"];
+    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kAppGroup];
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
@@ -355,6 +355,10 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
+    
+    NSBundle *b = [NSBundle bundleWithPath:[NSBundle mainBundle].bundlePath];
+    NSLog(@"Main bundle %@ %@", [NSBundle mainBundle].bundlePath, b.bundlePath);
+    NSLog(@"Main bundle %@", [b URLForResource:@"ScheduleData" withExtension:@"momd"]);
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ScheduleData" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
@@ -369,7 +373,9 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self storeURLBase] URLByAppendingPathComponent:@"ScheduleData.sqlite"];
+    NSURL *storeURL = [self storeURLBase];
+    storeURL = [storeURL URLByAppendingPathComponent:@"ScheduleData.sqlite"];
+    
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     NSDictionary *pragmaOptions = [NSDictionary dictionaryWithObject:@"MEMORY" forKey:@"journal_mode"];
