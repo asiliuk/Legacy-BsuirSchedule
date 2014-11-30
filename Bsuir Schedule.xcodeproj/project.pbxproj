@@ -24,6 +24,10 @@
 		D16DD2981A1E1E1600C61DDD /* BSSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D16DD2961A1E1E1600C61DDD /* BSSettingsVC.m */; };
 		D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D18AE80D1A1BFC88003007EF /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = D18AE80C1A1BFC88003007EF /* BSPair.m */; };
+		D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10448411A267D5100670898 /* NotificationCenter.framework */; };
+		D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D196D0321A2A967D00EA6901 /* TodayViewController.m */; };
+		D196D0351A2A967D00EA6901 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D196D0341A2A967D00EA6901 /* MainInterface.storyboard */; };
+		D196D0381A2A967D00EA6901 /* Schedule.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D196D02C1A2A967D00EA6901 /* Schedule.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
 		D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2231A1824900055B0D3 /* AppDelegate.m */; };
 		D19EB22A1A1824910055B0D3 /* BSScheduleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2291A1824910055B0D3 /* BSScheduleVC.m */; };
@@ -51,6 +55,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D196D0361A2A967D00EA6901 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D19EB2131A1824900055B0D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D196D02B1A2A967D00EA6901;
+			remoteInfo = Schedule;
+		};
 		D19EB2381A1824910055B0D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D19EB2131A1824900055B0D3 /* Project object */;
@@ -67,6 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				D196D0381A2A967D00EA6901 /* Schedule.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +111,12 @@
 		D1715E1F1A269086005C8D32 /* Bsuir Schedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Bsuir Schedule.entitlements"; sourceTree = "<group>"; };
 		D18AE80B1A1BFC88003007EF /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
 		D18AE80C1A1BFC88003007EF /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
+		D196D02C1A2A967D00EA6901 /* Schedule.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Schedule.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D196D0301A2A967D00EA6901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D196D0311A2A967D00EA6901 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		D196D0321A2A967D00EA6901 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		D196D0341A2A967D00EA6901 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		D196D03C1A2A968300EA6901 /* Schedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Schedule.entitlements; sourceTree = "<group>"; };
 		D19EB21B1A1824900055B0D3 /* Bsuir Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bsuir Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19EB21F1A1824900055B0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D19EB2201A1824900055B0D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -150,6 +168,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D196D0291A2A967D00EA6901 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19EB2181A1824900055B0D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,11 +255,32 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		D196D02E1A2A967D00EA6901 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				D196D03C1A2A968300EA6901 /* Schedule.entitlements */,
+				D196D0311A2A967D00EA6901 /* TodayViewController.h */,
+				D196D0321A2A967D00EA6901 /* TodayViewController.m */,
+				D196D0341A2A967D00EA6901 /* MainInterface.storyboard */,
+				D196D02F1A2A967D00EA6901 /* Supporting Files */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		D196D02F1A2A967D00EA6901 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D196D0301A2A967D00EA6901 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D19EB2121A1824900055B0D3 = {
 			isa = PBXGroup;
 			children = (
 				D19EB21D1A1824900055B0D3 /* Bsuir Schedule */,
 				D19EB23A1A1824910055B0D3 /* Bsuir ScheduleTests */,
+				D196D02E1A2A967D00EA6901 /* Schedule */,
 				D10448401A267D5100670898 /* Frameworks */,
 				D19EB21C1A1824900055B0D3 /* Products */,
 			);
@@ -244,6 +291,7 @@
 			children = (
 				D19EB21B1A1824900055B0D3 /* Bsuir Schedule.app */,
 				D19EB2371A1824910055B0D3 /* Bsuir ScheduleTests.xctest */,
+				D196D02C1A2A967D00EA6901 /* Schedule.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +406,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D196D02B1A2A967D00EA6901 /* Schedule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D196D03B1A2A967E00EA6901 /* Build configuration list for PBXNativeTarget "Schedule" */;
+			buildPhases = (
+				D196D0281A2A967D00EA6901 /* Sources */,
+				D196D0291A2A967D00EA6901 /* Frameworks */,
+				D196D02A1A2A967D00EA6901 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Schedule;
+			productName = Schedule;
+			productReference = D196D02C1A2A967D00EA6901 /* Schedule.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D19EB21A1A1824900055B0D3 /* Bsuir Schedule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D19EB2411A1824910055B0D3 /* Build configuration list for PBXNativeTarget "Bsuir Schedule" */;
@@ -370,6 +435,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D196D0371A2A967D00EA6901 /* PBXTargetDependency */,
 			);
 			name = "Bsuir Schedule";
 			productName = "Bsuir Schedule";
@@ -403,6 +469,15 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Saute;
 				TargetAttributes = {
+					D196D02B1A2A967D00EA6901 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 636FUHDF2R;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					D19EB21A1A1824900055B0D3 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 636FUHDF2R;
@@ -434,11 +509,20 @@
 			targets = (
 				D19EB21A1A1824900055B0D3 /* Bsuir Schedule */,
 				D19EB2361A1824910055B0D3 /* Bsuir ScheduleTests */,
+				D196D02B1A2A967D00EA6901 /* Schedule */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D196D02A1A2A967D00EA6901 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D196D0351A2A967D00EA6901 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19EB2191A1824900055B0D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,6 +557,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D196D0281A2A967D00EA6901 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19EB2171A1824900055B0D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,6 +606,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D196D0371A2A967D00EA6901 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D196D02B1A2A967D00EA6901 /* Schedule */;
+			targetProxy = D196D0361A2A967D00EA6901 /* PBXContainerItemProxy */;
+		};
 		D19EB2391A1824910055B0D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D19EB21A1A1824900055B0D3 /* Bsuir Schedule */;
@@ -544,6 +641,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D196D0391A2A967E00EA6901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Schedule/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D196D03A1A2A967E00EA6901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Schedule/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		D19EB23F1A1824910055B0D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -689,6 +816,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D196D03B1A2A967E00EA6901 /* Build configuration list for PBXNativeTarget "Schedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D196D0391A2A967E00EA6901 /* Debug */,
+				D196D03A1A2A967E00EA6901 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D19EB2161A1824900055B0D3 /* Build configuration list for PBXProject "Bsuir Schedule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
