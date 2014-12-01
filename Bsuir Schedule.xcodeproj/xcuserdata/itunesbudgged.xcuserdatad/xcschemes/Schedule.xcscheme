@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D104483E1A267D5000670898"
+               BlueprintIdentifier = "D196D02B1A2A967D00EA6901"
                BuildableName = "Schedule.appex"
                BlueprintName = "Schedule"
                ReferencedContainer = "container:Bsuir Schedule.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D104483E1A267D5000670898"
+            BlueprintIdentifier = "D196D02B1A2A967D00EA6901"
             BuildableName = "Schedule.appex"
             BlueprintName = "Schedule"
             ReferencedContainer = "container:Bsuir Schedule.xcodeproj">
@@ -64,7 +64,11 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <IDERemoteRunnable
+         RemotePath = "/Today-View"
+         BundleIdentifier = "/Today-View">
+      </IDERemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D19EB21A1A1824900055B0D3"
@@ -72,7 +76,7 @@
             BlueprintName = "Bsuir Schedule"
             ReferencedContainer = "container:Bsuir Schedule.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

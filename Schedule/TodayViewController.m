@@ -66,13 +66,15 @@ static NSString * const kCellID = @"today view cell";
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    // Perform any setup necessary in order to update the view.
+    BSDayWithWeekNum *day = [[BSDataManager sharedInstance] dayToHighlight];
     
-    // If an error is encountered, use NCUpdateResultFailed
-    // If there's no update required, use NCUpdateResultNoData
-    // If there's an update, use NCUpdateResultNewData
-
-    completionHandler(NCUpdateResultNewData);
+    if ([self.dayToHighlight isEqual:day]) {
+        completionHandler(NCUpdateResultNoData);
+    } else {
+        self.dayToHighlight = day;
+        [self.tableView reloadData];
+        completionHandler(NCUpdateResultNewData);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
