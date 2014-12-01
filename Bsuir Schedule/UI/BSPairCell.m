@@ -97,10 +97,6 @@
     [attrTimeString addAttribute:NSParagraphStyleAttributeName
                        value:style
                        range:NSMakeRange(0, [timeText length])];
-    for (id familyName in [UIFont familyNames]) {
-        NSLog(@"%@", familyName);
-        for (id fontName in [UIFont fontNamesForFamilyName:familyName]) NSLog(@"  %@", fontName);
-    }
 
     [attrTimeString addAttribute:NSFontAttributeName
                            value:[UIFont fontWithName:@"OpenSans-Light" size:FONT_SIZE]
