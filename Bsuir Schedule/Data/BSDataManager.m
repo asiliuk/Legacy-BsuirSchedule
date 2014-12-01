@@ -432,19 +432,29 @@
 }
 
 - (void)resetDatabase {
-    NSArray *persistentStores = [self.persistentStoreCoordinator persistentStores];
-    for (NSPersistentStore *store in persistentStores) {
-        NSError *error;
-        NSURL *storeURL = store.URL;
-        [_persistentStoreCoordinator removePersistentStore:store error:&error];
-        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
-        if (error) {
-            NSLog(@"Error: %@",error.localizedDescription);
-        }
+//    NSArray *persistentStores = [self.persistentStoreCoordinator persistentStores];
+//    for (NSPersistentStore *store in persistentStores) {
+//        NSError *error;
+//        NSURL *storeURL = store.URL;
+//        [_persistentStoreCoordinator removePersistentStore:store error:&error];
+//        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+//        if (error) {
+//            NSLog(@"Error: %@",error.localizedDescription);
+//        }
+//    }
+//    _persistentStoreCoordinator = nil;
+//    _managedObjectModel = nil;
+//    _managedObjectContext = nil;
+    NSFetchRequest *pairsRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
+    NSError *error;
+    NSArray *items = [_managedObjectContext executeFetchRequest:pairsRequest error:&error];
+    
+    for (NSManagedObject *managedObject in items) {
+        [_managedObjectContext deleteObject:managedObject];
     }
-    _persistentStoreCoordinator = nil;
-    _managedObjectModel = nil;
-    _managedObjectContext = nil;
+    if (![_managedObjectContext save:&error]) {
+        NSLog(@"Error deleting pair - error:%@",error);
+    }
 }
 
 @end
