@@ -120,17 +120,6 @@
     [animation setToValue:[NSValue valueWithCGPoint:
                            CGPointMake([view center].x + amplitude.x, [view center].y + amplitude.y)]];
     [[view layer] addAnimation:animation forKey:@"position"];
-    
-    CABasicAnimation *colorAnimation = [CABasicAnimation
-                                        animationWithKeyPath:@"backgroundColor"];
-    colorAnimation.duration = 0.3;
-    colorAnimation.fillMode = kCAFillModeForwards;
-    colorAnimation.removedOnCompletion = NO;
-    colorAnimation.fromValue = (id)[UIColor whiteColor].CGColor;
-    colorAnimation.toValue = (id)BS_LIGHT_BLUE.CGColor;
-    colorAnimation.autoreverses = YES;
-    colorAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    [[view layer] addAnimation:colorAnimation forKey:@"backgroundColor"];
 }
 
 //===============================================ACTIONS===========================================
@@ -149,10 +138,8 @@
     [self dismissWithChanges:NO];
 }
 - (IBAction)okPressed:(id)sender {
-    if ([self.groupNumberTF.text isEqual:@""]) {
-        [self shakeView:self.groupNumberTF amplitude:CGPointMake(10, 0)];
-    } else if ([self.subgroupNumberTF.text isEqual:@""]) {
-        [self shakeView:self.subgroupNumberTF amplitude:CGPointMake(10, 0)];
+    if ([self.groupNumberTF.text isEqual:@""] || [self.subgroupNumberTF.text isEqual:@""]) {
+        [self shakeView:self.centerView amplitude:CGPointMake(10, 0)];
     } else {
         NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
         [sharedDefaults setObject:self.groupNumberTF.text forKey:kUserGroup];
