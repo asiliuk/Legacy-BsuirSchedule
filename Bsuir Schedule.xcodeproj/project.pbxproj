@@ -70,6 +70,8 @@
 		D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BF1A1966A200100B64 /* BSAuditory.m */; };
 		D1AF20C31A1966A200100B64 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */; };
 		D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C51A1966A200100B64 /* BSLecturer.m */; };
+		D1C8420F1A30C15300CE5E0E /* BSLecturerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C8420D1A30C15300CE5E0E /* BSLecturerVC.m */; };
+		D1C842101A30C15300CE5E0E /* BSLecturerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C8420E1A30C15300CE5E0E /* BSLecturerVC.xib */; };
 		D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
 		D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
@@ -172,6 +174,9 @@
 		D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
 		D1AF20C41A1966A200100B64 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
 		D1AF20C51A1966A200100B64 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
+		D1C8420C1A30C15300CE5E0E /* BSLecturerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerVC.h; sourceTree = "<group>"; };
+		D1C8420D1A30C15300CE5E0E /* BSLecturerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturerVC.m; sourceTree = "<group>"; };
+		D1C8420E1A30C15300CE5E0E /* BSLecturerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSLecturerVC.xib; sourceTree = "<group>"; };
 		D1DE31611A1AA3D5000038B0 /* BSLecturer+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+Thumbnail.h"; sourceTree = "<group>"; };
 		D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+Thumbnail.m"; sourceTree = "<group>"; };
 		D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lecturers.xcassets; sourceTree = "<group>"; };
@@ -417,6 +422,9 @@
 				D1E873E21A1ED92D007F056F /* BSSettingsVC.xib */,
 				D1F4B77D1A1EFDBC00EB1E62 /* BSTriangleView.h */,
 				D1F4B77E1A1EFDBC00EB1E62 /* BSTriangleView.m */,
+				D1C8420C1A30C15300CE5E0E /* BSLecturerVC.h */,
+				D1C8420D1A30C15300CE5E0E /* BSLecturerVC.m */,
+				D1C8420E1A30C15300CE5E0E /* BSLecturerVC.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -580,6 +588,7 @@
 				D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
 				D19EB22F1A1824910055B0D3 /* Images.xcassets in Resources */,
 				D11F67561A1D743A0068317F /* BSScheduleVC.xib in Resources */,
+				D1C842101A30C15300CE5E0E /* BSLecturerVC.xib in Resources */,
 				D1E873E01A1ED92D007F056F /* BSSettingsVC.xib in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */,
@@ -642,6 +651,7 @@
 				D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */,
 				D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */,
 				D1E5C72E1A1BE41B009E5552 /* BSPairCell.m in Sources */,
+				D1C8420F1A30C15300CE5E0E /* BSLecturerVC.m in Sources */,
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
 				D19EB22A1A1824910055B0D3 /* BSScheduleVC.m in Sources */,
 				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
