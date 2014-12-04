@@ -315,12 +315,20 @@
 #define START_DAY 1
 #define START_MONTH 9
 
+#define END_DAY 1
+#define END_MONTH 7
+
 
 - (BSWeekNumber*)weekNumberWithDate:(NSDate *)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
     NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
     dateComponents.day -= [dateComponents weekday];
+    
+    NSDateComponents *lastDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
+    lastDay.day =  END_DAY;
+    lastDay.month = END_MONTH;
+    NSDate *lastDayDate = [gregorian dateFromComponents:lastDay];
     
     NSDateComponents *firstDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
     firstDay.day =  START_DAY;
@@ -330,10 +338,10 @@
     firstDay.day -= [firstDay weekday];
     
     NSTimeInterval timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
-    if (timePased < 0) {
+    if (timePased < 0 && [[NSDate date] compare:lastDayDate] == NSOrderedAscending) {
         firstDay.year -= 1;
     }
-    timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
+    timePased = fabs([[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]]);
     NSInteger weeksPast = timePased / (7*24*3600);
     NSInteger weekNum = (weeksPast % 4) + 1;
     return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
