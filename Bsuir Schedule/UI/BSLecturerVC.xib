@@ -13,6 +13,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BSLecturerVC">
             <connections>
+                <outlet property="backIV" destination="gNI-Uo-uEe" id="B2q-BW-wSl"/>
+                <outlet property="centerView" destination="2nJ-Zn-bFy" id="8kv-IS-FPu"/>
+                <outlet property="lecturerIV" destination="gD7-sA-Gts" id="Qv6-gy-OXA"/>
+                <outlet property="lecturerNameLabel" destination="xiT-9U-uqJ" id="OPn-0X-Iqn"/>
                 <outlet property="view" destination="xlF-Nx-KJ8" id="f40-dk-tdK"/>
             </connections>
         </placeholder>
@@ -21,41 +25,55 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRh-ZT-3dZ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gNI-Uo-uEe">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nJ-Zn-bFy">
+                    <rect key="frame" x="25" y="94" width="270" height="380"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-sA-Gts">
+                            <rect key="frame" x="0.0" y="0.0" width="270" height="305"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мельник Николай Иосифович" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiT-9U-uqJ">
+                            <rect key="frame" x="15" y="304" width="241" height="71"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="gD7-sA-Gts" secondAttribute="trailing" id="8fI-m3-I5a"/>
+                        <constraint firstAttribute="width" secondItem="2nJ-Zn-bFy" secondAttribute="height" multiplier="27:38" id="GYj-46-Wq0"/>
+                        <constraint firstItem="gD7-sA-Gts" firstAttribute="leading" secondItem="2nJ-Zn-bFy" secondAttribute="leading" id="KBk-6Q-p5N"/>
+                        <constraint firstItem="xiT-9U-uqJ" firstAttribute="top" secondItem="gD7-sA-Gts" secondAttribute="bottom" constant="-1" id="ReH-DB-dzR"/>
+                        <constraint firstItem="gD7-sA-Gts" firstAttribute="top" secondItem="2nJ-Zn-bFy" secondAttribute="top" id="gaH-04-NOd"/>
+                        <constraint firstAttribute="bottom" secondItem="xiT-9U-uqJ" secondAttribute="bottom" constant="5" id="rdi-Cp-Ek1"/>
+                        <constraint firstItem="xiT-9U-uqJ" firstAttribute="leading" secondItem="2nJ-Zn-bFy" secondAttribute="leading" constant="15" id="rog-Vp-lKS"/>
+                        <constraint firstAttribute="trailing" secondItem="xiT-9U-uqJ" secondAttribute="trailing" constant="14" id="yot-Zw-Woj"/>
+                        <constraint firstAttribute="bottom" secondItem="gD7-sA-Gts" secondAttribute="bottom" constant="75" id="zXr-tu-HpR"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="WRh-ZT-3dZ" firstAttribute="leading" secondItem="xlF-Nx-KJ8" secondAttribute="leading" id="2KV-xY-Dfh"/>
-                <constraint firstAttribute="trailing" secondItem="WRh-ZT-3dZ" secondAttribute="trailing" id="B6i-Hi-nJo"/>
-                <constraint firstAttribute="bottom" secondItem="WRh-ZT-3dZ" secondAttribute="bottom" id="ddV-Vm-n8w"/>
-                <constraint firstItem="WRh-ZT-3dZ" firstAttribute="top" secondItem="xlF-Nx-KJ8" secondAttribute="top" id="lYm-bg-sVp"/>
+                <constraint firstAttribute="bottom" secondItem="2nJ-Zn-bFy" secondAttribute="bottom" constant="94" id="MAc-ja-T44"/>
+                <constraint firstAttribute="trailing" secondItem="2nJ-Zn-bFy" secondAttribute="trailing" constant="25" id="OVD-vK-AAC"/>
+                <constraint firstItem="2nJ-Zn-bFy" firstAttribute="top" secondItem="xlF-Nx-KJ8" secondAttribute="top" constant="94" id="RaM-4b-4q6"/>
+                <constraint firstItem="2nJ-Zn-bFy" firstAttribute="leading" secondItem="xlF-Nx-KJ8" secondAttribute="leading" constant="25" id="qQ9-0F-5Us"/>
+                <constraint firstAttribute="centerY" secondItem="2nJ-Zn-bFy" secondAttribute="centerY" id="sBT-da-Zxm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="407" y="155.5"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="seo-ea-uEb" appends="YES" id="HWv-F5-uxj"/>
+            </connections>
+            <point key="canvasLocation" x="407" y="155"/>
         </view>
-        <view contentMode="scaleToFill" id="2nJ-Zn-bFy">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="446"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-sA-Gts">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="364"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Мельник Николай Иосифович" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiT-9U-uqJ">
-                    <rect key="frame" x="0.0" y="368" width="300" height="75"/>
-                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="width" secondItem="2nJ-Zn-bFy" secondAttribute="height" multiplier="174:227" id="m5h-mv-Avj"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="388" y="766"/>
-        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="seo-ea-uEb">
+            <connections>
+                <action selector="handleAttachmentGesture:" destination="-1" id="uzw-D4-XsC"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
 </document>

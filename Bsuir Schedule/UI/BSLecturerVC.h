@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BSDataManager.h"
 @interface BSLecturerVC : UIViewController
-
+- (instancetype)initWithLecturer:(BSLecturer*)lecturer startFrame:(CGRect)startFrame;
 @end
