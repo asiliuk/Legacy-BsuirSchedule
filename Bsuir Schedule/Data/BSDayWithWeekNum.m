@@ -23,17 +23,20 @@
     return self;
 }
 - (NSArray*)pairs {
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
-    NSNumber *subgroupNumber = @([[sharedDefaults objectForKey:kUserSubgroup] integerValue]);
-    NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-    NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
-    NSMutableArray *weekPairs = [NSMutableArray array];
-    for (BSPair *pair in pairs) {
-        if ([pair.weeks containsObject:self.weekNumber] && ([pair.subgroupNumber isEqual:@(0)] || [pair.subgroupNumber isEqual:subgroupNumber])) {
-            [weekPairs addObject:pair];
+    if (!_pairs) {
+        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+        NSNumber *subgroupNumber = @([[sharedDefaults objectForKey:kUserSubgroup] integerValue]);
+        NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+        NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
+        NSMutableArray *weekPairs = [NSMutableArray array];
+        for (BSPair *pair in pairs) {
+            if ([pair.weeks containsObject:self.weekNumber] && ([pair.subgroupNumber isEqual:@(0)] || [pair.subgroupNumber isEqual:subgroupNumber])) {
+                [weekPairs addObject:pair];
+            }
         }
+        _pairs = weekPairs;
     }
-    return weekPairs;
+    return _pairs;
 }
 
 - (BOOL)isEqual:(BSDayWithWeekNum *)object {

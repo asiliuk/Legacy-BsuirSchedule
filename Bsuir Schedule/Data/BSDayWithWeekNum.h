@@ -14,8 +14,7 @@
 @property (strong, nonatomic) BSWeekNumber *weekNumber;
 @property (strong, nonatomic) BSDayOfWeek *dayOfWeek;
 @property (strong, nonatomic) NSDate *date;
-
+@property (strong, nonatomic) NSArray *pairs;
 - (instancetype)initWithDate:(NSDate*)date;
-- (NSArray*)pairs;
 - (BOOL)isEqual:(BSDayWithWeekNum*)object;
 @end
