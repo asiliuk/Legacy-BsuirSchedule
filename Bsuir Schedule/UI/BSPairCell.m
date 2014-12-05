@@ -14,7 +14,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet BSTriangleView *triangleView;
 @property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
+@property (strong, nonatomic) IBOutlet UILabel *subjectNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *auditoryLabel;
+@property (strong, nonatomic) IBOutlet UIView *pairView;
+@property (strong, nonatomic) IBOutlet UILabel *lecturerNameLabel;
+
 @property (strong, nonatomic) UIVisualEffectView *effectView;
+@property (strong, nonatomic) NSString *timeText;
 @end
 @implementation BSPairCell
 @dynamic timeText;
@@ -30,7 +36,9 @@
     self.pairView.layer.masksToBounds = YES;
     
     self.showingLecturerName = NO;
-//    [self makeCurrentPairCell:NO];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleThumbnailTap:)];
+    [self addGestureRecognizer:tap];
 }
 
 #define OFFSET 10.0
@@ -165,4 +173,7 @@
     }
 }
 
+- (void)handleThumbnailTap:(id)sender {
+    [self.delegate thumbnailGetTappedOnCell:self];
+}
 @end
