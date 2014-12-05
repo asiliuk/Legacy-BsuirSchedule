@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gNI-Uo-uEe">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNI-Uo-uEe">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nJ-Zn-bFy">
@@ -58,11 +58,15 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="gNI-Uo-uEe" secondAttribute="trailing" id="Jc3-UU-eNb"/>
+                <constraint firstItem="gNI-Uo-uEe" firstAttribute="leading" secondItem="xlF-Nx-KJ8" secondAttribute="leading" id="JrE-lg-UKB"/>
                 <constraint firstAttribute="bottom" secondItem="2nJ-Zn-bFy" secondAttribute="bottom" constant="94" id="MAc-ja-T44"/>
                 <constraint firstAttribute="trailing" secondItem="2nJ-Zn-bFy" secondAttribute="trailing" constant="25" id="OVD-vK-AAC"/>
                 <constraint firstItem="2nJ-Zn-bFy" firstAttribute="top" secondItem="xlF-Nx-KJ8" secondAttribute="top" constant="94" id="RaM-4b-4q6"/>
+                <constraint firstItem="gNI-Uo-uEe" firstAttribute="top" secondItem="xlF-Nx-KJ8" secondAttribute="top" id="a5L-Zj-yod"/>
                 <constraint firstItem="2nJ-Zn-bFy" firstAttribute="leading" secondItem="xlF-Nx-KJ8" secondAttribute="leading" constant="25" id="qQ9-0F-5Us"/>
                 <constraint firstAttribute="centerY" secondItem="2nJ-Zn-bFy" secondAttribute="centerY" id="sBT-da-Zxm"/>
+                <constraint firstAttribute="bottom" secondItem="gNI-Uo-uEe" secondAttribute="bottom" id="tiM-Zx-LZ6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

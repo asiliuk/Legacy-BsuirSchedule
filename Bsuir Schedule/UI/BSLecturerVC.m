@@ -54,20 +54,25 @@
     [self.view addSubview:self.previewIV];
     
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-    self.originalBounds = self.centerView.bounds;
-    self.originalCenter = self.centerView.center;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self showCenterView];
-}
-#define LECTURER_VC_ANIMATION_DURATION 0.3
-#define LECTURER_NAME_ANIMATION_DURATION 0.2
-
-- (void)showCenterView {
     self.backIV.alpha = 0.0;
     self.centerView.alpha = 0.0;
+}
+
+#define LECTURER_VC_ANIMATION_DURATION 0.3
+#define LECTURER_NAME_ANIMATION_DURATION 0.2
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showCenterView];
+    self.originalBounds = self.centerView.bounds;
+    self.originalCenter = self.centerView.center;
+
+}
+- (void)showCenterView {
+
     [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
         self.previewIV.frame = [self.view convertRect:self.lecturerIV.frame fromView:self.centerView];
         self.previewIV.layer.cornerRadius = 0.0;
