@@ -67,6 +67,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="seo-ea-uEb" appends="YES" id="HWv-F5-uxj"/>
+                <outletCollection property="gestureRecognizers" destination="hL9-d0-5Mh" appends="YES" id="anr-8S-b86"/>
             </connections>
             <point key="canvasLocation" x="407" y="155"/>
         </view>
@@ -75,5 +76,10 @@
                 <action selector="handleAttachmentGesture:" destination="-1" id="uzw-D4-XsC"/>
             </connections>
         </panGestureRecognizer>
+        <tapGestureRecognizer id="hL9-d0-5Mh">
+            <connections>
+                <action selector="handleTapGesture:" destination="-1" id="thR-DB-ris"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

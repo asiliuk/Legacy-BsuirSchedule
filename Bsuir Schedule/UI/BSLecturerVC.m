@@ -98,6 +98,10 @@
 static const CGFloat ThrowingThreshold = 5000;
 static const CGFloat ThrowingVelocityPadding = 35;
 
+- (IBAction) handleTapGesture:(UITapGestureRecognizer*)gesture {
+    [self dismiss];
+}
+
 - (IBAction) handleAttachmentGesture:(UIPanGestureRecognizer*)gesture
 {
     CGPoint location = [gesture locationInView:self.view];
