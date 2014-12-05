@@ -9,9 +9,15 @@
 #import "BSLecturer+Thumbnail.h"
 #import "NSString+Transiterate.h"
 
+static NSString * const kNoavatar = @"noavatar";
+
 @implementation BSLecturer (Thumbnail)
 - (UIImage*)thumbnail {
     NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@.jpg", self.lastName, self.firstName, self.middleName];
-    return [UIImage imageNamed:[thumbName toLatinWithDictionary]];
+    UIImage *thumbnail = [UIImage imageNamed:[thumbName toLatinWithDictionary]];
+    if (!thumbnail) {
+        thumbnail = [UIImage imageNamed:kNoavatar];
+    }
+    return thumbnail;
 }
 @end
