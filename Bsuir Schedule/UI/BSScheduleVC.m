@@ -15,15 +15,19 @@
 #import "BSLecturer+Thumbnail.h"
 #import "NSString+Transiterate.h"
 #import "NSDate+Compare.h"
+#import "UIView+Screenshot.h"
 
 #import "BSSettingsVC.h"
 #import "BSScheduleParser.h"
+#import "BSLecturerVC.h"
 
 
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSSettingsVCDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,
+BSSettingsVCDelegate, BSPairCellDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *daysWithWeekNumber;
 
@@ -202,51 +206,9 @@ static NSString * const kCellID = @"Pair cell id";
     BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPath.section];
     NSArray *pairs = [dayWithWeekNum pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
-    
+    cell.delegate = self;
     [cell setupWithPair:pair cellForCurrentDay:[[NSDate date] isEqualToDateWithoutTime:dayWithWeekNum.date]];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BSPairCell *pairCell = (BSPairCell*)[tableView cellForRowAtIndexPath:indexPath];
-    if (pairCell) {
-        if (!pairCell.showingLecturerName) {
-            [self deselectVisibleCells];
-        }
-        [pairCell makeSelected:!pairCell.showingLecturerName];
-    }
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self deselectVisibleCells];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate) {
-        [self scrollingFinishScrollView:scrollView];
-    }
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self scrollingFinishScrollView:scrollView];
-}
-- (void)scrollingFinishScrollView:(UIScrollView*)scrollView {
-    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
-        NSLog(@"load more rows");
-        [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.daysWithWeekNumber.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
-        [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
-    }
-    
-}
-
-- (void)deselectVisibleCells {
-    for (BSPairCell *pairCell in [self.tableView visibleCells]) {
-        if (pairCell.showingLecturerName) {
-            [pairCell makeSelected:NO];
-        }
-    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -288,19 +250,77 @@ static NSString * const kCellID = @"Pair cell id";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return HEADER_HEIGHT+5.0;
 }
+//-------------------------------Scroll view---------------------------------
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        [self scrollingFinishScrollView:scrollView];
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self scrollingFinishScrollView:scrollView];
+}
+- (void)scrollingFinishScrollView:(UIScrollView*)scrollView {
+    if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
+        NSLog(@"load more rows");
+        [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.daysWithWeekNumber.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
+        [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
+    }
+    
+}
+
+//-------------------------------Lecturer name view---------------------------------
+
+
+//- (void)deselectVisibleCells {
+//    for (BSPairCell *pairCell in [self.tableView visibleCells]) {
+//        if (pairCell.showingLecturerName) {
+//            [pairCell makeSelected:NO];
+//        }
+//    }
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    BSPairCell *pairCell = (BSPairCell*)[tableView cellForRowAtIndexPath:indexPath];
+//    if (pairCell) {
+//        if (!pairCell.showingLecturerName) {
+//            [self deselectVisibleCells];
+//        }
+//        [pairCell makeSelected:!pairCell.showingLecturerName];
+//    }
+//}
+//
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    [self deselectVisibleCells];
+//}
+
 //===============================================UI===========================================
 #pragma mark - UI
 
 - (void)showSettingsScreen {
     BSSettingsVC *settingsVC = [[BSSettingsVC alloc] init];
+    [self presentVCInCurrentContext:settingsVC];
+    settingsVC.delegate = self;
+
+}
+
+- (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
+    if (lecturer) {
+        BSLecturerVC *lecturerVC = [[BSLecturerVC alloc] initWithLecturer:lecturer startFrame:startFrame];
+        [self presentVCInCurrentContext:lecturerVC];
+    }
+}
+
+- (void)presentVCInCurrentContext:(UIViewController*)vc {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        settingsVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     } else {
         self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
     }
-    [self presentViewController:settingsVC animated:NO completion:nil];
-    settingsVC.delegate = self;
-
+    [self presentViewController:vc animated:NO completion:nil];
 }
 
 //===============================================SETTINGS SCREEN DELEAGTE===========================================
@@ -310,7 +330,6 @@ static NSString * const kCellID = @"Pair cell id";
     if (changes) {
         [self getScheduleData];
     }
-
 }
 
 //===============================================LOADING SCREEN===========================================
@@ -332,4 +351,18 @@ static NSString * const kCellID = @"Pair cell id";
         }
     }];
 }
+//===============================================BSPairCell DELEGATE===========================================
+#pragma mark - BSPairCell delegate
+
+- (void)thumbnailGetTappedOnCell:(BSPairCell *)cell {
+    NSIndexPath *indexPathOfCell = [self.tableView indexPathForCell:cell];
+    if (indexPathOfCell) {
+        BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPathOfCell.section];
+        BSPair *pair = [dayWithWeekNum.pairs objectAtIndex:indexPathOfCell.row];
+        BSLecturer *lecturer = pair.lecturer;
+        CGRect startFrame = [self.view convertRect:cell.lecturerIV.frame fromView:cell];
+        [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
+    }
+}
+
 @end

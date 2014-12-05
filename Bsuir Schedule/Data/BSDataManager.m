@@ -364,9 +364,6 @@
         return _managedObjectModel;
     }
     
-    NSBundle *b = [NSBundle bundleWithPath:[NSBundle mainBundle].bundlePath];
-    NSLog(@"Main bundle %@ %@", [NSBundle mainBundle].bundlePath, b.bundlePath);
-    NSLog(@"Main bundle %@", [b URLForResource:@"ScheduleData" withExtension:@"momd"]);
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ScheduleData" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
