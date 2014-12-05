@@ -26,6 +26,8 @@
 @property (nonatomic) UIAttachmentBehavior *attachmentBehavior;
 @property (nonatomic) UIPushBehavior *pushBehavior;
 @property (nonatomic) UIDynamicItemBehavior *itemBehavior;
+
+@property (assign, nonatomic) BOOL dismissing;
 @end
 
 @implementation BSLecturerVC
@@ -60,8 +62,9 @@
     [super viewWillAppear:animated];
     [self showCenterView];
 }
-
 #define LECTURER_VC_ANIMATION_DURATION 0.3
+#define LECTURER_NAME_ANIMATION_DURATION 0.2
+
 - (void)showCenterView {
     self.backIV.alpha = 0.0;
     self.centerView.alpha = 0.0;
@@ -70,12 +73,23 @@
         self.previewIV.layer.cornerRadius = 0.0;
         self.backIV.alpha = 1.0;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+        [UIView animateWithDuration:LECTURER_NAME_ANIMATION_DURATION animations:^{
             self.centerView.alpha = 1.0;
         } completion:^(BOOL finished) {
             [self.previewIV removeFromSuperview];
         }];
     }];
+}
+
+- (void)dismiss {
+    if (!self.dismissing) {
+        self.dismissing = YES;
+        [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+            self.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }];
+    }
 }
 
 //===============================================GUSETURE RECOGNISER===========================================
@@ -107,28 +121,30 @@ static const CGFloat ThrowingVelocityPadding = 35;
              //1
              CGPoint velocity = [gesture velocityInView:self.view];
              CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-             
+            magnitude *= 3;
              if (magnitude > ThrowingThreshold) {
                  //2
                  UIPushBehavior *pushBehavior = [[UIPushBehavior alloc]
                                                  initWithItems:@[self.centerView]
                                                  mode:UIPushBehaviorModeInstantaneous];
-                 pushBehavior.pushDirection = CGVectorMake((velocity.x / 10) , (velocity.y / 10));
+                 pushBehavior.pushDirection = CGVectorMake((velocity.x ) , (velocity.y ));
                  pushBehavior.magnitude = magnitude / ThrowingVelocityPadding;
-                 
+                 __weak typeof(self) weakSelf = self;
+                 pushBehavior.action = ^{
+                     typeof(weakSelf) self = weakSelf;
+                     CGFloat minX = 0.0;
+                     CGFloat maxX = CGRectGetMaxX(self.view.frame);
+                     CGFloat minY = 0.0;
+                     CGFloat maxY = CGRectGetMaxY(self.view.frame);
+                     CGPoint centerCenter = self.centerView.center;
+                     BOOL inView = (minX < centerCenter.x && maxX > centerCenter.x) && (minY < centerCenter.y && maxY > centerCenter.y);
+                     if (!inView) {
+                         [self dismiss];
+                     }
+                 };
                  self.pushBehavior = pushBehavior;
                  [self.animator addBehavior:self.pushBehavior];
-                 
-                 //3
-                 NSInteger angle = arc4random_uniform(20) - 10;
-                 
-                 self.itemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
-                 self.itemBehavior.friction = 0.2;
-                 self.itemBehavior.allowsRotation = YES;
-                 [self.itemBehavior addAngularVelocity:angle forItem:self.centerView];
-                 [self.animator addBehavior:self.itemBehavior];
-                 
-                 //4
+
                  [self performSelector:@selector(resetDemo) withObject:nil afterDelay:0.4];
              }
              

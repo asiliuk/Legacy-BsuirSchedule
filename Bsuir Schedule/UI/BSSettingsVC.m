@@ -9,13 +9,13 @@
 #import "BSSettingsVC.h"
 #import "BSDataManager.h"
 #import "BSConstants.h"
+#import "UIView+Screenshot.h"
 
 @interface BSSettingsVC ()
 @property (strong, nonatomic) IBOutlet UIView *centerView;
-@property (strong, nonatomic) IBOutlet UIView *blackBack;
+@property (strong, nonatomic) IBOutlet UIImageView *backIV;
 @property (strong, nonatomic) IBOutlet UITextField *groupNumberTF;
 @property (strong, nonatomic) IBOutlet UITextField *subgroupNumberTF;
-
 @property (nonatomic) BOOL dataChanged;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -52,7 +52,7 @@
     [self.groupNumberTF setText:[sharedDefaults objectForKey:kUserGroup]];
     [self.subgroupNumberTF setText:[sharedDefaults objectForKey:kUserSubgroup]];
 
-    // Do any additional setup after loading the view from its nib.
+    self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,11 +71,11 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.centerView.center = CGPointMake(screenBounds.size.width/2.0,
                                          screenBounds.size.height + self.centerView.frame.size.height / 2.0);
-    self.blackBack.alpha = 0.0;
+    self.backIV.alpha = 0.0;
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:ANIMATION_DURATION_SHOW delay:0.0 usingSpringWithDamping:1.2 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         typeof(weakSelf) self = weakSelf;
-        self.blackBack.alpha = 0.5;
+        self.backIV.alpha = 1.0;
         self.centerView.center = CGPointMake(screenBounds.size.width/2.0, screenBounds.size.height / 2.0);
     } completion:^(BOOL finished) {
     }];
@@ -91,7 +91,7 @@
     UIDynamicItemBehavior *di = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
     [UIView animateWithDuration:SETTINGS_ANIMATION_DURATION animations:^{
         typeof(weakSelf) self = weakSelf;
-        self.blackBack.alpha = 0.0;
+        self.backIV.alpha = 0.0;
     } completion:^(BOOL finished) {
         typeof(weakSelf) self = weakSelf;
         if (finished) {

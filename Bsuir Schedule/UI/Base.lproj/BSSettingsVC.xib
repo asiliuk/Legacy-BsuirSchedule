@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,7 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BSSettingsVC">
             <connections>
-                <outlet property="blackBack" destination="Zou-WF-rcN" id="Osx-lC-yA9"/>
+                <outlet property="backIV" destination="ItJ-W1-UvH" id="ud3-y0-dme"/>
                 <outlet property="centerView" destination="ZOf-ke-aSZ" id="qBA-or-022"/>
                 <outlet property="groupNumberTF" destination="Jvv-xK-1Qo" id="5PG-V7-yNu"/>
                 <outlet property="subgroupNumberTF" destination="zfj-oI-TLa" id="9Ox-9v-DXF"/>
@@ -26,11 +27,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="383"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.49999999999999961" contentMode="scaleToFill" id="Zou-WF-rcN">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ItJ-W1-UvH">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="383"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
+                </imageView>
                 <view contentMode="scaleToFill" id="ZOf-ke-aSZ">
                     <rect key="frame" x="20" y="92" width="280" height="200"/>
                     <autoresizingMask key="autoresizingMask"/>
