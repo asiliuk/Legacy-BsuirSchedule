@@ -77,6 +77,7 @@
 		D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
 		D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
+		D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E34FE01A3339F9003459E6 /* InfoPlist.strings */; };
 		D1E5C72E1A1BE41B009E5552 /* BSPairCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C72C1A1BE41B009E5552 /* BSPairCell.m */; };
 		D1E5C72F1A1BE41B009E5552 /* BSPairCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */; };
 		D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
@@ -188,6 +189,8 @@
 		D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lecturers.xcassets; sourceTree = "<group>"; };
 		D1DE31661A1AA9AB000038B0 /* NSString+Transiterate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Transiterate.h"; sourceTree = "<group>"; };
 		D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Transiterate.m"; sourceTree = "<group>"; };
+		D1E34FDF1A3339F9003459E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D1E34FE11A3339FB003459E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1E5C72B1A1BE41B009E5552 /* BSPairCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPairCell.h; sourceTree = "<group>"; };
 		D1E5C72C1A1BE41B009E5552 /* BSPairCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPairCell.m; sourceTree = "<group>"; };
 		D1E5C72D1A1BE41B009E5552 /* BSPairCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSPairCell.xib; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				D196D0301A2A967D00EA6901 /* Info.plist */,
+				D1E34FE01A3339F9003459E6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -568,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1085FC91A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
+				D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */,
 				D1085FC31A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				D1085FBF1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
 				D1085FD11A2A9C1000D0C62B /* OpenSans-Semibold.ttf in Resources */,
@@ -701,6 +706,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D1E34FE01A3339F9003459E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1E34FDF1A3339F9003459E6 /* Base */,
+				D1E34FE11A3339FB003459E6 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D1E873DE1A1EBB3C007F056F /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
