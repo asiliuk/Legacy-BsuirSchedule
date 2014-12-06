@@ -78,7 +78,6 @@
                     NSString *endTime = [pairTime lastObject];
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                     [formatter setDateFormat:@"HH:mm"];
-                    NSLog(@"Time %@ %@ %@ %@", startTime, endTime, [formatter dateFromString:startTime],[formatter dateFromString:endTime]);
                     NSMutableSet *weekNumbers = [NSMutableSet set];
                     id weekNumbersData = subjectData[kSubjectWeeks];
                     if ([weekNumbersData isKindOfClass:[NSString class]]) {

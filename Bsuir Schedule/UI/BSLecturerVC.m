@@ -130,7 +130,7 @@ static const CGFloat ThrowingVelocityPadding = 35;
              //1
              CGPoint velocity = [gesture velocityInView:self.view];
              CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-            magnitude *= 3;
+             magnitude *= 3;
              if (magnitude > ThrowingThreshold) {
                  //2
                  UIPushBehavior *pushBehavior = [[UIPushBehavior alloc]
@@ -153,7 +153,16 @@ static const CGFloat ThrowingVelocityPadding = 35;
                  };
                  self.pushBehavior = pushBehavior;
                  [self.animator addBehavior:self.pushBehavior];
-
+                 NSLog(@"magn : %f vx: %f vy: %f", magnitude, velocity.x, velocity.y);
+                 
+                 CGFloat angularVelocity = (boxLocation.y <= self.centerView.bounds.size.height / 2.0 ? 1 : -1) * velocity.x / 250;
+                 
+                 self.itemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
+                 self.itemBehavior.friction = 0.2;
+                 self.itemBehavior.allowsRotation = YES;
+                 [self.itemBehavior addAngularVelocity:angularVelocity forItem:self.centerView];
+                 [self.animator addBehavior:self.itemBehavior];
+                 
                  [self performSelector:@selector(resetDemo) withObject:nil afterDelay:0.4];
              }
              
