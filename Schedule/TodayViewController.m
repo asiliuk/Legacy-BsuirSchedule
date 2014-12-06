@@ -102,7 +102,7 @@ static NSString * const kCellID = @"today view cell";
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     NSArray *pairs = [self.dayToHighlight pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
-    [cell setupWithPair:pair cellForCurrentDay:[[NSDate date] isEqualToDateWithoutTime:self.dayToHighlight.date]];
+    [cell setupWithPair:pair inDay:self.dayToHighlight];
     [cell updateUIForWidget];
     return cell;
 }

@@ -21,8 +21,7 @@
 @property (weak, nonatomic) id<BSPairCellDelegate> delegate;
 @property (nonatomic) BOOL showingLecturerName;
 - (void)makeSelected:(BOOL)selected;
-- (void)makeCurrentPairCell:(BOOL)isCurrent;
 
-- (void)setupWithPair:(BSPair*)pair cellForCurrentDay:(BOOL)cellForCurrentDay;
+- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day;
 - (void)updateUIForWidget;
 @end

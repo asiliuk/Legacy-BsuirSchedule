@@ -207,7 +207,7 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     NSArray *pairs = [dayWithWeekNum pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
     cell.delegate = self;
-    [cell setupWithPair:pair cellForCurrentDay:[[NSDate date] isEqualToDateWithoutTime:dayWithWeekNum.date]];
+    [cell setupWithPair:pair inDay:dayWithWeekNum];
     return cell;
 }
 

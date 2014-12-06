@@ -112,14 +112,6 @@
     self.timeLabel.attributedText = attrTimeString;
 }
 
-- (void)makeCurrentPairCell:(BOOL)isCurrent {
-    if (isCurrent) {
-        self.triangleView.hidden = NO;
-        [self.triangleView setNeedsDisplay];
-    } else {
-        self.triangleView.hidden = YES;
-    }
-}
 
 - (void)setPairTypeIndicatorColor:(UIColor *)pairTypeIndicatorColor{
     _pairTypeIndicatorColor = pairTypeIndicatorColor;
@@ -127,7 +119,9 @@
     self.triangleView.fillColor = pairTypeIndicatorColor;
 }
 
-- (void)setupWithPair:(BSPair*)pair cellForCurrentDay:(BOOL)cellForCurrentDay{
+- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day{
+    
+    
     BSLecturer *lecturer = pair.lecturer;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
@@ -152,10 +146,60 @@
                                          [lecturer.firstName substringToIndex:1],
                                          [lecturer.middleName substringToIndex:1]]];
     }
+    
     self.pairTypeIndicatorColor = [pair colorForPairType];
-    NSDate *today = [NSDate date];
-    BOOL currentPair = [today isTimeBetweenTime:pair.startTime andTime:pair.endTime] && cellForCurrentDay;
-    [self makeCurrentPairCell:currentPair];
+    [self setupTriangleForPair:pair inDay:day];
+}
+
+- (void)setupTriangleForPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day {
+    NSDate *now = [NSDate date];
+    BOOL cellForCurrentDay = [now isEqualToDateWithoutTime:day.date];
+    
+    NSDate *startOfTimeInterval = pair.startTime;
+    NSDate *endOfTimeInterval = pair.endTime;
+    NSDate *startOfTimeIntervalWithOffset = pair.startTime;
+    NSDate *endOfTimeIntervalWithOffset = pair.endTime;
+    NSInteger currentPairIndex = [day.pairs indexOfObject:pair];
+    NSTimeInterval pairLength = fabs([[pair.endTime onlyTime] timeIntervalSinceDate:[pair.startTime onlyTime]]);
+    NSTimeInterval indicatorTimeLength = pairLength * CGRectGetHeight(self.triangleView.bounds)/(2.0* CGRectGetHeight(self.bounds));
+    if (currentPairIndex != 0) { //not first
+        startOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex-1] endTime];
+        startOfTimeIntervalWithOffset = [startOfTimeIntervalWithOffset dateByAddingTimeInterval:-indicatorTimeLength];
+    }
+    if (currentPairIndex != [day.pairs count] - 1) { // not last
+        endOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex+1] startTime];
+        endOfTimeIntervalWithOffset = [endOfTimeIntervalWithOffset dateByAddingTimeInterval:indicatorTimeLength];
+    }
+    BOOL showIndicator = [now isTimeBetweenTime:startOfTimeIntervalWithOffset andTime:endOfTimeIntervalWithOffset] && cellForCurrentDay;
+    if (showIndicator) {
+        CGFloat triangleOriginrY = -CGRectGetHeight(self.triangleView.bounds);
+        if ([now isTimeBetweenTime:startOfTimeInterval andTime:pair.startTime]) {
+            triangleOriginrY = -self.triangleView.bounds.size.height / 2.0;
+        } else if ([now isTimeBetweenTime:pair.endTime andTime:endOfTimeInterval]) {
+            triangleOriginrY = CGRectGetHeight(self.frame) - 2 - self.triangleView.bounds.size.height / 2.0;
+        } else {
+            NSTimeInterval firstBreak = fabs([[pair.startTime onlyTime] timeIntervalSinceDate:[startOfTimeInterval onlyTime]]);
+            NSTimeInterval secondBreak = fabs([[pair.endTime onlyTime] timeIntervalSinceDate:[endOfTimeInterval onlyTime]]);
+            NSTimeInterval intervalLength = pairLength + 2*indicatorTimeLength ;
+            NSTimeInterval timePassed = fabs([[now onlyTime] timeIntervalSinceDate:[[startOfTimeInterval dateByAddingTimeInterval:-indicatorTimeLength] onlyTime]]);
+            if ([now compareTime:pair.startTime] == NSOrderedDescending) {
+                timePassed -= firstBreak;
+            }
+            if ([now compareTime:pair.endTime] == NSOrderedDescending) {
+                timePassed -= secondBreak;
+            }
+            triangleOriginrY += (CGRectGetHeight(self.frame) - 2 + CGRectGetHeight(self.triangleView.bounds))* (CGFloat)timePassed / intervalLength;
+            
+        }
+        CGRect triangleFrame = self.triangleView.frame;
+        triangleFrame.origin.y = triangleOriginrY;
+        self.triangleView.frame = triangleFrame;
+        self.triangleView.hidden = NO;
+        [self.triangleView setNeedsDisplay];
+    } else {
+        self.triangleView.hidden = YES;
+    }
+
 }
 
 - (void)updateUIForWidget {
