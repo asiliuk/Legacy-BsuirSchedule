@@ -61,12 +61,13 @@
     [super viewWillAppear:animated];
     self.backIV.alpha = 0.0;
     self.centerView.alpha = 0.0;
+    UIWindow *frontWindow = [[UIApplication sharedApplication] keyWindow];
     CGRect centerViewFrame = self.centerView.frame;
-    CGFloat newWidth = CGRectGetWidth(self.view.frame) - 2*HORISONTAL_OFFSET;
+    CGFloat newWidth = CGRectGetWidth(frontWindow.frame) - 2*HORISONTAL_OFFSET;
     centerViewFrame.size.height *= (newWidth / centerViewFrame.size.width);
     centerViewFrame.size.width = newWidth;
     self.centerView.frame = centerViewFrame;
-    self.centerView.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+    self.centerView.center = CGPointMake(frontWindow.frame.size.width / 2.0, frontWindow.frame.size.height / 2.0);
 }
 
 #define LECTURER_VC_ANIMATION_DURATION 0.3
