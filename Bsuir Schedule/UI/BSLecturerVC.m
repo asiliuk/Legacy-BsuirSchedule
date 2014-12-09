@@ -56,10 +56,17 @@
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
 }
 
+#define HORISONTAL_OFFSET 20.0
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.backIV.alpha = 0.0;
     self.centerView.alpha = 0.0;
+    CGRect centerViewFrame = self.centerView.frame;
+    CGFloat newWidth = CGRectGetWidth(self.view.frame) - 2*HORISONTAL_OFFSET;
+    centerViewFrame.size.height *= (newWidth / centerViewFrame.size.width);
+    centerViewFrame.size.width = newWidth;
+    self.centerView.frame = centerViewFrame;
+    self.centerView.center = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
 }
 
 #define LECTURER_VC_ANIMATION_DURATION 0.3
@@ -111,9 +118,11 @@ static const CGFloat ThrowingVelocityPadding = 35;
 {
     CGPoint location = [gesture locationInView:self.view];
     CGPoint boxLocation = [gesture locationInView:self.centerView];
-    
+
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:{
+            [self.view removeConstraints:self.centerView.constraints];
+            [self.view setNeedsDisplay];
             [self.animator removeAllBehaviors];
             UIOffset centerOffset = UIOffsetMake(boxLocation.x - CGRectGetMidX(self.centerView.bounds),
                                                  boxLocation.y - CGRectGetMidY(self.centerView.bounds));
@@ -121,7 +130,6 @@ static const CGFloat ThrowingVelocityPadding = 35;
                                                                 offsetFromCenter:centerOffset
                                                                 attachedToAnchor:location];
             [self.animator addBehavior:self.attachmentBehavior];
-            
             break;
         }
         case UIGestureRecognizerStateEnded: {
@@ -155,7 +163,16 @@ static const CGFloat ThrowingVelocityPadding = 35;
                  [self.animator addBehavior:self.pushBehavior];
                  NSLog(@"magn : %f vx: %f vy: %f", magnitude, velocity.x, velocity.y);
                  
-                 CGFloat angularVelocity = (boxLocation.y <= self.centerView.bounds.size.height / 2.0 ? 1 : -1) * velocity.x / 250;
+                 CGPoint center = CGPointMake(self.centerView.bounds.size.width / 2.0, self.centerView.bounds.size.width / 2.0);
+                 CGPoint location = [gesture locationInView:self.centerView];
+                 location.x -= center.x;
+                 location.y -= center.y;
+                 CGFloat locMod = sqrtf(location.x * location.x + location.y * location.y);
+                 CGPoint velPoint = CGPointMake(location.x + velocity.x - center.x, location.y + velocity.y - center.y);
+
+                 CGFloat space = (velPoint.y*(location.x - velPoint.x) - velPoint.x*(location.y - velPoint.y))/ 2.0;
+                 
+                 CGFloat angularVelocity =  space / 25000.0;
                  
                  self.itemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.centerView]];
                  self.itemBehavior.friction = 0.2;
@@ -188,4 +205,7 @@ static const CGFloat ThrowingVelocityPadding = 35;
     }];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 @end

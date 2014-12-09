@@ -64,6 +64,8 @@
 		D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */; };
 		D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */; };
 		D19EB2581A1824AF0055B0D3 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2511A1824AF0055B0D3 /* ScheduleData.xcdatamodeld */; };
+		D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
+		D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
 		D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20B91A1966A100100B64 /* BSSubject.m */; };
 		D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */; };
 		D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BF1A1966A200100B64 /* BSAuditory.m */; };
@@ -166,6 +168,8 @@
 		D19EB24A1A18249C0055B0D3 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		D19EB2521A1824AF0055B0D3 /* ScheduleData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = ScheduleData.xcdatamodel; path = "Bsuir Schedule/Data/ScheduleData.xcdatamodeld/ScheduleData.xcdatamodel"; sourceTree = SOURCE_ROOT; };
+		D1AEAD831A366A9C00FD0F97 /* NSUserDefaults+Share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Share.h"; sourceTree = "<group>"; };
+		D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Share.m"; sourceTree = "<group>"; };
 		D1AF20B81A1966A100100B64 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
 		D1AF20B91A1966A100100B64 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
 		D1AF20BB1A1966A100100B64 /* BSWeekNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWeekNumber.h; sourceTree = "<group>"; };
@@ -451,6 +455,8 @@
 				D1CFCA1E1A31193600083221 /* UIView+Screenshot.m */,
 				D1CFCA201A311A3100083221 /* UIImage+ImageEffects.h */,
 				D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */,
+				D1AEAD831A366A9C00FD0F97 /* NSUserDefaults+Share.h */,
+				D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -638,6 +644,7 @@
 				D196D0421A2A96CF00EA6901 /* BSAuditory.m in Sources */,
 				D196D0471A2A96D500EA6901 /* BSLecturer+Thumbnail.m in Sources */,
 				D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */,
+				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				D196D0441A2A96CF00EA6901 /* BSSubject.m in Sources */,
 				D196D0461A2A96D500EA6901 /* NSString+Transiterate.m in Sources */,
 				D196D0491A2A96D500EA6901 /* BSPair+Color.m in Sources */,
@@ -653,6 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				D18AE80D1A1BFC88003007EF /* BSPair.m in Sources */,
 				D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */,
 				D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */,

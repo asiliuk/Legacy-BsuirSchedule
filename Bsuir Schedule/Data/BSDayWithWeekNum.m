@@ -10,6 +10,7 @@
 #import "BSDataManager.h"
 #import "NSDate+Compare.h"
 #import "BSConstants.h"
+#import "NSUserDefaults+Share.h"
 
 @implementation BSDayWithWeekNum
 
@@ -24,7 +25,7 @@
 }
 - (NSArray*)pairs {
     if (!_pairs) {
-        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+        NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
         NSNumber *subgroupNumber = @([[sharedDefaults objectForKey:kUserSubgroup] integerValue]);
         NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
         NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];

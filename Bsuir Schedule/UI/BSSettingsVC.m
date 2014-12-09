@@ -10,6 +10,7 @@
 #import "BSDataManager.h"
 #import "BSConstants.h"
 #import "UIView+Screenshot.h"
+#import "NSUserDefaults+Share.h"
 
 @interface BSSettingsVC ()
 @property (strong, nonatomic) IBOutlet UIView *centerView;
@@ -48,7 +49,7 @@
     self.subgroupNumberTF.layer.cornerRadius = BORDER_WIDTH;
     self.subgroupNumberTF.layer.borderColor = BS_LIGHT_BLUE.CGColor;
     
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
     [self.groupNumberTF setText:[sharedDefaults objectForKey:kUserGroup]];
     [self.subgroupNumberTF setText:[sharedDefaults objectForKey:kUserSubgroup]];
 
@@ -141,7 +142,7 @@
     if ([self.groupNumberTF.text isEqual:@""] || [self.subgroupNumberTF.text isEqual:@""]) {
         [self shakeView:self.centerView amplitude:CGPointMake(10, 0)];
     } else {
-        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+        NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
         [sharedDefaults setObject:self.groupNumberTF.text forKey:kUserGroup];
         [sharedDefaults setObject:self.subgroupNumberTF.text forKey:kUserSubgroup];
         [self dismissWithChanges:self.dataChanged];

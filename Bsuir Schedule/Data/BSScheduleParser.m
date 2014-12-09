@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "XMLDictionary.h"
 #import "BSDataManager.h"
-
+#import "NSUserDefaults+Share.h"
 @implementation BSScheduleParser
 
 
@@ -20,7 +20,7 @@
 #define UPDATE_INTERVAL 7*24*3600
 
 + (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber {
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
     NSDate *lastUpdate = [sharedDefaults objectForKey:kLastUpdate];
     NSString *currentScheduleGroup = [sharedDefaults objectForKey:kCurrentScheduleGroup];
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
@@ -98,7 +98,7 @@
                 }
             }
             [[BSDataManager sharedInstance] saveContext];
-            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+            NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
             [sharedDefaults setObject:[NSDate date] forKey:kLastUpdate];
             [sharedDefaults setObject:groupNumber forKey:kCurrentScheduleGroup];
             if (success) dispatch_async(dispatch_get_main_queue(), success);

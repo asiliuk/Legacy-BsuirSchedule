@@ -20,7 +20,7 @@
 #import "BSSettingsVC.h"
 #import "BSScheduleParser.h"
 #import "BSLecturerVC.h"
-
+#import "NSUserDefaults+Share.h"
 
 static NSString * const kCellID = @"Pair cell id";
 
@@ -80,18 +80,18 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self getScheduleData];
-    
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
     if (![sharedDefaults objectForKey:kUserSubgroup]) {
         [self showSettingsScreen];
     }
-    
-
-
 }
 
 - (void)getScheduleData {
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
     NSString *groupNumber = [sharedDefaults objectForKey:kUserGroup];
     if (groupNumber) {
         if ([BSScheduleParser scheduleNeedUpdateForGroup:groupNumber]) {
