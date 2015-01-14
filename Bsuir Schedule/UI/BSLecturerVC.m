@@ -168,7 +168,6 @@ static const CGFloat ThrowingVelocityPadding = 35;
                  CGPoint location = [gesture locationInView:self.centerView];
                  location.x -= center.x;
                  location.y -= center.y;
-                 CGFloat locMod = sqrtf(location.x * location.x + location.y * location.y);
                  CGPoint velPoint = CGPointMake(location.x + velocity.x - center.x, location.y + velocity.y - center.y);
 
                  CGFloat space = (velPoint.y*(location.x - velPoint.x) - velPoint.x*(location.y - velPoint.y))/ 2.0;

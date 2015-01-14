@@ -50,6 +50,7 @@ static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/
 static NSString * const kAppGroup = @"group.schedule_container";
 
 static NSString * const kLastUpdate = @"last update";
+static NSString * const kDatabaseStamp = @"kDatabaseStamp";
 static NSString * const kCurrentScheduleGroup = @"Current schedule group";
 static NSString * const kUserGroup = @"user group number";
 static NSString * const kUserSubgroup = @"user subgroup number";

@@ -80,6 +80,8 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self getScheduleData];
+    [self.navigationController.view addSubview:self.loadindicatorView];
+    self.loadindicatorView.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -121,6 +123,11 @@ BSSettingsVCDelegate, BSPairCellDelegate>
                 }
             }];
         } else {
+            if ([BSScheduleParser scheduleExpires]) {
+                [BSScheduleParser scheduleForGroupNumber:groupNumber withSuccess:^{
+                    [self updateSchedule];
+                } failure:nil];
+            }
             [self updateSchedule];
         }
     }
@@ -335,21 +342,25 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 //===============================================LOADING SCREEN===========================================
 #pragma mark - Loading screen
 - (void)showLoadingView {
-    [self.navigationController.view addSubview:self.loadindicatorView];
-    self.loadindicatorView.alpha = 0;
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        self.loadindicatorView.alpha = 0.5;
-    }];
+    if (self.loadindicatorView.hidden) {
+        self.loadindicatorView.hidden = NO;
+        self.loadindicatorView.alpha = 0;
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            self.loadindicatorView.alpha = 0.5;
+        }];
+    }
 }
 
 - (void)hideLoadingView {
-    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        self.loadindicatorView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self.loadindicatorView removeFromSuperview];
-        }
-    }];
+    if (!self.loadindicatorView.hidden) {
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            self.loadindicatorView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.loadindicatorView.hidden = YES;
+            }
+        }];
+    }
 }
 //===============================================BSPairCell DELEGATE===========================================
 #pragma mark - BSPairCell delegate

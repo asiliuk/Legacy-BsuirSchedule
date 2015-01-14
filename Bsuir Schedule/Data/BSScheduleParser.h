@@ -10,5 +10,6 @@
 
 @interface BSScheduleParser : NSObject
 + (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber;
++ (BOOL)scheduleExpires;
 + (void)scheduleForGroupNumber:(NSString *)groupNumber withSuccess:(void (^)(void))success failure:(void (^)(void))failure;
 @end
