@@ -164,11 +164,11 @@
     NSTimeInterval indicatorTimeLength = pairLength * CGRectGetHeight(self.triangleView.bounds)/(2.0* CGRectGetHeight(self.bounds));
     if (currentPairIndex != 0) { //not first
         startOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex-1] endTime];
-        startOfTimeIntervalWithOffset = [startOfTimeIntervalWithOffset dateByAddingTimeInterval:-indicatorTimeLength];
+        startOfTimeIntervalWithOffset = [startOfTimeInterval dateByAddingTimeInterval:-indicatorTimeLength];
     }
     if (currentPairIndex != [day.pairs count] - 1) { // not last
         endOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex+1] startTime];
-        endOfTimeIntervalWithOffset = [endOfTimeIntervalWithOffset dateByAddingTimeInterval:indicatorTimeLength];
+        endOfTimeIntervalWithOffset = [endOfTimeInterval dateByAddingTimeInterval:indicatorTimeLength];
     }
     BOOL showIndicator = [now isTimeBetweenTime:startOfTimeIntervalWithOffset andTime:endOfTimeIntervalWithOffset] && cellForCurrentDay;
     if (showIndicator) {

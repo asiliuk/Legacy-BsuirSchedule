@@ -76,6 +76,7 @@
 		D1CFCA1C1A310DDE00083221 /* BSScheduleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA1B1A310DDE00083221 /* BSScheduleVC.m */; };
 		D1CFCA1F1A31193600083221 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA1E1A31193600083221 /* UIView+Screenshot.m */; };
 		D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
+		D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D275521A67176400D38C2D /* NSData+MD5.m */; };
 		D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
 		D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
@@ -188,6 +189,8 @@
 		D1CFCA1E1A31193600083221 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		D1CFCA201A311A3100083221 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		D1D275511A67176400D38C2D /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
+		D1D275521A67176400D38C2D /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		D1DE31611A1AA3D5000038B0 /* BSLecturer+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+Thumbnail.h"; sourceTree = "<group>"; };
 		D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+Thumbnail.m"; sourceTree = "<group>"; };
 		D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lecturers.xcassets; sourceTree = "<group>"; };
@@ -447,6 +450,8 @@
 			isa = PBXGroup;
 			children = (
 				D11F67541A1D5D480068317F /* BSConstants.h */,
+				D1D275511A67176400D38C2D /* NSData+MD5.h */,
+				D1D275521A67176400D38C2D /* NSData+MD5.m */,
 				D1E873D71A1E3F1F007F056F /* BSTextField.h */,
 				D1E873D81A1E3F1F007F056F /* BSTextField.m */,
 				D1F4B77A1A1EF27600EB1E62 /* NSDate+Compare.h */,
@@ -675,6 +680,7 @@
 				D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */,
 				D1CFCA1C1A310DDE00083221 /* BSScheduleVC.m in Sources */,
 				D1E5C72E1A1BE41B009E5552 /* BSPairCell.m in Sources */,
+				D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */,
 				D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */,
 				D1C8420F1A30C15300CE5E0E /* BSLecturerVC.m in Sources */,
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
