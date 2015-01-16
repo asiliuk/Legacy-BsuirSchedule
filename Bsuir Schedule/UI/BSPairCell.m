@@ -9,6 +9,7 @@
 #import "BSPairCell.h"
 #import "BSTriangleView.h"
 #import "NSDate+Compare.h"
+#import "BSConstants.h"
 
 @interface BSPairCell()
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
@@ -98,6 +99,9 @@
 #define LINE_HEIGHT 16.0
 #define FONT_SIZE 16.0
 - (void)setTimeText:(NSString *)timeText {
+    if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [self.timeLabel setAdjustsFontSizeToFitWidth:NO];
+    }
     NSMutableAttributedString* attrTimeString = [[NSMutableAttributedString alloc] initWithString:timeText];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setMaximumLineHeight:LINE_HEIGHT];

@@ -21,7 +21,7 @@
 #define HEADER_HEIGHT 25.0
 #define HEADER_LABEL_FONT_SIZE 17.0
 #define HEADER_LABEL_OFFSET_X 10.0
-#define HEADER_LABEL_OFFSET_Y 5.0
+#define HEADER_LABEL_OFFSET_Y 2.0
 
 #define CELL_HEIGHT 72.0
 
@@ -33,6 +33,7 @@
 #define BS_BLUE UIColor(50, 149, 191, 1.0)
 #define BS_PURPLE UIColor(149, 91, 165, 1.0)
 #define BS_GRAY UIColor(130, 138, 151, 1.0)
+#define BS_LIGHT_GRAY UIColor(240, 240, 240, 1.0)
 #define BS_BLUE_GRAY UIColor(69, 101, 152, 1.0)
 #define BS_LIGHT_BLUE UIColor(229, 235, 251, 1.0)
 #define BS_LIGHT_RED UIColor(255, 139, 139, 1.0)

@@ -66,16 +66,28 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"L_Schedule", nil);
-    
-    [self.navigationController.navigationBar setBarTintColor:BS_BLUE];
+    UIView* bview = [[UIView alloc] init];
+    bview.backgroundColor = BS_LIGHT_GRAY;
+    [self.tableView setBackgroundView:bview];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [self.navigationController.navigationBar setBarTintColor:BS_BLUE];
+    } else {
+        self.navigationController.navigationBar.tintColor = BS_BLUE;
+    }
     UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
                                                                       NSFontAttributeName: titleFont}];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tools"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettingsScreen)];
+    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    settingsButton.frame = CGRectMake(0, 0, 40, 40);
+    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal];
+    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal | UIControlStateHighlighted];
+    [settingsButton addTarget:self action:@selector(showSettingsScreen) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc]initWithCustomView:settingsButton];
     settingsButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = settingsButton;
+    self.navigationItem.leftBarButtonItem = settingsBarButton;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
@@ -235,8 +247,8 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 
     [label setTextColor:BS_GRAY];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor clearColor]];
-    
+    [view setBackgroundColor:BS_LIGHT_GRAY];
+    [label setBackgroundColor:[UIColor clearColor]];
     NSString *dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
                                NSLocalizedString([dayWithWeekNum.dayOfWeek name], nil),
                                [df stringFromDate:dayWithWeekNum.date],
@@ -254,8 +266,17 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     return view;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 73.0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HEADER_HEIGHT+5.0;
+//    return HEADER_HEIGHT+5.0;
+    return 30.0;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 //-------------------------------Scroll view---------------------------------
 

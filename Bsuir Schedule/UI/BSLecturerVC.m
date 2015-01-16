@@ -8,6 +8,7 @@
 
 #import "BSLecturerVC.h"
 #import "UIView+Screenshot.h"
+#import "BSConstants.h"
 
 @interface BSLecturerVC ()
 @property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
@@ -42,9 +43,16 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
+    } else {
+        self.backIV.backgroundColor = [UIColor blackColor];
+    }
     self.lecturerIV.image = [self.lecturer thumbnail];
-    self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",self.lecturer.lastName, self.lecturer.firstName, self.lecturer.middleName];
+    self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
+                                   self.lecturer.lastName,
+                                   self.lecturer.firstName,
+                                   self.lecturer.middleName];
     
     self.previewIV = [[UIImageView alloc] initWithFrame:self.startFrame];
     self.previewIV.image = [self.lecturer thumbnail];
@@ -80,11 +88,10 @@
 
 }
 - (void)showCenterView {
-
     [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
         self.previewIV.frame = [self.view convertRect:self.lecturerIV.frame fromView:self.centerView];
         self.previewIV.layer.cornerRadius = 0.0;
-        self.backIV.alpha = 1.0;
+        self.backIV.alpha = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? 1.0 : 0.8;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:LECTURER_NAME_ANIMATION_DURATION animations:^{
             self.centerView.alpha = 1.0;
@@ -98,6 +105,9 @@
     if (!self.dismissing) {
         self.dismissing = YES;
         [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+            if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+                self.centerView.alpha = 0.0;
+            }
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
             [self dismissViewControllerAnimated:NO completion:nil];

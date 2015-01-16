@@ -52,8 +52,11 @@
     NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
     [self.groupNumberTF setText:[sharedDefaults objectForKey:kUserGroup]];
     [self.subgroupNumberTF setText:[sharedDefaults objectForKey:kUserSubgroup]];
-
-    self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
+    } else {
+        self.backIV.backgroundColor = [UIColor blackColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,12 +77,23 @@
                                          screenBounds.size.height + self.centerView.frame.size.height / 2.0);
     self.backIV.alpha = 0.0;
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:ANIMATION_DURATION_SHOW delay:0.0 usingSpringWithDamping:1.2 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    void(^animation)(void) = ^{
         typeof(weakSelf) self = weakSelf;
-        self.backIV.alpha = 1.0;
+        self.backIV.alpha = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? 1.0 : 0.8;
         self.centerView.center = CGPointMake(screenBounds.size.width/2.0, screenBounds.size.height / 2.0);
-    } completion:^(BOOL finished) {
-    }];
+    };
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+
+        [UIView animateWithDuration:ANIMATION_DURATION_SHOW delay:0.0
+             usingSpringWithDamping:1.2
+              initialSpringVelocity:10
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:animation
+                         completion:^(BOOL finished) {
+        }];
+    } else {
+        [UIView animateWithDuration:ANIMATION_DURATION_SHOW animations:animation];
+    }
 }
 
 #define SETTINGS_ANIMATION_DURATION 0.5
@@ -93,6 +107,10 @@
     [UIView animateWithDuration:SETTINGS_ANIMATION_DURATION animations:^{
         typeof(weakSelf) self = weakSelf;
         self.backIV.alpha = 0.0;
+        if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            self.centerView.alpha = 0.0;
+        }
+
     } completion:^(BOOL finished) {
         typeof(weakSelf) self = weakSelf;
         if (finished) {
