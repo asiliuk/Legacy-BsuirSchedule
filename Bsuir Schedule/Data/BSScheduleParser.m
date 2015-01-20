@@ -87,6 +87,8 @@
                         NSString *startTime = [pairTime firstObject];
                         NSString *endTime = [pairTime lastObject];
                         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                        NSLocale *ru = [[NSLocale alloc] initWithLocaleIdentifier:@"ru_RU"];
+                        [formatter setLocale:ru];
                         [formatter setDateFormat:@"HH:mm"];
                         NSMutableSet *weekNumbers = [NSMutableSet set];
                         id weekNumbersData = subjectData[kSubjectWeeks];

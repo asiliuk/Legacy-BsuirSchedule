@@ -42,7 +42,7 @@
 - 15:00</string>
                                     <attributes>
                                         <color key="NSColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="16" name="OpenSans-Light"/>
+                                        <font key="NSFont" metaFont="system" size="16"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>

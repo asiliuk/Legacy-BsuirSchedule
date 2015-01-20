@@ -97,7 +97,9 @@
 }
 
 #define LINE_HEIGHT 16.0
-#define FONT_SIZE 16.0
+#define FONT_SIZE_24_h 16.0
+#define FONT_SIZE_12_h 14.0
+
 - (void)setTimeText:(NSString *)timeText {
     if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [self.timeLabel setAdjustsFontSizeToFitWidth:NO];
@@ -111,9 +113,21 @@
                        range:NSMakeRange(0, [timeText length])];
 
     [attrTimeString addAttribute:NSFontAttributeName
-                           value:[UIFont fontWithName:@"OpenSans-Light" size:FONT_SIZE]
+                           value:[UIFont fontWithName:@"OpenSans-Light" size:[self is24format] ? FONT_SIZE_24_h : FONT_SIZE_12_h]
                            range:NSMakeRange(0, [timeText length])];
     self.timeLabel.attributedText = attrTimeString;
+}
+
+- (BOOL)is24format {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
+    [formatter setDateStyle:NSDateFormatterNoStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    NSRange amRange = [dateString rangeOfString:[formatter AMSymbol]];
+    NSRange pmRange = [dateString rangeOfString:[formatter PMSymbol]];
+    BOOL is24h = (amRange.location == NSNotFound && pmRange.location == NSNotFound);
+    return is24h;
 }
 
 
