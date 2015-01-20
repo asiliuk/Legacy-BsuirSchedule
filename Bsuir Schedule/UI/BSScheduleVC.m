@@ -391,7 +391,10 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     if (indexPathOfCell) {
         BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPathOfCell.section];
         BSPair *pair = [dayWithWeekNum.pairs objectAtIndex:indexPathOfCell.row];
-        BSLecturer *lecturer = [[pair.lecturers allObjects] firstObject];
+        
+        NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+        BSLecturer *lecturer = [[[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]] firstObject];
+        
         CGRect startFrame = [self.view convertRect:cell.lecturerIV.frame fromView:cell];
         [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
     }

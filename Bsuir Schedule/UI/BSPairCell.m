@@ -139,7 +139,9 @@
 
 - (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day{
     
-    BSLecturer *lecturer = [[pair.lecturers allObjects] firstObject];
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+    BSLecturer *lecturer = [[[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]] firstObject];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
