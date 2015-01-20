@@ -14,7 +14,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lecturerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="pairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="lecturer" inverseEntity="BSPair" syncable="YES"/>
+        <relationship name="pairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="lecturers" inverseEntity="BSPair" syncable="YES"/>
     </entity>
     <entity name="BSPair" representedClassName="BSPair" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -23,7 +23,7 @@
         <attribute name="subgroupNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="auditory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSAuditory" inverseName="subjectsSchedule" inverseEntity="BSAuditory" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSDayOfWeek" inverseName="pairs" inverseEntity="BSDayOfWeek" syncable="YES"/>
-        <relationship name="lecturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSLecturer" inverseName="pairs" inverseEntity="BSLecturer" syncable="YES"/>
+        <relationship name="lecturers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSLecturer" inverseName="pairs" inverseEntity="BSLecturer" syncable="YES"/>
         <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSSubject" inverseName="daysSchedule" inverseEntity="BSSubject" syncable="YES"/>
         <relationship name="weeks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSWeekNumber" inverseName="pairs" inverseEntity="BSWeekNumber" syncable="YES"/>
     </entity>

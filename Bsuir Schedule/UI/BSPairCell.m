@@ -139,8 +139,7 @@
 
 - (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day{
     
-    
-    BSLecturer *lecturer = pair.lecturer;
+    BSLecturer *lecturer = [[pair.lecturers allObjects] firstObject];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];

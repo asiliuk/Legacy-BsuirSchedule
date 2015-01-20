@@ -65,7 +65,7 @@
                      inAuditory:(BSAuditory*)auditory
                           atDay:(BSDayOfWeek*)day
                         subject:(BSSubject*)subject
-                       lecturer:(BSLecturer*)lecturer
+                      lecturers:(NSArray *)lecturers
                           weeks:(NSSet*)weeks;
 
 //-------------------------------Week---------------------------------

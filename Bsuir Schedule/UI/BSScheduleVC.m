@@ -391,7 +391,7 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     if (indexPathOfCell) {
         BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPathOfCell.section];
         BSPair *pair = [dayWithWeekNum.pairs objectAtIndex:indexPathOfCell.row];
-        BSLecturer *lecturer = pair.lecturer;
+        BSLecturer *lecturer = [[pair.lecturers allObjects] firstObject];
         CGRect startFrame = [self.view convertRect:cell.lecturerIV.frame fromView:cell];
         [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
     }

@@ -2,8 +2,8 @@
 //  BSPair.m
 //  Bsuir Schedule
 //
-//  Created by Anton Siliuk on 19.11.14.
-//  Copyright (c) 2014 Saute. All rights reserved.
+//  Created by Anton Siliuk on 21.01.15.
+//  Copyright (c) 2015 Saute. All rights reserved.
 //
 
 #import "BSPair.h"
@@ -17,12 +17,12 @@
 @implementation BSPair
 
 @dynamic endTime;
+@dynamic pairType;
 @dynamic startTime;
 @dynamic subgroupNumber;
-@dynamic pairType;
 @dynamic auditory;
 @dynamic day;
-@dynamic lecturer;
+@dynamic lecturers;
 @dynamic subject;
 @dynamic weeks;
 

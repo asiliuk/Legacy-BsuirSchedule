@@ -235,7 +235,7 @@
                      inAuditory:(BSAuditory *)auditory
                           atDay:(BSDayOfWeek *)day
                         subject:(BSSubject *)subject
-                       lecturer:(BSLecturer *)lecturer
+                      lecturers:(NSArray *)lecturers
                           weeks:(NSSet *)weeks
 {
     BSPair *pair;
@@ -244,11 +244,11 @@
     NSPredicate *pairPredicate = [NSPredicate predicateWithFormat:@"startTime == %@ AND endTime == %@ \
                                       AND subgroupNumber == %@ AND pairType == %d \
                                       AND auditory == %@ AND day == %@ \
-                                      AND subject == %@ AND lecturer == %@",
+                                      AND subject == %@",
                                       startTime, endTime,
                                       @(subgroupNumber), pairType,
                                       auditory, day,
-                                      subject, lecturer];
+                                      subject];
     request.predicate = pairPredicate;
 
     NSError *error;
@@ -266,7 +266,7 @@
         pair.auditory = auditory;
         pair.day = day;
         pair.subject = subject;
-        pair.lecturer = lecturer;
+        pair.lecturers = [NSSet setWithArray:lecturers];
         [pair addWeeks:weeks];
     }
     [self saveContext];

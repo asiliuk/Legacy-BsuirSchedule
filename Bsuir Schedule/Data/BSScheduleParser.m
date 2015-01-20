@@ -68,18 +68,25 @@
                         NSString *subjectAuditoryAddress = subjectData[kSubjectAuditory];
                         BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:subjectAuditoryAddress createIfNotExists:YES];
                         BSSubject *subject = [[BSDataManager sharedInstance] subjectWithName:subjectName createIfNotExists:YES];
-                        NSDictionary *lecturerData = subjectData[kLecturer];
-                        BSLecturer *lecturer;
-                        if (lecturerData) {
-                            lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
-                            if (!lecturer) {
-                                lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
-                                                                                          midleName:lecturerData[kLecturerMiddleName]
-                                                                                           lastName:lecturerData[kLecturerLastName]
-                                                                                         department:@""//lecturerData[kLecturerDepartment]
-                                                                                         lecturerID:[lecturerData[kLecturerID] integerValue]];
-                                
+                        NSArray *lecturersData = subjectData[kLecturer];
+                        if ([lecturersData isKindOfClass:[NSDictionary class]]) {
+                            lecturersData = @[lecturersData];
+                        }
+                        NSMutableArray *lecturers = [NSMutableArray array];
+                        for (NSDictionary *lecturerData in lecturersData) {
+                            BSLecturer *lecturer;
+                            if (lecturerData) {
+                                lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
+                                if (!lecturer) {
+                                    lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
+                                                                                              midleName:lecturerData[kLecturerMiddleName]
+                                                                                               lastName:lecturerData[kLecturerLastName]
+                                                                                             department:@""//lecturerData[kLecturerDepartment]
+                                                                                             lecturerID:[lecturerData[kLecturerID] integerValue]];
+                                    
+                                }
                             }
+                            [lecturers addObject:lecturer];
                         }
                         NSString *startEndTime = subjectData[kSubjectTime];
                         startEndTime = [startEndTime stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -105,7 +112,7 @@
                                                                   inAuditory:auditory
                                                                        atDay:day
                                                                      subject:subject
-                                                                    lecturer:lecturer
+                                                                   lecturers:lecturers
                                                                        weeks:weekNumbers];
                     }
                 }

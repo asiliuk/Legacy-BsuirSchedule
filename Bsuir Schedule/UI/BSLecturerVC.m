@@ -172,7 +172,6 @@ static const CGFloat ThrowingVelocityPadding = 35;
                  };
                  self.pushBehavior = pushBehavior;
                  [self.animator addBehavior:self.pushBehavior];
-                 NSLog(@"magn : %f vx: %f vy: %f", magnitude, velocity.x, velocity.y);
                  
                  CGPoint center = CGPointMake(self.centerView.bounds.size.width / 2.0, self.centerView.bounds.size.width / 2.0);
                  CGPoint location = [gesture locationInView:self.centerView];
