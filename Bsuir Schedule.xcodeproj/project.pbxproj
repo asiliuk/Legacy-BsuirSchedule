@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4B3C561A72A3E500E6515D /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B3C551A72A3E500E6515D /* BSLecturerPreview.m */; };
+		8C4B3C571A72A3E500E6515D /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B3C551A72A3E500E6515D /* BSLecturerPreview.m */; };
 		8C78E3701A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C78E3751A6F0E2800718027 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E3741A6F0E2800718027 /* BSPair.m */; };
@@ -124,6 +126,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C4B3C541A72A3E500E6515D /* BSLecturerPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerPreview.h; sourceTree = "<group>"; };
+		8C4B3C551A72A3E500E6515D /* BSLecturerPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturerPreview.m; sourceTree = "<group>"; };
 		8C78E36F1A6F0DB700718027 /* ScheduleData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleData.xcdatamodel; sourceTree = "<group>"; };
 		8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8C78E3731A6F0E2800718027 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 				D1C8420C1A30C15300CE5E0E /* BSLecturerVC.h */,
 				D1C8420D1A30C15300CE5E0E /* BSLecturerVC.m */,
 				D1C8420E1A30C15300CE5E0E /* BSLecturerVC.xib */,
+				8C4B3C541A72A3E500E6515D /* BSLecturerPreview.h */,
+				8C4B3C551A72A3E500E6515D /* BSLecturerPreview.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -544,7 +550,6 @@
 					};
 					D19EB21A1A1824900055B0D3 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 636FUHDF2R;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -641,6 +646,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4B3C571A72A3E500E6515D /* BSLecturerPreview.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
 				D196D0451A2A96CF00EA6901 /* BSDayWithWeekNum.m in Sources */,
 				D196D0481A2A96D500EA6901 /* BSPair+Type.m in Sources */,
@@ -684,6 +690,7 @@
 				8C78E3701A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
 				D1C8420F1A30C15300CE5E0E /* BSLecturerVC.m in Sources */,
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
+				8C4B3C561A72A3E500E6515D /* BSLecturerPreview.m in Sources */,
 				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
 				D1F4B77F1A1EFDBC00EB1E62 /* BSTriangleView.m in Sources */,
 				D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */,
@@ -766,7 +773,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "306975e5-cc57-4413-aed9-4c7a0b912802";
+				PROVISIONING_PROFILE = "a8e8a517-000f-488a-9572-f83b8317d849";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -781,7 +788,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "306975e5-cc57-4413-aed9-4c7a0b912802";
+				PROVISIONING_PROFILE = "a8e8a517-000f-488a-9572-f83b8317d849";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -874,7 +881,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "caa0715b-b9f7-447f-a426-9f6f296759a3";
+				PROVISIONING_PROFILE = "26225cc9-1a59-4a64-9e00-c626587eb381";
 			};
 			name = Debug;
 		};
@@ -890,7 +897,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "caa0715b-b9f7-447f-a426-9f6f296759a3";
+				PROVISIONING_PROFILE = "26225cc9-1a59-4a64-9e00-c626587eb381";
 			};
 			name = Release;
 		};

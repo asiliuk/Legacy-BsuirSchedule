@@ -9,7 +9,6 @@
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
-            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -17,7 +16,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="SuQ-F1-D22" customClass="BSPairCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="TJg-0z-c0z">
                     <rect key="frame" x="0.0" y="3" width="320" height="70"/>
@@ -56,13 +55,6 @@
                             <color key="textColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLw-ah-UPz">
-                            <rect key="frame" x="320" y="24" width="240" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                            <color key="textColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04-4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bhm-KY-4cF">
                             <rect key="frame" x="79" y="36" width="162" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -70,11 +62,6 @@
                             <color key="textColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qjf-zk-jnw">
-                            <rect key="frame" x="260" y="10" width="50" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                            <gestureRecognizers/>
-                        </imageView>
                         <view contentMode="scaleToFill" id="6kp-Sz-6En" customClass="BSTriangleView">
                             <rect key="frame" x="5" y="25" width="5" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
@@ -89,8 +76,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="auditoryLabel" destination="Bhm-KY-4cF" id="LDQ-uI-xrt"/>
-                <outlet property="lecturerIV" destination="qjf-zk-jnw" id="unz-dY-DGu"/>
-                <outlet property="lecturerNameLabel" destination="dLw-ah-UPz" id="bh8-Bn-MVi"/>
                 <outlet property="pairTypeIndicator" destination="cKk-63-vhX" id="DEn-Oo-4Qa"/>
                 <outlet property="pairView" destination="TJg-0z-c0z" id="eEP-uF-7Hp"/>
                 <outlet property="subjectNameLabel" destination="NBG-YD-oHi" id="eq1-RP-XIm"/>

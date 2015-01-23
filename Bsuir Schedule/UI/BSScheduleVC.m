@@ -303,14 +303,14 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 //-------------------------------Lecturer name view---------------------------------
 
 
-//- (void)deselectVisibleCells {
-//    for (BSPairCell *pairCell in [self.tableView visibleCells]) {
-//        if (pairCell.showingLecturerName) {
-//            [pairCell makeSelected:NO];
-//        }
-//    }
-//}
-//
+- (void)deselectVisibleCells {
+    for (BSPairCell *pairCell in [self.tableView visibleCells]) {
+        if (pairCell.showingLecturers) {
+            [pairCell makeSelected:NO];
+        }
+    }
+}
+
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    BSPairCell *pairCell = (BSPairCell*)[tableView cellForRowAtIndexPath:indexPath];
 //    if (pairCell) {
@@ -320,10 +320,10 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 //        [pairCell makeSelected:!pairCell.showingLecturerName];
 //    }
 //}
-//
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [self deselectVisibleCells];
-//}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self deselectVisibleCells];
+}
 
 //===============================================UI===========================================
 #pragma mark - UI
@@ -386,16 +386,10 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 //===============================================BSPairCell DELEGATE===========================================
 #pragma mark - BSPairCell delegate
 
-- (void)thumbnailGetTappedOnCell:(BSPairCell *)cell {
+- (void)thumbnailForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)thumbnailFrame getTappedOnCell:(BSPairCell *)cell {
     NSIndexPath *indexPathOfCell = [self.tableView indexPathForCell:cell];
     if (indexPathOfCell) {
-        BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPathOfCell.section];
-        BSPair *pair = [dayWithWeekNum.pairs objectAtIndex:indexPathOfCell.row];
-        
-        NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-        BSLecturer *lecturer = [[[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]] firstObject];
-        
-        CGRect startFrame = [self.view convertRect:cell.lecturerIV.frame fromView:cell];
+        CGRect startFrame = [self.view convertRect:thumbnailFrame fromView:cell];
         [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
     }
 }

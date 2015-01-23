@@ -10,15 +10,17 @@
 #import "BSTriangleView.h"
 #import "NSDate+Compare.h"
 #import "BSConstants.h"
+#import "BSLecturerPreview.h"
 
 @interface BSPairCell()
+@property (strong, nonatomic) NSMutableArray *lecturersPreviews;
+
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet BSTriangleView *triangleView;
 @property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
 @property (strong, nonatomic) IBOutlet UILabel *subjectNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *auditoryLabel;
 @property (strong, nonatomic) IBOutlet UIView *pairView;
-@property (strong, nonatomic) IBOutlet UILabel *lecturerNameLabel;
 
 @property (strong, nonatomic) UIVisualEffectView *effectView;
 @property (strong, nonatomic) NSString *timeText;
@@ -26,17 +28,21 @@
 @implementation BSPairCell
 @dynamic timeText;
 
+- (NSMutableArray*)lecturersPreviews {
+    if (!_lecturersPreviews) {
+        _lecturersPreviews = [[NSMutableArray alloc] init];
+    }
+    return _lecturersPreviews;
+}
+
 #define CORNER_RADIUS 0.0
 - (void)awakeFromNib {
     self.backgroundColor = [UIColor clearColor];
     
-    [self.lecturerIV.layer setCornerRadius:self.lecturerIV.bounds.size.width / 2.0];
-    self.lecturerIV.layer.masksToBounds = YES;
-    
     [self.pairView.layer setCornerRadius:CORNER_RADIUS];
     self.pairView.layer.masksToBounds = YES;
     
-    self.showingLecturerName = NO;
+    self.showingLecturers = NO;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleThumbnailTap:)];
     [self addGestureRecognizer:tap];
@@ -45,47 +51,60 @@
 #define OFFSET 10.0
 #define PAIR_CELL_ANIMATION_DURATION 0.3
 - (void)makeSelected:(BOOL)selected {
-    if (self.lecturerNameLabel.hidden || [self.lecturerNameLabel.text isEqual:@""]) {
+    if ([self.lecturersPreviews count] < 2) {
         return;
     }
-    CGRect lecturerIVFrame = self.lecturerIV.frame;
-    CGRect lecturerNameFrame = self.lecturerNameLabel.frame;
+    for (BSLecturerPreview *lecturerPreview in self.lecturersPreviews) {
+        NSInteger lectorerPreviewIndex = [self.lecturersPreviews indexOfObject:lecturerPreview];
+        CGRect lecturerPreviewFrame = lecturerPreview.frame;
 
-    if (selected) {
-        lecturerIVFrame.origin.x = CGRectGetMaxX(self.timeLabel.frame) + OFFSET;
-        CGRect nearFrame = (self.lecturerIV.hidden) ? self.timeLabel.frame : lecturerIVFrame;
-        lecturerNameFrame.origin.x = CGRectGetMaxX(nearFrame) + OFFSET;
-    } else {
-        lecturerIVFrame.origin.x = CGRectGetMaxX(self.pairView.frame) - OFFSET - CGRectGetWidth(lecturerIVFrame);
-        lecturerNameFrame.origin.x = CGRectGetMaxX(self.pairView.frame) + OFFSET;
+        CGFloat edgeX = CGRectGetMaxX(self.timeLabel.frame) + OFFSET;
+
+        CGFloat minX;
+        CGFloat maxX = CGRectGetMaxX(self.pairView.frame) - OFFSET - CGRectGetWidth(lecturerPreviewFrame);
+        if (selected) {
+            minX = maxX -([self.lecturersPreviews count] - 1)*(CGRectGetWidth(lecturerPreviewFrame) + OFFSET);
+        } else {
+            minX = CGRectGetMaxX(self.pairView.frame) - CGRectGetWidth(lecturerPreviewFrame) - OFFSET*[self.lecturersPreviews count];
+        }
+        if (minX < edgeX) {
+            minX = edgeX;
+        }
+        CGFloat distance = (maxX - minX) / (CGFloat)([self.lecturersPreviews count] - 1);
+        lecturerPreviewFrame.origin.x = minX + lectorerPreviewIndex*distance;
+        lecturerPreviewFrame.origin.y += (selected ? -1 : 1) * 5.0f;
+
+        CGFloat rotateAngelPart = ((self.showingLecturers) ? 1 : -1)*2*M_PI/3.0;
+        
+        [UIView beginAnimations:@"lecturer IV animations 1" context:nil];
+        [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
+        lecturerPreview.transform = CGAffineTransformMakeRotation(rotateAngelPart);
+        [UIView commitAnimations];
+
+        [UIView beginAnimations:@"lecturer IV animations 2" context:nil];
+        [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
+        lecturerPreview.transform = CGAffineTransformMakeRotation(2*rotateAngelPart);
+        [UIView commitAnimations];
+
+        [UIView beginAnimations:@"lecturer IV animations 3" context:nil];
+        [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
+        lecturerPreview.transform = CGAffineTransformMakeRotation(3*rotateAngelPart);
+        [UIView commitAnimations];
+
+        [UIView beginAnimations:@"Movement animations" context:nil];
+        [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
+        lecturerPreview.frame = lecturerPreviewFrame;
+        lecturerPreview.lecturerNameLabel.hidden = !selected;
+        [UIView commitAnimations];
     }
-
-    CGFloat rotateAngelPart = ((self.showingLecturerName) ? 1 : -1)*2*M_PI/3.0;
     
-    [UIView beginAnimations:@"lecturer IV animations 1" context:nil];
+    [UIView beginAnimations:@"Name disappear animation" context:nil];
     [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
-    self.lecturerIV.transform = CGAffineTransformMakeRotation(rotateAngelPart);
-    [UIView commitAnimations];
-
-    [UIView beginAnimations:@"lecturer IV animations 2" context:nil];
-    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
-    self.lecturerIV.transform = CGAffineTransformMakeRotation(2*rotateAngelPart);
-    [UIView commitAnimations];
-
-    [UIView beginAnimations:@"lecturer IV animations 3" context:nil];
-    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
-    self.lecturerIV.transform = CGAffineTransformMakeRotation(3*rotateAngelPart);
-    [UIView commitAnimations];
-
-    [UIView beginAnimations:@"Movement animations" context:nil];
-    [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
-    self.lecturerIV.frame = lecturerIVFrame;
-    self.lecturerNameLabel.frame = lecturerNameFrame;
     self.subjectNameLabel.alpha = (selected) ? 0.0 : 1.0;
     self.auditoryLabel.alpha = (selected) ? 0.0 : 1.0;
     
     [UIView commitAnimations];
-    self.showingLecturerName = selected;
+    self.showingLecturers = selected;
 }
 
 
@@ -139,8 +158,7 @@
 
 - (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day{
     
-    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-    BSLecturer *lecturer = [[[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]] firstObject];
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
@@ -148,26 +166,39 @@
     [self setTimeText:timeString];
     [self.subjectNameLabel setText:pair.subject.name];
     [self.auditoryLabel setText:pair.auditory.address];
-    UIImage *thumbnail = [lecturer thumbnail];
-    [self.lecturerIV setImage:thumbnail];
-    self.lecturerIV.hidden = thumbnail == nil;
+    
+    [self clearLecturersPreviews];
+    NSArray *lecturers = [[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]];
+    for (BSLecturer *lecturer in lecturers) {
+        NSInteger lecturerIndex = [lecturers indexOfObject:lecturer];
+        NSInteger lecturerReverseIndex = [lecturers count] - lecturerIndex;
+        CGFloat lecturerX = self.pairView.frame.size.width  - LECTURER_IMAGE_WIDTH - lecturerReverseIndex *OFFSET;
+        BSLecturerPreview *lecturerPreview = [[BSLecturerPreview alloc] initWithFrame:CGRectMake(lecturerX,
+                                                                                                 0,
+                                                                                                 LECTURER_IMAGE_WIDTH,
+                                                                                                 self.pairView.frame.size.height)];
+        [lecturerPreview setupWithLecturer:lecturer];
+        [self.pairView addSubview:lecturerPreview];
+        [self.lecturersPreviews addObject:lecturerPreview];
+    }
+    
     CGRect subjectNameFrame = self.subjectNameLabel.frame;
     subjectNameFrame.size.width = CGRectGetMaxX(self.frame) - subjectNameFrame.origin.x - OFFSET;
-    if (thumbnail != nil) {
-        subjectNameFrame.size.width -= (CGRectGetWidth(self.lecturerIV.frame) + OFFSET);
-    }
-    self.lecturerNameLabel.hidden = lecturer == nil;
+//    if (thumbnail != nil) {
+//        subjectNameFrame.size.width -= (CGRectGetWidth(self.lecturerIV.frame) + OFFSET);
+//    }
     self.subjectNameLabel.frame = subjectNameFrame;
-    
-    if (lecturer) {
-        [self.lecturerNameLabel setText:[NSString stringWithFormat:@"%@ %@.%@.",
-                                         lecturer.lastName,
-                                         [lecturer.firstName substringToIndex:1],
-                                         [lecturer.middleName substringToIndex:1]]];
-    }
     
     self.pairTypeIndicatorColor = [pair colorForPairType];
     [self setupTriangleForPair:pair inDay:day];
+}
+
+- (void)clearLecturersPreviews {
+    for (BSLecturerPreview *lecturerPreview in self.lecturersPreviews) {
+        [lecturerPreview removeFromSuperview];
+    }
+    [self.lecturersPreviews removeAllObjects];
+    
 }
 
 - (void)setupTriangleForPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day {
@@ -236,7 +267,29 @@
     }
 }
 
-- (void)handleThumbnailTap:(id)sender {
-    [self.delegate thumbnailGetTappedOnCell:self];
+- (void)handleThumbnailTap:(UITapGestureRecognizer*)sender {
+    if ([self.lecturersPreviews count] < 2) {
+        BSLecturerPreview *lecturerPreview = [self.lecturersPreviews lastObject];
+        CGRect thumbFrame = [self convertRect:lecturerPreview.lecturerIV.frame fromView:lecturerPreview];
+        [self.delegate thumbnailForLecturer:lecturerPreview.lecturer withStartFrame:thumbFrame getTappedOnCell:self];
+    } else {
+        if (self.showingLecturers) {
+            BOOL findObject = NO;
+            CGPoint tapPoint = [sender locationInView:self];
+            for (BSLecturerPreview *lecturerPreview in self.lecturersPreviews) {
+                if (CGRectContainsPoint(lecturerPreview.frame, tapPoint)) {
+                    CGRect thumbFrame = [self convertRect:lecturerPreview.lecturerIV.frame fromView:lecturerPreview];
+                    [self.delegate thumbnailForLecturer:lecturerPreview.lecturer withStartFrame:thumbFrame getTappedOnCell:self];
+                    findObject = YES;
+                }
+            }
+            if (!findObject) {
+                [self makeSelected:!self.showingLecturers];
+            }
+        } else {
+            [self makeSelected:!self.showingLecturers];
+        }
+    }
+
 }
 @end
