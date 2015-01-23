@@ -11,15 +11,14 @@
 
 @class BSPairCell;
 @protocol BSPairCellDelegate <NSObject>
-- (void)thumbnailGetTappedOnCell:(BSPairCell*)cell;
+- (void)thumbnailForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)thumbnailFrame getTappedOnCell:(BSPairCell *)cell;
 @end
 
 @interface BSPairCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
 @property (strong, nonatomic) UIColor *pairTypeIndicatorColor;
 
 @property (weak, nonatomic) id<BSPairCellDelegate> delegate;
-@property (nonatomic) BOOL showingLecturerName;
+@property (nonatomic) BOOL showingLecturers;
 - (void)makeSelected:(BOOL)selected;
 
 - (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day;
