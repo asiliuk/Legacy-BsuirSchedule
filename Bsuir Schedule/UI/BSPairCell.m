@@ -160,11 +160,23 @@
     
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
     
+    NSMutableAttributedString *subjectName = [[NSMutableAttributedString alloc]
+                                              initWithString:[pair.subject.name stringByAppendingString:@" "]
+                                              attributes:@{NSFontAttributeName:[UIFont fontWithName:@"OpenSans" size:17],
+                                                           NSForegroundColorAttributeName:BS_DARK}];
+    if ([pair.subgroupNumber integerValue] != 0) {
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.image = [UIImage imageNamed:@"group"];
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+        [subjectName appendAttributedString:attachmentString];
+    }
+    self.subjectNameLabel.attributedText = subjectName;
+
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
     [self setTimeText:timeString];
-    [self.subjectNameLabel setText:pair.subject.name];
     [self.auditoryLabel setText:pair.auditory.address];
     
     [self clearLecturersPreviews];
