@@ -77,4 +77,7 @@ static NSString * const kLecturerLastName = @"lastName";
 static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
+static NSString * const kDidComeFromBackground = @"kDidComeFromBackground";
+
+
 #endif

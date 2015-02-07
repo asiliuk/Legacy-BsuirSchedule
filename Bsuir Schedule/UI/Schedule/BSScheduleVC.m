@@ -94,6 +94,12 @@ BSSettingsVCDelegate, BSPairCellDelegate>
     [self getScheduleData];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -327,6 +333,10 @@ BSSettingsVCDelegate, BSPairCellDelegate>
 
 //===============================================UI===========================================
 #pragma mark - UI
+
+- (void)updateUI {
+    [self.tableView reloadData];
+}
 
 - (void)showSettingsScreen {
     BSSettingsVC *settingsVC = [[BSSettingsVC alloc] init];
