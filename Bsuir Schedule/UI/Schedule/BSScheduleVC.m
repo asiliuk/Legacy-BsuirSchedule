@@ -22,11 +22,14 @@
 #import "BSLecturerVC.h"
 #import "NSUserDefaults+Share.h"
 
+#import "SlideNavigationController.h"
+
+
 static NSString * const kCellID = @"Pair cell id";
 
 
 @interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,
-BSSettingsVCDelegate, BSPairCellDelegate>
+BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *daysWithWeekNumber;
@@ -402,6 +405,13 @@ BSSettingsVCDelegate, BSPairCellDelegate>
         CGRect startFrame = [self.view convertRect:thumbnailFrame fromView:cell];
         [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
     }
+}
+
+#pragma mark - SlideNavigationController Methods -
+
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
 }
 
 @end

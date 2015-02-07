@@ -9,7 +9,11 @@
 #import "AppDelegate.h"
 #import "BSScheduleVC.h"
 #import "BSDataManager.h"
+
+#import "SlideNavigationController.h"
+#import "BSMenuVC.h"
 #import "BSConstants.h"
+
 @interface AppDelegate ()
 
 @end
@@ -20,12 +24,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BSScheduleVC alloc] init]];
+    
+    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:[[BSScheduleVC alloc] init]];
+    slideNavController.leftMenu = [[BSMenuVC alloc] init];
+    // Creating a custom bar button for left menu
+    UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [button setImage:[UIImage imageNamed:@"menu_burger"] forState:UIControlStateNormal];
+    [button addTarget:slideNavController action:@selector(toggleLeftMenu) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    slideNavController.leftBarButtonItem = leftBarButtonItem;
+    slideNavController.enableShadow = NO;
+    self.window.rootViewController = slideNavController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

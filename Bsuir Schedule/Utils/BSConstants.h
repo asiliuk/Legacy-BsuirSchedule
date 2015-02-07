@@ -32,12 +32,17 @@
 #define BS_YELLOW UIColor(240, 197, 78, 1.0)
 #define BS_BLUE UIColor(50, 149, 191, 1.0)
 #define BS_PURPLE UIColor(149, 91, 165, 1.0)
+
 #define BS_GRAY UIColor(130, 138, 151, 1.0)
 #define BS_LIGHT_GRAY UIColor(240, 240, 240, 1.0)
 #define BS_BLUE_GRAY UIColor(69, 101, 152, 1.0)
+
 #define BS_LIGHT_BLUE UIColor(229, 235, 251, 1.0)
 #define BS_LIGHT_RED UIColor(255, 139, 139, 1.0)
 #define BS_DARK UIColor(38, 39, 46, 1.0)
+
+#define BS_MENU_COLOR UIColor(37.0, 37.0, 37.0, 1.0)
+#define BS_MENU_DARK_CLOR UIColor(27.0, 27.0, 27.0, 1.0)
 
 //-------------------------------SYSTEM VERSIONS---------------------------------
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)

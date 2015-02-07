@@ -17,14 +17,14 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GnN-xH-iWt">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" red="0.84687931629834257" green="0.84687931629834257" blue="0.84687931629834257" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="mLi-1X-twS"/>
                         <outlet property="delegate" destination="-1" id="M7D-0I-0aj"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="GnN-xH-iWt" secondAttribute="bottom" id="6Ac-ht-i8a"/>
                 <constraint firstAttribute="trailing" secondItem="GnN-xH-iWt" secondAttribute="trailing" id="B7T-LP-o7t"/>
