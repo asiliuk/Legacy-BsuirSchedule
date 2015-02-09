@@ -203,7 +203,7 @@
 
     [self.subjectNameLabel setText:pair.subject.name];
     if ([pair.subgroupNumber integerValue] != 0 && !weekMode) {
-        [self.subgroupsLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentRight];
+        [self.subjectNameLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentRight];
     }
 
     

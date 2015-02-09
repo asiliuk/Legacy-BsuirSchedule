@@ -23,11 +23,14 @@
         self.text = [@"     " stringByAppendingString:self.text];
     } else if (aligment == BSImageAligmentRight) {
         CGRect ivFrame = self.imageView.frame;
-        ivFrame.origin.x = CGRectGetMaxX(self.frame);
+        ivFrame.origin.x = self.bounds.size.width - ivFrame.size.width;
+        self.imageView.frame = ivFrame;
         self.text = [self.text stringByAppendingString:@"     "];
     }
     [self addSubview:self.imageView];
 }
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
