@@ -11,6 +11,7 @@
 #import "NSDate+Compare.h"
 #import "BSConstants.h"
 #import "BSLecturerPreview.h"
+#import "BSLabelWithImage.h"
 
 @interface BSPairCell()
 @property (strong, nonatomic) NSMutableArray *lecturersPreviews;
@@ -18,9 +19,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet BSTriangleView *triangleView;
 @property (strong, nonatomic) IBOutlet UIView *pairTypeIndicator;
-@property (strong, nonatomic) IBOutlet UILabel *subjectNameLabel;
+@property (strong, nonatomic) IBOutlet BSLabelWithImage *subjectNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *auditoryLabel;
 @property (strong, nonatomic) IBOutlet UIView *pairView;
+
+@property (strong, nonatomic) IBOutlet BSLabelWithImage *weeksLabel;
+@property (strong, nonatomic) IBOutlet BSLabelWithImage *subgroupsLabel;
 
 @property (strong, nonatomic) UIVisualEffectView *effectView;
 @property (strong, nonatomic) NSString *timeText;
@@ -156,21 +160,48 @@
     self.triangleView.fillColor = pairTypeIndicatorColor;
 }
 
-- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day{
+- (void)setupWithPair:(BSPair *)pair inDay:(BSDayWithWeekNum *)day {
+    [self setupWithPair:pair inDay:day weekMode:NO];
+}
+- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day weekMode:(BOOL)weekMode{
+
+    //-------------------------------Weeks label---------------------------------
+    self.weeksLabel.hidden = !weekMode;
+    NSArray *weeks = [pair.weeks sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"weekNumber" ascending:YES]]];
     
-    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
-    
-    NSMutableAttributedString *subjectName = [[NSMutableAttributedString alloc]
-                                              initWithString:[pair.subject.name stringByAppendingString:@" "]
-                                              attributes:@{NSFontAttributeName:[UIFont fontWithName:@"OpenSans" size:17],
-                                                           NSForegroundColorAttributeName:BS_DARK}];
-    if ([pair.subgroupNumber integerValue] != 0) {
-        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-        attachment.image = [UIImage imageNamed:@"group"];
-        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
-        [subjectName appendAttributedString:attachmentString];
+    NSMutableString *weekNumbersStr = [NSMutableString string];
+    for (BSWeekNumber *weekNum in weeks) {
+        NSInteger weekNumber = [weekNum.weekNumber integerValue];
+        if (weekNumber == 0) {
+            weekNumbersStr = [NSMutableString stringWithString:@"1,2,3,4"];
+            break;
+        } else {
+            if (![weekNumbersStr isEqual:@""]) {
+                [weekNumbersStr appendString:@","];
+            }
+            [weekNumbersStr appendFormat:@"%ld",(long)weekNumber];
+        }
     }
-    self.subjectNameLabel.attributedText = subjectName;
+
+    
+    [self.weeksLabel setText:weekNumbersStr];
+    [self.weeksLabel addImage:[UIImage imageNamed:@"calendar"] withAligment:BSImageAligmentLeft];
+
+    //-------------------------------Subgroups label---------------------------------
+    NSInteger subgroupNum = [pair.subgroupNumber integerValue];
+    self.subgroupsLabel.hidden = !weekMode || subgroupNum == 0;
+    NSString *subgrStr = [NSString stringWithFormat:@"%ld",(long)subgroupNum];
+    
+    [self.subgroupsLabel setText:subgrStr];
+    [self.subgroupsLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentLeft];
+
+    //-------------------------------Other---------------------------------
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
+
+    [self.subjectNameLabel setText:pair.subject.name];
+    if ([pair.subgroupNumber integerValue] != 0 && !weekMode) {
+        [self.subgroupsLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentRight];
+    }
 
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -243,6 +274,7 @@
             NSTimeInterval firstBreak = fabs([[pair.startTime onlyTime] timeIntervalSinceDate:[startOfTimeInterval onlyTime]]);
             NSTimeInterval secondBreak = fabs([[pair.endTime onlyTime] timeIntervalSinceDate:[endOfTimeInterval onlyTime]]);
             NSTimeInterval intervalLength = pairLength + 2*indicatorTimeLength ;
+            //???
             NSTimeInterval timePassed = fabs([[now onlyTime] timeIntervalSinceDate:[[startOfTimeInterval dateByAddingTimeInterval:-indicatorTimeLength] onlyTime]]);
             if ([now compareTime:pair.startTime] == NSOrderedDescending) {
                 timePassed -= firstBreak;
@@ -253,9 +285,18 @@
             triangleOriginrY += (CGRectGetHeight(self.frame) - 2 + CGRectGetHeight(self.triangleView.bounds))* (CGFloat)timePassed / intervalLength;
             
         }
-        CGRect triangleFrame = self.triangleView.frame;
-        triangleFrame.origin.y = triangleOriginrY;
-        self.triangleView.frame = triangleFrame;
+        [self.pairView.constraints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSLayoutConstraint *constraint = (NSLayoutConstraint *)obj;
+            if (constraint.firstItem == self.triangleView || constraint.secondItem == self.triangleView) {
+                [self.pairView removeConstraint:constraint];
+            }
+        }];
+        [self.triangleView removeConstraints:self.triangleView.constraints];
+        NSDictionary *metrics = @{@"triangleOriginrY" : @(triangleOriginrY), @"offset" : @(self.pairTypeIndicator.frame.size.width)};
+        NSDictionary *views = NSDictionaryOfVariableBindings(_triangleView);
+        [self.pairView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-offset-[_triangleView(5.0)]" options:0 metrics:metrics views:views]];
+        [self.pairView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-triangleOriginrY-[_triangleView(20.0)]" options:0 metrics:metrics views:views]];
+
         self.triangleView.hidden = NO;
         [self.triangleView setNeedsDisplay];
     } else {

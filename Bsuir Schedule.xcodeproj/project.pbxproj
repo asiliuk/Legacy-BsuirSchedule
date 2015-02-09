@@ -44,6 +44,8 @@
 		8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C78E3751A6F0E2800718027 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E3741A6F0E2800718027 /* BSPair.m */; };
 		8C78E3761A6F0E2800718027 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E3741A6F0E2800718027 /* BSPair.m */; };
+		8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
+		8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
 		D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D10448531A267F2E00670898 /* BSScheduleParser.m */; };
 		D1085FB11A2A9B7600D0C62B /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
@@ -190,6 +192,8 @@
 		8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8C78E3731A6F0E2800718027 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
 		8C78E3741A6F0E2800718027 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
+		8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLabelWithImage.h; sourceTree = "<group>"; };
+		8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLabelWithImage.m; sourceTree = "<group>"; };
 		D10448411A267D5100670898 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D10448521A267F2E00670898 /* BSScheduleParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleParser.h; sourceTree = "<group>"; };
 		D10448531A267F2E00670898 /* BSScheduleParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleParser.m; sourceTree = "<group>"; };
@@ -591,6 +595,8 @@
 				D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */,
 				8C7793901A84CF36007AB2EF /* BSTriangleView.h */,
 				8C7793911A84CF36007AB2EF /* BSTriangleView.m */,
+				8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */,
+				8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -775,6 +781,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4B3C571A72A3E500E6515D /* BSLecturerPreview.m in Sources */,
+				8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
 				8C77938F1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
 				D196D0451A2A96CF00EA6901 /* BSDayWithWeekNum.m in Sources */,
@@ -804,6 +812,7 @@
 			files = (
 				8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */,
 				D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */,
+				8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */,
 				D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */,
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
