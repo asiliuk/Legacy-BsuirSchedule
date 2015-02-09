@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL showingLecturers;
 - (void)makeSelected:(BOOL)selected;
 
+- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day weekMode:(BOOL)weekMode;
 - (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day;
 - (void)updateUIForWidget;
 @end
