@@ -12,14 +12,12 @@
 
 #import "BSConstants.h"
 
-static NSString * const BayernkraftUrlString = @"http://www.bayernkraft.by";
+static NSString * const kBSMenuItemTitle = @"kBSMenuItemTitle";
+static NSString * const kBSMenuItemImage = @"kBSMenuItemImage";
+static NSString * const kBSMenuItemBadgeCount = @"kBSMenuItemBadgeCount";
+static NSString * const kBSMenuItemClass = @"kBSMenuItemClass";
 
-static NSString * const kBMWMenuItemTitle = @"kBMWMenuItemTitle";
-static NSString * const kBMWMenuItemImage = @"kBMWMenuItemImage";
-static NSString * const kBMWMenuItemBadgeCount = @"kBMWMenuItemBadgeCount";
-static NSString * const kBMWMenuItemClass = @"kBMWMenuItemClass";
-
-static NSString * const kBMWMenuCell = @"kBMWMenuCell";
+static NSString * const kBMWMenuCell = @"kBSMenuCell";
 
 typedef NS_ENUM(NSInteger, BSMenuItem) {
     BSMenuItemFeedback       = 1,
@@ -65,7 +63,7 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     [self.tableView reloadData];
     for (NSNumber *itemNumber in self.menuItems) {
         NSDictionary *itemData = self.menuItemsData[itemNumber];
-        if ([NSStringFromClass([currentController class]) isEqual:NSStringFromClass(itemData[kBMWMenuItemClass])]) {
+        if ([NSStringFromClass([currentController class]) isEqual:NSStringFromClass(itemData[kBSMenuItemClass])]) {
             NSInteger itemIndex = [self.menuItems indexOfObject:itemNumber];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:itemIndex inSection:0];
             [self selectCellAtIndexPath:indexPath];
@@ -84,12 +82,12 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     
 
     
-    itemData = @{kBMWMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
-                 kBMWMenuItemImage: [UIImage imageNamed:@"tools"]};
+    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"tools"]};
     itemsData[@(BSMenuItemFeedback)] = itemData;
     
-    itemData = @{kBMWMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
-                 kBMWMenuItemImage: [UIImage imageNamed:@"tools"]};
+    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"tools"]};
     itemsData[@(BSMenuItemSettings)] = itemData;
     
     self.menuItemsData = itemsData;
@@ -124,8 +122,8 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     
     BSMenuCell *menuCell = [tableView dequeueReusableCellWithIdentifier:kBMWMenuCell forIndexPath:indexPath];
     
-    [menuCell.titleLabel setText:menuItemData[kBMWMenuItemTitle]];
-    [menuCell.iconIV setImage:menuItemData[kBMWMenuItemImage]];
+    [menuCell.titleLabel setText:menuItemData[kBSMenuItemTitle]];
+    [menuCell.iconIV setImage:menuItemData[kBSMenuItemImage]];
 
 
     menuCell.badgeLabel.hidden = YES;
@@ -176,7 +174,7 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
         case BSMenuItemSettings:
         {
             NSDictionary *itemData = self.menuItemsData[@(menuItem)];
-            rootVC = [[[itemData objectForKey:kBMWMenuItemClass] alloc] init];
+            rootVC = [[[itemData objectForKey:kBSMenuItemClass] alloc] init];
             break;
         }
         default:

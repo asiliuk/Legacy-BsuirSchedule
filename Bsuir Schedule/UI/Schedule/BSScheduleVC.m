@@ -23,6 +23,10 @@
 #import "NSUserDefaults+Share.h"
 
 #import "SlideNavigationController.h"
+#import "BSDay.h"
+
+#import "BSDayOfWeek+Number.h"
+#import "BSDayWithWeekNum+DayProtocol.h"
 
 
 static NSString * const kCellID = @"Pair cell id";
@@ -32,7 +36,7 @@ static NSString * const kCellID = @"Pair cell id";
 BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *daysWithWeekNumber;
+@property (strong, nonatomic) NSMutableArray *days;
 
 @property (strong, nonatomic) UIView *loadindicatorView;
 @property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
@@ -59,11 +63,11 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     return _loadindicatorView;
 }
 
-- (NSMutableArray*)daysWithWeekNumber {
-    if (!_daysWithWeekNumber) {
-        _daysWithWeekNumber = [NSMutableArray array];
+- (NSMutableArray*)days {
+    if (!_days) {
+        _days = [NSMutableArray array];
     }
-    return _daysWithWeekNumber;
+    return _days;
 }
 
 - (void)viewDidLoad {
@@ -83,14 +87,7 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
                                                                       NSFontAttributeName: titleFont}];
     
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    settingsButton.frame = CGRectMake(0, 0, 40, 40);
-    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal];
-    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal | UIControlStateHighlighted];
-    [settingsButton addTarget:self action:@selector(showSettingsScreen) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc]initWithCustomView:settingsButton];
-    settingsButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = settingsBarButton;
+
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
@@ -99,6 +96,20 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     self.loadindicatorView.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
+    [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
+}
+
+- (void)setupFormatChangeButtonForWeekFormat:(BOOL)weekFormat {
+    UIButton *formatChangeButtonButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    formatChangeButtonButton.frame = CGRectMake(0, 0, 40, 40);
+    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? @"daily" : @"weekly"]
+                              forState:UIControlStateNormal];
+    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? @"daily" : @"weekly"]
+                              forState:UIControlStateNormal | UIControlStateHighlighted];
+    [formatChangeButtonButton addTarget:self action:@selector(changeWeekType) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *formatChangeBarButton = [[UIBarButtonItem alloc] initWithCustomView:formatChangeButtonButton];
+    formatChangeBarButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = formatChangeBarButton;
 }
 
 - (void)dealloc {
@@ -118,7 +129,7 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     NSString *groupNumber = [sharedDefaults objectForKey:kUserGroup];
     if (groupNumber) {
         if ([BSScheduleParser scheduleNeedUpdateForGroup:groupNumber]) {
-            [self showLoadingView];
+                [self showLoadingView];
             [BSScheduleParser scheduleForGroupNumber:groupNumber withSuccess:^{
                 [self updateSchedule];
             } failure:^{
@@ -154,20 +165,29 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     }
 }
 
+- (void)changeWeekType {
+    self.weekFormat = !self.weekFormat;
+    [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
+    [self updateSchedule];
+}
+
 - (void)updateSchedule {
     [self hideLoadingView];
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlight];
     
-    self.daysWithWeekNumber = nil;
-    
-    [self loadScheduleForDaysCount:PREVIOUS_DAY_COUNT backwards:YES];
-    [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+    self.days = nil;
+    if (self.weekFormat) {
+        [self loadWeekSchedule];
+    } else {
+        [self loadScheduleForDaysCount:PREVIOUS_DAY_COUNT backwards:YES];
+        [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+    }
     
     [self.tableView reloadData];
     NSInteger highlightedSectionIndex = 0;
-    for (NSInteger index = 0; index < [self.daysWithWeekNumber count]; index++) {
-        BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:index];
-        if ([dayWithWeekNum isEqual:self.dayToHighlight]) {
+    for (NSInteger index = 0; index < [self.days count]; index++) {
+        id<BSDay> day = [self.days objectAtIndex:index];
+        if ([day isEqualToDayWithWeekNum:self.dayToHighlight]) {
             highlightedSectionIndex = index;
             break;
         }
@@ -178,14 +198,26 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
                                   animated:YES];
 }
 
+- (void)loadWeekSchedule {
+    NSPredicate *pairPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        BOOL filter = NO;
+        if ([evaluatedObject isKindOfClass:[BSDayOfWeek class]]) {
+            filter = [[(BSDayOfWeek*)evaluatedObject pairs] count] > 0;
+        }
+        return filter;
+    }];
+    NSArray *days = [[[BSDataManager sharedInstance] days] filteredArrayUsingPredicate:pairPredicate];
+    self.days = [days mutableCopy];
+}
+
 - (void)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
     NSDate *now = [NSDate date];
     NSDate *dayDate = now; // to show two previous days
-    if ([self.daysWithWeekNumber count] > 0) {
+    if ([self.days count] > 0) {
         if (backwards) {
-            dayDate = [[self.daysWithWeekNumber firstObject] date];
+            dayDate = [[self.days firstObject] date];
         } else {
-            dayDate = [[[self.daysWithWeekNumber lastObject] date] dateByAddingTimeInterval:DAY_IN_SECONDS];
+            dayDate = [[[self.days lastObject] date] dateByAddingTimeInterval:DAY_IN_SECONDS];
         }
     }
     NSInteger daysAdded = 0;
@@ -193,9 +225,9 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
         if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0 && !([dayDate isEqual:now] && backwards)) {
             if (backwards) {
-                [self.daysWithWeekNumber insertObject:dayWithWeekNum atIndex:0];
+                [self.days insertObject:dayWithWeekNum atIndex:0];
             } else {
-                [self.daysWithWeekNumber addObject:dayWithWeekNum];
+                [self.days addObject:dayWithWeekNum];
 
             }
             daysAdded++;
@@ -222,30 +254,37 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.daysWithWeekNumber count];
+    return [self.days count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[self.daysWithWeekNumber objectAtIndex:section] pairs] count];
+    return [[[self.days objectAtIndex:section] pairs] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
-    BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:indexPath.section];
-    NSArray *pairs = [dayWithWeekNum pairs];
+    id<BSDay> day = [self.days objectAtIndex:indexPath.section];
+    NSArray *pairs = [day allPairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
     cell.delegate = self;
-    [cell setupWithPair:pair inDay:dayWithWeekNum];
+    [cell setupWithPair:pair inDay:day weekMode:self.weekFormat];
     return cell;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    BSDayWithWeekNum *dayWithWeekNum = [self.daysWithWeekNumber objectAtIndex:section];
+    id<BSDay> day = [self.days objectAtIndex:section];
     NSDate *now = [NSDate date];
-    BOOL currentDay = [now isEqualToDateWithoutTime:dayWithWeekNum.date];
-    BOOL tomorrow = [[now dateByAddingTimeInterval:DAY_IN_SECONDS] isEqualToDateWithoutTime:dayWithWeekNum.date];
-    
+    BOOL currentDay = NO;
+    BOOL tomorrow = NO;
+    if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
+        currentDay = [now isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
+        tomorrow = [[now dateByAddingTimeInterval:DAY_IN_SECONDS] isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
+    } else if ([day isKindOfClass:[BSDayOfWeek class]]){
+        BSDayOfWeek *dayOfWeek = [[BSDataManager sharedInstance] dayWithDate:now];
+        currentDay = [dayOfWeek  number] == [(BSDayOfWeek*)day number];
+        tomorrow = [dayOfWeek  number] + 1 == [(BSDayOfWeek*)day number];
+    }
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
     
@@ -258,12 +297,18 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     [view addSubview:label];
     [view setBackgroundColor:BS_LIGHT_GRAY];
     [label setBackgroundColor:[UIColor clearColor]];
-    NSString *dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
-                               NSLocalizedString([dayWithWeekNum.dayOfWeek name], nil),
-                               [df stringFromDate:dayWithWeekNum.date],
-                               NSLocalizedString(@"L_Week", nil),
-                               dayWithWeekNum.weekNumber.weekNumber];
-    if ([dayWithWeekNum isEqual:self.dayToHighlight]) {
+    NSString *dayInfoString;
+    if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
+        dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
+                         NSLocalizedString([@"Sh_" stringByAppendingString:[day dayOfWeekName]], nil),
+                         [df stringFromDate:[(BSDayWithWeekNum*)day date]],
+                         NSLocalizedString(@"L_Week", nil),
+                         [[(BSDayWithWeekNum*)day weekNumber] weekNumber]];
+    } else if ([day isKindOfClass:[BSDayOfWeek class]]){
+        dayInfoString = NSLocalizedString([day dayOfWeekName], nil);
+    }
+
+    if ([day isEqualToDayWithWeekNum:self.dayToHighlight]) {
         if (currentDay) {
             dayInfoString = [NSString stringWithFormat:@"(%@)  %@",NSLocalizedString(@"L_Today", nil), dayInfoString];
         } else if (tomorrow) {
@@ -301,10 +346,12 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 }
 - (void)scrollingFinishScrollView:(UIScrollView*)scrollView {
     if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
-        NSLog(@"load more rows");
-        [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.daysWithWeekNumber.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
-        [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
+        if (!self.weekFormat) {
+            NSLog(@"load more rows");
+            [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.days.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
+            [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
+        }
     }
     
 }

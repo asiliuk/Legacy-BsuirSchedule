@@ -150,7 +150,11 @@
     NSFetchRequest *daysRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSDayOfWeek class])];
     [daysRequest setReturnsObjectsAsFaults:NO];
     [daysRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObjects:@"pairs", nil]];
-    return [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
+    NSArray *days = [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
+    NSArray *sortedDays = [days sortedArrayUsingComparator:^NSComparisonResult(BSDayOfWeek* obj1, BSDayOfWeek* obj2) {
+        return [@([obj1 number]) compare:@([obj2 number])];
+    }];
+    return sortedDays;
 }
 
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {

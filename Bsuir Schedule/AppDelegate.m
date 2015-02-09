@@ -28,7 +28,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:[[BSScheduleVC alloc] init]];
+    BSScheduleVC *scheduleVC = [[BSScheduleVC alloc] init];
+    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:scheduleVC];
     slideNavController.leftMenu = [[BSMenuVC alloc] init];
     // Creating a custom bar button for left menu
     UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];

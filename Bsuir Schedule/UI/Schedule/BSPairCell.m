@@ -13,6 +13,9 @@
 #import "BSLecturerPreview.h"
 #import "BSLabelWithImage.h"
 
+#import "BSDayOfWeek+Number.h"
+#import "BSDayWithWeekNum+DayProtocol.h"
+
 @interface BSPairCell()
 @property (strong, nonatomic) NSMutableArray *lecturersPreviews;
 
@@ -160,10 +163,10 @@
     self.triangleView.fillColor = pairTypeIndicatorColor;
 }
 
-- (void)setupWithPair:(BSPair *)pair inDay:(BSDayWithWeekNum *)day {
+- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day {
     [self setupWithPair:pair inDay:day weekMode:NO];
 }
-- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum *)day weekMode:(BOOL)weekMode{
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode{
 
     //-------------------------------Weeks label---------------------------------
     self.weeksLabel.hidden = !weekMode;
@@ -244,23 +247,26 @@
     
 }
 
-- (void)setupTriangleForPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day {
+- (void)setupTriangleForPair:(BSPair*)pair inDay:(id<BSDay>)day {
     NSDate *now = [NSDate date];
-    BOOL cellForCurrentDay = [now isEqualToDateWithoutTime:day.date];
+    BOOL cellForCurrentDay = NO;
+    if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
+        cellForCurrentDay = [now isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
+    }
     
     NSDate *startOfTimeInterval = pair.startTime;
     NSDate *endOfTimeInterval = pair.endTime;
     NSDate *startOfTimeIntervalWithOffset = pair.startTime;
     NSDate *endOfTimeIntervalWithOffset = pair.endTime;
-    NSInteger currentPairIndex = [day.pairs indexOfObject:pair];
+    NSInteger currentPairIndex = [[day allPairs] indexOfObject:pair];
     NSTimeInterval pairLength = fabs([[pair.endTime onlyTime] timeIntervalSinceDate:[pair.startTime onlyTime]]);
     NSTimeInterval indicatorTimeLength = pairLength * CGRectGetHeight(self.triangleView.bounds)/(2.0* CGRectGetHeight(self.bounds));
     if (currentPairIndex != 0) { //not first
-        startOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex-1] endTime];
+        startOfTimeInterval = [[[day allPairs] objectAtIndex:currentPairIndex-1] endTime];
         startOfTimeIntervalWithOffset = [startOfTimeInterval dateByAddingTimeInterval:-indicatorTimeLength];
     }
-    if (currentPairIndex != [day.pairs count] - 1) { // not last
-        endOfTimeInterval = [[day.pairs objectAtIndex:currentPairIndex+1] startTime];
+    if (currentPairIndex != [[day allPairs] count] - 1) { // not last
+        endOfTimeInterval = [[[day allPairs] objectAtIndex:currentPairIndex+1] startTime];
         endOfTimeIntervalWithOffset = [endOfTimeInterval dateByAddingTimeInterval:indicatorTimeLength];
     }
     BOOL showIndicator = [now isTimeBetweenTime:startOfTimeIntervalWithOffset andTime:endOfTimeIntervalWithOffset] && cellForCurrentDay;

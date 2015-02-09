@@ -14,13 +14,21 @@
 "L_Tomorrow" = "Tomorrow";
 "L_Week" = "Week";
 
-"Воскресенье" = "Sun.";
-"Понедельник" = "Mon.";
-"Вторник" = "Tue.";
-"Среда" = "Wed";
-"Четверг" = "Thu.";
-"Пятница" = "Fri.";
-"Суббота" = "Sat.";
+"Sh_Воскресенье" = "Sun.";
+"Sh_Понедельник" = "Mon.";
+"Sh_Вторник" = "Tue.";
+"Sh_Среда" = "Wed";
+"Sh_Четверг" = "Thu.";
+"Sh_Пятница" = "Fri.";
+"Sh_Суббота" = "Sat.";
+
+"Воскресенье" = "Sunday";
+"Понедельник" = "Monday";
+"Вторник" = "Tuesday";
+"Среда" = "Wednesday";
+"Четверг" = "Thursday";
+"Пятница" = "Friday";
+"Суббота" = "Saturday";
 
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";

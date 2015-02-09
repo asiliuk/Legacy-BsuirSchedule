@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BSDataManager.h"
+#import "BSDay.h"
 
 @class BSPairCell;
 @protocol BSPairCellDelegate <NSObject>
@@ -21,7 +22,7 @@
 @property (nonatomic) BOOL showingLecturers;
 - (void)makeSelected:(BOOL)selected;
 
-- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day weekMode:(BOOL)weekMode;
-- (void)setupWithPair:(BSPair*)pair inDay:(BSDayWithWeekNum*)day;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day;
 - (void)updateUIForWidget;
 @end

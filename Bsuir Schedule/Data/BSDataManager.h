@@ -11,12 +11,12 @@
 
 #import "BSSubject.h"
 #import "BSLecturer+Thumbnail.h"
-#import "BSDayOfWeek.h"
+#import "BSDayOfWeek+Number.h"
 #import "BSAuditory.h"
 #import "BSPair+Type.h"
 #import "BSPair+Color.h"
 #import "BSWeekNumber.h"
-#import "BSDayWithWeekNum.h"
+#import "BSDayWithWeekNum+DayProtocol.h"
 
 @interface BSDataManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

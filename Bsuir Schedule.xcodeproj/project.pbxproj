@@ -46,6 +46,9 @@
 		8C78E3761A6F0E2800718027 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E3741A6F0E2800718027 /* BSPair.m */; };
 		8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
 		8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
+		8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */; };
+		8CE85B381A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE85B371A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.m */; };
+		8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D10448531A267F2E00670898 /* BSScheduleParser.m */; };
 		D1085FB11A2A9B7600D0C62B /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
@@ -90,7 +93,6 @@
 		D196D0491A2A96D500EA6901 /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
 		D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2231A1824900055B0D3 /* AppDelegate.m */; };
-		D19EB22F1A1824910055B0D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19EB22E1A1824910055B0D3 /* Images.xcassets */; };
 		D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */; };
 		D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */; };
 		D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
@@ -194,6 +196,12 @@
 		8C78E3741A6F0E2800718027 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
 		8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLabelWithImage.h; sourceTree = "<group>"; };
 		8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLabelWithImage.m; sourceTree = "<group>"; };
+		8CE85B321A89353C0043D896 /* BSDayOfWeek+Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayOfWeek+Number.h"; sourceTree = "<group>"; };
+		8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayOfWeek+Number.m"; sourceTree = "<group>"; };
+		8CE85B351A893BEB0043D896 /* BSDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
+		8CE85B361A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayWithWeekNum+DayProtocol.h"; sourceTree = "<group>"; };
+		8CE85B371A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayWithWeekNum+DayProtocol.m"; sourceTree = "<group>"; };
+		8CE85B391A895EF00043D896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D10448411A267D5100670898 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D10448521A267F2E00670898 /* BSScheduleParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleParser.h; sourceTree = "<group>"; };
 		D10448531A267F2E00670898 /* BSScheduleParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleParser.m; sourceTree = "<group>"; };
@@ -224,7 +232,6 @@
 		D19EB2201A1824900055B0D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D19EB2221A1824900055B0D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D19EB2231A1824900055B0D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D19EB22E1A1824910055B0D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D19EB2371A1824910055B0D3 /* Bsuir ScheduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bsuir ScheduleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19EB23C1A1824910055B0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bsuir_ScheduleTests.m; sourceTree = "<group>"; };
@@ -421,6 +428,11 @@
 				D1E5C7311A1BF341009E5552 /* BSPair+Type.m */,
 				D170BD131A1BF9690068E67C /* BSPair+Color.h */,
 				D170BD141A1BF9690068E67C /* BSPair+Color.m */,
+				8CE85B321A89353C0043D896 /* BSDayOfWeek+Number.h */,
+				8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */,
+				8CE85B351A893BEB0043D896 /* BSDay.h */,
+				8CE85B361A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.h */,
+				8CE85B371A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -498,7 +510,7 @@
 				D19EB2471A18249C0055B0D3 /* 3rd party */,
 				D19EB2221A1824900055B0D3 /* AppDelegate.h */,
 				D19EB2231A1824900055B0D3 /* AppDelegate.m */,
-				D19EB22E1A1824910055B0D3 /* Images.xcassets */,
+				8CE85B391A895EF00043D896 /* Images.xcassets */,
 				D19EB21E1A1824900055B0D3 /* Supporting Files */,
 				D1E873DE1A1EBB3C007F056F /* Localizable.strings */,
 			);
@@ -753,11 +765,11 @@
 				D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */,
 				D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
 				8C7793751A84CECE007AB2EF /* BSScheduleVC.xib in Resources */,
-				D19EB22F1A1824910055B0D3 /* Images.xcassets in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				8C7793541A84CD0B007AB2EF /* menu-button@2x.png in Resources */,
 				D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */,
 				D1085FCE1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
+				8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */,
 				D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
 				D1085FC81A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				D1085FC61A2A9C1000D0C62B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -781,7 +793,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C4B3C571A72A3E500E6515D /* BSLecturerPreview.m in Sources */,
 				8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
 				8C77938F1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
@@ -847,7 +858,9 @@
 				D1CFCA1F1A31193600083221 /* UIView+Screenshot.m in Sources */,
 				8C7793521A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				8C77934F1A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScale.m in Sources */,
+				8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */,
 				8C7793551A84CD0B007AB2EF /* SlideNavigationController.m in Sources */,
+				8CE85B381A89509F0043D896 /* BSDayWithWeekNum+DayProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
