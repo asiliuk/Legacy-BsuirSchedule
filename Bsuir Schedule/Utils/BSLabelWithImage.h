@@ -13,5 +13,6 @@ typedef NS_ENUM(NSInteger, BSImageAligment) {
     BSImageAligmentRight
 };
 @interface BSLabelWithImage : UILabel
+@property (strong, nonatomic) UIImageView *imageView;
 - (void)addImage:(UIImage*)image withAligment:(BSImageAligment)aligment;
 @end

@@ -202,10 +202,10 @@
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
 
     [self.subjectNameLabel setText:pair.subject.name];
+    self.subjectNameLabel.imageView.hidden = YES;
     if ([pair.subgroupNumber integerValue] != 0 && !weekMode) {
         [self.subjectNameLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentRight];
     }
-
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm"];
