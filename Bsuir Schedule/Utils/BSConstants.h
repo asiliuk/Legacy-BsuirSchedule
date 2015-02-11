@@ -25,6 +25,8 @@
 
 #define CELL_HEIGHT 72.0
 
+//-------------------------------UTIILS---------------------------------
+#define LZD(str) NSLocalizedString(str,nil)
 //-------------------------------COLORS---------------------------------
 #define UIColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define BS_RED UIColor(241, 90, 90, 1.0)

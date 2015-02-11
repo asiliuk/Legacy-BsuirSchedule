@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSDayWithWeekNum.h"
+
+@class BSDayWithWeekNum;
 @protocol BSDay <NSObject>
 - (NSArray*)allPairs;
 - (NSString*)dayOfWeekName;

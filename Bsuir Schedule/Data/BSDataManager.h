@@ -16,7 +16,7 @@
 #import "BSPair+Type.h"
 #import "BSPair+Color.h"
 #import "BSWeekNumber.h"
-#import "BSDayWithWeekNum+DayProtocol.h"
+#import "BSDayWithWeekNum.h"
 
 @interface BSDataManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

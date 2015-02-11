@@ -6,7 +6,6 @@
   Copyright (c) 2014 Saute. All rights reserved.
 */
 
-"L_Schedule" = "Schedule";
 "L_LoadError" = "Can't load schedule.";
 "L_Error" = "Error";
 "L_Ok" = "OK";
@@ -30,5 +29,22 @@
 "Пятница" = "Friday";
 "Суббота" = "Saturday";
 
+"L_Schedule" = "Schedule";
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";
+"L_Info" = "Info";
+
+"L_Colors" = "Colors";
+"L_Icons" = "Icons";
+"L_Lecture" = "Lecture";
+"L_Practice" = "Practice";
+"L_Labour" = "Labouratory";
+"L_DayView" = "Day view";
+"L_WeekView" = "Week view";
+"L_Subgroup" = "Subgroup";
+"L_Week" = "Week";
+"L_SubjectName" = "Subject name";
+"L_Room" = "Room";
+"L_Housing" = "Housing";
+"L_StartTime" = "start";
+"L_EndTime" = "end";

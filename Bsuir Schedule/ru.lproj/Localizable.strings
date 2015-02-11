@@ -32,3 +32,19 @@
 
 "L_Settings" = "Настройки";
 "L_Feedback" = "Обратная связь";
+"L_Info" = "Справка";
+
+"L_Colors" = "Цвета";
+"L_Icons" = "Иконуи";
+"L_Lecture" = "Лекция";
+"L_Practice" = "Практика";
+"L_Labour" = "Лабораторная";
+"L_DayView" = "Вид по дням";
+"L_WeekView" = "Вид по неделе";
+"L_Subgroup" = "Подгруппа";
+"L_Week" = "Неделя";
+"L_SubjectName" = "Название предмета";
+"L_Room" = "Аудитория";
+"L_Housing" = "Корпус";
+"L_StartTime" = "начало";
+"L_EndTime" = "конец";

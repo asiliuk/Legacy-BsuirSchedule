@@ -7,6 +7,7 @@
 //
 
 #import "BSDayOfWeek+Number.h"
+#import "BSDayWithWeekNum.h"
 
 @implementation BSDayOfWeek (Number)
 - (NSInteger)number {

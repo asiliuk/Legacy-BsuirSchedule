@@ -14,7 +14,9 @@
 #import "BSLabelWithImage.h"
 
 #import "BSDayOfWeek+Number.h"
-#import "BSDayWithWeekNum+DayProtocol.h"
+#import "BSDayWithWeekNum.h"
+
+#import "UIImage+ImageEffects.h"
 
 @interface BSPairCell()
 @property (strong, nonatomic) NSMutableArray *lecturersPreviews;
@@ -164,10 +166,17 @@
 }
 
 - (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day {
-    [self setupWithPair:pair inDay:day weekMode:NO];
+    [self setupWithPair:pair inDay:day weekMode:NO widgetMode:NO];
 }
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode{
+- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day widgetMode:(BOOL)widgetMode {
+    [self setupWithPair:pair inDay:day weekMode:NO widgetMode:widgetMode];
+}
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode {
+    [self setupWithPair:pair inDay:day weekMode:weekMode widgetMode:NO];
+}
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode widgetMode:(BOOL)widgetMode {
 
+    UIColor *tintColorForImages = widgetMode ? [UIColor whiteColor] : BS_DARK;
     //-------------------------------Weeks label---------------------------------
     self.weeksLabel.hidden = !weekMode;
     NSArray *weeks = [pair.weeks sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"weekNumber" ascending:YES]]];
@@ -188,7 +197,7 @@
 
     
     [self.weeksLabel setText:weekNumbersStr];
-    [self.weeksLabel addImage:[UIImage imageNamed:@"calendar"] withAligment:BSImageAligmentLeft];
+    [self.weeksLabel addImage:[[UIImage imageNamed:@"calendar"] imageWithOverlayColor:tintColorForImages] withAligment:BSImageAligmentLeft];
 
     //-------------------------------Subgroups label---------------------------------
     NSInteger subgroupNum = [pair.subgroupNumber integerValue];
@@ -196,7 +205,7 @@
     NSString *subgrStr = [NSString stringWithFormat:@"%ld",(long)subgroupNum];
     
     [self.subgroupsLabel setText:subgrStr];
-    [self.subgroupsLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentLeft];
+    [self.subgroupsLabel addImage:[[UIImage imageNamed:@"group"] imageWithOverlayColor:tintColorForImages] withAligment:BSImageAligmentLeft];
 
     //-------------------------------Other---------------------------------
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:NO];
@@ -204,7 +213,7 @@
     [self.subjectNameLabel setText:pair.subject.name];
     self.subjectNameLabel.imageView.hidden = YES;
     if ([pair.subgroupNumber integerValue] != 0 && !weekMode) {
-        [self.subjectNameLabel addImage:[UIImage imageNamed:@"group"] withAligment:BSImageAligmentRight];
+        [self.subjectNameLabel addImage:[[UIImage imageNamed:@"group"] imageWithOverlayColor:tintColorForImages] withAligment:BSImageAligmentRight];
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -237,6 +246,10 @@
     
     self.pairTypeIndicatorColor = [pair colorForPairType];
     [self setupTriangleForPair:pair inDay:day];
+    
+    if (widgetMode) {
+        [self updateUIForWidget];
+    }
 }
 
 - (void)clearLecturersPreviews {
@@ -320,12 +333,23 @@
     if (!self.effectView) {
         UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         self.effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
-        self.effectView.frame = self.pairView.bounds;
+        self.effectView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.pairView addSubview:self.effectView];
         [self.pairView sendSubviewToBack:self.effectView];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_effectView);
+
+        [self.pairView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_effectView]|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:views]];
+        [self.pairView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_effectView]|"
+                                                                              options:0
+                                                                              metrics:nil
+                                                                                views:views]];
+
     }
 }
-
 - (void)handleThumbnailTap:(UITapGestureRecognizer*)sender {
     if ([self.lecturersPreviews count] < 2) {
         BSLecturerPreview *lecturerPreview = [self.lecturersPreviews lastObject];

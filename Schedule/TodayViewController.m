@@ -13,6 +13,8 @@
 #import "NSDate+Compare.h"
 #import "BSConstants.h"
 
+#import "BSDayWithWeekNum.h"
+
 static NSString * const kCellID = @"today view cell";
 
 @interface TodayViewController () <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate>
@@ -102,9 +104,12 @@ static NSString * const kCellID = @"today view cell";
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     NSArray *pairs = [self.dayToHighlight pairs];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
-    [cell setupWithPair:pair inDay:self.dayToHighlight];
-    [cell updateUIForWidget];
+    [cell setupWithPair:pair inDay:self.dayToHighlight widgetMode:YES];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return CELL_HEIGHT;
 }
 
 @end

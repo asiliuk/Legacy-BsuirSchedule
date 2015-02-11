@@ -57,7 +57,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="САММиОД" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-YD-oHi" userLabel="subject" customClass="BSLabelWithImage">
-                            <rect key="frame" x="79" y="13" width="87.5" height="21"/>
+                            <rect key="frame" x="79" y="13" width="88" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="DNv-b2-hbc"/>
                             </constraints>

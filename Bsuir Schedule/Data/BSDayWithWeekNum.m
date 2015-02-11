@@ -48,4 +48,17 @@
     equal = equalWeekDay && equalWeekNum && equalDate;
     return equal;
 }
+
+- (NSArray*)allPairs {
+    return self.pairs;
+}
+- (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum *)object {
+    return [self isEqual:object];
+}
+- (BOOL)isEqualToDay:(BSDayOfWeek *)object {
+    return [self.dayOfWeek isEqualToDay:object];
+}
+- (NSString*)dayOfWeekName {
+    return self.dayOfWeek.name;
+}
 @end

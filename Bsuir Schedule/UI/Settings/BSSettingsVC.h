@@ -8,11 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@class BSSettingsVC;
-@protocol BSSettingsVCDelegate <NSObject>
-- (void)settingsScreen:(BSSettingsVC*)settingsVC dismissWithChanges:(BOOL)changes;
-@end
-
 @interface BSSettingsVC : UIViewController
-@property (weak, nonatomic) id<BSSettingsVCDelegate> delegate;
 @end

@@ -26,7 +26,7 @@
 #import "BSDay.h"
 
 #import "BSDayOfWeek+Number.h"
-#import "BSDayWithWeekNum+DayProtocol.h"
+#import "BSDayWithWeekNum.h"
 
 
 static NSString * const kCellID = @"Pair cell id";
@@ -97,15 +97,6 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
     [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
-    
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    settingsButton.frame = CGRectMake(0, 0, 40, 40);
-    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal];
-    [settingsButton setImage:[UIImage imageNamed:@"tools"] forState:UIControlStateNormal | UIControlStateHighlighted];
-    [settingsButton addTarget:self action:@selector(showSettingsScreen) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc]initWithCustomView:settingsButton];
-    settingsButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = settingsBarButton;
 }
 
 - (void)setupFormatChangeButtonForWeekFormat:(BOOL)weekFormat {
@@ -202,9 +193,11 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
         }
     }
 
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:highlightedSectionIndex]
-                          atScrollPosition:UITableViewScrollPositionTop
-                                  animated:YES];
+    if ([self.days count] > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:highlightedSectionIndex]
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:YES];
+    }
 }
 
 - (void)loadWeekSchedule {
@@ -465,9 +458,9 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 
 #pragma mark - SlideNavigationController Methods -
 
-//- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
-//{
-//    return YES;
-//}
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
+}
 
 @end
