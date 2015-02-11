@@ -17,7 +17,6 @@
 #import "NSDate+Compare.h"
 #import "UIView+Screenshot.h"
 
-#import "BSSettingsVC.h"
 #import "BSScheduleParser.h"
 #import "BSLecturerVC.h"
 #import "NSUserDefaults+Share.h"
@@ -32,8 +31,7 @@
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,
-BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
@@ -116,13 +114,6 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-    if (![sharedDefaults objectForKey:kUserSubgroup]) {
-        [self showSettingsScreen];
-    }
-}
 
 - (void)getScheduleData {
     NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
@@ -390,12 +381,6 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     [self.tableView reloadData];
 }
 
-- (void)showSettingsScreen {
-    BSSettingsVC *settingsVC = [[BSSettingsVC alloc] init];
-    [self presentVCInCurrentContext:settingsVC];
-    settingsVC.delegate = self;
-
-}
 
 - (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
     if (lecturer) {
@@ -413,14 +398,6 @@ BSSettingsVCDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
     [self presentViewController:vc animated:NO completion:nil];
 }
 
-//===============================================SETTINGS SCREEN DELEAGTE===========================================
-#pragma mark - Settings screen delegate 
-
-- (void)settingsScreen:(BSSettingsVC *)settingsVC dismissWithChanges:(BOOL)changes {
-    if (changes) {
-        [self getScheduleData];
-    }
-}
 
 //===============================================LOADING SCREEN===========================================
 #pragma mark - Loading screen

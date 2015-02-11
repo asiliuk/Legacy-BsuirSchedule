@@ -11,6 +11,7 @@
 #import "BSMenuCell.h"
 #import "BSScheduleVC.h"
 #import "BSTutorialVC.h"
+#import "BSSettingsVC.h"
 
 #import "BSConstants.h"
 @import MessageUI;
@@ -86,25 +87,24 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     NSMutableDictionary *itemsData = [NSMutableDictionary dictionary];
     NSDictionary *itemData;
     
-
+    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Schedule", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_schedule"],
+                 kBSMenuItemClass: [BSScheduleVC class]};
+    itemsData[@(BSMenuItemSchedule)] = itemData;
     
     itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
     itemsData[@(BSMenuItemFeedback)] = itemData;
     
     itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"]};
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"],
+                 kBSMenuItemClass: [BSSettingsVC class]};
     itemsData[@(BSMenuItemSettings)] = itemData;
     
     itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Info", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_info"],
                  kBSMenuItemClass: [BSTutorialVC class]};
     itemsData[@(BSMenuItemInfo)] = itemData;
-    
-    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Schedule", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_schedule"],
-                 kBSMenuItemClass: [BSScheduleVC class]};
-    itemsData[@(BSMenuItemSchedule)] = itemData;
     
     self.menuItemsData = itemsData;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftMenuDidOpen) name:SlideNavigationControllerDidOpen object:nil];

@@ -12,7 +12,11 @@
 #import "UIView+Screenshot.h"
 #import "NSUserDefaults+Share.h"
 
-@interface BSSettingsVC ()
+#import "SlideNavigationContorllerAnimator.h"
+#import "BSGroupAddVC.h"
+#import "AppDelegate.h"
+
+@interface BSSettingsVC () <UITableViewDataSource,  UITableViewDelegate, BSGroupAddVCDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSUserDefaults *sharedDefaults;
@@ -31,8 +35,42 @@
     [super viewDidLoad];
     
     self.sharedDefaults = [NSUserDefaults sharedDefaults];
+    UIBarButtonItem *addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                      target:self
+                                                                                      action:@selector(addGroup)];
+    addBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = addBarButtonItem;
 //    [self.groupNumberTF setText:[sharedDefaults objectForKey:kUserGroup]];
 //    [self.subgroupNumberTF setText:[sharedDefaults objectForKey:kUserSubgroup]];
+}
+- (void)addGroup {
+    BSGroupAddVC *groupAddVC = [[BSGroupAddVC alloc] init];
+    groupAddVC.delegate = self;
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    [delegate.window.rootViewController presentViewController:groupAddVC animated:NO completion:nil];
+
+}
+
+//===============================================GROUP ADD DELEGATE===========================================
+#pragma mark - Group add delegate
+
+- (void)groupAddingScreen:(BSGroupAddVC *)groupAddVC dismissWithGroupNumber:(NSString *)group andSubgroup:(NSString *)subgroup {
+    
+}
+
+//===============================================TABLE VIEW===========================================
+#pragma mark - Table view
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu;
+{
+    return YES;
 }
 
 
