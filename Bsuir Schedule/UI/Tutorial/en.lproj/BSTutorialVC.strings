@@ -1,0 +1,34 @@
+
+/* Class = "IBUILabel"; text = "Название предмета"; ObjectID = "cfc-fs-yOv"; */
+"cfc-fs-yOv.text" = "Subject name"";
+
+/* Class = "IBUILabel"; text = "кабинет-корпус"; ObjectID = "fwh-OP-30Y"; */
+"fwh-OP-30Y.text" = "room-housing";
+
+/* Class = "IBUILabel"; text = "Практика"; ObjectID = "1N7-vw-iJS"; */
+"1N7-vw-iJS.text" = "Practice";
+
+/* Class = "IBUILabel"; text = "Лабораторная"; ObjectID = "7Pk-XE-HwU"; */
+"7Pk-XE-HwU.text" = "Laboratory";
+
+/* Class = "IBUILabel"; text = "Лекция"; ObjectID = "84O-zX-xgK"; */
+"84O-zX-xgK.text" = "Lecture";
+
+/* Class = "IBUILabel"; text = "Иконки"; ObjectID = "HOt-ch-1kn"; */
+"HOt-ch-1kn.text" = "Icons";
+
+/* Class = "IBUILabel"; text = "Подгруппа"; ObjectID = "HiS-Xq-vNL"; */
+"HiS-Xq-vNL.text" = "Subgroup";
+
+/* Class = "IBUILabel"; text = "Вид на неделю"; ObjectID = "Jkt-lI-J3x"; */
+"Jkt-lI-J3x.text" = "Week view";
+
+/* Class = "IBUILabel"; text = "Цвета"; ObjectID = "Uh4-Xt-zZa"; */
+"Uh4-Xt-zZa.text" = "Colors";
+
+/* Class = "IBUILabel"; text = "Вид по дням"; ObjectID = "r4O-gB-Kcn"; */
+"r4O-gB-Kcn.text" = "Day view";
+
+/* Class = "IBUILabel"; text = "Неделя"; ObjectID = "sO8-vs-7Zb"; */
+"sO8-vs-7Zb.text" = "Week";
+
