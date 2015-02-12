@@ -220,7 +220,15 @@
     [formatter setDateFormat:@"HH:mm"];
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", [formatter stringFromDate:pair.startTime],[formatter stringFromDate:pair.endTime]];
     [self setTimeText:timeString];
-    [self.auditoryLabel setText:pair.auditory.address];
+    
+    NSMutableString *auditoryString = [NSMutableString string];
+    for (BSAuditory *auditory in pair.auditories) {
+        if (![auditoryString isEqual:@""]) {
+            [auditoryString appendString:@", "];
+        }
+        [auditoryString appendString:auditory.address];
+    }
+    [self.auditoryLabel setText:auditoryString];
     
     [self clearLecturersPreviews];
     for (BSLecturerPreview *preview in self.lecturersPreviews) {
