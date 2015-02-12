@@ -76,7 +76,7 @@
                      endTime:(NSDate*)endTime
               subgroupNumber:(NSInteger)subgroupNumber
                 pairTypeName:(NSString*)pairTypeName
-                  inAuditory:(BSAuditory*)auditory
+                inAuditories:(NSArray*)auditories
                        atDay:(BSDayOfWeek*)day
                      subject:(BSSubject*)subject
                    lecturers:(NSArray *)lecturers
@@ -88,7 +88,7 @@
                         endTime:(NSDate*)endTime
                  subgroupNumber:(NSInteger)subgroupNumber
                    pairTypeName:(NSString*)pairTypeName
-                     inAuditory:(BSAuditory*)auditory
+                   inAuditories:(NSArray*)auditories
                           atDay:(BSDayOfWeek*)day
                         subject:(BSSubject*)subject
                       lecturers:(NSArray *)lecturers

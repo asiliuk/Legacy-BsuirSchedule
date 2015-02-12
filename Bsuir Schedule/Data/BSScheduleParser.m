@@ -56,8 +56,16 @@
                         if (subgroupNumberString && ![subgroupNumberString isEqualToString:@""]) {
                             subgroupNumber = [subgroupNumberString integerValue];
                         }
-                        NSString *subjectAuditoryAddress = subjectData[kSubjectAuditory];
-                        BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:subjectAuditoryAddress createIfNotExists:YES];
+                        NSArray *subjectAuditoryAddresses = subjectData[kSubjectAuditory];
+                        NSMutableArray *auditories = [NSMutableArray array];
+                        if (subjectAuditoryAddresses && ![subjectAuditoryAddresses isKindOfClass:[NSArray class]]) {
+                            subjectAuditoryAddresses = @[subjectAuditoryAddresses];
+                        }
+                        for (NSString *auditoryAddress in subjectAuditoryAddresses) {
+                            BSAuditory *auditory = [[BSDataManager sharedInstance] auditoryWithAddress:auditoryAddress createIfNotExists:YES];
+                            [auditories addObject:auditory];
+                        }
+
                         BSSubject *subject = [[BSDataManager sharedInstance] subjectWithName:subjectName createIfNotExists:YES];
                         NSArray *lecturersData = subjectData[kLecturer];
                         if ([lecturersData isKindOfClass:[NSDictionary class]]) {
@@ -100,7 +108,7 @@
                                                                      endTime:[formatter dateFromString:endTime]
                                                               subgroupNumber:subgroupNumber
                                                                 pairTypeName:pairType
-                                                                  inAuditory:auditory
+                                                                inAuditories:auditories
                                                                        atDay:day
                                                                      subject:subject
                                                                    lecturers:lecturers

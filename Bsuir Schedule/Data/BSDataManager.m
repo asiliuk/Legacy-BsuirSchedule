@@ -339,7 +339,7 @@
                      endTime:(NSDate *)endTime
               subgroupNumber:(NSInteger)subgroupNumber
                 pairTypeName:(NSString *)pairTypeName
-                  inAuditory:(BSAuditory *)auditory
+                inAuditories:(NSArray *)auditories
                        atDay:(BSDayOfWeek *)day
                      subject:(BSSubject *)subject
                    lecturers:(NSArray *)lecturers
@@ -352,11 +352,11 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
     NSPredicate *pairPredicate = [NSPredicate predicateWithFormat:@"startTime == %@ AND endTime == %@ \
                                   AND subgroupNumber == %@ AND pairType == %d \
-                                  AND auditory == %@ AND day == %@ \
+                                  AND auditories contains[c] %@ AND day == %@ \
                                   AND subject == %@ AND weeks contains[c] %@",
                                   startTime, endTime,
                                   @(subgroupNumber), pairType,
-                                  auditory, day,
+                                  auditories, day,
                                   subject, weeks];
     request.predicate = pairPredicate;
     
@@ -371,7 +371,7 @@
                                   endTime:endTime
                            subgroupNumber:subgroupNumber
                              pairTypeName:pairTypeName
-                               inAuditory:auditory
+                             inAuditories:auditories
                                     atDay:day
                                   subject:subject
                                 lecturers:lecturers
@@ -385,7 +385,7 @@
                         endTime:(NSDate *)endTime
                  subgroupNumber:(NSInteger)subgroupNumber
                    pairTypeName:(NSString*)pairTypeName
-                     inAuditory:(BSAuditory *)auditory
+                   inAuditories:(NSArray *)auditories
                           atDay:(BSDayOfWeek *)day
                         subject:(BSSubject *)subject
                       lecturers:(NSArray *)lecturers
@@ -399,7 +399,7 @@
     pair.endTime = endTime;
     pair.subgroupNumber = @(subgroupNumber);
     pair.pairType = @(pairType);
-    pair.auditory = auditory;
+    [pair addAuditories:[NSSet setWithArray:auditories]];
     pair.day = day;
     pair.subject = subject;
     pair.lecturers = [NSSet setWithArray:lecturers];

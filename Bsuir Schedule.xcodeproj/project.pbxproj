@@ -14,8 +14,6 @@
 		8C342AC01A8A552C0020AE99 /* BSSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C342ABF1A8A552C0020AE99 /* BSSettingsVC.xib */; };
 		8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001831A8B45A50076BD36 /* BSGroupAddVC.xib */; };
 		8C6001861A8B45A50076BD36 /* BSGroupAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001841A8B45A50076BD36 /* BSGroupAddVC.m */; };
-		8C6001931A8B57120076BD36 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001921A8B57120076BD36 /* BSPair.m */; };
-		8C6001941A8B57120076BD36 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001921A8B57120076BD36 /* BSPair.m */; };
 		8C6001B21A8BFAA80076BD36 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */; };
 		8C6001B31A8BFAA80076BD36 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */; };
 		8C6001B41A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001B11A8BFAA80076BD36 /* MGSwipeTableCell.m */; };
@@ -24,6 +22,8 @@
 		8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */; };
 		8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
 		8C6001BC1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
+		8C69315B1A8D476800B56E48 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C69315A1A8D476800B56E48 /* BSPair.m */; };
+		8C69315C1A8D476800B56E48 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C69315A1A8D476800B56E48 /* BSPair.m */; };
 		8C77934E1A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorFade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793401A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorFade.m */; };
 		8C77934F1A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793421A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScale.m */; };
 		8C7793501A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793441A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScaleAndFade.m */; };
@@ -172,8 +172,6 @@
 		8C6001831A8B45A50076BD36 /* BSGroupAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSGroupAddVC.xib; sourceTree = "<group>"; };
 		8C6001841A8B45A50076BD36 /* BSGroupAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroupAddVC.m; sourceTree = "<group>"; };
 		8C6001881A8B53ED0076BD36 /* ScheduleData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 3.xcdatamodel"; sourceTree = "<group>"; };
-		8C6001911A8B57120076BD36 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
-		8C6001921A8B57120076BD36 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
 		8C6001AE1A8BFAA80076BD36 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
 		8C6001B01A8BFAA80076BD36 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
@@ -181,6 +179,8 @@
 		8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleAddVC.h; sourceTree = "<group>"; };
 		8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleAddVC.m; sourceTree = "<group>"; };
 		8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSScheduleAddVC.xib; sourceTree = "<group>"; };
+		8C6931591A8D476800B56E48 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
+		8C69315A1A8D476800B56E48 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
 		8C77933E1A84CD0B007AB2EF /* SlideNavigationContorllerAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationContorllerAnimator.h; sourceTree = "<group>"; };
 		8C77933F1A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationContorllerAnimatorFade.h; sourceTree = "<group>"; };
 		8C7793401A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationContorllerAnimatorFade.m; sourceTree = "<group>"; };
@@ -498,12 +498,12 @@
 		D170BD121A1BF9370068E67C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8C6931591A8D476800B56E48 /* BSPair.h */,
+				8C69315A1A8D476800B56E48 /* BSPair.m */,
 				8CAC663A1A8CC2A800BF4C2C /* BSGroup.h */,
 				8CAC663B1A8CC2A800BF4C2C /* BSGroup.m */,
 				8CAC66311A8CB50800BF4C2C /* BSSchedule.h */,
 				8CAC66321A8CB50800BF4C2C /* BSSchedule.m */,
-				8C6001911A8B57120076BD36 /* BSPair.h */,
-				8C6001921A8B57120076BD36 /* BSPair.m */,
 				D1AF20C41A1966A200100B64 /* BSLecturer.h */,
 				D1AF20C51A1966A200100B64 /* BSLecturer.m */,
 				D1AF20C11A1966A200100B64 /* BSDayOfWeek.h */,
@@ -877,7 +877,6 @@
 				8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
 				8C6001B31A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
 				8C7793931A84CF36007AB2EF /* BSTriangleView.m in Sources */,
-				8C6001941A8B57120076BD36 /* BSPair.m in Sources */,
 				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				D196D0441A2A96CF00EA6901 /* BSSubject.m in Sources */,
 				8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
@@ -887,6 +886,7 @@
 				D196D0401A2A96CF00EA6901 /* BSLecturer.m in Sources */,
 				8C6001B51A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8C7793701A84CECE007AB2EF /* BSPairCell.m in Sources */,
+				8C69315C1A8D476800B56E48 /* BSPair.m in Sources */,
 				D196D0431A2A96CF00EA6901 /* BSWeekNumber.m in Sources */,
 				8CAC663D1A8CC2A800BF4C2C /* BSGroup.m in Sources */,
 				D196D0411A2A96CF00EA6901 /* BSDayOfWeek.m in Sources */,
@@ -939,10 +939,10 @@
 				8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */,
 				8C7793521A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				8CAC663C1A8CC2A800BF4C2C /* BSGroup.m in Sources */,
-				8C6001931A8B57120076BD36 /* BSPair.m in Sources */,
 				8C77934F1A84CD0B007AB2EF /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 				8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */,
 				8C7793551A84CD0B007AB2EF /* SlideNavigationController.m in Sources */,
+				8C69315B1A8D476800B56E48 /* BSPair.m in Sources */,
 				8C6001B91A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
