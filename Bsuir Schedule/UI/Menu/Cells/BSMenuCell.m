@@ -32,6 +32,10 @@
     [self addSubview:self.separator];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     if (selected) {
         self.backgroundColor = BS_GRAY;

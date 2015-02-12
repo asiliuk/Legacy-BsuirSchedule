@@ -65,6 +65,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                                                                                       target:self
                                                                                       action:@selector(addGroup)];
     addBarButtonItem.tintColor = [UIColor whiteColor];
+    addBarButtonItem.style = UIBarButtonItemStylePlain;
     self.navigationItem.rightBarButtonItem = addBarButtonItem;
     [self.tableView registerClass:[MGSwipeTableCell class] forCellReuseIdentifier:kScheduleCellID];
     
