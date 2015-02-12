@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class BSSchedule;
 @class BSDayWithWeekNum;
 @protocol BSDay <NSObject>
-- (NSArray*)allPairs;
+- (NSArray*)pairsForSchedule:(BSSchedule*)schedule weekFormat:(BOOL)weekFormat;
 - (NSString*)dayOfWeekName;
 - (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum*)object;
 - (BOOL)isEqualToDay:(BSDayOfWeek*)object;

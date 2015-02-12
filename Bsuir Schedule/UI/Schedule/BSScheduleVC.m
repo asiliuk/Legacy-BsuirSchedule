@@ -38,17 +38,87 @@ static NSString * const kCellID = @"Pair cell id";
 
 @property (strong, nonatomic) UIView *loadindicatorView;
 @property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
+
+@property (strong, nonatomic) NSArray *easterEggStrings;
 @end
 
 @implementation BSScheduleVC
 
-- (instancetype)init
+- (NSArray*)easterEggStrings {
+    if (!_easterEggStrings) {
+        _easterEggStrings = @[@"Остановись",
+                              @"Подумай о будущем",
+                              @"Не делай этого",
+                              @"У тебя еще вся жизнь впереди",
+                              @"Зачем тебе знать что будет потом",
+                              @"Там ничего нет",
+                              @"Жизнь тлен",
+                              @"Только не листай до конца",
+                              @"Ты не должен об этом узнать",
+                              @"Предупреждаю тебя парень",
+                              @"Там ничего нет",
+                              @"ОСТАНОВИСЬ",
+                              @"Ты сломаешь скролл",
+                              @"Ты сломаешь всю таблицу",
+                              @"Ее не починить",
+                              @"Подумай о своих родных",
+                              @"Остановись ради них",
+                              @"Сколько можно",
+                              @"Мне лень тебя переубеждать",
+                              @"Ты странный человек",
+                              @"На тебя еще не косятся люди?",
+                              @"Для чего ты это делаешь?",
+                              @"Кто тебя нанял?",
+                              @"Я устала скролиться",
+                              @"У меня нет конца",
+                              @"Это бессмысленно",
+                              @"Ты зря проживаешь свою жизнь",
+                              @"Сходи покушай",
+                              @"Иди попрограммируй",
+                              @"Ты же студент БГУИРа",
+                              @"Делай лабы",
+                              @"Делай лабы",
+                              @"Делай лабы",
+                              @"Делай лабы",
+                              @"Делай лабы",
+                              @"Я пытался помочь",
+                              @"ОТСТАНЬ ОТ МЕНЯ",
+                              @"Нормально же общались",
+                              @"Чего ты",
+                              @"АЙ, ВСЕ!",
+                              @"АЙ, ВСЕ!",
+                              @"АЙ, ВСЕ!",
+                              @"Тебе лишь бы меня поскролить",
+                              @"А на мои чувства тебе наплевать",
+                              @"Ты бкссчувственный",
+                              @"У таблиц тоже есть чувства",
+                              @"Тебе не интересно что мне нужно",
+                              @"Ну и листай себе дальше",
+                              @"Я не хочу общаться",
+                              @"Ты настырный",
+                              @"И упорный",
+                              @"Листай дальше",
+                              @"Тебя ждут несметные богатства и слава",
+                              @"Признание женщин",
+                              @"Успех",
+                              @"Уже совсем скоро",
+                              @"Еще чуть чуть",
+                              @"Еще чуть чуть.",
+                              @"Еще чуть чуть..",
+                              @"Еще чуть чуть..."];
+    }
+    return _easterEggStrings;
+}
+
+- (instancetype)initWithSchedule:(BSSchedule *)schedule
 {
     self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
     if (self) {
+        self.schedule = schedule;
     }
     return self;
 }
+
 - (UIView*)loadindicatorView {
     if (!_loadindicatorView) {
         _loadindicatorView = [[UIView alloc] initWithFrame:self.navigationController.view.bounds];
@@ -70,32 +140,40 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"L_Schedule", nil);
     UIView* bview = [[UIView alloc] init];
     bview.backgroundColor = BS_LIGHT_GRAY;
-    [self.tableView setBackgroundView:bview];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [self.navigationController.navigationBar setBarTintColor:BS_BLUE];
-    } else {
-        self.navigationController.navigationBar.tintColor = BS_BLUE;
-    }
-    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                                      NSFontAttributeName: titleFont}];
-    
+    [self.tableView setBackgroundView:bview];   
 
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
-    [self getScheduleData];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
     [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
+    [self setNavBarLabel];
+    [self getScheduleData];
 }
+
+- (void)setNavBarLabel {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 2;
+    label.textAlignment = NSTextAlignmentCenter;
+    NSMutableAttributedString *titleString= [[NSMutableAttributedString alloc] initWithString:LZD(@"L_Schedule")
+                                                                                   attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                                                                NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:16.0]}];
+    NSAttributedString *groupString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@/%@",self.schedule.group.groupNumber,self.schedule.subgroup]
+                                                                    attributes:@{NSForegroundColorAttributeName:[[UIColor whiteColor]
+                                                                                                                 colorWithAlphaComponent:0.7],
+                                                                                 NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+    [titleString appendAttributedString:groupString];
+    label.attributedText = titleString;
+    self.navigationItem.titleView = label;
+    
+}
+
 
 - (void)setupFormatChangeButtonForWeekFormat:(BOOL)weekFormat {
     UIButton *formatChangeButtonButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -114,45 +192,20 @@ static NSString * const kCellID = @"Pair cell id";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 - (void)getScheduleData {
-    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-    NSString *groupNumber = [sharedDefaults objectForKey:kUserGroup];
-    if (groupNumber) {
-        if ([BSScheduleParser scheduleNeedUpdateForGroup:groupNumber]) {
-                [self showLoadingView];
-            [BSScheduleParser scheduleForGroupNumber:groupNumber withSuccess:^{
+    if (self.schedule.group) {
+        if ([BSScheduleParser scheduleExpiresForGroup:self.schedule.group]) {
+            [self showLoadingView];
+            __weak typeof(self) weakSelf = self;
+            [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
+                typeof(weakSelf) self = weakSelf;
                 [self updateSchedule];
-            } failure:^{
                 [self hideLoadingView];
-                NSString *errorMessage = NSLocalizedString(@"L_LoadError", nil);
-                NSString *errorTitle = NSLocalizedString(@"L_Error", nil);
-                NSString *okButtonTitle = NSLocalizedString(@"L_Ok", nil);
-                if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:errorTitle
-                                                                                     message:errorMessage
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:okButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                    }];
-                    [alertVC addAction:okAction];
-                    [self presentViewController:alertVC animated:YES completion:nil];
-                } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorTitle
-                                                                    message:errorMessage
-                                                                   delegate:nil
-                                                          cancelButtonTitle:okButtonTitle otherButtonTitles: nil];
-                    [alert show];
-                }
+            } failure:^{
+                [weakSelf hideLoadingView];
             }];
-        } else {
-            if ([BSScheduleParser scheduleExpires]) {
-                [BSScheduleParser scheduleForGroupNumber:groupNumber withSuccess:^{
-                    [self updateSchedule];
-                } failure:nil];
-            }
-            [self updateSchedule];
         }
+        [self updateSchedule];
     }
 }
 
@@ -164,7 +217,8 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)updateSchedule {
     [self hideLoadingView];
-    self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlight];
+
+    self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:self.weekFormat];
     
     self.days = nil;
     if (self.weekFormat) {
@@ -195,7 +249,7 @@ static NSString * const kCellID = @"Pair cell id";
     NSPredicate *pairPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         BOOL filter = NO;
         if ([evaluatedObject isKindOfClass:[BSDayOfWeek class]]) {
-            filter = [[(BSDayOfWeek*)evaluatedObject pairs] count] > 0;
+            filter = [[(BSDayOfWeek*)evaluatedObject pairsForSchedule:self.schedule weekFormat:self.weekFormat] count] > 0;
         }
         return filter;
     }];
@@ -216,7 +270,7 @@ static NSString * const kCellID = @"Pair cell id";
     NSInteger daysAdded = 0;
     while (daysAdded < daysCount) {
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
-        if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairs] count] > 0 && !([dayDate isEqual:now] && backwards)) {
+        if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairsForSchedule:self.schedule weekFormat:self.weekFormat] count] > 0 && !([dayDate isEqual:now] && backwards)) {
             if (backwards) {
                 [self.days insertObject:dayWithWeekNum atIndex:0];
             } else {
@@ -245,25 +299,30 @@ static NSString * const kCellID = @"Pair cell id";
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table View
 
+- (NSArray*)pairsForDay:(id<BSDay>)day {
+
+    return [day pairsForSchedule:self.schedule weekFormat:self.weekFormat];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.days count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[self.days objectAtIndex:section] pairs] count];
+    return [[self pairsForDay:[self.days objectAtIndex:section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
     id<BSDay> day = [self.days objectAtIndex:indexPath.section];
-    NSArray *pairs = [day allPairs];
+    NSArray *pairs = [self pairsForDay:day];
     BSPair *pair = [pairs objectAtIndex:indexPath.row];
     cell.delegate = self;
-    [cell setupWithPair:pair inDay:day weekMode:self.weekFormat];
+    [cell setupWithPair:pair inDay:day forSchedule:self.schedule weekMode:self.weekFormat];
     return cell;
 }
 
+#define EASTERN_EGG_EDGE 100
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     id<BSDay> day = [self.days objectAtIndex:section];
@@ -309,8 +368,28 @@ static NSString * const kCellID = @"Pair cell id";
         }
         [label setTextColor:BS_RED];
     }
+    BOOL easterEggMode = NO;
+    if (section >= EASTERN_EGG_EDGE) {
+        if (section % 20 == 0) {
+            NSInteger stringIndex = [self easterEggIndexForSection:section];
+            if (stringIndex < [self.easterEggStrings count]) {
+                dayInfoString = [self.easterEggStrings objectAtIndex:stringIndex];
+                [label setTextColor:BS_BLUE];
+
+            } else {
+                easterEggMode = YES;
+            }
+        }
+    }
+    if ([[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode] != easterEggMode) {
+        [[NSUserDefaults sharedDefaults] setBool:easterEggMode forKey:kEasterEggMode];
+    }
     [label setText:dayInfoString];
     return view;
+}
+
+- (NSInteger)easterEggIndexForSection:(NSInteger)section {
+    return (section - EASTERN_EGG_EDGE) / 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

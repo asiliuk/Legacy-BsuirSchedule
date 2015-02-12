@@ -9,9 +9,11 @@
 "L_LoadError" = "Can't load schedule.";
 "L_Error" = "Error";
 "L_Ok" = "OK";
+"L_Delete" = "Delete";
 "L_Today" = "Today";
 "L_Tomorrow" = "Tomorrow";
 "L_Week" = "Week";
+"L_NoGroups" = "No groups";
 
 "Sh_Воскресенье" = "Sun.";
 "Sh_Понедельник" = "Mon.";
@@ -33,6 +35,8 @@
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";
 "L_Info" = "Info";
+"L_Groups" = "Groups";
+"L_AddGroup" = "Add group";
 
 "L_Colors" = "Colors";
 "L_Icons" = "Icons";

@@ -20,35 +20,26 @@
 #pragma mark - Schedule parsing
 #define UPDATE_INTERVAL 7*24*3600
 
-+ (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber {
-    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-    NSString *currentScheduleGroup = [sharedDefaults objectForKey:kCurrentScheduleGroup];
-    return  ![currentScheduleGroup isEqual:groupNumber];
-}
 
-+ (BOOL)scheduleExpires {
-    NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-    NSDate *lastUpdate = [sharedDefaults objectForKey:kLastUpdate];
++ (BOOL)scheduleExpiresForGroup:(BSGroup*)group {
+    NSDate *lastUpdate = group.lastUpdate;
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
     return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL);
 }
 
-+ (void)scheduleForGroupNumber:(NSString *)groupNumber withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
++ (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *data;
-        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:groupNumber]];
+        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:group.groupNumber]];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         data = [NSData dataWithContentsOfURL:url];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
         if (dict) {
-            NSString *databaseStamp = [[NSKeyedArchiver archivedDataWithRootObject:dict] MD5];
-            NSString *savedDatabaseStamp = [[NSUserDefaults sharedDefaults] objectForKey:kDatabaseStamp];
-            if (![databaseStamp isEqual:savedDatabaseStamp]) {
-                [[NSUserDefaults sharedDefaults] setObject:databaseStamp forKey:kDatabaseStamp];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [[BSDataManager sharedInstance] resetDatabase];
-                });
+            NSString *loadedScheduleStamp = [[NSKeyedArchiver archivedDataWithRootObject:dict] MD5];
+            NSString *savedScheduleStamp = group.scheduleStamp;
+            if (![loadedScheduleStamp isEqual:savedScheduleStamp]) {
+                [[BSDataManager sharedInstance] resetSceduleForGroup:group];
                 NSArray *scheduleData = dict[kScheduleModel];
                 for (NSDictionary *dayData in scheduleData) {
                     NSString *dayName = dayData[kDayName];
@@ -105,7 +96,7 @@
                         for (NSString *weekNumberData in weekNumbersData) {
                             [weekNumbers addObject:[[BSDataManager sharedInstance] weekNumberWithNumber:[weekNumberData integerValue] createIfNotExists:YES]];
                         }
-                        [[BSDataManager sharedInstance] addPairWithStartTime:[formatter dateFromString:startTime]
+                        [[BSDataManager sharedInstance] pairWithStartTime:[formatter dateFromString:startTime]
                                                                      endTime:[formatter dateFromString:endTime]
                                                               subgroupNumber:subgroupNumber
                                                                 pairTypeName:pairType
@@ -113,13 +104,16 @@
                                                                        atDay:day
                                                                      subject:subject
                                                                    lecturers:lecturers
-                                                                       weeks:weekNumbers];
+                                                                       weeks:weekNumbers
+                                                                    group:group
+                                                        createIfNotExists:YES];
                     }
                 }
+                group.lastUpdate = [NSDate date];
+                group.scheduleStamp = loadedScheduleStamp;
                 [[BSDataManager sharedInstance] saveContext];
-                NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-                [sharedDefaults setObject:[NSDate date] forKey:kLastUpdate];
-                [sharedDefaults setObject:groupNumber forKey:kCurrentScheduleGroup];
+                if (success) dispatch_async(dispatch_get_main_queue(), success);
+            } else {
                 if (success) dispatch_async(dispatch_get_main_queue(), success);
             }
         } else if (failure) {

@@ -7,12 +7,16 @@
 //
 
 #import "AppDelegate.h"
-#import "BSScheduleVC.h"
+
 #import "BSDataManager.h"
+#import "NSUserDefaults+Share.h"
+
+#import "BSConstants.h"
 
 #import "SlideNavigationController.h"
 #import "BSMenuVC.h"
-#import "BSConstants.h"
+#import "BSScheduleVC.h"
+#import "BSSettingsVC.h"
 
 @interface AppDelegate ()
 
@@ -22,29 +26,88 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self updateOldDatabaseForMultipleGroups];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    BSScheduleVC *scheduleVC = [[BSScheduleVC alloc] init];
-    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:scheduleVC];
+    UIViewController *mainVC;
+    BSSchedule *sch = [[[BSDataManager sharedInstance] schelules] firstObject];
+    if (sch) {
+        mainVC = [[BSScheduleVC alloc] initWithSchedule:sch];
+    } else {
+        mainVC = [[BSSettingsVC alloc] init];
+    }
+    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:mainVC];
+    [self customizeSlideNavigationController:slideNavController];
+    
+    self.window.rootViewController = slideNavController;
+    [self.window makeKeyAndVisible];
+    
+    [[NSUserDefaults sharedDefaults] setBool:NO forKey:kEasterEggMode];
+    
+    return YES;
+}
+
+- (void)customizeSlideNavigationController:(SlideNavigationController*)slideNavController {
+    slideNavController.avoidSwitchingToSameClassViewController = NO;
     slideNavController.leftMenu = [[BSMenuVC alloc] init];
-    // Creating a custom bar button for left menu
+    
+    slideNavController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [slideNavController.navigationBar setBarTintColor:BS_BLUE];
+    } else {
+        slideNavController.navigationBar.tintColor = BS_BLUE;
+    }
+    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
+    [slideNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                               NSFontAttributeName: titleFont}];
+    
+    
     UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [button setImage:[UIImage imageNamed:@"menu_burger"] forState:UIControlStateNormal];
     [button addTarget:slideNavController action:@selector(toggleLeftMenu) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     slideNavController.leftBarButtonItem = leftBarButtonItem;
     slideNavController.enableShadow = NO;
-    self.window.rootViewController = slideNavController;
-    [self.window makeKeyAndVisible];
-    
-    return YES;
+}
+
+- (void)updateOldDatabaseForMultipleGroups {
+    NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
+    NSString *groupNumber = [shared objectForKey:kCurrentScheduleGroup];
+    NSInteger subgroup = [shared integerForKey:kWidgetSubgroup];
+    if (groupNumber && subgroup) {
+        NSDate *lastUpdate = [shared objectForKey:kLastUpdate];
+        NSString *scheduleStamp = [shared objectForKey:kDatabaseStamp];
+        BSSchedule *schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:YES];
+        schedule.group.lastUpdate = lastUpdate;
+        schedule.group.scheduleStamp = scheduleStamp;
+        NSArray *pairs = [[BSDataManager sharedInstance] pairs];
+        for (BSPair *pair in pairs) {
+            if (![pair.groups containsObject:schedule.group]) {
+                [pair addGroupsObject:schedule.group];
+            }
+        }
+        
+        [shared setObject:nil forKey:kCurrentScheduleGroup];
+        [shared setObject:nil forKey:kUserSubgroup];
+        [shared setObject:nil forKey:kUserGroup];
+        
+        [shared setObject:nil forKey:kLastUpdate];
+        [shared setObject:nil forKey:kDatabaseStamp];
+        
+        [shared setObject:groupNumber forKey:kWidgetGroup];
+        [shared setInteger:subgroup forKey:kWidgetSubgroup];
+        
+        [[BSDataManager sharedInstance] saveContext];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    [[BSDataManager sharedInstance] saveContext];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -55,7 +118,6 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    [[BSDataManager sharedInstance] saveContext];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

@@ -12,14 +12,19 @@
 #import "BSScheduleVC.h"
 #import "BSTutorialVC.h"
 #import "BSSettingsVC.h"
+#import "BSDataManager.h"
 
 #import "BSConstants.h"
 @import MessageUI;
+
+static NSString * const kBSMenuItemType = @"kBSMenuItemType";
 
 static NSString * const kBSMenuItemTitle = @"kBSMenuItemTitle";
 static NSString * const kBSMenuItemImage = @"kBSMenuItemImage";
 static NSString * const kBSMenuItemBadgeCount = @"kBSMenuItemBadgeCount";
 static NSString * const kBSMenuItemClass = @"kBSMenuItemClass";
+
+static NSString * const kBSMenuItemSchedule = @"kBSMenuItemSchedule";
 
 static NSString * const kBSMenuCell = @"kBSMenuCell";
 
@@ -34,7 +39,6 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 @interface BSMenuVC () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) NSArray *menuItems;
-@property (strong, nonatomic) NSDictionary *menuItemsData;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) UIView *fixView;
@@ -59,6 +63,19 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 
     self.tableView.backgroundColor = [UIColor darkGrayColor];
     self.view.backgroundColor = [UIColor darkGrayColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leftMenuDidOpen)
+                                                 name:SlideNavigationControllerDidOpen
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(schedulesUpdate)
+                                                 name:kSchedulesGetUpdated
+                                               object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 //===============================================SLIDE MENU DELEGATE===========================================
@@ -66,57 +83,78 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 
 
 - (void)leftMenuDidOpen {
+    NSIndexPath *currVCIndexPath = [self currentControllerIndexPath];
+    if (currVCIndexPath) {
+        [self selectCellAtIndexPath:currVCIndexPath];
+    }
+}
+
+- (NSIndexPath*)currentControllerIndexPath {
+    NSIndexPath *currentControllerIndexPath;
     UIViewController *currentController = [SlideNavigationController sharedInstance].topViewController;
+    BSSchedule *currentSchedule;
+    if ([currentController isKindOfClass:[BSScheduleVC class]]) {
+        currentSchedule = [(BSScheduleVC*)currentController schedule];
+    }
     [self.tableView reloadData];
-    for (NSNumber *itemNumber in self.menuItems) {
-        NSDictionary *itemData = self.menuItemsData[itemNumber];
-        if ([NSStringFromClass([currentController class]) isEqual:NSStringFromClass(itemData[kBSMenuItemClass])]) {
-            NSInteger itemIndex = [self.menuItems indexOfObject:itemNumber];
+    for (NSDictionary *itemData in self.menuItems) {
+        BOOL scheduleCell = NO;
+        if ([itemData[kBSMenuItemType] isEqual:@(BSMenuItemSchedule)] && currentSchedule) {
+            BSSchedule *itemSchedule = itemData[kBSMenuItemSchedule];
+            scheduleCell = [itemSchedule isEqual:currentSchedule];
+        }
+        if ([NSStringFromClass([currentController class]) isEqual:NSStringFromClass(itemData[kBSMenuItemClass])] || scheduleCell) {
+            NSInteger itemIndex = [self.menuItems indexOfObject:itemData];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:itemIndex inSection:0];
-            [self selectCellAtIndexPath:indexPath];
+            currentControllerIndexPath = indexPath;
             break;
         }
     }
+    return currentControllerIndexPath;
 }
 
 //===============================================DATA===========================================
 #pragma mark - Data
 
-- (void)updateMenuItems{
-    self.menuItems = @[@(BSMenuItemSchedule), @(BSMenuItemSettings), @(BSMenuItemInfo),@(BSMenuItemFeedback)];
-    NSMutableDictionary *itemsData = [NSMutableDictionary dictionary];
-    NSDictionary *itemData;
-    
-    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Schedule", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_schedule"],
-                 kBSMenuItemClass: [BSScheduleVC class]};
-    itemsData[@(BSMenuItemSchedule)] = itemData;
-    
-    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
-    itemsData[@(BSMenuItemFeedback)] = itemData;
-    
-    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"],
-                 kBSMenuItemClass: [BSSettingsVC class]};
-    itemsData[@(BSMenuItemSettings)] = itemData;
-    
-    itemData = @{kBSMenuItemTitle: NSLocalizedString(@"L_Info", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_info"],
-                 kBSMenuItemClass: [BSTutorialVC class]};
-    itemsData[@(BSMenuItemInfo)] = itemData;
-    
-    self.menuItemsData = itemsData;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftMenuDidOpen) name:SlideNavigationControllerDidOpen object:nil];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)currentUserChanged {
+- (void)schedulesUpdate {
     [self updateMenuItems];
     [self.tableView reloadData];
+}
+
+- (void)updateMenuItems{
+    NSMutableArray *menuItems = [NSMutableArray array];
+    NSDictionary *itemData;
+    
+    NSArray *schedules = [[BSDataManager sharedInstance] schelules];
+    for (BSSchedule *schedule in schedules) {
+        NSInteger subgroup = [[schedule subgroup] integerValue];
+        NSString* title = [NSString stringWithFormat:@"%@/%ld",schedule.group.groupNumber, (long)subgroup];
+        itemData = @{kBSMenuItemType: @(BSMenuItemSchedule),
+                     kBSMenuItemTitle: title,
+                     kBSMenuItemImage: [UIImage imageNamed:@"menu_schedule"],
+                     kBSMenuItemSchedule: schedule};
+        [menuItems addObject:itemData];
+    }
+
+    
+    itemData = @{kBSMenuItemType: @(BSMenuItemFeedback),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
+    [menuItems addObject:itemData];
+
+    itemData = @{kBSMenuItemType: @(BSMenuItemSettings),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"],
+                 kBSMenuItemClass: [BSSettingsVC class]};
+    [menuItems addObject:itemData];
+
+    itemData = @{kBSMenuItemType: @(BSMenuItemInfo),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Info", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_info"],
+                 kBSMenuItemClass: [BSTutorialVC class]};
+    [menuItems addObject:itemData];
+
+    self.menuItems = menuItems;
 }
 
 //===============================================UI===========================================
@@ -133,13 +171,13 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     return [self.menuItems count];
 }
 
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSNumber *menuItem = [self.menuItems objectAtIndex:indexPath.row];
-    NSDictionary *menuItemData = [self.menuItemsData objectForKey:menuItem];
+    NSDictionary *menuItemData = [self.menuItems objectAtIndex:indexPath.row];
     
     BSMenuCell *menuCell = [tableView dequeueReusableCellWithIdentifier:kBSMenuCell forIndexPath:indexPath];
-    
-    [menuCell.titleLabel setText:menuItemData[kBSMenuItemTitle]];
+    NSString *title = menuItemData[kBSMenuItemTitle];
+     [menuCell.titleLabel setText:title];
     [menuCell.iconIV setImage:menuItemData[kBSMenuItemImage]];
 
 
@@ -179,25 +217,31 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self selectCellAtIndexPath:indexPath];
-    BSMenuItem menuItem = [self.menuItems[indexPath.row] intValue];
-    [self showVcForMenuItem:menuItem];
+    NSDictionary *menuItemData = self.menuItems[indexPath.row];
+    NSIndexPath *selectedCell = [self currentControllerIndexPath];
+    [SlideNavigationController sharedInstance].avoidSwitchingToSameClassViewController = selectedCell.row == indexPath.row;
+    [self showVcForMenuItemData:menuItemData];
 }
 
-- (void)showVcForMenuItem:(BSMenuItem)menuItem {
+- (void)showVcForMenuItemData:(NSDictionary*)menuItemData {
     UIViewController *rootVC;
-    
+    BSMenuItem menuItem = [menuItemData[kBSMenuItemType] integerValue];
     switch (menuItem) {
+        case BSMenuItemSchedule: {
+            BSSchedule *schedule = menuItemData[kBSMenuItemSchedule];
+            rootVC = [[BSScheduleVC alloc] initWithSchedule:schedule];
+            break;
+        }
         case BSMenuItemFeedback:
             [self showMailScreen];
             break;
         default: {
-            NSDictionary *itemData = self.menuItemsData[@(menuItem)];
-            rootVC = [[[itemData objectForKey:kBSMenuItemClass] alloc] init];
+            rootVC = [[[menuItemData objectForKey:kBSMenuItemClass] alloc] init];
             break;
         }
     }
     if (rootVC) {
-        [[SlideNavigationController sharedInstance] popAllAndSwitchToViewController:rootVC withCompletion:nil];
+        [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:rootVC withCompletion:nil];
     } else {
         [[SlideNavigationController sharedInstance] closeMenuWithCompletion:nil];
     }

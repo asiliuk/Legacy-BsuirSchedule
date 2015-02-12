@@ -165,16 +165,16 @@
     self.triangleView.fillColor = pairTypeIndicatorColor;
 }
 
-- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day {
-    [self setupWithPair:pair inDay:day weekMode:NO widgetMode:NO];
+- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule {
+    [self setupWithPair:pair inDay:day forSchedule:schedule weekMode:NO widgetMode:NO];
 }
-- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day widgetMode:(BOOL)widgetMode {
-    [self setupWithPair:pair inDay:day weekMode:NO widgetMode:widgetMode];
+- (void)setupWithPair:(BSPair *)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule widgetMode:(BOOL)widgetMode {
+    [self setupWithPair:pair inDay:day forSchedule:schedule weekMode:NO widgetMode:widgetMode];
 }
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode {
-    [self setupWithPair:pair inDay:day weekMode:weekMode widgetMode:NO];
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode {
+    [self setupWithPair:pair inDay:day forSchedule:schedule weekMode:weekMode widgetMode:NO];
 }
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode widgetMode:(BOOL)widgetMode {
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode widgetMode:(BOOL)widgetMode {
 
     UIColor *tintColorForImages = widgetMode ? [UIColor whiteColor] : BS_DARK;
     //-------------------------------Weeks label---------------------------------
@@ -223,6 +223,9 @@
     [self.auditoryLabel setText:pair.auditory.address];
     
     [self clearLecturersPreviews];
+    for (BSLecturerPreview *preview in self.lecturersPreviews) {
+        [preview removeFromSuperview];
+    }
     NSArray *lecturers = [[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]];
     for (BSLecturer *lecturer in lecturers) {
         NSInteger lecturerIndex = [lecturers indexOfObject:lecturer];
@@ -245,7 +248,7 @@
     self.subjectNameLabel.frame = subjectNameFrame;
     
     self.pairTypeIndicatorColor = [pair colorForPairType];
-    [self setupTriangleForPair:pair inDay:day];
+    [self setupTriangleForPair:pair inDay:day forSchedule:schedule weekMode:weekMode];
     
     if (widgetMode) {
         [self updateUIForWidget];
@@ -260,26 +263,27 @@
     
 }
 
-- (void)setupTriangleForPair:(BSPair*)pair inDay:(id<BSDay>)day {
+- (void)setupTriangleForPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode {
     NSDate *now = [NSDate date];
     BOOL cellForCurrentDay = NO;
     if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
         cellForCurrentDay = [now isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
     }
     
+    NSArray *pairs = [day pairsForSchedule:schedule weekFormat:weekMode];
     NSDate *startOfTimeInterval = pair.startTime;
     NSDate *endOfTimeInterval = pair.endTime;
     NSDate *startOfTimeIntervalWithOffset = pair.startTime;
     NSDate *endOfTimeIntervalWithOffset = pair.endTime;
-    NSInteger currentPairIndex = [[day allPairs] indexOfObject:pair];
+    NSInteger currentPairIndex = [pairs indexOfObject:pair];
     NSTimeInterval pairLength = fabs([[pair.endTime onlyTime] timeIntervalSinceDate:[pair.startTime onlyTime]]);
     NSTimeInterval indicatorTimeLength = pairLength * CGRectGetHeight(self.triangleView.bounds)/(2.0* CGRectGetHeight(self.bounds));
     if (currentPairIndex != 0) { //not first
-        startOfTimeInterval = [[[day allPairs] objectAtIndex:currentPairIndex-1] endTime];
+        startOfTimeInterval = [[pairs objectAtIndex:currentPairIndex-1] endTime];
         startOfTimeIntervalWithOffset = [startOfTimeInterval dateByAddingTimeInterval:-indicatorTimeLength];
     }
-    if (currentPairIndex != [[day allPairs] count] - 1) { // not last
-        endOfTimeInterval = [[[day allPairs] objectAtIndex:currentPairIndex+1] startTime];
+    if (currentPairIndex != [pairs count] - 1) { // not last
+        endOfTimeInterval = [[pairs objectAtIndex:currentPairIndex+1] startTime];
         endOfTimeIntervalWithOffset = [endOfTimeInterval dateByAddingTimeInterval:indicatorTimeLength];
     }
     BOOL showIndicator = [now isTimeBetweenTime:startOfTimeIntervalWithOffset andTime:endOfTimeIntervalWithOffset] && cellForCurrentDay;

@@ -22,9 +22,9 @@
 @property (nonatomic) BOOL showingLecturers;
 - (void)makeSelected:(BOOL)selected;
 
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode widgetMode:(BOOL)widgetMode;
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day widgetMode:(BOOL)widgetMode;
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day weekMode:(BOOL)weekMode;
-- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode widgetMode:(BOOL)widgetMode;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule widgetMode:(BOOL)widgetMode;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode;
+- (void)setupWithPair:(BSPair*)pair inDay:(id<BSDay>)day forSchedule:(BSSchedule*)schedule;
 - (void)updateUIForWidget;
 @end

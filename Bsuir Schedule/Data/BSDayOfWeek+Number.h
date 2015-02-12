@@ -10,7 +10,7 @@
 #import "BSDay.h"
 
 @interface BSDayOfWeek (Number) <BSDay>
-- (NSArray*)allPairs;
+- (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat;
 - (NSInteger)number;
 - (NSString*)dayOfWeekName;
 - (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum*)object;

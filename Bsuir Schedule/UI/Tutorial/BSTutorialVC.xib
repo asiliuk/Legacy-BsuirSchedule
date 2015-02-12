@@ -29,14 +29,14 @@
                 <outlet property="dailyIcon" destination="4Rx-y6-jBJ" id="SE4-Sh-lRR"/>
                 <outlet property="dayViewLabel" destination="r4O-gB-Kcn" id="2Xx-Vy-LSY"/>
                 <outlet property="iconsLabel" destination="HOt-ch-1kn" id="6jl-4x-RKz"/>
-                <outlet property="laborColorView" destination="Dev-jH-zoO" id="bNN-tb-aDQ"/>
+                <outlet property="laborColorView" destination="HpN-Ok-gdA" id="clO-FK-dEs"/>
                 <outlet property="labourLabel" destination="7Pk-XE-HwU" id="qQz-xu-o8o"/>
                 <outlet property="lectureColorView" destination="N28-ro-eEK" id="QMr-Kl-3hS"/>
                 <outlet property="lectureLabel" destination="84O-zX-xgK" id="jTB-eh-ZIn"/>
                 <outlet property="lecturerIV" destination="uJT-HE-AWy" id="QEa-qn-Z8K"/>
                 <outlet property="pairIndicatorView" destination="cf8-qG-SU7" id="hfA-RR-nN3"/>
                 <outlet property="pairTimeLabel" destination="b3x-aR-vpC" id="YAh-lN-IHr"/>
-                <outlet property="practiceColorView" destination="HpN-Ok-gdA" id="12v-M9-qCT"/>
+                <outlet property="practiceColorView" destination="Dev-jH-zoO" id="Vb7-p5-iFP"/>
                 <outlet property="practiceLabel" destination="1N7-vw-iJS" id="UZ1-sG-S1R"/>
                 <outlet property="subgroupLabel" destination="HiS-Xq-vNL" id="vLo-Ww-9sR"/>
                 <outlet property="subjectNameLabel" destination="cfc-fs-yOv" id="hM5-fM-sGB"/>

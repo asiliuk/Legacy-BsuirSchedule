@@ -35,15 +35,13 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     if (selected) {
         self.backgroundColor = BS_GRAY;
-//        self.separator.hidden = YES;
     } else {
         self.backgroundColor = [UIColor clearColor];
-//        self.separator.hidden = NO;
     }
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    
+    [self setSelected:highlighted animated:animated];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "BSDayOfWeek+Number.h"
 #import "BSDayWithWeekNum.h"
+#import "BSDataManager.h"
 
 @implementation BSDayOfWeek (Number)
 - (NSInteger)number {
@@ -16,10 +17,14 @@
 
 }
 
-- (NSArray*)allPairs {
-    NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-    return [self.pairs sortedArrayUsingDescriptors:@[sortD]];
+- (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat {
+    NSArray *sortedPairs = [[BSDataManager sharedInstance] sortPairs:[self.pairs allObjects]];
+    return [[BSDataManager sharedInstance] filterPairs:sortedPairs
+                                           forSchedule:schedule
+                                          forWekFormat:weekFormat];
+
 }
+
 
 - (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum *)object {
     return [self isEqualToDay:object.dayOfWeek];

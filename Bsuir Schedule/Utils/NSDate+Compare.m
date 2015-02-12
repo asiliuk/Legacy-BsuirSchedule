@@ -15,27 +15,29 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (BOOL)isEqualToDateWithoutTime:(NSDate*)date {
     BOOL equal = NO;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    NSInteger comps;
-    
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
-    } else {
-        comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
-    }
-    
-    NSDateComponents *date1Components = [calendar components:comps
-                                                    fromDate: self];
-    NSDateComponents *date2Components = [calendar components:comps
-                                                    fromDate: date];
-    
-    NSDate *date1 = [calendar dateFromComponents:date1Components];
-    NSDate *date2 = [calendar dateFromComponents:date2Components];
-    
-    NSComparisonResult result = [date1 compare:date2];
-    if (result != NSOrderedAscending && result != NSOrderedDescending) {
-        equal = YES;
+    if (date) {
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+        NSInteger comps;
+        
+        if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+            comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+        } else {
+            comps = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
+        }
+        
+        NSDateComponents *date1Components = [calendar components:comps
+                                                        fromDate: self];
+        NSDateComponents *date2Components = [calendar components:comps
+                                                        fromDate: date];
+        
+        NSDate *date1 = [calendar dateFromComponents:date1Components];
+        NSDate *date2 = [calendar dateFromComponents:date2Components];
+        
+        NSComparisonResult result = [date1 compare:date2];
+        if (result != NSOrderedAscending && result != NSOrderedDescending) {
+            equal = YES;
+        }
     }
     return equal;
 }

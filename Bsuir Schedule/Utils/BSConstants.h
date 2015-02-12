@@ -56,6 +56,12 @@
 //-------------------------------SCHEDULE KEYS---------------------------------
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
 
+static NSString * const kWidgetID = @"com.saute.Bsuir-Schedule.Schedule";
+static NSString * const kWidgetGroup = @"kWidgetGroup";
+static NSString * const kWidgetSubgroup = @"kWidgetSubgroup";
+
+static NSString * const kEasterEggMode = @"kEasterEggMode";
+
 static NSString * const kAppGroup = @"group.schedule_container";
 
 static NSString * const kLastUpdate = @"last update";
@@ -85,6 +91,7 @@ static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
 static NSString * const kDidComeFromBackground = @"kDidComeFromBackground";
+static NSString * const kSchedulesGetUpdated = @"kSchedulesGetUpdated";
 
 
 #endif

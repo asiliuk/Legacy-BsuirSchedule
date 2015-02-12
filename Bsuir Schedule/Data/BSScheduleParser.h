@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BSGroup.h"
 
 @interface BSScheduleParser : NSObject
-+ (BOOL)scheduleNeedUpdateForGroup:(NSString *)groupNumber;
-+ (BOOL)scheduleExpires;
-+ (void)scheduleForGroupNumber:(NSString *)groupNumber withSuccess:(void (^)(void))success failure:(void (^)(void))failure;
++ (BOOL)scheduleExpiresForGroup:(BSGroup*)group;
++ (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure;
 @end

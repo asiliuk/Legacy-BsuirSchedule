@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BSScheduleAddVC">
+            <connections>
+                <outlet property="groupNumberTF" destination="oVG-Qe-udq" id="Ozu-H2-GLX"/>
+                <outlet property="subgroupTF" destination="ObU-GG-bfp" id="gT2-NS-DpJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="94" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-0J-Y4c">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWB-Hj-BaM">
+                            <rect key="frame" x="20" y="50" width="300" height="1"/>
+                            <color key="backgroundColor" red="0.88937298207890103" green="0.88824453431509287" blue="0.90795570595662511" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="bEg-1E-5x4"/>
+                            </constraints>
+                        </view>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oVG-Qe-udq">
+                            <rect key="frame" x="20" y="0.0" width="292" height="51"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="51" id="FPD-cr-eC1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subgroup" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ObU-GG-bfp">
+                            <rect key="frame" x="20" y="50" width="292" height="51"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="CWB-Hj-BaM" secondAttribute="centerY" constant="-0.5" id="1Xa-5D-jlA"/>
+                        <constraint firstAttribute="trailing" secondItem="oVG-Qe-udq" secondAttribute="trailing" constant="8" id="3s0-DH-27W"/>
+                        <constraint firstItem="CWB-Hj-BaM" firstAttribute="leading" secondItem="dsZ-0J-Y4c" secondAttribute="leading" constant="20" id="423-EF-vR2"/>
+                        <constraint firstItem="ObU-GG-bfp" firstAttribute="width" secondItem="oVG-Qe-udq" secondAttribute="width" id="98d-y3-TaL"/>
+                        <constraint firstItem="ObU-GG-bfp" firstAttribute="trailing" secondItem="oVG-Qe-udq" secondAttribute="trailing" id="9Za-qe-mmW"/>
+                        <constraint firstAttribute="height" constant="100" id="CIF-2v-TMM"/>
+                        <constraint firstItem="ObU-GG-bfp" firstAttribute="top" secondItem="oVG-Qe-udq" secondAttribute="bottom" constant="-1" id="ITt-ut-cp8"/>
+                        <constraint firstItem="ObU-GG-bfp" firstAttribute="leading" secondItem="oVG-Qe-udq" secondAttribute="leading" id="Md1-xX-prG"/>
+                        <constraint firstItem="oVG-Qe-udq" firstAttribute="top" secondItem="dsZ-0J-Y4c" secondAttribute="top" id="OwP-bd-sS0"/>
+                        <constraint firstItem="ObU-GG-bfp" firstAttribute="height" secondItem="oVG-Qe-udq" secondAttribute="height" id="iJv-E7-0y0"/>
+                        <constraint firstItem="oVG-Qe-udq" firstAttribute="leading" secondItem="dsZ-0J-Y4c" secondAttribute="leading" constant="20" id="ols-O6-eKG"/>
+                        <constraint firstAttribute="trailing" secondItem="CWB-Hj-BaM" secondAttribute="trailing" id="urx-Zi-i1n"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dsZ-0J-Y4c" secondAttribute="trailing" id="G6t-04-v4i"/>
+                <constraint firstItem="dsZ-0J-Y4c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VzE-Ev-Amj"/>
+                <constraint firstItem="dsZ-0J-Y4c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jMu-eZ-dKz"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
