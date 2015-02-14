@@ -61,6 +61,7 @@
                            lecturerID:(NSInteger)lecturerID;
 //-------------------------------Day---------------------------------
 - (NSArray*)days;
+- (NSNumber*)dayNumberForDay:(BSDayOfWeek*)dayOfWeek;
 - (BSDayOfWeek*)dayWithDate:(NSDate*)date;
 - (BSDayOfWeek*)dayWithName:(NSString*)dayName createIfNotExists:(BOOL)createIfNotExists;
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists;

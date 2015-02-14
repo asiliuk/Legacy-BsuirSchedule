@@ -12,6 +12,7 @@
 #import "BSConstants.h"
 #import "NSDate+Compare.h"
 #import "NSUserDefaults+Share.h"
+#import "BSDayOfWeek+Number.h"
 #import <NotificationCenter/NotificationCenter.h>
 
 @interface BSDataManager()
@@ -50,7 +51,7 @@
     for (NSInteger dayIndex = 0; dayIndex < MAX_INTERVAL_TO_HIGHLIGHT; dayIndex++) {
         NSDate *dayDate = [now dateByAddingTimeInterval:DAY_IN_SECONDS*dayIndex];
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
-        if (dayWithWeekNum && [dayWithWeekNum.pairs count] > 0) {
+        if (dayWithWeekNum && [[dayWithWeekNum pairsForSchedule:schedule weekFormat:weekMode] count] > 0) {
             BOOL today = [now isEqual:dayDate];
             NSArray *pairs = [dayWithWeekNum pairsForSchedule:schedule weekFormat:weekMode];
             NSDate *todayLastPairEnd = [[pairs lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
@@ -64,6 +65,7 @@
     }
     return dayToHighlight;
 }
+
 //===============================================SCHEDULE===========================================
 #pragma mark - Schedule
 
@@ -77,6 +79,9 @@
 
 - (void)deleteSchedule:(BSSchedule *)schedule {
     BSGroup *group = schedule.group;
+    if ([self.currentWidgetSchedule isEqual:schedule]) {
+        self.currentWidgetSchedule = nil;
+    }
     [self.managedObjectContext deleteObject:schedule];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([BSSchedule class])];
@@ -130,8 +135,14 @@
         NCWidgetController *widgetController = [[NCWidgetController alloc] init];
         [widgetController setHasContent:YES forWidgetWithBundleIdentifier:kWidgetID];
     }
-    [[NSUserDefaults sharedDefaults] setObject:currentWidgetSchedule.group.groupNumber forKey:kWidgetGroup];
-    [[NSUserDefaults sharedDefaults] setObject:currentWidgetSchedule.subgroup forKey:kWidgetSubgroup];
+    [[NSUserDefaults sharedDefaults] setObject:(currentWidgetSchedule.group.groupNumber) ?
+                                                currentWidgetSchedule.group.groupNumber :
+                                                @""
+                                        forKey:kWidgetGroup];
+    [[NSUserDefaults sharedDefaults] setObject:(currentWidgetSchedule.subgroup) ?
+                                                currentWidgetSchedule.subgroup :
+                                                @""
+                                        forKey:kWidgetSubgroup];
     
 }
 //===============================================GROUP===========================================
@@ -257,9 +268,15 @@
     [daysRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObjects:@"pairs", nil]];
     NSArray *days = [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
     NSArray *sortedDays = [days sortedArrayUsingComparator:^NSComparisonResult(BSDayOfWeek* obj1, BSDayOfWeek* obj2) {
-        return [@([obj1 number]) compare:@([obj2 number])];
+        return [[self dayNumberForDay:obj1] compare:[self dayNumberForDay:obj2]];
     }];
     return sortedDays;
+}
+
+- (NSNumber*)dayNumberForDay:(BSDayOfWeek*)dayOfWeek {
+    NSArray *dayOrder = @[@"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота", @"Воскресенье"];
+    return @([dayOrder indexOfObject:dayOfWeek.name]);
+
 }
 
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {

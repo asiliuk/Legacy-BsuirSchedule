@@ -11,11 +11,6 @@
 #import "BSDataManager.h"
 
 @implementation BSDayOfWeek (Number)
-- (NSInteger)number {
-    NSArray *dayOrder = @[@"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота", @"Воскресенье"];
-    return [dayOrder indexOfObject:self.name];
-
-}
 
 - (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat {
     NSArray *sortedPairs = [[BSDataManager sharedInstance] sortPairs:[self.pairs allObjects]];
@@ -31,7 +26,8 @@
 }
 
 - (BOOL)isEqualToDay:(BSDayOfWeek *)object {
-    return [object number] == [self number];
+    
+    return  [[[BSDataManager sharedInstance] dayNumberForDay:object] isEqual:[[BSDataManager sharedInstance]dayNumberForDay:self]];
 }
 - (NSString*)dayOfWeekName {
     return self.name;

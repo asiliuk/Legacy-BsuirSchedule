@@ -35,7 +35,7 @@ static NSString * const kCellID = @"today view cell";
     NSInteger subgroup = [shared integerForKey:kWidgetSubgroup];
     self.schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:NO];
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:NO];
-    self.preferredContentSize = CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [self.dayToHighlight.pairs count] * CELL_HEIGHT);
+    self.preferredContentSize = CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count] * CELL_HEIGHT);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     BOOL hasDataToDisplay = NO;
     if (self.dayToHighlight.dayOfWeek) {
@@ -75,7 +75,7 @@ static NSString * const kCellID = @"today view cell";
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    BSDayWithWeekNum *day = nil;//[[BSDataManager sharedInstance] dayToHighlight];
+    BSDayWithWeekNum *day = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:NO];
     
     if ([self.dayToHighlight isEqual:day]) {
         completionHandler(NCUpdateResultNoData);
@@ -103,7 +103,7 @@ static NSString * const kCellID = @"today view cell";
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dayToHighlight.pairs count];
+    return [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

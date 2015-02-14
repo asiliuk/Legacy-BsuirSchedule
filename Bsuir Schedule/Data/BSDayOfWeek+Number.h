@@ -11,7 +11,6 @@
 
 @interface BSDayOfWeek (Number) <BSDay>
 - (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat;
-- (NSInteger)number;
 - (NSString*)dayOfWeekName;
 - (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum*)object;
 - (BOOL)isEqualToDay:(BSDayOfWeek*)object;

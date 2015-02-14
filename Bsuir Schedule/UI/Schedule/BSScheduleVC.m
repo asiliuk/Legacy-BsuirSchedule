@@ -194,17 +194,6 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)getScheduleData {
     if (self.schedule.group) {
-        if ([BSScheduleParser scheduleExpiresForGroup:self.schedule.group]) {
-            [self showLoadingView];
-            __weak typeof(self) weakSelf = self;
-            [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
-                typeof(weakSelf) self = weakSelf;
-                [self updateSchedule];
-                [self hideLoadingView];
-            } failure:^{
-                [weakSelf hideLoadingView];
-            }];
-        }
         [self updateSchedule];
     }
 }
@@ -257,6 +246,7 @@ static NSString * const kCellID = @"Pair cell id";
     self.days = [days mutableCopy];
 }
 
+#define MAAX_TRY_COUNT 100
 - (void)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
     NSDate *now = [NSDate date];
     NSDate *dayDate = now; // to show two previous days
@@ -268,7 +258,8 @@ static NSString * const kCellID = @"Pair cell id";
         }
     }
     NSInteger daysAdded = 0;
-    while (daysAdded < daysCount) {
+    NSInteger tryies = 0;
+    while (daysAdded < daysCount && tryies < MAAX_TRY_COUNT) {
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
         if (dayWithWeekNum.dayOfWeek && [[dayWithWeekNum pairsForSchedule:self.schedule weekFormat:self.weekFormat] count] > 0 && !([dayDate isEqual:now] && backwards)) {
             if (backwards) {
@@ -279,6 +270,7 @@ static NSString * const kCellID = @"Pair cell id";
             }
             daysAdded++;
         }
+        tryies ++;
         dayDate = [dayDate dateByAddingTimeInterval:(backwards ? -1 : 1)*DAY_IN_SECONDS];
     }
 }
@@ -334,8 +326,10 @@ static NSString * const kCellID = @"Pair cell id";
         tomorrow = [[now dateByAddingTimeInterval:DAY_IN_SECONDS] isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
     } else if ([day isKindOfClass:[BSDayOfWeek class]]){
         BSDayOfWeek *dayOfWeek = [[BSDataManager sharedInstance] dayWithDate:now];
-        currentDay = [dayOfWeek  number] == [(BSDayOfWeek*)day number];
-        tomorrow = [dayOfWeek  number] + 1 == [(BSDayOfWeek*)day number];
+        NSInteger dayOfWeekNumber = [[[BSDataManager sharedInstance]dayNumberForDay:dayOfWeek] integerValue];
+        NSInteger dayNumber = [[[BSDataManager sharedInstance]dayNumberForDay:day] integerValue];
+        currentDay = dayOfWeekNumber == dayNumber;
+        tomorrow = dayOfWeekNumber + 1 == dayNumber;
     }
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
