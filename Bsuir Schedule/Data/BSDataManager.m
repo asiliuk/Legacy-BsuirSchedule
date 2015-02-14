@@ -80,7 +80,7 @@
 - (void)deleteSchedule:(BSSchedule *)schedule {
     BSGroup *group = schedule.group;
     if ([self.currentWidgetSchedule isEqual:schedule]) {
-        self.currentWidgetSchedule = nil;
+        self.currentWidgetSchedule = [[self schelules] firstObject];
     }
     [self.managedObjectContext deleteObject:schedule];
 
