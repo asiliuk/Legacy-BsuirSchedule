@@ -79,6 +79,9 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 }
 - (void)addGroup {
     BSScheduleAddVC *scheduleAddVC = [[BSScheduleAddVC alloc] init];
+    for (MGSwipeTableCell *cell in [self.tableView visibleCells]) {
+        [cell hideSwipeAnimated:YES];
+    }
     scheduleAddVC.delegate = self;
     [self.navigationController pushViewController:scheduleAddVC animated:YES];
 }
@@ -99,7 +102,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
         __weak typeof(self) weakself = self;
         NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
         BSSchedule *schedule = [self.schedules objectAtIndex:cellIndexPath.row];
-        MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:LZD(@"L_Delete") backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+        MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"trash"] backgroundColor:[UIColor redColor] padding:30.0 callback:^BOOL(MGSwipeTableCell *sender) {
             typeof(weakself) self = weakself;
             
             
@@ -154,10 +157,22 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                                    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                                }
                            } failure:^{
+//                               typeof(weakSelf) self = weakSelf;
+//                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
+//                               [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
+//                               [self hideLoadingView];
                                typeof(weakSelf) self = weakSelf;
-                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
-                               [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
                                [self hideLoadingView];
+                               if (![self.schedules containsObject:schedule]) {
+                                   [self.schedules addObject:schedule];
+                                   
+                                   if ([BSDataManager sharedInstance].currentWidgetSchedule == nil) {
+                                       [BSDataManager sharedInstance].currentWidgetSchedule = schedule;
+                                   }
+                                   
+                                   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.schedules count]-1 inSection:0];
+                                   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               }
                            }];
 }
 

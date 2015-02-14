@@ -14,6 +14,9 @@
 "L_Tomorrow" = "Tomorrow";
 "L_Week" = "Week";
 "L_NoGroups" = "No groups";
+"L_SettingsSwipe" = "Swipe left in settings for options";
+"L_StarMeaning" = "In widget";
+"L_SubgroupMeaning" = "By subgroups";
 
 "Sh_Воскресенье" = "Sun.";
 "Sh_Понедельник" = "Mon.";

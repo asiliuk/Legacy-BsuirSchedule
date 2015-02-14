@@ -40,6 +40,13 @@
 
 @property (strong, nonatomic) IBOutlet UIView *pairIndicatorView;
 
+@property (weak, nonatomic) IBOutlet UILabel *settingSwipeLabel;
+@property (weak, nonatomic) IBOutlet UIView *starButton;
+@property (weak, nonatomic) IBOutlet UILabel *starLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *subgroupIndMeaningLabel;
+
+
 @end
 
 @implementation BSTutorialVC
@@ -82,8 +89,19 @@
     NSString *timeString = [NSString stringWithFormat:@"%@\n-\n%@", LZD(@"L_StartTime"),LZD(@"L_EndTime")];
     [self setTimeText:timeString];
     
-    
     self.pairIndicatorView.backgroundColor = [BSPair colorForPairType:BSPairTypeLecture];
+    
+    self.starButton.hidden = SYSTEM_VERSION_LESS_THAN(@"8.0");
+    self.starButton.backgroundColor = BS_YELLOW;
+    
+    self.settingSwipeLabel.textColor = BS_DARK;
+    [self.settingSwipeLabel setText:LZD(@"L_SettingsSwipe")];
+    
+    [self.starLabel setText:LZD(@"L_StarMeaning")];
+
+    [self.subgroupIndMeaningLabel setText:[NSString stringWithFormat:@"%@\n☟",LZD(@"L_SubgroupMeaning")]];
+
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 
