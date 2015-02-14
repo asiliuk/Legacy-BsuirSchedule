@@ -109,10 +109,16 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                                [self hideLoadingView];
                                [self.schedules addObject:schedule];
                                
+                               if (![[NSUserDefaults sharedDefaults] objectForKey:kWidgetGroup]) {
+                                   [[NSUserDefaults sharedDefaults] setObject:schedule.group.groupNumber forKey:kWidgetGroup];
+                                   [[NSUserDefaults sharedDefaults] setObject:schedule.subgroup forKey:kWidgetGroup];
+                               }
+                               
                                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.schedules count]-1 inSection:0];
                                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                            } failure:^{
                                typeof(weakSelf) self = weakSelf;
+                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
                                [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
                                [self hideLoadingView];
                            }];
@@ -177,6 +183,12 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     [cell.textLabel setText:[NSString stringWithFormat:@"%@/%ld",schedule.group.groupNumber,(long)[schedule.subgroup integerValue]]];
     MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:LZD(@"L_Delete") backgroundColor:[UIColor redColor]];
     cell.rightButtons = @[deleteBtn];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        MGSwipeButton *starBtn = [MGSwipeButton buttonWithTitle:@"st" backgroundColor:BS_YELLOW];
+        cell.leftButtons = @[starBtn];
+    }
+    
     cell.delegate = self;
     return cell;
 }

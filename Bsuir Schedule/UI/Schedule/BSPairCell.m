@@ -238,14 +238,16 @@
     for (BSLecturer *lecturer in lecturers) {
         NSInteger lecturerIndex = [lecturers indexOfObject:lecturer];
         NSInteger lecturerReverseIndex = [lecturers count] - lecturerIndex;
-        CGFloat lecturerX = self.pairView.frame.size.width  - LECTURER_IMAGE_WIDTH - lecturerReverseIndex *OFFSET;
-        BSLecturerPreview *lecturerPreview = [[BSLecturerPreview alloc] initWithFrame:CGRectMake(lecturerX,
-                                                                                                 0,
-                                                                                                 LECTURER_IMAGE_WIDTH,
-                                                                                                 self.pairView.frame.size.height)];
-        [lecturerPreview setupWithLecturer:lecturer];
+        CGFloat lecturerOffset = lecturerReverseIndex *OFFSET;
+        BSLecturerPreview *lecturerPreview = [[BSLecturerPreview alloc] init];
         [self.pairView addSubview:lecturerPreview];
+
+        lecturerPreview.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lecturerPreview(width)]-offset-|" options:0 metrics:@{@"offset": @(lecturerOffset), @"width": @(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(lecturerPreview)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[lecturerPreview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lecturerPreview)]];
+        [lecturerPreview setupWithLecturer:lecturer];
         [self.lecturersPreviews addObject:lecturerPreview];
+
     }
     
     CGRect subjectNameFrame = self.subjectNameLabel.frame;

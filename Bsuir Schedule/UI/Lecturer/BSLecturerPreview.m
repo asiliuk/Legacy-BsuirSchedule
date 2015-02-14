@@ -22,17 +22,29 @@
     self.lecturerIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
     self.lecturerIV.image = [lecturer thumbnail];
     self.lecturerIV.contentMode = UIViewContentModeScaleAspectFill;
-    self.lecturerIV.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
-    [self.lecturerIV.layer setCornerRadius:self.lecturerIV.bounds.size.width / 2.0];
+    [self.lecturerIV.layer setCornerRadius:LECTURER_IMAGE_WIDTH / 2.0];
     self.lecturerIV.layer.masksToBounds = YES;
     
     [self addSubview:self.lecturerIV];
     
-    UILabel *lecturerLastNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(HORISONTAL_OFFSET, CGRectGetMaxY(self.lecturerIV.frame) + VERTICAL_OFFSET, self.frame.size.width - 2*HORISONTAL_OFFSET, 14.0)];
+    self.lecturerIV.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLog(@"%@",NSDictionaryOfVariableBindings(_lecturerIV));
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_lecturerIV(width)]" options:0  metrics:@{@"width":@(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(_lecturerIV)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lecturerIV(height)]" options:0 metrics:@{@"height":@(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(_lecturerIV)]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.lecturerIV attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.lecturerIV attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    UILabel *lecturerLastNameLabel = [[UILabel alloc] init];
     [lecturerLastNameLabel setText:lecturer.lastName];
     [lecturerLastNameLabel setFont:[UIFont fontWithName:@"OpenSans" size:LECTURER_NAME_FONT_SIZE]];
     lecturerLastNameLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:lecturerLastNameLabel];
+    
+    lecturerLastNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-offset-[lecturerLastNameLabel]-offset-|" options:0 metrics:@{@"offset": @(HORISONTAL_OFFSET)} views:NSDictionaryOfVariableBindings(lecturerLastNameLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lecturerIV]-offset-[lecturerLastNameLabel(14.0)]" options:0 metrics:@{@"offset": @(VERTICAL_OFFSET)} views:NSDictionaryOfVariableBindings(_lecturerIV,lecturerLastNameLabel)]];
+    
+    
     lecturerLastNameLabel.hidden = YES;
     self.lecturerNameLabel = lecturerLastNameLabel;
     
