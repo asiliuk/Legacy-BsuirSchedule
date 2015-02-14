@@ -158,7 +158,6 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                                [[BSDataManager sharedInstance] deleteSchedule:schedule];
                                [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
                                [self hideLoadingView];
-                               }
                            }];
 }
 
