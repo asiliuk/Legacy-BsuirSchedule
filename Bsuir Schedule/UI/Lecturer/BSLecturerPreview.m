@@ -28,7 +28,6 @@
     [self addSubview:self.lecturerIV];
     
     self.lecturerIV.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLog(@"%@",NSDictionaryOfVariableBindings(_lecturerIV));
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_lecturerIV(width)]" options:0  metrics:@{@"width":@(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(_lecturerIV)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lecturerIV(height)]" options:0 metrics:@{@"height":@(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(_lecturerIV)]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.lecturerIV attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];

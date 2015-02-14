@@ -43,7 +43,7 @@ static NSString * const kCellID = @"today view cell";
         hasDataToDisplay = YES;
     }
     NCWidgetController *widgetController = [[NCWidgetController alloc] init];
-    [widgetController setHasContent:hasDataToDisplay forWidgetWithBundleIdentifier:@"com.saute.Bsuir-Schedule.Schedule"];
+    [widgetController setHasContent:hasDataToDisplay forWidgetWithBundleIdentifier:kWidgetID];
 }
 
 - (void)didReceiveMemoryWarning {
