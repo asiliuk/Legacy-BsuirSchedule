@@ -347,7 +347,7 @@ static NSString * const kCellID = @"Pair cell id";
 
     [label setTextColor:BS_GRAY];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor groupTableViewBackgroundColorba]];
+    [view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     [label setBackgroundColor:[UIColor clearColor]];
     NSString *dayInfoString;
     if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
@@ -393,7 +393,7 @@ static NSString * const kCellID = @"Pair cell id";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 73.0;
+    return 70.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

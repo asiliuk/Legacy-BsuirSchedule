@@ -11,6 +11,8 @@
 #import "XMLDictionary.h"
 #import "BSConstants.h"
 #import "NSDate+Compare.h"
+#import "NSUserDefaults+Share.h"
+#import <NotificationCenter/NotificationCenter.h>
 
 @interface BSDataManager()
 @property (strong, nonatomic) NSArray *weekDays;
@@ -116,6 +118,22 @@
     }
     return schedule;
 }
+@dynamic currentWidgetSchedule;
+- (BSSchedule*)currentWidgetSchedule {
+    NSString *widgetGroup = [[NSUserDefaults sharedDefaults] objectForKey:kWidgetGroup];
+    NSNumber *widgetSubgroup = [[NSUserDefaults sharedDefaults] objectForKey:kWidgetSubgroup];
+    return [self scheduleWithGroupNumber:widgetGroup andSubgroup:[widgetSubgroup integerValue] createIfNotExists:NO];
+}
+
+- (void)setCurrentWidgetSchedule:(BSSchedule *)currentWidgetSchedule {
+    if ([currentWidgetSchedule.group.pairs count] > 0) {
+        NCWidgetController *widgetController = [[NCWidgetController alloc] init];
+        [widgetController setHasContent:YES forWidgetWithBundleIdentifier:kWidgetID];
+    }
+    [[NSUserDefaults sharedDefaults] setObject:currentWidgetSchedule.group.groupNumber forKey:kWidgetGroup];
+    [[NSUserDefaults sharedDefaults] setObject:currentWidgetSchedule.subgroup forKey:kWidgetSubgroup];
+    
+}
 //===============================================GROUP===========================================
 #pragma mark - Group
 
@@ -126,17 +144,19 @@
 
 - (BSGroup*)groupWithNumber:(NSString *)number createIfNotExists:(BOOL)createIfNotExists {
     BSGroup *group;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSGroup class])];
-    NSPredicate *numberPredicate = [NSPredicate predicateWithFormat:@"groupNumber == %@", number];
-    request.predicate = numberPredicate;
-    NSError *error;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Error in group fetch: %@", error.localizedDescription);
-    }else if ([results count] > 0) {
-        group = [results lastObject];
-    } else if (createIfNotExists) {
-        group = [self addGroupWithNumber:number];
+    if (number && [number isKindOfClass:[NSString class]]) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSGroup class])];
+        NSPredicate *numberPredicate = [NSPredicate predicateWithFormat:@"groupNumber == %@", number];
+        request.predicate = numberPredicate;
+        NSError *error;
+        NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"Error in group fetch: %@", error.localizedDescription);
+        }else if ([results count] > 0) {
+            group = [results lastObject];
+        } else if (createIfNotExists) {
+            group = [self addGroupWithNumber:number];
+        }
     }
     return group;
 }

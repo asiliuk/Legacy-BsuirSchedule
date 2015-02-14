@@ -38,6 +38,7 @@
 - (BSSchedule*)scheduleWithGroupNumber:(NSString*)groupNumber andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists;
 - (BSSchedule*)scheduleWithGroup:(BSGroup*)group andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists;
 
+@property BSSchedule *currentWidgetSchedule;
 //-------------------------------Groups---------------------------------
 - (NSArray*)groups;
 - (BSGroup*)groupWithNumber:(NSString*)number createIfNotExists:(BOOL)createIfNotExists;

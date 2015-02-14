@@ -29,6 +29,8 @@
 @property (strong, nonatomic) NSMutableArray *schedules;
 
 @property (strong, nonatomic) UIView *loadindicatorView;
+
+@property (nonatomic) BOOL updateCells;
 @end
 
 @implementation BSSettingsVC
@@ -83,15 +85,49 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 
 //===============================================MG SWYPE CELL===========================================
 #pragma mark - MG Swype cell
--(BOOL) swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion {
-    NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
-    if (cellIndexPath.row >= 0) {
-        BSSchedule *schedule = [self.schedules objectAtIndex:cellIndexPath.row];
-        [self.schedules removeObject:schedule];
-        [[BSDataManager sharedInstance] deleteSchedule:schedule];
-        [self.tableView deleteRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+
+- (void)swipeTableCell:(MGSwipeTableCell *)cell didChangeSwipeState:(MGSwipeState)state gestureIsActive:(BOOL)gestureIsActive {
+    if (state == MGSwipeStateNone && self.updateCells) {
+        [self.tableView reloadData];
+        self.updateCells = NO;
     }
-    return YES;
+}
+
+- (NSArray*)swipeTableCell:(MGSwipeTableCell *)cell swipeButtonsForDirection:(MGSwipeDirection)direction swipeSettings:(MGSwipeSettings *)swipeSettings expansionSettings:(MGSwipeExpansionSettings *)expansionSettings {
+    NSMutableArray *btns = [NSMutableArray array];
+    if (direction == MGSwipeDirectionRightToLeft) {
+        __weak typeof(self) weakself = self;
+        NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+        BSSchedule *schedule = [self.schedules objectAtIndex:cellIndexPath.row];
+        MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:LZD(@"L_Delete") backgroundColor:[UIColor redColor] callback:^BOOL(MGSwipeTableCell *sender) {
+            typeof(weakself) self = weakself;
+            
+            
+            [self.schedules removeObject:schedule];
+            [[BSDataManager sharedInstance] deleteSchedule:schedule];
+            [self.tableView deleteRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            return YES;
+        }];
+        [btns addObject:deleteBtn];
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+            UIImage *starImg;
+            if ([schedule isEqual:[BSDataManager sharedInstance].currentWidgetSchedule]) {
+                starImg = [UIImage imageNamed:@"star_filled"];
+            } else {
+                starImg = [UIImage imageNamed:@"star"];
+            }
+            MGSwipeButton *starBtn = [MGSwipeButton buttonWithTitle:@"" icon:starImg backgroundColor:BS_YELLOW callback:^BOOL(MGSwipeTableCell *sender) {
+                typeof(weakself) self = weakself;
+                [BSDataManager sharedInstance].currentWidgetSchedule = schedule;
+                self.updateCells = YES;
+                return YES;
+            }];
+            [btns addObject:starBtn];
+        }
+
+    }
+    return btns;
 }
 
 //===============================================SCHEDULE ADD VC DELEGATe===========================================
@@ -107,14 +143,22 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                            withSuccess:^{
                                typeof(weakSelf) self = weakSelf;
                                [self hideLoadingView];
-                               [self.schedules addObject:schedule];
-                               
-                               NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.schedules count]-1 inSection:0];
-                               [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               if (![self.schedules containsObject:schedule]) {
+                                   [self.schedules addObject:schedule];
+                                   
+                                   if ([BSDataManager sharedInstance].currentWidgetSchedule == nil) {
+                                       [BSDataManager sharedInstance].currentWidgetSchedule = schedule;
+                                   }
+                                   
+                                   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.schedules count]-1 inSection:0];
+                                   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+                               }
                            } failure:^{
                                typeof(weakSelf) self = weakSelf;
+                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
                                [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
                                [self hideLoadingView];
+                               }
                            }];
 }
 
@@ -175,8 +219,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     MGSwipeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID forIndexPath:indexPath];
     BSSchedule *schedule = [self.schedules objectAtIndex:indexPath.row];
     [cell.textLabel setText:[NSString stringWithFormat:@"%@/%ld",schedule.group.groupNumber,(long)[schedule.subgroup integerValue]]];
-    MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:LZD(@"L_Delete") backgroundColor:[UIColor redColor]];
-    cell.rightButtons = @[deleteBtn];
+    
     cell.delegate = self;
     return cell;
 }
