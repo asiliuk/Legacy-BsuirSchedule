@@ -157,23 +157,11 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
                                    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                                }
                            } failure:^{
-//                               typeof(weakSelf) self = weakSelf;
-//                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
-//                               [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
-//                               [self hideLoadingView];
                                typeof(weakSelf) self = weakSelf;
+                               [[BSDataManager sharedInstance] deleteSchedule:schedule];
+                               [BSUtils showAlertWithTitle:LZD(@"L_Error") message:LZD(@"L_LoadError") inVC:self];
                                [self hideLoadingView];
-                               if (![self.schedules containsObject:schedule]) {
-                                   [self.schedules addObject:schedule];
-                                   
-                                   if ([BSDataManager sharedInstance].currentWidgetSchedule == nil) {
-                                       [BSDataManager sharedInstance].currentWidgetSchedule = schedule;
-                                   }
-                                   
-                                   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.schedules count]-1 inSection:0];
-                                   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-                               }
-                           }];
+                            }];
 }
 
 //===============================================LOADING SCREEN===========================================
