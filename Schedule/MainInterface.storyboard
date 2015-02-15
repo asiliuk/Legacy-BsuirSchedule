@@ -19,20 +19,20 @@
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
-                                <rect key="frame" x="20" y="3" width="280" height="23"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="100" verticalHuggingPriority="200" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="200" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
+                                <rect key="frame" x="20" y="3" width="280" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="4zs-02-naE"/>
+                                    <constraint firstAttribute="height" constant="22" id="jsp-1h-Hf1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-Hn-0pl">
-                                <rect key="frame" x="8" y="28" width="304" height="188"/>
+                                <rect key="frame" x="8" y="27" width="304" height="273"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="M4Y-Lb-cyx" id="SzO-gU-iO0"/>
@@ -41,13 +41,13 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="2J1-Cb-Ugh"/>
-                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="2" id="5BG-sw-tel"/>
-                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-8" id="HSs-PL-QbY"/>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" constant="-16" id="cUP-5W-212"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="3" id="dbd-e3-MDr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="4" id="uc9-iF-Q1F"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="4" id="wqQ-lD-fTU"/>
+                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-8" id="3K9-V2-xDC"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="3" id="M0U-85-9DH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="MaB-Dt-rMf"/>
+                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="2" id="T5A-UZ-MBa"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" id="bab-AA-RLX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="4" id="xiO-IO-POf"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="4" id="zrT-nb-Fmm"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -55,7 +55,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="200"/>
+                    <size key="freeformSize" width="320" height="300"/>
                     <connections>
                         <outlet property="dayInfoLabel" destination="GcN-lo-r42" id="zK4-op-yL8"/>
                         <outlet property="tableView" destination="Qiy-Hn-0pl" id="7m8-5O-3TI"/>
