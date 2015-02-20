@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 
 @property (strong, nonatomic) NSArray *menuItems;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *statusBarFixView;
 
 @property (strong, nonatomic) UIView *fixView;
 @end
@@ -59,6 +60,7 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     [super viewDidLoad];
     [self updateMenuItems];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kBSMenuCell];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSMenuCell class]) bundle:nil] forCellReuseIdentifier:kBSMenuCell];
 
     self.tableView.backgroundColor = [UIColor darkGrayColor];
@@ -72,6 +74,9 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
                                              selector:@selector(schedulesUpdate)
                                                  name:kSchedulesGetUpdated
                                                object:nil];
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [self.statusBarFixView removeFromSuperview];
+    }
 }
 
 - (void)dealloc {
@@ -177,11 +182,10 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     
     BSMenuCell *menuCell = [tableView dequeueReusableCellWithIdentifier:kBSMenuCell forIndexPath:indexPath];
     NSString *title = menuItemData[kBSMenuItemTitle];
-     [menuCell.titleLabel setText:title];
+    [menuCell.cellLabel setText:title];
     [menuCell.iconIV setImage:menuItemData[kBSMenuItemImage]];
 
 
-    menuCell.badgeLabel.hidden = YES;
     NSIndexPath *selectedCellIndexPath = [tableView indexPathForSelectedRow];
     menuCell.separator.hidden = (selectedCellIndexPath.row == indexPath.row || selectedCellIndexPath.row - 1 == indexPath.row) ? YES : NO;
     menuCell.backgroundColor = [UIColor clearColor];
@@ -207,11 +211,9 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 }
 
 #define DEFAULT_CELL_HEIGHT 44.0
-#define BUTTON_CELL_HEIGHT 60.0
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat cellHight = DEFAULT_CELL_HEIGHT;
-    return cellHight;
+    return DEFAULT_CELL_HEIGHT;
 }
 
 

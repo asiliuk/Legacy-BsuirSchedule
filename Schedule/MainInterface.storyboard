@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="100" verticalHuggingPriority="200" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="200" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
-                                <rect key="frame" x="20" y="3" width="280" height="22"/>
+                                <rect key="frame" x="20" y="3" width="292" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="jsp-1h-Hf1"/>
                                 </constraints>
@@ -46,7 +46,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="MaB-Dt-rMf"/>
                             <constraint firstItem="Qiy-Hn-0pl" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="2" id="T5A-UZ-MBa"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" id="bab-AA-RLX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="4" id="xiO-IO-POf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="-8" id="xiO-IO-POf"/>
                             <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="4" id="zrT-nb-Fmm"/>
                         </constraints>
                     </view>

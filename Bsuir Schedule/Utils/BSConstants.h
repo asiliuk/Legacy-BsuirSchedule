@@ -37,6 +37,8 @@
 
 #define BS_GRAY UIColor(130, 138, 151, 1.0)
 #define BS_LIGHT_GRAY UIColor(240, 240, 240, 1.0)
+#define BS_TABLE_VIEW_GRAY UIColor(239, 239, 244, 1.0)
+
 #define BS_BLUE_GRAY UIColor(69, 101, 152, 1.0)
 
 #define BS_LIGHT_BLUE UIColor(229, 235, 251, 1.0)

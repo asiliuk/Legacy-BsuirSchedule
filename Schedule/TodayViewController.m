@@ -30,6 +30,7 @@ static NSString * const kCellID = @"today view cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"saasa";
     NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
     NSString *groupNumber = [shared objectForKey:kWidgetGroup];
     NSInteger subgroup = [shared integerForKey:kWidgetSubgroup];
@@ -61,7 +62,7 @@ static NSString * const kCellID = @"today view cell";
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
     NSString *dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
-                               NSLocalizedString([dayWithWeekNum.dayOfWeek name], nil),
+                               NSLocalizedString([@"Sh_" stringByAppendingString:[dayWithWeekNum.dayOfWeek name]], nil),
                                [df stringFromDate:dayWithWeekNum.date],
                                NSLocalizedString(@"L_Week", nil),
                                dayWithWeekNum.weekNumber.weekNumber];

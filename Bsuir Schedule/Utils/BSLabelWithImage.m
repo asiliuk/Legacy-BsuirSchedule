@@ -26,6 +26,7 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.imageView.center = CGPointMake(self.imageView.center.x, self.frame.size.height / 2.0);
     if (self.aligment == BSImageAligmentRight) {
         CGRect ivFrame = self.imageView.frame;

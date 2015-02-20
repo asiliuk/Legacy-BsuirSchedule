@@ -46,66 +46,66 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (NSArray*)easterEggStrings {
     if (!_easterEggStrings) {
-        _easterEggStrings = @[@"Остановись",
-                              @"Подумай о будущем",
-                              @"Не делай этого",
-                              @"У тебя еще вся жизнь впереди",
-                              @"Зачем тебе знать что будет потом",
-                              @"Там ничего нет",
-                              @"Жизнь тлен",
-                              @"Только не листай до конца",
-                              @"Ты не должен об этом узнать",
-                              @"Предупреждаю тебя парень",
-                              @"Там ничего нет",
-                              @"ОСТАНОВИСЬ",
-                              @"Ты сломаешь скролл",
-                              @"Ты сломаешь всю таблицу",
-                              @"Ее не починить",
-                              @"Подумай о своих родных",
-                              @"Остановись ради них",
-                              @"Сколько можно",
-                              @"Мне лень тебя переубеждать",
-                              @"Ты странный человек",
-                              @"На тебя еще не косятся люди?",
-                              @"Для чего ты это делаешь?",
-                              @"Кто тебя нанял?",
-                              @"Я устала скролиться",
-                              @"У меня нет конца",
-                              @"Это бессмысленно",
-                              @"Ты зря проживаешь свою жизнь",
-                              @"Сходи покушай",
-                              @"Иди попрограммируй",
-                              @"Ты же студент БГУИРа",
-                              @"Делай лабы",
-                              @"Делай лабы",
-                              @"Делай лабы",
-                              @"Делай лабы",
-                              @"Делай лабы",
-                              @"Я пытался помочь",
-                              @"ОТСТАНЬ ОТ МЕНЯ",
-                              @"Нормально же общались",
-                              @"Чего ты",
-                              @"АЙ, ВСЕ!",
-                              @"АЙ, ВСЕ!",
-                              @"АЙ, ВСЕ!",
-                              @"Тебе лишь бы меня поскролить",
-                              @"А на мои чувства тебе наплевать",
-                              @"Ты бкссчувственный",
-                              @"У таблиц тоже есть чувства",
-                              @"Тебе не интересно что мне нужно",
-                              @"Ну и листай себе дальше",
-                              @"Я не хочу общаться",
-                              @"Ты настырный",
-                              @"И упорный",
-                              @"Листай дальше",
-                              @"Тебя ждут несметные богатства и слава",
-                              @"Признание женщин",
-                              @"Успех",
-                              @"Уже совсем скоро",
-                              @"Еще чуть чуть",
-                              @"Еще чуть чуть.",
-                              @"Еще чуть чуть..",
-                              @"Еще чуть чуть..."];
+        _easterEggStrings = @[@"Остановись"];
+//                              @"Подумай о будущем",
+//                              @"Не делай этого",
+//                              @"У тебя еще вся жизнь впереди",
+//                              @"Зачем тебе знать что будет потом",
+//                              @"Там ничего нет",
+//                              @"Жизнь тлен",
+//                              @"Только не листай до конца",
+//                              @"Ты не должен об этом узнать",
+//                              @"Предупреждаю тебя парень",
+//                              @"Там ничего нет",
+//                              @"ОСТАНОВИСЬ",
+//                              @"Ты сломаешь скролл",
+//                              @"Ты сломаешь всю таблицу",
+//                              @"Ее не починить",
+//                              @"Подумай о своих родных",
+//                              @"Остановись ради них",
+//                              @"Сколько можно",
+//                              @"Мне лень тебя переубеждать",
+//                              @"Ты странный человек",
+//                              @"На тебя еще не косятся люди?",
+//                              @"Для чего ты это делаешь?",
+//                              @"Кто тебя нанял?",
+//                              @"Я устала скролиться",
+//                              @"У меня нет конца",
+//                              @"Это бессмысленно",
+//                              @"Ты зря проживаешь свою жизнь",
+//                              @"Сходи покушай",
+//                              @"Иди попрограммируй",
+//                              @"Ты же студент БГУИРа",
+//                              @"Делай лабы",
+//                              @"Делай лабы",
+//                              @"Делай лабы",
+//                              @"Делай лабы",
+//                              @"Делай лабы",
+//                              @"Я пытался помочь",
+//                              @"ОТСТАНЬ ОТ МЕНЯ",
+//                              @"Нормально же общались",
+//                              @"Чего ты",
+//                              @"АЙ, ВСЕ!",
+//                              @"АЙ, ВСЕ!",
+//                              @"АЙ, ВСЕ!",
+//                              @"Тебе лишь бы меня поскролить",
+//                              @"А на мои чувства тебе наплевать",
+//                              @"Ты бкссчувственный",
+//                              @"У таблиц тоже есть чувства",
+//                              @"Тебе не интересно что мне нужно",
+//                              @"Ну и листай себе дальше",
+//                              @"Я не хочу общаться",
+//                              @"Ты настырный",
+//                              @"И упорный",
+//                              @"Листай дальше",
+//                              @"Тебя ждут несметные богатства и слава",
+//                              @"Признание женщин",
+//                              @"Успех",
+//                              @"Уже совсем скоро",
+//                              @"Еще чуть чуть",
+//                              @"Еще чуть чуть.",
+//                              @"Еще чуть чуть..",
+//                              @"Еще чуть чуть..."];
     }
     return _easterEggStrings;
 }
@@ -314,7 +314,7 @@ static NSString * const kCellID = @"Pair cell id";
     return cell;
 }
 
-#define EASTERN_EGG_EDGE 100
+#define EASTERN_EGG_EDGE 1
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     id<BSDay> day = [self.days objectAtIndex:section];
@@ -341,8 +341,8 @@ static NSString * const kCellID = @"Pair cell id";
 
     [label setTextColor:BS_GRAY];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-    [label setBackgroundColor:[UIColor clearColor]];
+    [view setBackgroundColor:BS_TABLE_VIEW_GRAY];
+    [label setBackgroundColor:BS_TABLE_VIEW_GRAY];
     NSString *dayInfoString;
     if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
         dayInfoString = [NSString stringWithFormat:@"%@  %@  %@  %@",
@@ -364,15 +364,14 @@ static NSString * const kCellID = @"Pair cell id";
     }
     BOOL easterEggMode = NO;
     if (section >= EASTERN_EGG_EDGE) {
-        if (section % 20 == 0) {
-            NSInteger stringIndex = [self easterEggIndexForSection:section];
-            if (stringIndex < [self.easterEggStrings count]) {
+        NSInteger stringIndex = [self easterEggIndexForSection:section];
+        if (stringIndex < [self.easterEggStrings count]) {
+            if (section % 20 == 0) {
                 dayInfoString = [self.easterEggStrings objectAtIndex:stringIndex];
                 [label setTextColor:BS_BLUE];
-
-            } else {
-                easterEggMode = YES;
             }
+        } else {
+            easterEggMode = YES;
         }
     }
     if ([[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode] != easterEggMode) {
@@ -456,6 +455,7 @@ static NSString * const kCellID = @"Pair cell id";
 
 
 - (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
+    int *x = NULL; *x = 42;
     if (lecturer) {
         BSLecturerVC *lecturerVC = [[BSLecturerVC alloc] initWithLecturer:lecturer startFrame:startFrame];
         [self presentVCInCurrentContext:lecturerVC];
@@ -501,7 +501,7 @@ static NSString * const kCellID = @"Pair cell id";
 - (void)thumbnailForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)thumbnailFrame getTappedOnCell:(BSPairCell *)cell {
     NSIndexPath *indexPathOfCell = [self.tableView indexPathForCell:cell];
     if (indexPathOfCell) {
-        CGRect startFrame = [self.view convertRect:thumbnailFrame fromView:cell];
+        CGRect startFrame = [self.navigationController.view convertRect:thumbnailFrame fromView:cell];
         [self showLecturerVCForLecturer:lecturer withStartFrame:startFrame];
     }
 }

@@ -42,12 +42,10 @@
     }
     SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:mainVC];
     [self customizeSlideNavigationController:slideNavController];
-    
     self.window.rootViewController = slideNavController;
     [self.window makeKeyAndVisible];
     
     [[NSUserDefaults sharedDefaults] setBool:NO forKey:kEasterEggMode];
-    
     return YES;
 }
 
@@ -58,9 +56,11 @@
     slideNavController.navigationBar.barStyle = UIBarStyleBlack;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [slideNavController.navigationBar setBarTintColor:BS_BLUE];
+        [[UINavigationBar appearance] setBarTintColor:BS_BLUE];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     } else {
-        slideNavController.navigationBar.tintColor = BS_BLUE;
+        [[UINavigationBar appearance] setTintColor:BS_BLUE];
     }
     UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
     [slideNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],

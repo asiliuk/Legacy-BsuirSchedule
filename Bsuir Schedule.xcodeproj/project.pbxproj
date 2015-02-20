@@ -707,6 +707,7 @@
 				D19EB2181A1824900055B0D3 /* Frameworks */,
 				D19EB2191A1824900055B0D3 /* Resources */,
 				D10448511A267D5100670898 /* Embed App Extensions */,
+				8C1E29741A93FE0400B69BA1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -858,6 +859,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C1E29741A93FE0400B69BA1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 347dc04ab4708a1c015cf47b6ec9fc40a30a42ed 9b0574d26b07e7d0a612cf44646f9d172e0d8afb3f4fc74c80ab822a09bff5db";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D196D0281A2A967D00EA6901 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -998,6 +1015,10 @@
 				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1006,7 +1027,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ad076d3f-0c8a-4474-9f10-3f26b18797dd";
+				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1017,11 +1038,15 @@
 				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party",
+				);
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ad076d3f-0c8a-4474-9f10-3f26b18797dd";
+				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1110,11 +1135,15 @@
 				CODE_SIGN_ENTITLEMENTS = "Bsuir Schedule/Bsuir Schedule.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party",
+				);
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "140b15ab-efb1-4268-b254-2f25d5f14deb";
+				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1127,11 +1156,15 @@
 				CODE_SIGN_ENTITLEMENTS = "Bsuir Schedule/Bsuir Schedule.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party",
+				);
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "140b15ab-efb1-4268-b254-2f25d5f14deb";
+				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

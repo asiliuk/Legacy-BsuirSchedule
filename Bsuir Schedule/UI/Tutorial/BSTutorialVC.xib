@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -195,9 +195,10 @@
                                 <constraint firstAttribute="height" constant="50" id="x4R-Fl-qx0"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-aR-vpC">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-aR-vpC">
                             <rect key="frame" x="5" y="0.0" width="65" height="67"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="67" id="5j9-uX-dtf"/>
                                 <constraint firstAttribute="width" constant="65" id="ZJ3-Xf-syF"/>
                             </constraints>
                             <attributedString key="attributedText">
@@ -348,7 +349,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="2nJ-gB-NHV" secondAttribute="trailing" id="0Z0-c4-bsc"/>
                 <constraint firstItem="1N7-vw-iJS" firstAttribute="centerY" secondItem="Dev-jH-zoO" secondAttribute="centerY" constant="0.5" id="0vU-Ga-e9M"/>

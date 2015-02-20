@@ -10,8 +10,7 @@
 
 @interface BSMenuCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *iconIV;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *badgeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *cellLabel;
 @property (strong, nonatomic) UIView *separator;
 
 @end

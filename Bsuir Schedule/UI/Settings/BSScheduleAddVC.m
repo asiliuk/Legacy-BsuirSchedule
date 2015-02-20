@@ -8,7 +8,6 @@
 
 #import "BSScheduleAddVC.h"
 #import "BSConstants.h"
-
 @interface BSScheduleAddVC ()
 @property (weak, nonatomic) IBOutlet UITextField *groupNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *subgroupTF;
@@ -30,8 +29,27 @@
     UIBarButtonItem *addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                       target:self
                                                                                       action:@selector(save)];
-    addBarButtonItem.tintColor = [UIColor whiteColor];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        addBarButtonItem.tintColor = [UIColor whiteColor];
+    } else {
+        addBarButtonItem.tintColor = BS_BLUE;
+    }
     self.navigationItem.rightBarButtonItem = addBarButtonItem;
+    [self customizeSlideNavigationController:self.navigationController];
+}
+
+- (void)customizeSlideNavigationController:(UINavigationController*)slideNavController {
+    
+    slideNavController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [slideNavController.navigationBar setBarTintColor:BS_BLUE];
+    } else {
+        slideNavController.navigationBar.tintColor = BS_BLUE;
+    }
+    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
+    [slideNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                               NSFontAttributeName: titleFont}];
 }
 
 - (void)save {
