@@ -455,7 +455,6 @@ static NSString * const kCellID = @"Pair cell id";
 
 
 - (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
-    int *x = NULL; *x = 42;
     if (lecturer) {
         BSLecturerVC *lecturerVC = [[BSLecturerVC alloc] initWithLecturer:lecturer startFrame:startFrame];
         [self presentVCInCurrentContext:lecturerVC];
