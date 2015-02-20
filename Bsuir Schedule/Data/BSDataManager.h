@@ -11,12 +11,14 @@
 
 #import "BSSubject.h"
 #import "BSLecturer+Thumbnail.h"
-#import "BSDayOfWeek.h"
+#import "BSDayOfWeek+Number.h"
 #import "BSAuditory.h"
 #import "BSPair+Type.h"
 #import "BSPair+Color.h"
 #import "BSWeekNumber.h"
 #import "BSDayWithWeekNum.h"
+#import "BSGroup.h"
+#import "BSSchedule.h"
 
 @interface BSDataManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -24,11 +26,23 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
-- (void)resetDatabase;
+- (void)resetSceduleForGroup:(BSGroup*)group;
 - (NSURL *)storeURLBase;
 //-------------------------------Methods---------------------------------
 + (instancetype)sharedInstance;
-- (BSDayWithWeekNum*)dayToHighlight;
+- (BSDayWithWeekNum*)dayToHighlightInSchedule:(BSSchedule*)schedule weekMode:(BOOL)weekMode;
+
+//-------------------------------Schedule---------------------------------
+- (NSArray*)schelules;
+- (void)deleteSchedule:(BSSchedule*)schedule;
+- (BSSchedule*)scheduleWithGroupNumber:(NSString*)groupNumber andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists;
+- (BSSchedule*)scheduleWithGroup:(BSGroup*)group andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists;
+
+@property BSSchedule *currentWidgetSchedule;
+//-------------------------------Groups---------------------------------
+- (NSArray*)groups;
+- (BSGroup*)groupWithNumber:(NSString*)number createIfNotExists:(BOOL)createIfNotExists;
+- (BSGroup*)addGroupWithNumber:(NSString*)number;
 //-------------------------------Subject---------------------------------
 - (NSArray*)subjects;
 - (BSSubject*)subjectWithName:(NSString *)name createIfNotExists:(BOOL)createIfNotExists;
@@ -47,6 +61,7 @@
                            lecturerID:(NSInteger)lecturerID;
 //-------------------------------Day---------------------------------
 - (NSArray*)days;
+- (NSNumber*)dayNumberForDay:(BSDayOfWeek*)dayOfWeek;
 - (BSDayOfWeek*)dayWithDate:(NSDate*)date;
 - (BSDayOfWeek*)dayWithName:(NSString*)dayName createIfNotExists:(BOOL)createIfNotExists;
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists;
@@ -58,15 +73,31 @@
 - (BSAuditory*)addAuditoryWithAddress:(NSString*)address;
 //-------------------------------Pair---------------------------------
 - (NSArray*)pairs;
+- (NSArray*)sortPairs:(NSArray*)pairs;
+- (BSPair*)pairWithStartTime:(NSDate*)startTime
+                     endTime:(NSDate*)endTime
+              subgroupNumber:(NSInteger)subgroupNumber
+                pairTypeName:(NSString*)pairTypeName
+                inAuditories:(NSArray*)auditories
+                       atDay:(BSDayOfWeek*)day
+                     subject:(BSSubject*)subject
+                   lecturers:(NSArray *)lecturers
+                       weeks:(NSSet*)weeks
+                       group:(BSGroup*)group
+           createIfNotExists:(BOOL)createIfNotExists;
+
 - (BSPair*)addPairWithStartTime:(NSDate*)startTime
                         endTime:(NSDate*)endTime
                  subgroupNumber:(NSInteger)subgroupNumber
                    pairTypeName:(NSString*)pairTypeName
-                     inAuditory:(BSAuditory*)auditory
+                   inAuditories:(NSArray*)auditories
                           atDay:(BSDayOfWeek*)day
                         subject:(BSSubject*)subject
                       lecturers:(NSArray *)lecturers
-                          weeks:(NSSet*)weeks;
+                          weeks:(NSSet*)weeks
+                          group:(BSGroup*)group;
+
+- (NSArray*)filterPairs:(NSArray*)pairs forSchedule:(BSSchedule*)schedule forWekFormat:(BOOL)weekFormat;
 
 //-------------------------------Week---------------------------------
 - (NSArray*)weekNumbers;

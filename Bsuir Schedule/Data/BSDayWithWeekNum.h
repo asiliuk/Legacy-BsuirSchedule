@@ -9,12 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "BSWeekNumber.h"
 #import "BSDayOfWeek.h"
+#import "BSDay.h"
+#import "BSSchedule.h"
 
-@interface BSDayWithWeekNum : NSObject
+@interface BSDayWithWeekNum : NSObject <BSDay>
 @property (strong, nonatomic) BSWeekNumber *weekNumber;
 @property (strong, nonatomic) BSDayOfWeek *dayOfWeek;
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) NSArray *pairs;
-- (instancetype)initWithDate:(NSDate*)date;
+- (instancetype)initWithDate:(NSDate *)date;
 - (BOOL)isEqual:(BSDayWithWeekNum*)object;
+- (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat;
+- (NSString*)dayOfWeekName;
+- (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum*)object;
+- (BOOL)isEqualToDay:(BSDayOfWeek*)object;
 @end

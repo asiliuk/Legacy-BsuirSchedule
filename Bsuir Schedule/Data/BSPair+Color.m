@@ -11,8 +11,11 @@
 
 @implementation BSPair (Color)
 - (UIColor*)colorForPairType {
+    return [BSPair colorForPairType:(PairType)[self.pairType integerValue]];
+}
++ (UIColor*)colorForPairType:(PairType)pairType {
     UIColor *pairTypeColor;
-    switch ([self.pairType integerValue]) {
+    switch (pairType) {
         case BSPairTypeLaboratory:
             pairTypeColor = BS_YELLOW;
             break;

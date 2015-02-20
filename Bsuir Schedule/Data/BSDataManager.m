@@ -11,6 +11,9 @@
 #import "XMLDictionary.h"
 #import "BSConstants.h"
 #import "NSDate+Compare.h"
+#import "NSUserDefaults+Share.h"
+#import "BSDayOfWeek+Number.h"
+#import <NotificationCenter/NotificationCenter.h>
 
 @interface BSDataManager()
 @property (strong, nonatomic) NSArray *weekDays;
@@ -42,24 +45,137 @@
 }
 
 #define MAX_INTERVAL_TO_HIGHLIGHT 10
-- (BSDayWithWeekNum*)dayToHighlight {
+- (BSDayWithWeekNum*)dayToHighlightInSchedule:(BSSchedule *)schedule weekMode:(BOOL)weekMode {
     BSDayWithWeekNum *dayToHighlight;
     NSDate *now = [NSDate date];
     for (NSInteger dayIndex = 0; dayIndex < MAX_INTERVAL_TO_HIGHLIGHT; dayIndex++) {
         NSDate *dayDate = [now dateByAddingTimeInterval:DAY_IN_SECONDS*dayIndex];
         BSDayWithWeekNum *dayWithWeekNum = [[BSDayWithWeekNum alloc] initWithDate:dayDate];
-        if (dayWithWeekNum && [dayWithWeekNum.pairs count] > 0) {
+        if (dayWithWeekNum && [[dayWithWeekNum pairsForSchedule:schedule weekFormat:weekMode] count] > 0) {
             BOOL today = [now isEqual:dayDate];
-            NSDate *todayLastPairEnd = [[[dayWithWeekNum pairs] lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
+            NSArray *pairs = [dayWithWeekNum pairsForSchedule:schedule weekFormat:weekMode];
+            NSDate *todayLastPairEnd = [[pairs lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
             BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [dayWithWeekNum.pairs count] == 0;
             if (!(today && (todayPairsEnded || dayWithWeekNum.dayOfWeek == nil))) {
                     dayToHighlight = dayWithWeekNum;
                     break;
-                
+    
             }
         }
     }
     return dayToHighlight;
+}
+
+//===============================================SCHEDULE===========================================
+#pragma mark - Schedule
+
+- (NSArray*)schelules {
+    NSSortDescriptor *creationSort = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES];
+    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"group.groupNumber" ascending:YES];
+    NSFetchRequest *schedulesRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSSchedule class])];
+    schedulesRequest.sortDescriptors = @[creationSort, nameSort];
+    return [self.managedObjectContext executeFetchRequest:schedulesRequest error:nil];
+}
+
+- (void)deleteSchedule:(BSSchedule *)schedule {
+    BSGroup *group = schedule.group;
+    if ([self.currentWidgetSchedule isEqual:schedule]) {
+        self.currentWidgetSchedule = [[self schelules] firstObject];
+    }
+    [self.managedObjectContext deleteObject:schedule];
+
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([BSSchedule class])];
+    NSPredicate *schedulePredicate = [NSPredicate predicateWithFormat:@"group.groupNumber == %@",schedule.group.groupNumber];
+    request.predicate = schedulePredicate;
+    NSError *error;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error in schedule fetch: %@", error.localizedDescription);
+    } else if (!results || [results count] == 0) {
+        [self resetSceduleForGroup:group];
+        [self.managedObjectContext deleteObject:group];
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSchedulesGetUpdated object:nil];
+}
+
+- (BSSchedule*)scheduleWithGroupNumber:(NSString*)groupNumber andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists {
+    BSGroup *group = [self groupWithNumber:groupNumber createIfNotExists:YES];
+    return  [self scheduleWithGroup:group andSubgroup:subgroup createIfNotExists:createIfNotExists];
+}
+- (BSSchedule*)scheduleWithGroup:(BSGroup*)group andSubgroup:(NSInteger)subgroup createIfNotExists:(BOOL)createIfNotExists {
+    BSSchedule *schedule;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([BSSchedule class])];
+    NSPredicate *schedulePredicate = [NSPredicate predicateWithFormat:@"group.groupNumber == %@ AND subgroup == %@",group.groupNumber, @(subgroup)];
+    request.predicate = schedulePredicate;
+    NSError *error;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error in schedule fetch: %@", error.localizedDescription);
+    }else if ([results count] > 0) {
+        schedule = [results lastObject];
+    } else if (createIfNotExists) {
+        schedule = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSSchedule class]) inManagedObjectContext:self.managedObjectContext];
+        schedule.group = group;
+        schedule.subgroup = @(subgroup);
+        schedule.createdAt = [NSDate date];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSchedulesGetUpdated object:nil];
+    }
+    return schedule;
+}
+@dynamic currentWidgetSchedule;
+- (BSSchedule*)currentWidgetSchedule {
+    NSString *widgetGroup = [[NSUserDefaults sharedDefaults] objectForKey:kWidgetGroup];
+    NSNumber *widgetSubgroup = [[NSUserDefaults sharedDefaults] objectForKey:kWidgetSubgroup];
+    return [self scheduleWithGroupNumber:widgetGroup andSubgroup:[widgetSubgroup integerValue] createIfNotExists:NO];
+}
+
+- (void)setCurrentWidgetSchedule:(BSSchedule *)currentWidgetSchedule {
+    if ([currentWidgetSchedule.group.pairs count] > 0) {
+        NCWidgetController *widgetController = [[NCWidgetController alloc] init];
+        [widgetController setHasContent:YES forWidgetWithBundleIdentifier:kWidgetID];
+    }
+    [[NSUserDefaults sharedDefaults] setObject:(currentWidgetSchedule.group.groupNumber) ?
+                                                currentWidgetSchedule.group.groupNumber :
+                                                @""
+                                        forKey:kWidgetGroup];
+    [[NSUserDefaults sharedDefaults] setObject:(currentWidgetSchedule.subgroup) ?
+                                                currentWidgetSchedule.subgroup :
+                                                @""
+                                        forKey:kWidgetSubgroup];
+    
+}
+//===============================================GROUP===========================================
+#pragma mark - Group
+
+- (NSArray*)groups {
+    NSFetchRequest *groupsRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSGroup class])];
+    return [self.managedObjectContext executeFetchRequest:groupsRequest error:nil];
+}
+
+- (BSGroup*)groupWithNumber:(NSString *)number createIfNotExists:(BOOL)createIfNotExists {
+    BSGroup *group;
+    if (number && [number isKindOfClass:[NSString class]]) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSGroup class])];
+        NSPredicate *numberPredicate = [NSPredicate predicateWithFormat:@"groupNumber == %@", number];
+        request.predicate = numberPredicate;
+        NSError *error;
+        NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"Error in group fetch: %@", error.localizedDescription);
+        }else if ([results count] > 0) {
+            group = [results lastObject];
+        } else if (createIfNotExists) {
+            group = [self addGroupWithNumber:number];
+        }
+    }
+    return group;
+}
+
+- (BSGroup*)addGroupWithNumber:(NSString*)number {
+    BSGroup *group = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSGroup class]) inManagedObjectContext:self.managedObjectContext];
+    group.groupNumber = number;
+    return group;
 }
 
 //===============================================SUBJECT===========================================
@@ -150,7 +266,17 @@
     NSFetchRequest *daysRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSDayOfWeek class])];
     [daysRequest setReturnsObjectsAsFaults:NO];
     [daysRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObjects:@"pairs", nil]];
-    return [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
+    NSArray *days = [self.managedObjectContext executeFetchRequest:daysRequest error:nil];
+    NSArray *sortedDays = [days sortedArrayUsingComparator:^NSComparisonResult(BSDayOfWeek* obj1, BSDayOfWeek* obj2) {
+        return [[self dayNumberForDay:obj1] compare:[self dayNumberForDay:obj2]];
+    }];
+    return sortedDays;
+}
+
+- (NSNumber*)dayNumberForDay:(BSDayOfWeek*)dayOfWeek {
+    NSArray *dayOrder = @[@"Понедельник", @"Вторник", @"Среда", @"Четверг", @"Пятница", @"Суббота", @"Воскресенье"];
+    return @([dayOrder indexOfObject:dayOfWeek.name]);
+
 }
 
 - (BSDayOfWeek*)dayWithIndex:(NSInteger)dayIndex createIfNotExists:(BOOL)createIfNotExists {
@@ -228,49 +354,110 @@
     return [self.managedObjectContext executeFetchRequest:pairsRequest error:nil];
 }
 
-- (BSPair*)addPairWithStartTime:(NSDate *)startTime
-                        endTime:(NSDate *)endTime
-                 subgroupNumber:(NSInteger)subgroupNumber
-                   pairTypeName:(NSString*)pairTypeName
-                     inAuditory:(BSAuditory *)auditory
-                          atDay:(BSDayOfWeek *)day
-                        subject:(BSSubject *)subject
-                      lecturers:(NSArray *)lecturers
-                          weeks:(NSSet *)weeks
+- (NSArray*)sortPairs:(NSArray *)pairs {
+    NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"subject.name" ascending:YES];
+    NSSortDescriptor *weekSort = [NSSortDescriptor sortDescriptorWithKey:@"weeks" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+        NSComparisonResult compRes = NSOrderedSame;
+        if ([obj1 isKindOfClass:[NSSet class]] && [obj2 isKindOfClass:[NSSet class]]) {
+            NSSet *weeks1 = obj1;
+            NSSet *weeks2 = obj2;
+            NSSortDescriptor *weekNumSort = [NSSortDescriptor sortDescriptorWithKey:@"weekNumber" ascending:YES];
+            BSWeekNumber *week1 = [[weeks1 sortedArrayUsingDescriptors:@[weekNumSort]] firstObject];
+            BSWeekNumber *week2 = [[weeks2 sortedArrayUsingDescriptors:@[weekNumSort]] firstObject];
+            compRes = [week1.weekNumber compare:week2.weekNumber];
+        }
+        return compRes;
+    }];
+    return [pairs sortedArrayUsingDescriptors:@[sortD, weekSort, nameSort]];
+}
+
+- (BSPair*)pairWithStartTime:(NSDate *)startTime
+                     endTime:(NSDate *)endTime
+              subgroupNumber:(NSInteger)subgroupNumber
+                pairTypeName:(NSString *)pairTypeName
+                inAuditories:(NSArray *)auditories
+                       atDay:(BSDayOfWeek *)day
+                     subject:(BSSubject *)subject
+                   lecturers:(NSArray *)lecturers
+                       weeks:(NSSet *)weeks
+                       group:(BSGroup *)group
+           createIfNotExists:(BOOL)createIfNotExists
 {
     BSPair *pair;
     PairType pairType = [BSPair pairTypeWithName:pairTypeName];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
     NSPredicate *pairPredicate = [NSPredicate predicateWithFormat:@"startTime == %@ AND endTime == %@ \
-                                      AND subgroupNumber == %@ AND pairType == %d \
-                                      AND auditory == %@ AND day == %@ \
-                                      AND subject == %@",
-                                      startTime, endTime,
-                                      @(subgroupNumber), pairType,
-                                      auditory, day,
-                                      subject];
+                                  AND subgroupNumber == %@ AND pairType == %d \
+                                  AND auditories contains[c] %@ AND day == %@ \
+                                  AND subject == %@ AND weeks contains[c] %@",
+                                  startTime, endTime,
+                                  @(subgroupNumber), pairType,
+                                  auditories, day,
+                                  subject, weeks];
     request.predicate = pairPredicate;
-
+    
     NSError *error;
     NSArray *pairs = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"Error in pairs fetch: %@", error.localizedDescription);
     } else if (pairs && [pairs count] > 0) {
         pair = [pairs lastObject];
-    } else {
-        pair = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSPair class]) inManagedObjectContext:self.managedObjectContext];
-        pair.startTime = startTime;
-        pair.endTime = endTime;
-        pair.subgroupNumber = @(subgroupNumber);
-        pair.pairType = @(pairType);
-        pair.auditory = auditory;
-        pair.day = day;
-        pair.subject = subject;
-        pair.lecturers = [NSSet setWithArray:lecturers];
-        [pair addWeeks:weeks];
+    } else if (createIfNotExists) {
+        pair = [self addPairWithStartTime:startTime
+                                  endTime:endTime
+                           subgroupNumber:subgroupNumber
+                             pairTypeName:pairTypeName
+                             inAuditories:auditories
+                                    atDay:day
+                                  subject:subject
+                                lecturers:lecturers
+                                    weeks:weeks
+                                    group:group];
     }
-    [self saveContext];
     return pair;
+}
+
+- (BSPair*)addPairWithStartTime:(NSDate *)startTime
+                        endTime:(NSDate *)endTime
+                 subgroupNumber:(NSInteger)subgroupNumber
+                   pairTypeName:(NSString*)pairTypeName
+                   inAuditories:(NSArray *)auditories
+                          atDay:(BSDayOfWeek *)day
+                        subject:(BSSubject *)subject
+                      lecturers:(NSArray *)lecturers
+                          weeks:(NSSet *)weeks
+                          group:(BSGroup *)group
+{
+    BSPair *pair;
+    PairType pairType = [BSPair pairTypeWithName:pairTypeName];
+    pair = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSPair class]) inManagedObjectContext:self.managedObjectContext];
+    pair.startTime = startTime;
+    pair.endTime = endTime;
+    pair.subgroupNumber = @(subgroupNumber);
+    pair.pairType = @(pairType);
+    [pair addAuditories:[NSSet setWithArray:auditories]];
+    pair.day = day;
+    pair.subject = subject;
+    pair.lecturers = [NSSet setWithArray:lecturers];
+    [pair addWeeks:weeks];
+    [pair addGroupsObject:group];
+    return pair;
+}
+
+- (NSArray*)filterPairs:(NSArray*)pairs forSchedule:(BSSchedule*)schedule forWekFormat:(BOOL)weekFormat {
+    BSGroup *group = schedule.group;
+    NSNumber *subgroup = schedule.subgroup;
+    NSPredicate *pairPredicate = [NSPredicate predicateWithBlock:^BOOL(BSPair* evaluatedObject, NSDictionary *bindings) {
+        BOOL filter = [evaluatedObject.groups containsObject:group];
+        if (!weekFormat) {
+            filter = filter && ([evaluatedObject.subgroupNumber isEqual:@(0)] || [evaluatedObject.subgroupNumber isEqual:subgroup]);
+        }
+        return filter;
+    }];
+    
+    
+    return [pairs filteredArrayUsingPredicate:pairPredicate];
 }
 
 //===============================================WEEKNUMBERS===========================================
@@ -448,7 +635,7 @@
     }
 }
 
-- (void)resetDatabase {
+- (void)resetSceduleForGroup:(BSGroup*)group {
 //    NSArray *persistentStores = [self.persistentStoreCoordinator persistentStores];
 //    for (NSPersistentStore *store in persistentStores) {
 //        NSError *error;
@@ -462,7 +649,11 @@
 //    _persistentStoreCoordinator = nil;
 //    _managedObjectModel = nil;
 //    _managedObjectContext = nil;
+    group.scheduleStamp = nil;
+    group.lastUpdate = nil;
     NSFetchRequest *pairsRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([BSPair class])];
+    NSPredicate *groupPredicate = [NSPredicate predicateWithFormat:@"groups contains[c] %@", group];
+    pairsRequest.predicate = groupPredicate;
     NSError *error;
     NSArray *items = [_managedObjectContext executeFetchRequest:pairsRequest error:&error];
     

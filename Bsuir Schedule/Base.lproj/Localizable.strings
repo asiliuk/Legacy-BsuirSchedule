@@ -6,18 +6,52 @@
   Copyright (c) 2014 Saute. All rights reserved.
 */
 
-"L_Schedule" = "Schedule";
 "L_LoadError" = "Can't load schedule.";
 "L_Error" = "Error";
 "L_Ok" = "OK";
+"L_Delete" = "Delete";
 "L_Today" = "Today";
 "L_Tomorrow" = "Tomorrow";
 "L_Week" = "Week";
+"L_NoGroups" = "No groups";
+"L_SettingsSwipe" = "Swipe left in settings for options";
+"L_StarMeaning" = "In widget";
+"L_SubgroupMeaning" = "By subgroups";
 
-"Воскресенье" = "Sun.";
-"Понедельник" = "Mon.";
-"Вторник" = "Tue.";
-"Среда" = "Wed";
-"Четверг" = "Thu.";
-"Пятница" = "Fri.";
-"Суббота" = "Sat.";
+"Sh_Воскресенье" = "Sun.";
+"Sh_Понедельник" = "Mon.";
+"Sh_Вторник" = "Tue.";
+"Sh_Среда" = "Wed";
+"Sh_Четверг" = "Thu.";
+"Sh_Пятница" = "Fri.";
+"Sh_Суббота" = "Sat.";
+
+"Воскресенье" = "Sunday";
+"Понедельник" = "Monday";
+"Вторник" = "Tuesday";
+"Среда" = "Wednesday";
+"Четверг" = "Thursday";
+"Пятница" = "Friday";
+"Суббота" = "Saturday";
+
+"L_Schedule" = "Schedule";
+"L_Settings" = "Settings";
+"L_Feedback" = "Feedback";
+"L_Info" = "Info";
+"L_Groups" = "Groups";
+"L_AddGroup" = "Add group";
+
+"L_Colors" = "Colors";
+"L_Icons" = "Icons";
+"L_Lecture" = "Lecture";
+"L_Practice" = "Practice";
+"L_Labour" = "Labouratory";
+"L_DayView" = "Day view";
+"L_WeekView" = "Week view";
+"L_Subgroup" = "Subgroup";
+"L_Week" = "Week";
+"L_SubjectName" = "Subject name";
+"L_Room" = "Room";
+"L_Housing" = "Housing";
+"L_StartTime" = "start";
+"L_EndTime" = "end";

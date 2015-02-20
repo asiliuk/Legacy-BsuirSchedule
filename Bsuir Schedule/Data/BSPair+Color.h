@@ -10,4 +10,5 @@
 #import <UIKit/UIKit.h>
 @interface BSPair (Color)
 - (UIColor*)colorForPairType;
++ (UIColor*)colorForPairType:(PairType)pairType;
 @end

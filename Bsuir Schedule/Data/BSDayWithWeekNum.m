@@ -25,13 +25,11 @@
 }
 - (NSArray*)pairs {
     if (!_pairs) {
-        NSUserDefaults *sharedDefaults = [NSUserDefaults sharedDefaults];
-        NSNumber *subgroupNumber = @([[sharedDefaults objectForKey:kUserSubgroup] integerValue]);
-        NSSortDescriptor *sortD = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-        NSArray *pairs = [self.dayOfWeek.pairs sortedArrayUsingDescriptors:@[sortD]];
+        NSArray *pairs = [[BSDataManager sharedInstance] sortPairs:[self.dayOfWeek.pairs allObjects]];
         NSMutableArray *weekPairs = [NSMutableArray array];
         for (BSPair *pair in pairs) {
-            if ([pair.weeks containsObject:self.weekNumber] && ([pair.subgroupNumber isEqual:@(0)] || [pair.subgroupNumber isEqual:subgroupNumber])) {
+            BOOL pairForWeek = [pair.weeks containsObject:self.weekNumber];
+            if (pairForWeek) {
                 [weekPairs addObject:pair];
             }
         }
@@ -47,5 +45,18 @@
     BOOL equalDate = [self.date isEqualToDateWithoutTime:object.date];
     equal = equalWeekDay && equalWeekNum && equalDate;
     return equal;
+}
+
+- (NSArray*)pairsForSchedule:(BSSchedule *)schedule weekFormat:(BOOL)weekFormat {
+    return [[BSDataManager sharedInstance] filterPairs:self.pairs forSchedule:schedule forWekFormat:weekFormat];
+}
+- (BOOL)isEqualToDayWithWeekNum:(BSDayWithWeekNum *)object {
+    return [self isEqual:object];
+}
+- (BOOL)isEqualToDay:(BSDayOfWeek *)object {
+    return [self.dayOfWeek isEqualToDay:object];
+}
+- (NSString*)dayOfWeekName {
+    return self.dayOfWeek.name;
 }
 @end

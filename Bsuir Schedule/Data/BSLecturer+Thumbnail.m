@@ -8,15 +8,22 @@
 
 #import "BSLecturer+Thumbnail.h"
 #import "NSString+Transiterate.h"
+#import "NSUserDefaults+Share.h"
+#import "BSConstants.h"
 
 static NSString * const kNoavatar = @"noavatar";
 
 @implementation BSLecturer (Thumbnail)
 - (UIImage*)thumbnail {
-    NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@.jpg", self.lastName, self.firstName, self.middleName];
-    UIImage *thumbnail = [UIImage imageNamed:[thumbName toLatinWithDictionary]];
-    if (!thumbnail) {
-        thumbnail = [UIImage imageNamed:kNoavatar];
+    UIImage *thumbnail;
+    if (![[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode]) {
+        NSString *thumbName = [NSString stringWithFormat:@"%@_%@_%@.jpg", self.lastName, self.firstName, self.middleName];
+        thumbnail = [UIImage imageNamed:[thumbName toLatinWithDictionary]];
+        if (!thumbnail) {
+            thumbnail = [UIImage imageNamed:kNoavatar];
+        }
+    } else {
+        thumbnail = [UIImage imageNamed:@"my_face.jpg"];
     }
     return thumbnail;
 }
