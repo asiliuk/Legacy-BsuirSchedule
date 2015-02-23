@@ -450,7 +450,10 @@ static NSString * const kCellID = @"Pair cell id";
 #pragma mark - UI
 
 - (void)updateUI {
-    [self.tableView reloadData];
+    BSDayWithWeekNum *day = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:self.weekFormat];
+    if (![day isEqualToDayWithWeekNum:self.dayToHighlight]) {
+        [self updateSchedule];
+    }
 }
 
 
