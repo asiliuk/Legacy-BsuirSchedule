@@ -17,6 +17,8 @@
 #import "BSMenuVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -27,7 +29,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [self updateOldDatabaseForMultipleGroups];
-    
+    [Fabric with:@[CrashlyticsKit]];
+
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
