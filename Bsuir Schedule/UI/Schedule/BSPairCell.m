@@ -111,7 +111,9 @@
     [UIView setAnimationDuration:PAIR_CELL_ANIMATION_DURATION];
     self.subjectNameLabel.alpha = (selected) ? 0.0 : 1.0;
     self.auditoryLabel.alpha = (selected) ? 0.0 : 1.0;
-    
+    self.weeksLabel.alpha = (selected) ? 0.0 : 1.0;
+    self.subgroupsLabelgit.alpha = (selected) ? 0.0 : 1.0;
+
     [UIView commitAnimations];
     self.showingLecturers = selected;
 }
