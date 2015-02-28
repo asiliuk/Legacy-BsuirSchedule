@@ -14,6 +14,8 @@
 static NSString * const kNoavatar = @"noavatar";
 
 @implementation BSLecturer (Thumbnail)
+
+
 - (UIImage*)thumbnail {
     UIImage *thumbnail;
     if (![[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode]) {

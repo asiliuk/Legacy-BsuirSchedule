@@ -26,7 +26,35 @@
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
     return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL);
 }
-
++ (void)employeesWithSuccess:(void (^)(void))success failure:(void (^)(void))failure {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *data;
+        NSURL *url = [NSURL URLWithString:@"http://www.bsuir.by/schedule/rest/employee"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        data = [NSData dataWithContentsOfURL:url];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
+        if (dict) {
+            NSArray *employee = dict[@"employee"];
+            for (NSDictionary *lecturerData in employee) {
+                BSLecturer *lecturer;
+                if (lecturerData) {
+                    lecturer = [[BSDataManager sharedInstance] lecturerWithID:[lecturerData[kLecturerID] integerValue]];
+                    if (!lecturer) {
+                        lecturer = [[BSDataManager sharedInstance] addLecturerWithFirstName:lecturerData[kLecturerFirstName]
+                                                                                  midleName:lecturerData[kLecturerMiddleName]
+                                                                                   lastName:lecturerData[kLecturerLastName]
+                                                                                 department:@""//lecturerData[kLecturerDepartment]
+                                                                                 lecturerID:[lecturerData[kLecturerID] integerValue]];
+                        
+                    }
+                }
+            }
+        } else if (failure) {
+            dispatch_async(dispatch_get_main_queue(), failure);
+        }
+    });
+}
 + (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *data;

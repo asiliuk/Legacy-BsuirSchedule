@@ -8,6 +8,8 @@
 
 #import "BSLecturer.h"
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+
 @interface BSLecturer (Thumbnail)
 - (UIImage*)thumbnail;
 @end

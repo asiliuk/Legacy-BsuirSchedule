@@ -7,6 +7,7 @@
 //
 
 #import "BSLecturerPreview.h"
+#import <Parse/Parse.h>
 
 @implementation BSLecturerPreview
 
@@ -19,8 +20,21 @@
 #define LECTURER_NAME_FONT_SIZE 10.0f
 
 - (void)setupWithLecturer:(BSLecturer*)lecturer {
-    self.lecturerIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
-    self.lecturerIV.image = [lecturer thumbnail];
+    self.lecturerIV = [[PFImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
+//    self.lecturerIV.image = [lecturer thumbnail];
+    
+    PFQuery *q = [PFQuery queryWithClassName:NSStringFromClass([BSLecturer class])];
+    [q fromLocalDatastore];
+    q = [q whereKey:@"lecturerID" equalTo:lecturer.lecturerID];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            PFObject *lecturerObj = [objects firstObject];
+            PFFile *imageFile = lecturerObj[@"image"];
+            self.lecturerIV.file = imageFile;
+            [self.lecturerIV loadInBackground];
+//            [lecturerObj pinInBackground];
+        }
+    }];
     self.lecturerIV.contentMode = UIViewContentModeScaleAspectFill;
     [self.lecturerIV.layer setCornerRadius:LECTURER_IMAGE_WIDTH / 2.0];
     self.lecturerIV.layer.masksToBounds = YES;

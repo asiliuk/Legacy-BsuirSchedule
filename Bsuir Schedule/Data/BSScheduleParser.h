@@ -12,4 +12,6 @@
 @interface BSScheduleParser : NSObject
 + (BOOL)scheduleExpiresForGroup:(BSGroup*)group;
 + (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure;
+
++ (void)employeesWithSuccess:(void (^)(void))success failure:(void (^)(void))failure;
 @end

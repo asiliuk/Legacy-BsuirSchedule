@@ -27,7 +27,6 @@
 #import "BSDayOfWeek+Number.h"
 #import "BSDayWithWeekNum.h"
 
-
 static NSString * const kCellID = @"Pair cell id";
 
 
@@ -43,6 +42,7 @@ static NSString * const kCellID = @"Pair cell id";
 @end
 
 @implementation BSScheduleVC
+
 
 - (NSArray*)easterEggStrings {
     if (!_easterEggStrings) {

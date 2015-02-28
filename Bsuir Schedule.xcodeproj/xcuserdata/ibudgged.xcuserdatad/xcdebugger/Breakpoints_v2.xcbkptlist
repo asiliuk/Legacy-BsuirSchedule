@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/UI/Schedule/BSScheduleVC.m"
-            timestampString = "446386096.572206"
+            timestampString = "446732988.313313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "-loadScheduleForDaysCount:backwards:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/UI/Schedule/BSScheduleVC.m"
-            timestampString = "446386096.572206"
+            timestampString = "446732988.313313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "-numberOfSectionsInTableView:"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "-pairsForDay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/Data/BSLecturer+Thumbnail.m"
-            timestampString = "445437434.615677"
+            timestampString = "446734606.440922"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-thumbnail"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/UI/Lecturer/BSLecturerPreview.m"
-            timestampString = "445614282.295436"
+            timestampString = "446734672.644431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-setupWithLecturer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "+scheduleForGroup:withSuccess:failure:"
+            landmarkName = "+employeesWithSuccess:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,12 +314,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/UI/Schedule/BSScheduleVC.m"
-            timestampString = "446136885.352446"
+            timestampString = "446732988.313313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-updateSchedule"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-changeWeekType"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -346,12 +346,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bsuir Schedule/UI/Schedule/BSScheduleVC.m"
-            timestampString = "446386239.960089"
+            timestampString = "446732988.313313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
-            landmarkName = "-thumbnailForLecturer:withStartFrame:getTappedOnCell:"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "@implementation BSScheduleVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bsuir Schedule/AppDelegate.m"
+            timestampString = "446728504.728084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bsuir Schedule/Data/BSScheduleParser.m"
+            timestampString = "446730739.552696"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "+employeesWithSuccess:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
