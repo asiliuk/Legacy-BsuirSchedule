@@ -95,5 +95,8 @@ static NSString * const kLecturerFirstName = @"firstName";
 static NSString * const kDidComeFromBackground = @"kDidComeFromBackground";
 static NSString * const kSchedulesGetUpdated = @"kSchedulesGetUpdated";
 
+static NSString * const kParseApplicationID = @"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo";
+static NSString * const kParseClientKey = @"1Lv4keabSCqMmhDSOQWeOsfvKi7zsegPxs2pxRpE";
+
 
 #endif

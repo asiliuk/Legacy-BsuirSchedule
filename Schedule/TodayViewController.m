@@ -15,6 +15,8 @@
 #import "NSUserDefaults+Share.h"
 
 #import "BSDayWithWeekNum.h"
+#import <Parse/Parse.h>
+
 
 static NSString * const kCellID = @"today view cell";
 
@@ -28,8 +30,16 @@ static NSString * const kCellID = @"today view cell";
 
 @implementation TodayViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (![Parse isLocalDatastoreEnabled]) {
+        [Parse enableLocalDatastore];
+    
+        [Parse setApplicationId:kParseApplicationID
+                      clientKey:kParseClientKey];
+    }
+    
     self.title = @"saasa";
     NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
     NSString *groupNumber = [shared objectForKey:kWidgetGroup];

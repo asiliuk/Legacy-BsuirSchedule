@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "BSSubject.h"
-#import "BSLecturer+Thumbnail.h"
+#import "BSLecturer.h"
 #import "BSDayOfWeek+Number.h"
 #import "BSAuditory.h"
 #import "BSPair+Type.h"

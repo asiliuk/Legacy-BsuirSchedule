@@ -21,7 +21,6 @@
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
 
-
 @interface AppDelegate ()
 
 @end
@@ -35,8 +34,8 @@
     
     [Parse enableLocalDatastore];
     
-    [Parse setApplicationId:@"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo"
-                  clientKey:@"1Lv4keabSCqMmhDSOQWeOsfvKi7zsegPxs2pxRpE"];
+    [Parse setApplicationId:kParseApplicationID
+                  clientKey:kParseClientKey];
     
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
