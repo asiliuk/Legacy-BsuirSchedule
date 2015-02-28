@@ -11,6 +11,8 @@
 #import "UIImage+MultiFormat.h"
 #import <CommonCrypto/CommonDigest.h>
 
+#import "BSConstants.h"
+
 static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 // PNG signature bytes and data (below)
 static unsigned char kPNGSignatureBytes[8] = {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A};
@@ -76,6 +78,10 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         _diskCachePath = [paths[0] stringByAppendingPathComponent:fullNamespace];
+        
+        //MY IMPLEMENTATION FOR SHARED CACHE
+        NSURL *sharedUrl = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kAppGroup];
+        _diskCachePath = [sharedUrl path];
 
         // Set decompression to YES
         _shouldDecompressImages = YES;
@@ -474,19 +480,19 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 }
 
 - (void)backgroundCleanDisk {
-    UIApplication *application = [UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
-        // Clean up any unfinished task business by marking where you
-        // stopped or ending the task outright.
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    }];
-
-    // Start the long-running task and return immediately.
-    [self cleanDiskWithCompletionBlock:^{
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    }];
+//    UIApplication *application = [UIApplication sharedApplication];
+//    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+//        // Clean up any unfinished task business by marking where you
+//        // stopped or ending the task outright.
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    }];
+//
+//    // Start the long-running task and return immediately.
+//    [self cleanDiskWithCompletionBlock:^{
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    }];
 }
 
 - (NSUInteger)getSize {
