@@ -13,8 +13,7 @@
 
 #import "BSConstants.h"
 
-#import "SlideNavigationController.h"
-#import "BSMenuVC.h"
+#import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
 #import <Fabric/Fabric.h>
@@ -35,47 +34,20 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    UIViewController *mainVC;
-    BSSchedule *sch = [[[BSDataManager sharedInstance] schelules] firstObject];
-    if (sch) {
-        mainVC = [[BSScheduleVC alloc] initWithSchedule:sch];
-    } else {
-        mainVC = [[BSSettingsVC alloc] init];
-    }
-    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:mainVC];
-    [self customizeSlideNavigationController:slideNavController];
-    self.window.rootViewController = slideNavController;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BSMainVC alloc] init]];
     [self.window makeKeyAndVisible];
     
     [[NSUserDefaults sharedDefaults] setBool:NO forKey:kEasterEggMode];
-    return YES;
-}
 
-- (void)customizeSlideNavigationController:(SlideNavigationController*)slideNavController {
-    slideNavController.avoidSwitchingToSameClassViewController = NO;
-    slideNavController.leftMenu = [[BSMenuVC alloc] init];
-    
-    slideNavController.navigationBar.barStyle = UIBarStyleBlack;
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [[UINavigationBar appearance] setBarTintColor:BS_BLUE];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-    } else {
-        [[UINavigationBar appearance] setTintColor:BS_BLUE];
-    }
+    [[UINavigationBar appearance] setBarTintColor:BS_BLUE];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
     UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
-    [slideNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                               NSFontAttributeName: titleFont}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                      NSFontAttributeName: titleFont}];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    
-    UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"menu_burger"] forState:UIControlStateNormal];
-    [button addTarget:slideNavController action:@selector(toggleLeftMenu) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    slideNavController.leftBarButtonItem = leftBarButtonItem;
-    slideNavController.enableShadow = NO;
+    return YES;
 }
 
 //- (void)updateOldDatabaseForMultipleGroups {
