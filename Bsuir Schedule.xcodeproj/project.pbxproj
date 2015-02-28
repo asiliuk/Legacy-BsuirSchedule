@@ -68,10 +68,10 @@
 		8CC4EEB11AA1EE2E00AD6C22 /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA91AA1EE2D00AD6C22 /* AMSlideMenuRightTableViewController.m */; };
 		8CC4EEB21AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEAB1AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m */; };
 		8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEB41AA1EEAF00AD6C22 /* BSMainVC.m */; };
+		8CC4EEBB1AA1FB4100AD6C22 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */; };
 		8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D10448531A267F2E00670898 /* BSScheduleParser.m */; };
-		D1085FB11A2A9B7600D0C62B /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
 		D1085FBF1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
 		D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB41A2A9C1000D0C62B /* OpenSans-Bold.ttf */; };
@@ -795,6 +795,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC4EEBB1AA1FB4100AD6C22 /* Lecturers.xcassets in Resources */,
 				D1085FC91A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				8C342AA71A8A1C6F0020AE99 /* Images.xcassets in Resources */,
 				D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */,
@@ -808,7 +809,6 @@
 				D1085FCD1A2A9C1000D0C62B /* OpenSans-LightItalic.ttf in Resources */,
 				D196D03D1A2A96BE00EA6901 /* Localizable.strings in Resources */,
 				D1085FC11A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
-				D1085FB11A2A9B7600D0C62B /* Lecturers.xcassets in Resources */,
 				D1085FD31A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */,
 				D1085FCB1A2A9C1000D0C62B /* OpenSans-Light.ttf in Resources */,
 				D1085FCF1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
