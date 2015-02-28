@@ -12,7 +12,6 @@
 #import "UIView+Screenshot.h"
 #import "NSUserDefaults+Share.h"
 
-#import "SlideNavigationContorllerAnimator.h"
 #import "BSScheduleAddVC.h"
 #import "AppDelegate.h"
 
@@ -228,11 +227,6 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     
     cell.delegate = self;
     return cell;
-}
-
-- (BOOL)slideNavigationControllerShouldDisplayLeftMenu;
-{
-    return YES;
 }
 
 
