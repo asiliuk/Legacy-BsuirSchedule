@@ -154,6 +154,13 @@ static NSString * const kCellID = @"Pair cell id";
     [self setNavBarLabel];
     [self getScheduleData];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    
+    if ([BSScheduleParser scheduleExpiresForGroup:self.schedule.group]) {
+        __weak typeof(self) weakself = self;
+        [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
+            [weakself updateSchedule];
+        } failure:nil];
+    }
 }
 
 - (void)setNavBarLabel {
@@ -247,7 +254,7 @@ static NSString * const kCellID = @"Pair cell id";
 }
 
 #define MAAX_TRY_COUNT 100
-- (void)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
+- (NSInteger)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
     NSDate *now = [NSDate date];
     NSDate *dayDate = now; // to show two previous days
     if ([self.days count] > 0) {
@@ -273,6 +280,7 @@ static NSString * const kCellID = @"Pair cell id";
         tryies ++;
         dayDate = [dayDate dateByAddingTimeInterval:(backwards ? -1 : 1)*DAY_IN_SECONDS];
     }
+    return daysAdded;
 }
 
 - (NSURL *)applicationDocumentsDirectory {
@@ -413,8 +421,8 @@ static NSString * const kCellID = @"Pair cell id";
     if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
         if (!self.weekFormat) {
             NSLog(@"load more rows");
-            [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.days.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
+            NSInteger daysLoad = [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.days.count - daysLoad, daysLoad)];
             [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
         }
     }

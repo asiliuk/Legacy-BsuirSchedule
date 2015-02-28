@@ -21,7 +21,7 @@
 #define LECTURER_NAME_FONT_SIZE 10.0f
 
 - (void)setupWithLecturer:(BSLecturer*)lecturer {
-    self.lecturerIV = [[PFImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
+    self.lecturerIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
 
     [lecturer loadLecturerImageIn:self.lecturerIV];
     

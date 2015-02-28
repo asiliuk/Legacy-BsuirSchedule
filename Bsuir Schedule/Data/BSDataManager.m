@@ -44,7 +44,7 @@
     return self;
 }
 
-#define MAX_INTERVAL_TO_HIGHLIGHT 10
+#define MAX_INTERVAL_TO_HIGHLIGHT 20
 - (BSDayWithWeekNum*)dayToHighlightInSchedule:(BSSchedule *)schedule weekMode:(BOOL)weekMode {
     BSDayWithWeekNum *dayToHighlight;
     NSDate *now = [NSDate date];

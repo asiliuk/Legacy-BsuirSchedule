@@ -11,41 +11,49 @@
 #import "NSUserDefaults+Share.h"
 #import "BSConstants.h"
 
+#import "SDImageCache.h"
+
 static NSString * const kNoavatar = @"noavatar";
 
 @implementation BSLecturer (Thumbnail)
 
 #define LECTURER_ID_KEY @"lecturerID"
-- (void)loadLecturerImageIn:(PFImageView *)imageView {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([BSLecturer class])];
-    [query whereKey:LECTURER_ID_KEY equalTo:self.lecturerID];
-    [query fromLocalDatastore];
-    __weak typeof(self) weakself = self;
-    imageView.image = [UIImage imageNamed:kNoavatar];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        typeof(weakself) self = weakself;
-        if ([objects count] == 0) {
-            UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            ai.center = CGPointMake(imageView.bounds.size.width / 2.0, imageView.bounds.size.width / 2.0);
-            [imageView addSubview:ai];
-            [ai startAnimating];
-            PFQuery *gquery = [PFQuery queryWithClassName:NSStringFromClass([BSLecturer class])];
-            [gquery whereKey:LECTURER_ID_KEY equalTo:self.lecturerID];
-            [gquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [ai removeFromSuperview];
-                if (!error) {
-                    PFObject *lecturerObj = [objects firstObject];
-                    PFFile *imageFile = lecturerObj[@"image"];
-                    imageView.file = imageFile;
-                    [imageView loadInBackground];
-                    [lecturerObj pinInBackground];
+- (void)loadLecturerImageIn:(UIImageView *)imageView {
+    NSString *thumbName = [[NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName] toLatinWithDictionary];
+    if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:thumbName]) {
+        [imageView setImage:[[SDImageCache sharedImageCache] imageFromDiskCacheForKey:thumbName]];
+    } else {
+        UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        av.center = CGPointMake(imageView.bounds.size.width / 2.0, imageView.bounds.size.height / 2.0);
+        [imageView addSubview:av];
+        [av startAnimating];        
+        [imageView setImage:[UIImage imageNamed:kNoavatar]];
+        PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([BSLecturer class])];
+        [query whereKey:@"lecturerID" equalTo:self.lecturerID];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+                if ([objects count] > 0) {
+                    PFObject *lecturer = [objects firstObject];
+                    PFFile *imageFile = lecturer[@"image"];
+                    NSData *imageData = [imageFile getData];
+                    UIImage *image = [UIImage imageNamed:kNoavatar];
+                    if (imageData.length > 0) {
+                        image = [UIImage imageWithData:imageData];
+                    } else if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:thumbName]){
+                        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:thumbName];
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[SDImageCache sharedImageCache] storeImage:image forKey:thumbName toDisk:YES];
+                        [imageView setImage:image];
+                        [av removeFromSuperview];
+                    });
+
                 }
-            }];
-        }
-        PFObject *lecturerObj = [objects firstObject];
-        PFFile *imageFile = lecturerObj[@"image"];
-        imageView.file = imageFile;
-        [imageView loadInBackground];
-    }];
+            });
+        }];
+    }
+    
 }
+
 @end
