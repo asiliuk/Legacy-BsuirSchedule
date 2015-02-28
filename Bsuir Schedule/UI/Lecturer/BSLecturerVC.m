@@ -30,6 +30,7 @@
 @property (nonatomic) UIDynamicItemBehavior *itemBehavior;
 
 @property (assign, nonatomic) BOOL dismissing;
+@property (assign, nonatomic) BOOL showCenterFinished;
 @end
 
 @implementation BSLecturerVC
@@ -89,15 +90,20 @@
 
 }
 - (void)showCenterView {
+    __weak typeof(self) weakself = self;
     [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+        typeof(weakself) self = weakself;
         self.previewIV.frame = [self.view convertRect:self.lecturerIV.frame fromView:self.centerView];
         self.previewIV.layer.cornerRadius = 0.0;
         self.backIV.alpha = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? 1.0 : 0.8;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:LECTURER_NAME_ANIMATION_DURATION animations:^{
+            typeof(weakself) self = weakself;
             self.centerView.alpha = 1.0;
         } completion:^(BOOL finished) {
+            typeof(weakself) self = weakself;
             [self.previewIV removeFromSuperview];
+            self.showCenterFinished = YES;
         }];
     }];
 }
@@ -105,13 +111,15 @@
 - (void)dismiss {
     if (!self.dismissing) {
         self.dismissing = YES;
+        __weak typeof(self) weakself = self;
         [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+            typeof(weakself) self = weakself;
             if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
                 self.centerView.alpha = 0.0;
             }
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
-            [self dismissViewControllerAnimated:NO completion:nil];
+            [weakself dismissViewControllerAnimated:NO completion:nil];
         }];
     }
 }
@@ -128,6 +136,9 @@ static const CGFloat ThrowingVelocityPadding = 35;
 
 - (IBAction) handleAttachmentGesture:(UIPanGestureRecognizer*)gesture
 {
+    if (!self.showCenterFinished) {
+        return;
+    }
     CGPoint location = [gesture locationInView:self.view];
     CGPoint boxLocation = [gesture locationInView:self.centerView];
 

@@ -68,7 +68,6 @@
 		8CC4EEB11AA1EE2E00AD6C22 /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA91AA1EE2D00AD6C22 /* AMSlideMenuRightTableViewController.m */; };
 		8CC4EEB21AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEAB1AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m */; };
 		8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEB41AA1EEAF00AD6C22 /* BSMainVC.m */; };
-		8CC4EEBB1AA1FB4100AD6C22 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		8CC4EEBF1AA2001B00AD6C22 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */; };
 		8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */; };
 		8CC4EEC11AA2001B00AD6C22 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */; };
@@ -155,7 +154,6 @@
 		D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
 		D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D275521A67176400D38C2D /* NSData+MD5.m */; };
 		D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
-		D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */; };
 		D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
 		D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E34FE01A3339F9003459E6 /* InfoPlist.strings */; };
 		D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
@@ -341,7 +339,6 @@
 		D1D275521A67176400D38C2D /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 		D1DE31611A1AA3D5000038B0 /* BSLecturer+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+Thumbnail.h"; sourceTree = "<group>"; };
 		D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+Thumbnail.m"; sourceTree = "<group>"; };
-		D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lecturers.xcassets; sourceTree = "<group>"; };
 		D1DE31661A1AA9AB000038B0 /* NSString+Transiterate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Transiterate.h"; sourceTree = "<group>"; };
 		D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Transiterate.m"; sourceTree = "<group>"; };
 		D1E34FDF1A3339F9003459E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -717,7 +714,6 @@
 				D170BD121A1BF9370068E67C /* Models */,
 				D1608FBA1A18C0FA008B3216 /* BSDataManager.h */,
 				D1608FBB1A18C0FA008B3216 /* BSDataManager.m */,
-				D1DE31641A1AA5FA000038B0 /* Lecturers.xcassets */,
 				D10448521A267F2E00670898 /* BSScheduleParser.h */,
 				D10448531A267F2E00670898 /* BSScheduleParser.m */,
 			);
@@ -879,7 +875,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CC4EEBB1AA1FB4100AD6C22 /* Lecturers.xcassets in Resources */,
 				D1085FC91A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				8C342AA71A8A1C6F0020AE99 /* Images.xcassets in Resources */,
 				D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */,
@@ -919,7 +914,6 @@
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				8C342ABE1A8A3B8F0020AE99 /* BSTutorialVC.xib in Resources */,
 				8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */,
-				D1DE31651A1AA5FA000038B0 /* Lecturers.xcassets in Resources */,
 				D1085FCE1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
 				8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */,
 				D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
