@@ -16,8 +16,11 @@
 #import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
+
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <Parse/Parse.h>
+
 
 @interface AppDelegate ()
 
@@ -29,6 +32,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [self updateOldDatabaseForMultipleGroups];
     [Fabric with:@[CrashlyticsKit]];
+    
+    [Parse enableLocalDatastore];
+    
+    [Parse setApplicationId:@"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo"
+                  clientKey:@"1Lv4keabSCqMmhDSOQWeOsfvKi7zsegPxs2pxRpE"];
+    
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

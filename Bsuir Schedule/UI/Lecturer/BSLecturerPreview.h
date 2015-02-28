@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BSLecturer+Thumbnail.h"
+#import <ParseUI/PFImageView.h>
 
 #define LECTURER_IMAGE_WIDTH 50.0f
 @interface BSLecturerPreview : UIView
 @property (strong, nonatomic) BSLecturer *lecturer;
-@property (strong, nonatomic) UIImageView *lecturerIV;
+@property (strong, nonatomic) PFImageView *lecturerIV;
 @property (strong, nonatomic) UILabel *lecturerNameLabel;
 
 - (void)setupWithLecturer:(BSLecturer*)lecturer;
