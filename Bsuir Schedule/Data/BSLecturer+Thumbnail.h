@@ -9,7 +9,8 @@
 #import "BSLecturer.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseUI/PFImageView.h>
 
 @interface BSLecturer (Thumbnail)
-- (UIImage*)thumbnail;
+- (void)loadLecturerImageIn:(PFImageView*)imageView;
 @end

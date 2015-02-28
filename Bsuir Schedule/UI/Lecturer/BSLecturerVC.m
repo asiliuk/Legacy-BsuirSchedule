@@ -9,14 +9,15 @@
 #import "BSLecturerVC.h"
 #import "UIView+Screenshot.h"
 #import "BSConstants.h"
+#import <ParseUI/ParseUI.h>
 
 @interface BSLecturerVC ()
-@property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
+@property (strong, nonatomic) IBOutlet PFImageView *lecturerIV;
 @property (strong, nonatomic) IBOutlet UILabel *lecturerNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *backIV;
 @property (strong, nonatomic) IBOutlet UIView *centerView;
 
-@property (strong, nonatomic) UIImageView *previewIV;
+@property (strong, nonatomic) PFImageView *previewIV;
 @property (strong, nonatomic) BSLecturer *lecturer;
 @property (assign, nonatomic) CGRect startFrame;
 
@@ -48,14 +49,14 @@
     } else {
         self.backIV.backgroundColor = [UIColor blackColor];
     }
-    self.lecturerIV.image = [self.lecturer thumbnail];
+    [self.lecturer loadLecturerImageIn:self.lecturerIV];
     self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
                                    self.lecturer.lastName,
                                    self.lecturer.firstName,
                                    self.lecturer.middleName];
     
-    self.previewIV = [[UIImageView alloc] initWithFrame:self.startFrame];
-    self.previewIV.image = [self.lecturer thumbnail];
+    self.previewIV = [[PFImageView alloc] initWithFrame:self.startFrame];
+    [self.lecturer loadLecturerImageIn:self.previewIV];
     self.previewIV.contentMode = UIViewContentModeScaleAspectFill;
     self.previewIV.layer.cornerRadius = self.previewIV.frame.size.width / 2.0;
     self.previewIV.layer.masksToBounds = YES;

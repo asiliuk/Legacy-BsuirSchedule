@@ -63,7 +63,7 @@
         data = [NSData dataWithContentsOfURL:url];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSDictionary *dict = [NSDictionary dictionaryWithXMLData:data];
-        if (dict) {
+        if (dict && [dict[kScheduleModel] count] > 0) {
             NSString *loadedScheduleStamp = [[NSKeyedArchiver archivedDataWithRootObject:dict] MD5];
             NSString *savedScheduleStamp = group.scheduleStamp;
             if (![loadedScheduleStamp isEqual:savedScheduleStamp]) {
