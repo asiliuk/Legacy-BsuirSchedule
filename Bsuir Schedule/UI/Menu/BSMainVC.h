@@ -9,5 +9,5 @@
 #import "AMSlideMenuMainViewController.h"
 
 @interface BSMainVC : AMSlideMenuMainViewController
-
+- (void)showVCForGroupNumber:(NSString*)groupNumber;
 @end

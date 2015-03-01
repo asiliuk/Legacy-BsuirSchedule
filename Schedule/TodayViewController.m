@@ -17,6 +17,8 @@
 #import "BSDayWithWeekNum.h"
 #import <Parse/Parse.h>
 
+#import "AYVibrantButton.h"
+
 
 static NSString * const kCellID = @"today view cell";
 
@@ -46,7 +48,7 @@ static NSString * const kCellID = @"today view cell";
     NSInteger subgroup = [shared integerForKey:kWidgetSubgroup];
     self.schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:NO];
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:NO];
-    self.preferredContentSize = CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count] * CELL_HEIGHT);
+    self.preferredContentSize = CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count] * CELL_HEIGHT + 40.0);
     [self.view layoutSubviews];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     BOOL hasDataToDisplay = NO;
@@ -56,7 +58,32 @@ static NSString * const kCellID = @"today view cell";
     }
     NCWidgetController *widgetController = [[NCWidgetController alloc] init];
     [widgetController setHasContent:hasDataToDisplay forWidgetWithBundleIdentifier:kWidgetID];
+
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect notificationCenterVibrancyEffect]];
+    effectView.frame = self.view.bounds;
+    [self.view addSubview:effectView];
+    
+    effectView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[effectView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(effectView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[effectView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(effectView)]];
+    
+    AYVibrantButton *invertButton = [[AYVibrantButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40) style:AYVibrantButtonStyleInvert];
+    invertButton.vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    invertButton.text = LZD(@"L_OpenApp");
+    invertButton.font = [UIFont fontWithName:@"OpenSans" size:14.0];
+    [effectView.contentView addSubview:invertButton];
+    
+    invertButton.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:invertButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:effectView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    
+    [effectView addConstraint:centerX];
+    [effectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[invertButton(220)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(invertButton)]];
+    [effectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[invertButton(30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(invertButton)]];
+    
+    
+    [invertButton addTarget:self action:@selector(openApp:) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,8 +139,14 @@ static NSString * const kCellID = @"today view cell";
     return UIEdgeInsetsZero;
 }
 
+- (void)openApp:(id)sender {
+    NSURL *url = [NSURL URLWithString:[@"bsuirschedule://?group=" stringByAppendingString:self.schedule.group.groupNumber]];
+    [self.extensionContext openURL:url completionHandler:nil];
+}
+
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table view
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count];
 }

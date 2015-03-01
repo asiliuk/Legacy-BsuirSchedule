@@ -366,7 +366,7 @@
 
     }
 }
-- (void)handleThumbnailTap:(UITapGestureRecognizer*)sender {
+- (void)handleTap:(UITapGestureRecognizer*)sender {
     if ([self.lecturersPreviews count] < 2) {
         BSLecturerPreview *lecturerPreview = [self.lecturersPreviews lastObject];
         CGRect thumbFrame = [self convertRect:lecturerPreview.lecturerIV.frame fromView:lecturerPreview];

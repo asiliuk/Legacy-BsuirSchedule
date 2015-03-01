@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */; };
 		8C05141F1A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
@@ -81,12 +82,10 @@
 		8CC4EECE1AA2005E00AD6C22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EECD1AA2005E00AD6C22 /* MobileCoreServices.framework */; };
 		8CC4EED01AA2006400AD6C22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EECF1AA2006400AD6C22 /* QuartzCore.framework */; };
 		8CC4EED21AA2006900AD6C22 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED11AA2006900AD6C22 /* Security.framework */; };
-		8CC4EED41AA2006D00AD6C22 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED31AA2006D00AD6C22 /* StoreKit.framework */; };
 		8CC4EED61AA2007500AD6C22 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED51AA2007500AD6C22 /* SystemConfiguration.framework */; };
 		8CC4EED81AA2007C00AD6C22 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED71AA2007C00AD6C22 /* libz.dylib */; };
 		8CC4EEDA1AA2008300AD6C22 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED91AA2008300AD6C22 /* libsqlite3.dylib */; };
 		8CC4EEDB1AA2009B00AD6C22 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED51AA2007500AD6C22 /* SystemConfiguration.framework */; };
-		8CC4EEDC1AA2009B00AD6C22 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED31AA2006D00AD6C22 /* StoreKit.framework */; };
 		8CC4EEDD1AA2009B00AD6C22 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED11AA2006900AD6C22 /* Security.framework */; };
 		8CC4EEDE1AA2009B00AD6C22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EECF1AA2006400AD6C22 /* QuartzCore.framework */; };
 		8CC4EEDF1AA2009B00AD6C22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EECD1AA2005E00AD6C22 /* MobileCoreServices.framework */; };
@@ -217,6 +216,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C04C4E01AA2A90B002A8BAD /* AYVibrantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYVibrantButton.h; sourceTree = "<group>"; };
+		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8C0514211A9B538E0097BE52 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		8C342AA61A8A103E0020AE99 /* BSDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
@@ -300,7 +301,6 @@
 		8CC4EECD1AA2005E00AD6C22 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8CC4EECF1AA2006400AD6C22 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8CC4EED11AA2006900AD6C22 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		8CC4EED31AA2006D00AD6C22 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8CC4EED51AA2007500AD6C22 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8CC4EED71AA2007C00AD6C22 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8CC4EED91AA2008300AD6C22 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -423,7 +423,6 @@
 				8CC4EEC41AA2001B00AD6C22 /* ParseUI.framework in Frameworks */,
 				8CC4EEDB1AA2009B00AD6C22 /* SystemConfiguration.framework in Frameworks */,
 				8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */,
-				8CC4EEDC1AA2009B00AD6C22 /* StoreKit.framework in Frameworks */,
 				D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */,
 				8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */,
 				8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
@@ -441,7 +440,6 @@
 				8CC4EEDA1AA2008300AD6C22 /* libsqlite3.dylib in Frameworks */,
 				8CC4EED81AA2007C00AD6C22 /* libz.dylib in Frameworks */,
 				8CC4EED61AA2007500AD6C22 /* SystemConfiguration.framework in Frameworks */,
-				8CC4EED41AA2006D00AD6C22 /* StoreKit.framework in Frameworks */,
 				8CC4EED21AA2006900AD6C22 /* Security.framework in Frameworks */,
 				8CC4EED01AA2006400AD6C22 /* QuartzCore.framework in Frameworks */,
 				8CC4EECE1AA2005E00AD6C22 /* MobileCoreServices.framework in Frameworks */,
@@ -467,6 +465,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C04C4DF1AA2A90B002A8BAD /* AYVibrantButton */ = {
+			isa = PBXGroup;
+			children = (
+				8C04C4E01AA2A90B002A8BAD /* AYVibrantButton.h */,
+				8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */,
+			);
+			path = AYVibrantButton;
+			sourceTree = "<group>";
+		};
 		8C342AA91A8A24480020AE99 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,7 +627,6 @@
 				8CC4EED91AA2008300AD6C22 /* libsqlite3.dylib */,
 				8CC4EED71AA2007C00AD6C22 /* libz.dylib */,
 				8CC4EED51AA2007500AD6C22 /* SystemConfiguration.framework */,
-				8CC4EED31AA2006D00AD6C22 /* StoreKit.framework */,
 				8CC4EED11AA2006900AD6C22 /* Security.framework */,
 				8CC4EECF1AA2006400AD6C22 /* QuartzCore.framework */,
 				8CC4EECD1AA2005E00AD6C22 /* MobileCoreServices.framework */,
@@ -697,6 +703,7 @@
 		D196D02E1A2A967D00EA6901 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				8C04C4DF1AA2A90B002A8BAD /* AYVibrantButton */,
 				D196D03C1A2A968300EA6901 /* Schedule.entitlements */,
 				D196D0311A2A967D00EA6901 /* TodayViewController.h */,
 				D196D0321A2A967D00EA6901 /* TodayViewController.m */,
@@ -937,9 +944,13 @@
 					};
 					D19EB21A1A1824900055B0D3 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 636FUHDF2R;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1063,6 +1074,7 @@
 				8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */,
 				D196D0481A2A96D500EA6901 /* BSPair+Type.m in Sources */,
 				8C77938D1A84CF24007AB2EF /* BSTextField.m in Sources */,
+				8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */,
 				D196D0421A2A96CF00EA6901 /* BSAuditory.m in Sources */,
 				D196D0471A2A96D500EA6901 /* BSLecturer+Thumbnail.m in Sources */,
 				8CAC66341A8CB50800BF4C2C /* BSSchedule.m in Sources */,
@@ -1220,9 +1232,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1246,9 +1255,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1346,9 +1352,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1375,9 +1378,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = AMSlideMenuWithoutStoryboards;
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
