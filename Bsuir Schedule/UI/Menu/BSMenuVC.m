@@ -48,7 +48,6 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
     [super viewDidLoad];
     [self updateMenuItems];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kBSMenuCell];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSMenuCell class]) bundle:nil] forCellReuseIdentifier:kBSMenuCell];
 
     self.tableView.backgroundColor = [UIColor darkGrayColor];
@@ -59,7 +58,6 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
                                                  name:kSchedulesGetUpdated
                                                object:nil];
     self.mainVC.slideMenuDelegate = self;
-
 }
 
 - (void)dealloc {
@@ -90,7 +88,33 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
     self.fixView = nil;
 }
 
-
+//===============================================INDEX METHODS===========================================
+#pragma mark - Index methods
+- (NSIndexPath*)indexPathForGroupNumber:(NSString*)groupNumber {
+    NSIndexPath *indexPath;
+    for (NSDictionary* menuItemData in self.menuItems) {
+        if ([menuItemData[kBSMenuItemType] isEqual:@(BSMenuItemSchedule)]) {
+            if (!groupNumber || [[[menuItemData[kBSMenuItemSchedule] group] groupNumber] isEqual:groupNumber]) {
+                indexPath = [NSIndexPath indexPathForRow:[self.menuItems indexOfObject:menuItemData] inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
+- (NSIndexPath*)settingsIndexPath {
+    NSIndexPath *indexPath;
+    for (NSDictionary* menuItemData in self.menuItems) {
+        if ([menuItemData[kBSMenuItemType] isEqual:@(BSMenuItemSettings)]) {
+            indexPath = [NSIndexPath indexPathForRow:[self.menuItems indexOfObject:menuItemData] inSection:0];
+            break;
+        }
+    }
+    return indexPath;
+}
+- (void)openVCAtIndexPath:(NSIndexPath*)indexPath {
+    [self showVcForMenuItemData:self.menuItems[indexPath.row]];
+}
 //===============================================SLIDE MENU DELEGATE===========================================
 #pragma mark - Slide menu delegate
 

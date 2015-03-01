@@ -22,7 +22,7 @@
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) BSMainVC *mainVC;
 @end
 
 @implementation AppDelegate
@@ -42,7 +42,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BSMainVC alloc] init]];
+    self.mainVC = [[BSMainVC alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.mainVC];
     [self.window makeKeyAndVisible];
     
     [[NSUserDefaults sharedDefaults] setBool:NO forKey:kEasterEggMode];
@@ -54,8 +55,34 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                                       NSFontAttributeName: titleFont}];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+        NSString *groupNum = [[self paramsFromURL:[launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]] objectForKey:@"group"];
+        [self.mainVC showVCForGroupNumber:groupNum];
+    }
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString *groupNum = [[self paramsFromURL:url] objectForKey:@"group"];
+    if (groupNum && ![groupNum isEqual:@""]) {
+        [self.mainVC showVCForGroupNumber:groupNum];
+    }
+    return YES;
+}
+
+- (NSDictionary*)paramsFromURL:(NSURL*)url {
+    NSString * q = [url query];
+    NSArray * pairs = [q componentsSeparatedByString:@"&"];
+    NSMutableDictionary * kvPairs = [NSMutableDictionary dictionary];
+    for (NSString * pair in pairs) {
+        NSArray * bits = [pair componentsSeparatedByString:@"="];
+        NSString * key = [[bits objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString * value = [[bits objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [kvPairs setObject:value forKey:key];
+    }
+    return kvPairs;
 }
 
 //- (void)updateOldDatabaseForMultipleGroups {

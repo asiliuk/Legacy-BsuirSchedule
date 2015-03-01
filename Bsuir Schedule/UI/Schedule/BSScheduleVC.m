@@ -516,4 +516,8 @@ static NSString * const kCellID = @"Pair cell id";
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 @end

@@ -28,4 +28,8 @@ extern NSString * const kBSMenuCell;
 
 @interface BSMenuVC : AMSlideMenuLeftTableViewController
 @property (strong, nonatomic) NSArray *menuItems;
+
+- (NSIndexPath*)indexPathForGroupNumber:(NSString*)groupNumber;
+- (NSIndexPath*)settingsIndexPath;
+- (void)openVCAtIndexPath:(NSIndexPath*)indexPath;
 @end
