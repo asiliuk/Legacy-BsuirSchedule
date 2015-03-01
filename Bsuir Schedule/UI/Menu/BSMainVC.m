@@ -14,7 +14,7 @@
 
 #import "BSDataManager.h"
 @interface BSMainVC ()
-
+@property (strong, nonatomic) NSString *initialGroupNumber;
 @end
 
 @implementation BSMainVC
@@ -55,21 +55,28 @@
     return 270.0f;
 }
 
-- (NSIndexPath *)initialIndexPathForLeftMenu {
-    NSInteger row = 0;
-    NSArray *menuItems = [(BSMenuVC*)self.leftMenu menuItems];
-    for (NSDictionary *menuItem in menuItems) {
-        NSInteger menuItemType = [menuItem[kBSMenuItemType] integerValue];
-        if (menuItemType == BSMenuItemSchedule || menuItemType == BSMenuItemSettings) {
-            row = [menuItems indexOfObject:menuItem];
-            break;
-        }
-    }
-    return [NSIndexPath indexPathForRow:row inSection:0];
+- (void)showVCForGroupNumber:(NSString *)groupNumber {
+    self.initialGroupNumber = groupNumber;
+    NSIndexPath *groupIndexPath = [(BSMenuVC*)self.leftMenu indexPathForGroupNumber:groupNumber];
+    [(BSMenuVC*)self.leftMenu openVCAtIndexPath:groupIndexPath];
 }
 
-- (void)configureSlideLayer:(CALayer *)layer {
-    
+- (NSIndexPath *)initialIndexPathForLeftMenu {
+    NSIndexPath *initialIndexPath = [(BSMenuVC*)self.leftMenu indexPathForGroupNumber:self.initialGroupNumber];
+    if (!initialIndexPath) {
+        initialIndexPath = [(BSMenuVC*)self.leftMenu settingsIndexPath];
+    }
+    return initialIndexPath;
+}
+
+- (void) configureSlideLayer:(CALayer *)layer
+{
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.4;
+    layer.shadowRadius = 20.0;
+    layer.shadowOffset = CGSizeMake(0, 0);
+    layer.masksToBounds = NO;
+    layer.shadowPath =[UIBezierPath bezierPathWithRect:layer.bounds].CGPath;
 }
 
 @end
