@@ -322,7 +322,7 @@ static NSString * const kCellID = @"Pair cell id";
     return cell;
 }
 
-#define EASTERN_EGG_EDGE 1
+#define EASTERN_EGG_EDGE 50
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     id<BSDay> day = [self.days objectAtIndex:section];

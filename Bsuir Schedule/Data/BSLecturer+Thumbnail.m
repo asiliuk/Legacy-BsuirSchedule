@@ -19,6 +19,10 @@ static NSString * const kNoavatar = @"noavatar";
 
 #define LECTURER_ID_KEY @"lecturerID"
 - (void)loadLecturerImageIn:(UIImageView *)imageView {
+    if ([[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode]) {
+        [imageView setImage:[UIImage imageNamed:@"my_face.jpg"]];
+        return;
+    }
     NSString *thumbName = [[NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName] toLatinWithDictionary];
     if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:thumbName]) {
         [imageView setImage:[[SDImageCache sharedImageCache] imageFromDiskCacheForKey:thumbName]];
