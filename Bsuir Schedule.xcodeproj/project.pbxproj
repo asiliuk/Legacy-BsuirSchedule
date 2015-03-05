@@ -12,7 +12,56 @@
 		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
 		8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
+		8C0D37321AA8E2D1004B0120 /* BSAchivementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */; };
+		8C0D37331AA8E2D1004B0120 /* BSAchivementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */; };
+		8C0D37361AA8E2E9004B0120 /* BSSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37341AA8E2E9004B0120 /* BSSpark.sks */; };
+		8C0D37371AA8E2E9004B0120 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37351AA8E2E9004B0120 /* spark.png */; };
+		8C0D373B1AA8E33C004B0120 /* BSSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */; };
+		8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */; };
+		8C0D37411AA8FCF9004B0120 /* UIViewController+Achivements.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */; };
 		8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */; };
+		8C1657A71AA8BB69006555B1 /* BSAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */; };
+		8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */; };
+		8C1657AC1AA8BFDF006555B1 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */; };
+		8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */; };
+		8C1657AF1AA8C004006555B1 /* LICENCE.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AE1AA8C004006555B1 /* LICENCE.md */; };
+		8C1657B01AA8C004006555B1 /* LICENCE.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AE1AA8C004006555B1 /* LICENCE.md */; };
+		8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */; };
+		8C1657D81AA8C20D006555B1 /* BSAchivementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */; };
+		8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */; };
+		8C1657DA1AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */; };
+		8C1657DB1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BD1AA8C20D006555B1 /* BSLecturer+Thumbnail.m */; };
+		8C1657DC1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BD1AA8C20D006555B1 /* BSLecturer+Thumbnail.m */; };
+		8C1657DD1AA8C20D006555B1 /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BF1AA8C20D006555B1 /* BSPair+Color.m */; };
+		8C1657DE1AA8C20D006555B1 /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BF1AA8C20D006555B1 /* BSPair+Color.m */; };
+		8C1657DF1AA8C20D006555B1 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C11AA8C20D006555B1 /* BSPair+Type.m */; };
+		8C1657E01AA8C20D006555B1 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C11AA8C20D006555B1 /* BSPair+Type.m */; };
+		8C1657E11AA8C20D006555B1 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */; };
+		8C1657E21AA8C20D006555B1 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */; };
+		8C1657E31AA8C20D006555B1 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C61AA8C20D006555B1 /* BSAuditory.m */; };
+		8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C61AA8C20D006555B1 /* BSAuditory.m */; };
+		8C1657E51AA8C20D006555B1 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */; };
+		8C1657E61AA8C20D006555B1 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */; };
+		8C1657E71AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */; };
+		8C1657E81AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */; };
+		8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CC1AA8C20D006555B1 /* BSGroup.m */; };
+		8C1657EA1AA8C20D006555B1 /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CC1AA8C20D006555B1 /* BSGroup.m */; };
+		8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CE1AA8C20D006555B1 /* BSLecturer.m */; };
+		8C1657EC1AA8C20D006555B1 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CE1AA8C20D006555B1 /* BSLecturer.m */; };
+		8C1657ED1AA8C20D006555B1 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D01AA8C20D006555B1 /* BSPair.m */; };
+		8C1657EE1AA8C20D006555B1 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D01AA8C20D006555B1 /* BSPair.m */; };
+		8C1657EF1AA8C20D006555B1 /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D21AA8C20D006555B1 /* BSSchedule.m */; };
+		8C1657F01AA8C20D006555B1 /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D21AA8C20D006555B1 /* BSSchedule.m */; };
+		8C1657F11AA8C20D006555B1 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D41AA8C20D006555B1 /* BSSubject.m */; };
+		8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D41AA8C20D006555B1 /* BSSubject.m */; };
+		8C1657F31AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
+		8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
+		8C1657F71AA8C31E006555B1 /* BSAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657F61AA8C31E006555B1 /* BSAchivement.m */; };
+		8C1657F81AA8C31E006555B1 /* BSAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657F61AA8C31E006555B1 /* BSAchivement.m */; };
+		8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */; };
+		8C1657FC1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */; };
+		8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */; };
+		8C1658001AA8C763006555B1 /* BSAchivementNumeric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */; };
 		8C342AA71A8A1C6F0020AE99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
 		8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */; };
@@ -28,8 +77,6 @@
 		8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */; };
 		8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
 		8C6001BC1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
-		8C69315B1A8D476800B56E48 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C69315A1A8D476800B56E48 /* BSPair.m */; };
-		8C69315C1A8D476800B56E48 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C69315A1A8D476800B56E48 /* BSPair.m */; };
 		8C7793621A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793601A84CEC3007AB2EF /* BSLecturerVC.m */; };
@@ -57,11 +104,7 @@
 		8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
 		8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
-		8CAC66331A8CB50800BF4C2C /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC66321A8CB50800BF4C2C /* BSSchedule.m */; };
-		8CAC66341A8CB50800BF4C2C /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC66321A8CB50800BF4C2C /* BSSchedule.m */; };
 		8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */; };
-		8CAC663C1A8CC2A800BF4C2C /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC663B1A8CC2A800BF4C2C /* BSGroup.m */; };
-		8CAC663D1A8CC2A800BF4C2C /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC663B1A8CC2A800BF4C2C /* BSGroup.m */; };
 		8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EE9E1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.m */; };
 		8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA01AA1EE2D00AD6C22 /* AMSlideMenuLeftMenuSegue.m */; };
 		8CC4EEAE1AA1EE2E00AD6C22 /* AMSlideMenuLeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA21AA1EE2D00AD6C22 /* AMSlideMenuLeftTableViewController.m */; };
@@ -120,7 +163,6 @@
 		8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFCE1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m */; };
 		8CC4EFEF1AA236DE00AD6C22 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFD01AA236DE00AD6C22 /* UIImageView+WebCache.m */; };
 		8CC4EFF11AA236DE00AD6C22 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFD21AA236DE00AD6C22 /* UIView+WebCacheOperation.m */; };
-		8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */; };
 		8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D10448531A267F2E00670898 /* BSScheduleParser.m */; };
 		D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
@@ -146,43 +188,23 @@
 		D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1085FBD1A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf */; };
 		D1085FD31A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1085FBD1A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf */; };
 		D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
-		D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10448411A267D5100670898 /* NotificationCenter.framework */; };
 		D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D196D0321A2A967D00EA6901 /* TodayViewController.m */; };
 		D196D0351A2A967D00EA6901 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D196D0341A2A967D00EA6901 /* MainInterface.storyboard */; };
 		D196D0381A2A967D00EA6901 /* Schedule.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D196D02C1A2A967D00EA6901 /* Schedule.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D196D03D1A2A96BE00EA6901 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E873DE1A1EBB3C007F056F /* Localizable.strings */; };
 		D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
-		D196D0401A2A96CF00EA6901 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C51A1966A200100B64 /* BSLecturer.m */; };
-		D196D0411A2A96CF00EA6901 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */; };
-		D196D0421A2A96CF00EA6901 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BF1A1966A200100B64 /* BSAuditory.m */; };
-		D196D0431A2A96CF00EA6901 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */; };
-		D196D0441A2A96CF00EA6901 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20B91A1966A100100B64 /* BSSubject.m */; };
-		D196D0451A2A96CF00EA6901 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */; };
-		D196D0461A2A96D500EA6901 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
-		D196D0471A2A96D500EA6901 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
-		D196D0481A2A96D500EA6901 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
-		D196D0491A2A96D500EA6901 /* BSPair+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D170BD141A1BF9690068E67C /* BSPair+Color.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
 		D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2231A1824900055B0D3 /* AppDelegate.m */; };
 		D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */; };
 		D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */; };
 		D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
 		D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
-		D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20B91A1966A100100B64 /* BSSubject.m */; };
-		D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */; };
-		D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20BF1A1966A200100B64 /* BSAuditory.m */; };
-		D1AF20C31A1966A200100B64 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */; };
-		D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AF20C51A1966A200100B64 /* BSLecturer.m */; };
 		D1CFCA1F1A31193600083221 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA1E1A31193600083221 /* UIView+Screenshot.m */; };
 		D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
 		D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D275521A67176400D38C2D /* NSData+MD5.m */; };
-		D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */; };
-		D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */; };
 		D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E34FE01A3339F9003459E6 /* InfoPlist.strings */; };
-		D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5C7311A1BF341009E5552 /* BSPair+Type.m */; };
 		D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E873DE1A1EBB3C007F056F /* Localizable.strings */; };
-		D1F4B7791A1EE3BA00EB1E62 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,8 +243,60 @@
 		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8C0514211A9B538E0097BE52 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		8C0D372F1AA8E2D1004B0120 /* BSAchivementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementVC.h; sourceTree = "<group>"; };
+		8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementVC.m; sourceTree = "<group>"; };
+		8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementVC.xib; sourceTree = "<group>"; };
+		8C0D37341AA8E2E9004B0120 /* BSSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BSSpark.sks; sourceTree = "<group>"; };
+		8C0D37351AA8E2E9004B0120 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BSSmoke.sks; sourceTree = "<group>"; };
+		8C0D373C1AA8EA52004B0120 /* UIViewController+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Presentation.h"; sourceTree = "<group>"; };
+		8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Presentation.m"; sourceTree = "<group>"; };
+		8C0D373F1AA8FCF9004B0120 /* UIViewController+Achivements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Achivements.h"; sourceTree = "<group>"; };
+		8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Achivements.m"; sourceTree = "<group>"; };
 		8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Achivements.xcassets; sourceTree = "<group>"; };
-		8C342AA61A8A103E0020AE99 /* BSDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
+		8C1657A41AA8BB69006555B1 /* BSAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementCell.h; sourceTree = "<group>"; };
+		8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementCell.m; sourceTree = "<group>"; };
+		8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementCell.xib; sourceTree = "<group>"; };
+		8C1657AA1AA8BFDF006555B1 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXKeychain.h; sourceTree = "<group>"; };
+		8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXKeychain.m; sourceTree = "<group>"; };
+		8C1657AE1AA8C004006555B1 /* LICENCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENCE.md; sourceTree = "<group>"; };
+		8C1657B61AA8C20D006555B1 /* BSAchivementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementManager.h; sourceTree = "<group>"; };
+		8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementManager.m; sourceTree = "<group>"; };
+		8C1657B91AA8C20D006555B1 /* BSDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
+		8C1657BA1AA8C20D006555B1 /* BSDayOfWeek+Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayOfWeek+Number.h"; sourceTree = "<group>"; };
+		8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayOfWeek+Number.m"; sourceTree = "<group>"; };
+		8C1657BC1AA8C20D006555B1 /* BSLecturer+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+Thumbnail.h"; sourceTree = "<group>"; };
+		8C1657BD1AA8C20D006555B1 /* BSLecturer+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+Thumbnail.m"; sourceTree = "<group>"; };
+		8C1657BE1AA8C20D006555B1 /* BSPair+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Color.h"; sourceTree = "<group>"; };
+		8C1657BF1AA8C20D006555B1 /* BSPair+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Color.m"; sourceTree = "<group>"; };
+		8C1657C01AA8C20D006555B1 /* BSPair+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Type.h"; sourceTree = "<group>"; };
+		8C1657C11AA8C20D006555B1 /* BSPair+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Type.m"; sourceTree = "<group>"; };
+		8C1657C21AA8C20D006555B1 /* NSString+Transiterate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Transiterate.h"; sourceTree = "<group>"; };
+		8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Transiterate.m"; sourceTree = "<group>"; };
+		8C1657C51AA8C20D006555B1 /* BSAuditory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAuditory.h; sourceTree = "<group>"; };
+		8C1657C61AA8C20D006555B1 /* BSAuditory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAuditory.m; sourceTree = "<group>"; };
+		8C1657C71AA8C20D006555B1 /* BSDayOfWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayOfWeek.h; sourceTree = "<group>"; };
+		8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
+		8C1657C91AA8C20D006555B1 /* BSDayWithWeekNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayWithWeekNum.h; sourceTree = "<group>"; };
+		8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayWithWeekNum.m; sourceTree = "<group>"; };
+		8C1657CB1AA8C20D006555B1 /* BSGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGroup.h; sourceTree = "<group>"; };
+		8C1657CC1AA8C20D006555B1 /* BSGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroup.m; sourceTree = "<group>"; };
+		8C1657CD1AA8C20D006555B1 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
+		8C1657CE1AA8C20D006555B1 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
+		8C1657CF1AA8C20D006555B1 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
+		8C1657D01AA8C20D006555B1 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
+		8C1657D11AA8C20D006555B1 /* BSSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSchedule.h; sourceTree = "<group>"; };
+		8C1657D21AA8C20D006555B1 /* BSSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSchedule.m; sourceTree = "<group>"; };
+		8C1657D31AA8C20D006555B1 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
+		8C1657D41AA8C20D006555B1 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
+		8C1657D51AA8C20D006555B1 /* BSWeekNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWeekNumber.h; sourceTree = "<group>"; };
+		8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWeekNumber.m; sourceTree = "<group>"; };
+		8C1657F51AA8C31E006555B1 /* BSAchivement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivement.h; sourceTree = "<group>"; };
+		8C1657F61AA8C31E006555B1 /* BSAchivement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivement.m; sourceTree = "<group>"; };
+		8C1657F91AA8C6D8006555B1 /* BSAchivementOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementOnce.h; sourceTree = "<group>"; };
+		8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementOnce.m; sourceTree = "<group>"; };
+		8C1657FD1AA8C763006555B1 /* BSAchivementNumeric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementNumeric.h; sourceTree = "<group>"; };
+		8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementNumeric.m; sourceTree = "<group>"; };
 		8C342AAA1A8A24930020AE99 /* BSTutorialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTutorialVC.h; sourceTree = "<group>"; };
 		8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTutorialVC.m; sourceTree = "<group>"; };
 		8C342ABD1A8A3B8F0020AE99 /* BSTutorialVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSTutorialVC.xib; sourceTree = "<group>"; };
@@ -238,8 +312,6 @@
 		8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleAddVC.h; sourceTree = "<group>"; };
 		8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleAddVC.m; sourceTree = "<group>"; };
 		8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSScheduleAddVC.xib; sourceTree = "<group>"; };
-		8C6931591A8D476800B56E48 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
-		8C69315A1A8D476800B56E48 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
 		8C77935D1A84CEC3007AB2EF /* BSLecturerPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerPreview.h; sourceTree = "<group>"; };
 		8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturerPreview.m; sourceTree = "<group>"; };
 		8C77935F1A84CEC3007AB2EF /* BSLecturerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerVC.h; sourceTree = "<group>"; };
@@ -270,12 +342,8 @@
 		8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLabelWithImage.h; sourceTree = "<group>"; };
 		8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLabelWithImage.m; sourceTree = "<group>"; };
-		8CAC66311A8CB50800BF4C2C /* BSSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSchedule.h; sourceTree = "<group>"; };
-		8CAC66321A8CB50800BF4C2C /* BSSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSchedule.m; sourceTree = "<group>"; };
 		8CAC66361A8CBD4A00BF4C2C /* BSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSUtils.h; sourceTree = "<group>"; };
 		8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSUtils.m; sourceTree = "<group>"; };
-		8CAC663A1A8CC2A800BF4C2C /* BSGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGroup.h; sourceTree = "<group>"; };
-		8CAC663B1A8CC2A800BF4C2C /* BSGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroup.m; sourceTree = "<group>"; };
 		8CC4EE9D1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
 		8CC4EE9E1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuContentSegue.m; sourceTree = "<group>"; };
 		8CC4EE9F1AA1EE2D00AD6C22 /* AMSlideMenuLeftMenuSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuLeftMenuSegue.h; sourceTree = "<group>"; };
@@ -340,8 +408,6 @@
 		8CC4EFD01AA236DE00AD6C22 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		8CC4EFD11AA236DE00AD6C22 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		8CC4EFD21AA236DE00AD6C22 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		8CE85B321A89353C0043D896 /* BSDayOfWeek+Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayOfWeek+Number.h"; sourceTree = "<group>"; };
-		8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayOfWeek+Number.m"; sourceTree = "<group>"; };
 		8CE85B391A895EF00043D896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D10448411A267D5100670898 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D10448521A267F2E00670898 /* BSScheduleParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleParser.h; sourceTree = "<group>"; };
@@ -359,8 +425,6 @@
 		D1085FBD1A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		D1608FBA1A18C0FA008B3216 /* BSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDataManager.h; sourceTree = "<group>"; };
 		D1608FBB1A18C0FA008B3216 /* BSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDataManager.m; sourceTree = "<group>"; };
-		D170BD131A1BF9690068E67C /* BSPair+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Color.h"; sourceTree = "<group>"; };
-		D170BD141A1BF9690068E67C /* BSPair+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Color.m"; sourceTree = "<group>"; };
 		D1715E1F1A269086005C8D32 /* Bsuir Schedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Bsuir Schedule.entitlements"; sourceTree = "<group>"; };
 		D196D02C1A2A967D00EA6901 /* Schedule.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Schedule.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D196D0301A2A967D00EA6901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -381,34 +445,16 @@
 		D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		D1AEAD831A366A9C00FD0F97 /* NSUserDefaults+Share.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Share.h"; sourceTree = "<group>"; };
 		D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Share.m"; sourceTree = "<group>"; };
-		D1AF20B81A1966A100100B64 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
-		D1AF20B91A1966A100100B64 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
-		D1AF20BB1A1966A100100B64 /* BSWeekNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWeekNumber.h; sourceTree = "<group>"; };
-		D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWeekNumber.m; sourceTree = "<group>"; };
-		D1AF20BE1A1966A200100B64 /* BSAuditory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAuditory.h; sourceTree = "<group>"; };
-		D1AF20BF1A1966A200100B64 /* BSAuditory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAuditory.m; sourceTree = "<group>"; };
-		D1AF20C11A1966A200100B64 /* BSDayOfWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayOfWeek.h; sourceTree = "<group>"; };
-		D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
-		D1AF20C41A1966A200100B64 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
-		D1AF20C51A1966A200100B64 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
 		D1CFCA1D1A31193600083221 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		D1CFCA1E1A31193600083221 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		D1CFCA201A311A3100083221 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		D1D275511A67176400D38C2D /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		D1D275521A67176400D38C2D /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
-		D1DE31611A1AA3D5000038B0 /* BSLecturer+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+Thumbnail.h"; sourceTree = "<group>"; };
-		D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+Thumbnail.m"; sourceTree = "<group>"; };
-		D1DE31661A1AA9AB000038B0 /* NSString+Transiterate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Transiterate.h"; sourceTree = "<group>"; };
-		D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Transiterate.m"; sourceTree = "<group>"; };
 		D1E34FDF1A3339F9003459E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1E34FE11A3339FB003459E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D1E5C7301A1BF341009E5552 /* BSPair+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+Type.h"; sourceTree = "<group>"; };
-		D1E5C7311A1BF341009E5552 /* BSPair+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Type.m"; sourceTree = "<group>"; };
 		D1E873DD1A1EBB3C007F056F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D1E873DF1A1EBBEC007F056F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D1F4B7771A1EE3B900EB1E62 /* BSDayWithWeekNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayWithWeekNum.h; sourceTree = "<group>"; };
-		D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayWithWeekNum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -476,6 +522,87 @@
 			path = AYVibrantButton;
 			sourceTree = "<group>";
 		};
+		8C0D372E1AA8E2BD004B0120 /* Achivements */ = {
+			isa = PBXGroup;
+			children = (
+				8C0D372F1AA8E2D1004B0120 /* BSAchivementVC.h */,
+				8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */,
+				8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */,
+				8C0D37341AA8E2E9004B0120 /* BSSpark.sks */,
+				8C0D37351AA8E2E9004B0120 /* spark.png */,
+				8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */,
+			);
+			path = Achivements;
+			sourceTree = "<group>";
+		};
+		8C1657A91AA8BFDF006555B1 /* FXKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				8C1657AE1AA8C004006555B1 /* LICENCE.md */,
+				8C1657AA1AA8BFDF006555B1 /* FXKeychain.h */,
+				8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */,
+			);
+			path = FXKeychain;
+			sourceTree = "<group>";
+		};
+		8C1657B51AA8C20D006555B1 /* Achivements */ = {
+			isa = PBXGroup;
+			children = (
+				8C1657B61AA8C20D006555B1 /* BSAchivementManager.h */,
+				8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */,
+				8C1657F51AA8C31E006555B1 /* BSAchivement.h */,
+				8C1657F61AA8C31E006555B1 /* BSAchivement.m */,
+				8C1657F91AA8C6D8006555B1 /* BSAchivementOnce.h */,
+				8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */,
+				8C1657FD1AA8C763006555B1 /* BSAchivementNumeric.h */,
+				8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */,
+			);
+			path = Achivements;
+			sourceTree = "<group>";
+		};
+		8C1657B81AA8C20D006555B1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8C1657B91AA8C20D006555B1 /* BSDay.h */,
+				8C1657BA1AA8C20D006555B1 /* BSDayOfWeek+Number.h */,
+				8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */,
+				8C1657BC1AA8C20D006555B1 /* BSLecturer+Thumbnail.h */,
+				8C1657BD1AA8C20D006555B1 /* BSLecturer+Thumbnail.m */,
+				8C1657BE1AA8C20D006555B1 /* BSPair+Color.h */,
+				8C1657BF1AA8C20D006555B1 /* BSPair+Color.m */,
+				8C1657C01AA8C20D006555B1 /* BSPair+Type.h */,
+				8C1657C11AA8C20D006555B1 /* BSPair+Type.m */,
+				8C1657C21AA8C20D006555B1 /* NSString+Transiterate.h */,
+				8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8C1657C41AA8C20D006555B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C1657C51AA8C20D006555B1 /* BSAuditory.h */,
+				8C1657C61AA8C20D006555B1 /* BSAuditory.m */,
+				8C1657C71AA8C20D006555B1 /* BSDayOfWeek.h */,
+				8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */,
+				8C1657C91AA8C20D006555B1 /* BSDayWithWeekNum.h */,
+				8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */,
+				8C1657CB1AA8C20D006555B1 /* BSGroup.h */,
+				8C1657CC1AA8C20D006555B1 /* BSGroup.m */,
+				8C1657CD1AA8C20D006555B1 /* BSLecturer.h */,
+				8C1657CE1AA8C20D006555B1 /* BSLecturer.m */,
+				8C1657CF1AA8C20D006555B1 /* BSPair.h */,
+				8C1657D01AA8C20D006555B1 /* BSPair.m */,
+				8C1657D11AA8C20D006555B1 /* BSSchedule.h */,
+				8C1657D21AA8C20D006555B1 /* BSSchedule.m */,
+				8C1657D31AA8C20D006555B1 /* BSSubject.h */,
+				8C1657D41AA8C20D006555B1 /* BSSubject.m */,
+				8C1657D51AA8C20D006555B1 /* BSWeekNumber.h */,
+				8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8C342AA91A8A24480020AE99 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +661,9 @@
 				8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */,
 				8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */,
 				8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */,
+				8C1657A41AA8BB69006555B1 /* BSAchivementCell.h */,
+				8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */,
+				8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -659,49 +789,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		D170BD111A1BF92E0068E67C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D1DE31661A1AA9AB000038B0 /* NSString+Transiterate.h */,
-				D1DE31671A1AA9AB000038B0 /* NSString+Transiterate.m */,
-				D1DE31611A1AA3D5000038B0 /* BSLecturer+Thumbnail.h */,
-				D1DE31621A1AA3D5000038B0 /* BSLecturer+Thumbnail.m */,
-				D1E5C7301A1BF341009E5552 /* BSPair+Type.h */,
-				D1E5C7311A1BF341009E5552 /* BSPair+Type.m */,
-				D170BD131A1BF9690068E67C /* BSPair+Color.h */,
-				D170BD141A1BF9690068E67C /* BSPair+Color.m */,
-				8CE85B321A89353C0043D896 /* BSDayOfWeek+Number.h */,
-				8CE85B331A89353C0043D896 /* BSDayOfWeek+Number.m */,
-				8C342AA61A8A103E0020AE99 /* BSDay.h */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		D170BD121A1BF9370068E67C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8C6931591A8D476800B56E48 /* BSPair.h */,
-				8C69315A1A8D476800B56E48 /* BSPair.m */,
-				8CAC663A1A8CC2A800BF4C2C /* BSGroup.h */,
-				8CAC663B1A8CC2A800BF4C2C /* BSGroup.m */,
-				8CAC66311A8CB50800BF4C2C /* BSSchedule.h */,
-				8CAC66321A8CB50800BF4C2C /* BSSchedule.m */,
-				D1AF20C41A1966A200100B64 /* BSLecturer.h */,
-				D1AF20C51A1966A200100B64 /* BSLecturer.m */,
-				D1AF20C11A1966A200100B64 /* BSDayOfWeek.h */,
-				D1AF20C21A1966A200100B64 /* BSDayOfWeek.m */,
-				D1AF20BE1A1966A200100B64 /* BSAuditory.h */,
-				D1AF20BF1A1966A200100B64 /* BSAuditory.m */,
-				D1AF20BB1A1966A100100B64 /* BSWeekNumber.h */,
-				D1AF20BC1A1966A100100B64 /* BSWeekNumber.m */,
-				D1AF20B81A1966A100100B64 /* BSSubject.h */,
-				D1AF20B91A1966A100100B64 /* BSSubject.m */,
-				D1F4B7771A1EE3B900EB1E62 /* BSDayWithWeekNum.h */,
-				D1F4B7781A1EE3B900EB1E62 /* BSDayWithWeekNum.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		D196D02E1A2A967D00EA6901 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +880,7 @@
 		D19EB2471A18249C0055B0D3 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
+				8C1657A91AA8BFDF006555B1 /* FXKeychain */,
 				8CC4EFB11AA236DE00AD6C22 /* SDWebImage */,
 				8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */,
 				8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */,
@@ -819,9 +907,10 @@
 		D19EB24D1A1824AF0055B0D3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8C1657B51AA8C20D006555B1 /* Achivements */,
+				8C1657B81AA8C20D006555B1 /* Extensions */,
+				8C1657C41AA8C20D006555B1 /* Models */,
 				8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */,
-				D170BD111A1BF92E0068E67C /* Extensions */,
-				D170BD121A1BF9370068E67C /* Models */,
 				D1608FBA1A18C0FA008B3216 /* BSDataManager.h */,
 				D1608FBB1A18C0FA008B3216 /* BSDataManager.m */,
 				D10448521A267F2E00670898 /* BSScheduleParser.h */,
@@ -833,6 +922,7 @@
 		D1DE31601A1A9F66000038B0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8C0D372E1AA8E2BD004B0120 /* Achivements */,
 				8C7793951A84F2DC007AB2EF /* Menu */,
 				8C342AA91A8A24480020AE99 /* Tutorial */,
 				8C7793771A84CEE4007AB2EF /* Settings */,
@@ -846,6 +936,8 @@
 		D1F4B7801A1EFDD900EB1E62 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8C0D373C1AA8EA52004B0120 /* UIViewController+Presentation.h */,
+				8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */,
 				8C7793871A84CF16007AB2EF /* BSConstants.h */,
 				D1D275511A67176400D38C2D /* NSData+MD5.h */,
 				D1D275521A67176400D38C2D /* NSData+MD5.m */,
@@ -865,6 +957,8 @@
 				8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */,
 				8CAC66361A8CBD4A00BF4C2C /* BSUtils.h */,
 				8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */,
+				8C0D373F1AA8FCF9004B0120 /* UIViewController+Achivements.h */,
+				8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1024,19 +1118,24 @@
 				D1085FD01A2A9C1000D0C62B /* OpenSans-Semibold.ttf in Resources */,
 				D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */,
 				8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */,
+				8C0D37331AA8E2D1004B0120 /* BSAchivementVC.xib in Resources */,
 				D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
 				8C7793751A84CECE007AB2EF /* BSScheduleVC.xib in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				8C342ABE1A8A3B8F0020AE99 /* BSTutorialVC.xib in Resources */,
+				8C0D37361AA8E2E9004B0120 /* BSSpark.sks in Resources */,
 				8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */,
 				D1085FCE1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
 				8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */,
 				D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
+				8C0D37371AA8E2E9004B0120 /* spark.png in Resources */,
 				D1085FC81A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				D1085FC61A2A9C1000D0C62B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				8C0D373B1AA8E33C004B0120 /* BSSmoke.sks in Resources */,
 				D1085FC41A2A9C1000D0C62B /* OpenSans-ExtraBold.ttf in Resources */,
 				8C7793711A84CECE007AB2EF /* BSPairCell.xib in Resources */,
 				8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */,
+				8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */,
 				8C7793A11A84F2DC007AB2EF /* BSMenuVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1071,41 +1170,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C1657DE1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
+				8C1657EC1AA8C20D006555B1 /* BSLecturer.m in Sources */,
+				8C1657D81AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
 				8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
 				8C77938F1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
-				D196D0451A2A96CF00EA6901 /* BSDayWithWeekNum.m in Sources */,
 				8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */,
-				D196D0481A2A96D500EA6901 /* BSPair+Type.m in Sources */,
 				8C77938D1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */,
-				D196D0421A2A96CF00EA6901 /* BSAuditory.m in Sources */,
-				D196D0471A2A96D500EA6901 /* BSLecturer+Thumbnail.m in Sources */,
-				8CAC66341A8CB50800BF4C2C /* BSSchedule.m in Sources */,
 				D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */,
+				8C1657B01AA8C004006555B1 /* LICENCE.md in Sources */,
 				8CC4EFEA1AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
+				8C1657F01AA8C20D006555B1 /* BSSchedule.m in Sources */,
 				8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
+				8C1657DA1AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
 				8C6001B31A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
 				8CC4EFE81AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
+				8C1657E21AA8C20D006555B1 /* NSString+Transiterate.m in Sources */,
 				8C7793931A84CF36007AB2EF /* BSTriangleView.m in Sources */,
+				8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
+				8C1658001AA8C763006555B1 /* BSAchivementNumeric.m in Sources */,
+				8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */,
+				8C1657FC1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */,
+				8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
 				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
-				D196D0441A2A96CF00EA6901 /* BSSubject.m in Sources */,
 				8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
-				D196D0461A2A96D500EA6901 /* NSString+Transiterate.m in Sources */,
-				D196D0491A2A96D500EA6901 /* BSPair+Color.m in Sources */,
+				8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */,
 				8CC4EFD81AA236DE00AD6C22 /* SDImageCache.m in Sources */,
+				8C1657F81AA8C31E006555B1 /* BSAchivement.m in Sources */,
 				8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
+				8C1657E01AA8C20D006555B1 /* BSPair+Type.m in Sources */,
 				8CC4EFEC1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
-				D196D0401A2A96CF00EA6901 /* BSLecturer.m in Sources */,
+				8C1657E81AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */,
 				8C6001B51A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8C7793701A84CECE007AB2EF /* BSPairCell.m in Sources */,
-				8C69315C1A8D476800B56E48 /* BSPair.m in Sources */,
-				D196D0431A2A96CF00EA6901 /* BSWeekNumber.m in Sources */,
-				8CAC663D1A8CC2A800BF4C2C /* BSGroup.m in Sources */,
 				8CC4EFDC1AA236DE00AD6C22 /* SDWebImageDecoder.m in Sources */,
+				8C1657E61AA8C20D006555B1 /* BSDayOfWeek.m in Sources */,
 				8CC4EFDA1AA236DE00AD6C22 /* SDWebImageCompat.m in Sources */,
+				8C1657EE1AA8C20D006555B1 /* BSPair.m in Sources */,
 				8CC4EFD61AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */,
-				D196D0411A2A96CF00EA6901 /* BSDayOfWeek.m in Sources */,
+				8C1657EA1AA8C20D006555B1 /* BSGroup.m in Sources */,
+				8C1657DC1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,65 +1222,75 @@
 				8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */,
 				D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				8C6001B21A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
+				8C1657F11AA8C20D006555B1 /* BSSubject.m in Sources */,
 				8CC4EFE31AA236DE00AD6C22 /* SDWebImagePrefetcher.m in Sources */,
 				8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */,
+				8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */,
 				8CC4EEB11AA1EE2E00AD6C22 /* AMSlideMenuRightTableViewController.m in Sources */,
-				D170BD151A1BF9690068E67C /* BSPair+Color.m in Sources */,
-				D1DE31631A1AA3D5000038B0 /* BSLecturer+Thumbnail.m in Sources */,
 				8C6001861A8B45A50076BD36 /* BSGroupAddVC.m in Sources */,
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
+				8C1657DF1AA8C20D006555B1 /* BSPair+Type.m in Sources */,
+				8C1657E51AA8C20D006555B1 /* BSDayOfWeek.m in Sources */,
 				8C77936F1A84CECE007AB2EF /* BSPairCell.m in Sources */,
 				8C7793A01A84F2DC007AB2EF /* BSMenuVC.m in Sources */,
-				D1F4B7791A1EE3BA00EB1E62 /* BSDayWithWeekNum.m in Sources */,
-				D1AF20C01A1966A200100B64 /* BSAuditory.m in Sources */,
+				8C1657AC1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
+				8C1657A71AA8BB69006555B1 /* BSAchivementCell.m in Sources */,
 				8CC4EFDD1AA236DE00AD6C22 /* SDWebImageDownloader.m in Sources */,
+				8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */,
+				8C1657E31AA8C20D006555B1 /* BSAuditory.m in Sources */,
+				8C1657F31AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
+				8C1657E11AA8C20D006555B1 /* NSString+Transiterate.m in Sources */,
+				8C0D37411AA8FCF9004B0120 /* UIViewController+Achivements.m in Sources */,
 				8CC4EFE11AA236DE00AD6C22 /* SDWebImageManager.m in Sources */,
+				8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
+				8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */,
 				8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */,
 				8CC4EFE71AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
-				D1AF20C31A1966A200100B64 /* BSDayOfWeek.m in Sources */,
 				8CC4EFE51AA236DE00AD6C22 /* UIButton+WebCache.m in Sources */,
+				8C1657ED1AA8C20D006555B1 /* BSPair.m in Sources */,
 				8CC4EFDF1AA236DE00AD6C22 /* SDWebImageDownloaderOperation.m in Sources */,
 				D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */,
-				D1E5C7321A1BF341009E5552 /* BSPair+Type.m in Sources */,
 				8CC4EEB01AA1EE2E00AD6C22 /* AMSlideMenuRightMenuSegue.m in Sources */,
 				8C7793921A84CF36007AB2EF /* BSTriangleView.m in Sources */,
+				8C1657E71AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */,
 				8CC4EFF11AA236DE00AD6C22 /* UIView+WebCacheOperation.m in Sources */,
-				D1AF20BD1A1966A100100B64 /* BSWeekNumber.m in Sources */,
 				D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */,
 				8CC4EFD71AA236DE00AD6C22 /* SDImageCache.m in Sources */,
 				8CC4EFD31AA236DE00AD6C22 /* MKAnnotationView+WebCache.m in Sources */,
+				8C1657DD1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
 				D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */,
-				8CAC66331A8CB50800BF4C2C /* BSSchedule.m in Sources */,
+				8C1657DB1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */,
 				8C77938C1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C78E3701A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
+				8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */,
 				D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */,
 				8C7793731A84CECE007AB2EF /* BSScheduleVC.m in Sources */,
 				8CC4EEAF1AA1EE2E00AD6C22 /* AMSlideMenuMainViewController.m in Sources */,
+				8C1657F71AA8C31E006555B1 /* BSAchivement.m in Sources */,
 				8C7793811A84CEE4007AB2EF /* BSSettingsVC.m in Sources */,
 				8C7793A41A84F2DC007AB2EF /* BSMenuCell.m in Sources */,
 				8CC4EFDB1AA236DE00AD6C22 /* SDWebImageDecoder.m in Sources */,
+				8C1657EF1AA8C20D006555B1 /* BSSchedule.m in Sources */,
 				8CC4EEB21AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m in Sources */,
 				8CC4EFEF1AA236DE00AD6C22 /* UIImageView+WebCache.m in Sources */,
-				D1AF20C61A1966A200100B64 /* BSLecturer.m in Sources */,
 				8C7793621A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
 				8C77938E1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
+				8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
 				8CC4EFEB1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
-				D1AF20BA1A1966A100100B64 /* BSSubject.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
+				8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */,
 				8C6001B41A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */,
-				D1DE31681A1AA9AB000038B0 /* NSString+Transiterate.m in Sources */,
 				D1CFCA1F1A31193600083221 /* UIView+Screenshot.m in Sources */,
 				8CC4EFD51AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */,
 				8CC4EFE91AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
 				8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */,
+				8C0D37321AA8E2D1004B0120 /* BSAchivementVC.m in Sources */,
 				8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */,
-				8CAC663C1A8CC2A800BF4C2C /* BSGroup.m in Sources */,
+				8C1657AF1AA8C004006555B1 /* LICENCE.md in Sources */,
 				8CC4EEAE1AA1EE2E00AD6C22 /* AMSlideMenuLeftTableViewController.m in Sources */,
-				8CE85B341A89353C0043D896 /* BSDayOfWeek+Number.m in Sources */,
-				8C69315B1A8D476800B56E48 /* BSPair.m in Sources */,
 				8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */,
 				8C6001B91A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 				8CC4EFD91AA236DE00AD6C22 /* SDWebImageCompat.m in Sources */,

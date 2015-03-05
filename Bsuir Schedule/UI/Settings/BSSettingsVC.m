@@ -17,11 +17,17 @@
 
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
+#import "BSAchivementCell.h"
 #import "BSScheduleParser.h"
 
 #import "BSUtils.h"
 
-@interface BSSettingsVC () <UITableViewDataSource,  UITableViewDelegate, MGSwipeTableCellDelegate, BSScheduleAddVCDelegate>
+#import "BSAchivementManager.h"
+#import <Parse/Parse.h>
+
+#import "UIViewController+Achivements.h"
+
+@interface BSSettingsVC () <UITableViewDataSource,  UITableViewDelegate, MGSwipeTableCellDelegate, BSScheduleAddVCDelegate, SKPaymentTransactionObserver>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSUserDefaults *sharedDefaults;
@@ -35,6 +41,7 @@
 @implementation BSSettingsVC
 
 static NSString * const kScheduleCellID = @"kScheduleCellID";
+static NSString * const kAchivementCellID = @"kAchivementCellID";
 
 - (instancetype)init
 {
@@ -59,7 +66,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = LZD(@"L_Groups");
+    self.title = LZD(@"L_Settings");
     
     self.sharedDefaults = [NSUserDefaults sharedDefaults];
     UIBarButtonItem *addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -73,20 +80,65 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     }
     self.navigationItem.rightBarButtonItem = addBarButtonItem;
     [self.tableView registerClass:[MGSwipeTableCell class] forCellReuseIdentifier:kScheduleCellID];
-    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSAchivementCell class]) bundle:nil] forCellReuseIdentifier:kAchivementCellID];
+
     self.schedules = [[[BSDataManager sharedInstance] schelules] mutableCopy];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
+    
+    [self registerPurchasesLogic];
 }
+
 - (void)addGroup {
+    [self restorePurchases];
+//    [PFPurchase buyProduct:kSuperSupporterAchivementID block:nil];
+    return;
     BSScheduleAddVC *scheduleAddVC = [[BSScheduleAddVC alloc] init];
     for (MGSwipeTableCell *cell in [self.tableView visibleCells]) {
         [cell hideSwipeAnimated:YES];
     }
     scheduleAddVC.delegate = self;
     [self.navigationController pushViewController:scheduleAddVC animated:YES];
+}
+
+//===============================================PURCHASES===========================================
+#pragma mark - TransactionsDeleagte
+- (void)registerPurchasesLogic {
+    [PFPurchase addObserverForProduct:kSupporterAchivementID block:^(SKPaymentTransaction *transaction) {
+        if (transaction.transactionState == SKPaymentTransactionStatePurchased) {
+            [self.tableView reloadData];
+            [self triggerAchivementWithType:BSAchivementTypeSupporter];
+        } else if (transaction.transactionState == SKPaymentTransactionStateRestored) {
+            [[BSAchivementManager sharedInstance] triggerAchivementWithType:BSAchivementTypeSupporter];
+        }
+    }];
+    [PFPurchase addObserverForProduct:kSuperSupporterAchivementID block:^(SKPaymentTransaction *transaction) {
+        if (transaction.transactionState == SKPaymentTransactionStatePurchased) {
+            [self.tableView reloadData];
+            [self triggerAchivementWithType:BSAchivementTypeSuperSupporter];
+        } else if (transaction.transactionState == SKPaymentTransactionStateRestored) {
+            [[BSAchivementManager sharedInstance] triggerAchivementWithType:BSAchivementTypeSuperSupporter];
+        }
+    }];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+}
+
+- (void)restorePurchases {
+    [self showLoadingView];
+    [PFPurchase restore];
+}
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+    [self hideLoadingView];
+    [self.tableView reloadData];
+    [BSUtils showAlertWithTitle:LZD(@"L_PurchaseRestore") message:LZD(@"L_PurchaseRestoreSuccess") inVC:self];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+    [self hideLoadingView];
+    [BSUtils showAlertWithTitle:LZD(@"L_Error") message:[LZD(@"L_PurchaseRestoreError") stringByAppendingString:error.localizedDescription] inVC:self];
+
 }
 
 //===============================================MG SWYPE CELL===========================================
@@ -216,18 +268,26 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     return 1;
 }
 
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return [self.schedules count];
+//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.schedules count];
+    return [[[BSAchivementManager sharedInstance] achivements] count];
 }
 
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MGSwipeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID forIndexPath:indexPath];
-    BSSchedule *schedule = [self.schedules objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@/%ld",schedule.group.groupNumber,(long)[schedule.subgroup integerValue]]];
-    
-    cell.delegate = self;
+//    MGSwipeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID forIndexPath:indexPath];
+//    BSSchedule *schedule = [self.schedules objectAtIndex:indexPath.row];
+//    [cell.textLabel setText:[NSString stringWithFormat:@"%@/%ld",schedule.group.groupNumber,(long)[schedule.subgroup integerValue]]];
+//    
+//    cell.delegate = self;
+    BSAchivement *achivement = [[[BSAchivementManager sharedInstance] achivements] objectAtIndex:indexPath.row];
+    BSAchivementCell *cell = [tableView dequeueReusableCellWithIdentifier:kAchivementCellID forIndexPath:indexPath];
+    [cell setupWithAchivement:achivement];
     return cell;
 }
+
 
 
 @end

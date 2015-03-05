@@ -56,3 +56,20 @@
 "L_Housing" = "Корпус";
 "L_StartTime" = "начало";
 "L_EndTime" = "конец";
+
+"L_ScrollerAchivement" = "Scroller";
+"L_ScrollerAchivementDescription" = "Долистай расписание до конца...";
+"L_SocialAchivement" = "Social";
+"L_SocialAchivementDescription" = "Расскажи друзьям про приложение";
+"L_WatcherAchivement" = "Watcher";
+"L_WatcherAchivementDescription" = "Открой 200 фотографий преподавателей";
+"L_WerewolfAchivement" = "Wherewolf";
+"L_WerewolfAchivementDescription" = "Открой расписание точно в 00:00";
+"L_SupporterAchivement" = "Supporter";
+"L_SupporterAchivementDescription" = "Поддержи разработчика ($0.99)";
+"L_SuperSupporterAchivement" = "Super supporter";
+"L_SuperSupporterAchivementDescription" = "Сделай денежный дождь, поддержи разработчика ($2.99)";
+
+"L_PurchaseRestore" = "Восстановление покупок";
+"L_PurchaseRestoreSuccess" = "Все покупки успешно восстановлены.";
+"L_PurchaseRestoreError" = "Произошла ошибка во время восстановления покупок.";

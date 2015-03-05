@@ -56,6 +56,10 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 //-------------------------------SCHEDULE KEYS---------------------------------
+
+static NSString * const kSupporterAchivementID = @"com.saute.BsuirSchedule.supporter";
+static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.supersupporter";
+
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
 
 static NSString * const kWidgetID = @"com.saute.Bsuir-Schedule.Schedule";

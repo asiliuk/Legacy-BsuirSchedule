@@ -16,20 +16,27 @@
 #import "NSString+Transiterate.h"
 #import "NSDate+Compare.h"
 #import "UIView+Screenshot.h"
+#import "UIViewController+Achivements.h"
+#import "NSUserDefaults+Share.h"
 
 #import "BSScheduleParser.h"
+#import "BSAchivementManager.h"
 #import "BSLecturerVC.h"
-#import "NSUserDefaults+Share.h"
+#import "BSAchivementVC.h"
 
 #import "BSDay.h"
 
 #import "BSDayOfWeek+Number.h"
 #import "BSDayWithWeekNum.h"
 
+#import "UIViewController+AMSlideMenu.h"
+
+#import "BSUtils.h"
+
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSPairCellDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSPairCellDelegate, AMSlideMenuDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
@@ -160,6 +167,32 @@ static NSString * const kCellID = @"Pair cell id";
         [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
             [weakself updateSchedule];
         } failure:nil];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    self.mainSlideMenu.slideMenuDelegate = self;
+}
+
+- (void)leftMenuDidClose {
+    [self applicationBecomeActive];
+}
+
+- (void)applicationBecomeActive {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSUInteger preservedComponents;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        preservedComponents = (NSCalendarUnitHour | NSCalendarUnitMinute);
+    } else {
+        preservedComponents = (NSHourCalendarUnit | NSMinuteCalendarUnit);
+    }
+    NSDateComponents *dateComponents = [calendar components:preservedComponents fromDate:now];
+    
+    if (dateComponents.hour == 0 && dateComponents.minute == 0) {
+        [self triggerAchivementWithType:BSAchivementTypeWerewolf];
     }
 }
 
@@ -381,6 +414,9 @@ static NSString * const kCellID = @"Pair cell id";
         } else {
             easterEggMode = YES;
         }
+    }
+    if (easterEggMode) {
+        [self triggerAchivementWithType:BSAchivementTypeScroller];
     }
     if ([[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode] != easterEggMode) {
         [[NSUserDefaults sharedDefaults] setBool:easterEggMode forKey:kEasterEggMode];

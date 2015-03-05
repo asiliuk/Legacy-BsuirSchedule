@@ -12,6 +12,11 @@
 #import <ParseUI/ParseUI.h>
 #import "BSLecturer+Thumbnail.h"
 
+#import "BSAchivementVC.h"
+#import "BSAchivementManager.h"
+
+#import "UIViewController+Achivements.h"
+
 @interface BSLecturerVC ()
 @property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
 @property (strong, nonatomic) IBOutlet UILabel *lecturerNameLabel;
@@ -88,7 +93,8 @@
     [self showCenterView];
     self.originalBounds = self.centerView.bounds;
     self.originalCenter = self.centerView.center;
-
+    
+    [self triggerAchivementWithType:BSAchivementTypeWatcher];
 }
 - (void)showCenterView {
     __weak typeof(self) weakself = self;

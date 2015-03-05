@@ -20,7 +20,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
-
+#import "BSAchivementManager.h"
 @interface AppDelegate ()
 @property (strong, nonatomic) BSMainVC *mainVC;
 @end
@@ -59,6 +59,8 @@
         NSString *groupNum = [[self paramsFromURL:[launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]] objectForKey:@"group"];
         [self.mainVC showVCForGroupNumber:groupNum];
     }
+    
+//    [[BSAchivementManager sharedInstance] dismissAllAchivements];
     
     return YES;
 }

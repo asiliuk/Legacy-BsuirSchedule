@@ -56,3 +56,20 @@
 "L_Housing" = "Housing";
 "L_StartTime" = "start";
 "L_EndTime" = "end";
+
+"L_ScrollerAchivement" = "Scroller";
+"L_ScrollerAchivementDescription" = "Scroll till the end...";
+"L_SocialAchivement" = "Social";
+"L_SocialAchivementDescription" = "Tell friends about app";
+"L_WatcherAchivement" = "Watcher";
+"L_WatcherAchivementDescription" = "Open 200 lecturers pictures";
+"L_WerewolfAchivement" = "Wherewolf";
+"L_WerewolfAchivementDescription" = "Open schedule exactly at 00:00";
+"L_SupporterAchivement" = "Supporter";
+"L_SupporterAchivementDescription" = "Support developer ($0.99)";
+"L_SuperSupporterAchivement" = "Super supporter";
+"L_SuperSupporterAchivementDescription" = "Make it rain, support developer ($2.99)";
+
+"L_PurchaseRestore" = "Purchase restore";
+"L_PurchaseRestoreSuccess" = "All purchases were successfully restored.";
+"L_PurchaseRestoreError" = "Error while restoring purchases.";
