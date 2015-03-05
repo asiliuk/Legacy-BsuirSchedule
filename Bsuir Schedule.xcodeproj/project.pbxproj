@@ -12,6 +12,7 @@
 		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
 		8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
+		8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */; };
 		8C342AA71A8A1C6F0020AE99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
 		8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */; };
@@ -220,6 +221,7 @@
 		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8C0514211A9B538E0097BE52 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Achivements.xcassets; sourceTree = "<group>"; };
 		8C342AA61A8A103E0020AE99 /* BSDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
 		8C342AAA1A8A24930020AE99 /* BSTutorialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTutorialVC.h; sourceTree = "<group>"; };
 		8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTutorialVC.m; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				D19EB2221A1824900055B0D3 /* AppDelegate.h */,
 				D19EB2231A1824900055B0D3 /* AppDelegate.m */,
 				8CE85B391A895EF00043D896 /* Images.xcassets */,
+				8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */,
 				D19EB21E1A1824900055B0D3 /* Supporting Files */,
 				D1E873DE1A1EBB3C007F056F /* Localizable.strings */,
 			);
@@ -1020,6 +1023,7 @@
 				D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */,
 				D1085FD01A2A9C1000D0C62B /* OpenSans-Semibold.ttf in Resources */,
 				D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */,
+				8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */,
 				D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
 				8C7793751A84CECE007AB2EF /* BSScheduleVC.xib in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
