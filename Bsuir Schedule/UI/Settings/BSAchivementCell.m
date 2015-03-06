@@ -8,6 +8,8 @@
 
 #import "BSAchivementCell.h"
 
+NSString * const kAchivementCellID = @"kAchivementCellID";
+
 @interface BSAchivementCell()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

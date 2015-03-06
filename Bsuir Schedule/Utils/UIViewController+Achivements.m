@@ -7,12 +7,13 @@
 //
 
 #import "UIViewController+Achivements.h"
-#import "BSAchivementVC.h"
+#import "BSAchivementUnlockedVC.h"
+#import "UIView+Screenshot.h"
 
 @implementation UIViewController (Achivements)
 - (void)triggerAchivementWithType:(BSAchivementType)achivementType {
     if ([[BSAchivementManager sharedInstance] triggerAchivementWithType:achivementType]) {
-        BSAchivementVC *avc = [[BSAchivementVC alloc] initWithAchivement:[[BSAchivementManager sharedInstance] achivementWithType:achivementType]];
+        BSAchivementUnlockedVC *avc = [[BSAchivementUnlockedVC alloc] initWithAchivement:[[BSAchivementManager sharedInstance] achivementWithType:achivementType]];
         [self presentVCInCurrentContext:avc animated:NO];
     }
 }

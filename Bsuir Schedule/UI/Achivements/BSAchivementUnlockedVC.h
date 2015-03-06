@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BSAchivement.h"
 
-@interface BSAchivementVC : UIViewController
+@interface BSAchivementUnlockedVC : UIViewController
 - (instancetype)initWithAchivement:(BSAchivement*)achivement;
 @end

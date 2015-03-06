@@ -12,13 +12,13 @@
 		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
 		8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
-		8C0D37321AA8E2D1004B0120 /* BSAchivementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */; };
-		8C0D37331AA8E2D1004B0120 /* BSAchivementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */; };
-		8C0D37361AA8E2E9004B0120 /* BSSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37341AA8E2E9004B0120 /* BSSpark.sks */; };
-		8C0D37371AA8E2E9004B0120 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37351AA8E2E9004B0120 /* spark.png */; };
-		8C0D373B1AA8E33C004B0120 /* BSSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */; };
+		8C0D37321AA8E2D1004B0120 /* BSAchivementUnlockedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */; };
+		8C0D37331AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */; };
 		8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */; };
 		8C0D37411AA8FCF9004B0120 /* UIViewController+Achivements.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */; };
+		8C0D37451AA99E40004B0120 /* BSAchivementsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */; };
+		8C0D37461AA99E40004B0120 /* BSAchivementsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */; };
+		8C0D37491AA9A039004B0120 /* BSAchivementsDnDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */; };
 		8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */; };
 		8C1657A71AA8BB69006555B1 /* BSAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */; };
 		8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */; };
@@ -243,16 +243,18 @@
 		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8C0514211A9B538E0097BE52 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		8C0D372F1AA8E2D1004B0120 /* BSAchivementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementVC.h; sourceTree = "<group>"; };
-		8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementVC.m; sourceTree = "<group>"; };
-		8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementVC.xib; sourceTree = "<group>"; };
-		8C0D37341AA8E2E9004B0120 /* BSSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BSSpark.sks; sourceTree = "<group>"; };
-		8C0D37351AA8E2E9004B0120 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BSSmoke.sks; sourceTree = "<group>"; };
+		8C0D372F1AA8E2D1004B0120 /* BSAchivementUnlockedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementUnlockedVC.h; sourceTree = "<group>"; };
+		8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementUnlockedVC.m; sourceTree = "<group>"; };
+		8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementUnlockedVC.xib; sourceTree = "<group>"; };
 		8C0D373C1AA8EA52004B0120 /* UIViewController+Presentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Presentation.h"; sourceTree = "<group>"; };
 		8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Presentation.m"; sourceTree = "<group>"; };
 		8C0D373F1AA8FCF9004B0120 /* UIViewController+Achivements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Achivements.h"; sourceTree = "<group>"; };
 		8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Achivements.m"; sourceTree = "<group>"; };
+		8C0D37421AA99E40004B0120 /* BSAchivementsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementsVC.h; sourceTree = "<group>"; };
+		8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementsVC.m; sourceTree = "<group>"; };
+		8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementsVC.xib; sourceTree = "<group>"; };
+		8C0D37471AA9A039004B0120 /* BSAchivementsDnDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementsDnDS.h; sourceTree = "<group>"; };
+		8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementsDnDS.m; sourceTree = "<group>"; };
 		8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Achivements.xcassets; sourceTree = "<group>"; };
 		8C1657A41AA8BB69006555B1 /* BSAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementCell.h; sourceTree = "<group>"; };
 		8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementCell.m; sourceTree = "<group>"; };
@@ -525,12 +527,14 @@
 		8C0D372E1AA8E2BD004B0120 /* Achivements */ = {
 			isa = PBXGroup;
 			children = (
-				8C0D372F1AA8E2D1004B0120 /* BSAchivementVC.h */,
-				8C0D37301AA8E2D1004B0120 /* BSAchivementVC.m */,
-				8C0D37311AA8E2D1004B0120 /* BSAchivementVC.xib */,
-				8C0D37341AA8E2E9004B0120 /* BSSpark.sks */,
-				8C0D37351AA8E2E9004B0120 /* spark.png */,
-				8C0D373A1AA8E33C004B0120 /* BSSmoke.sks */,
+				8C0D372F1AA8E2D1004B0120 /* BSAchivementUnlockedVC.h */,
+				8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */,
+				8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */,
+				8C0D37421AA99E40004B0120 /* BSAchivementsVC.h */,
+				8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */,
+				8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */,
+				8C0D37471AA9A039004B0120 /* BSAchivementsDnDS.h */,
+				8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */,
 			);
 			path = Achivements;
 			sourceTree = "<group>";
@@ -1118,25 +1122,23 @@
 				D1085FD01A2A9C1000D0C62B /* OpenSans-Semibold.ttf in Resources */,
 				D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */,
 				8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */,
-				8C0D37331AA8E2D1004B0120 /* BSAchivementVC.xib in Resources */,
+				8C0D37331AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib in Resources */,
 				D1085FC01A2A9C1000D0C62B /* OpenSans-Bold.ttf in Resources */,
 				8C7793751A84CECE007AB2EF /* BSScheduleVC.xib in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				8C342ABE1A8A3B8F0020AE99 /* BSTutorialVC.xib in Resources */,
-				8C0D37361AA8E2E9004B0120 /* BSSpark.sks in Resources */,
 				8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */,
 				D1085FCE1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
 				8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */,
 				D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
-				8C0D37371AA8E2E9004B0120 /* spark.png in Resources */,
 				D1085FC81A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				D1085FC61A2A9C1000D0C62B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				8C0D373B1AA8E33C004B0120 /* BSSmoke.sks in Resources */,
 				D1085FC41A2A9C1000D0C62B /* OpenSans-ExtraBold.ttf in Resources */,
 				8C7793711A84CECE007AB2EF /* BSPairCell.xib in Resources */,
 				8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */,
 				8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */,
 				8C7793A11A84F2DC007AB2EF /* BSMenuVC.xib in Resources */,
+				8C0D37461AA99E40004B0120 /* BSAchivementsVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1246,6 +1248,7 @@
 				8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
 				8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */,
 				8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */,
+				8C0D37491AA9A039004B0120 /* BSAchivementsDnDS.m in Sources */,
 				8CC4EFE71AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
 				8CC4EFE51AA236DE00AD6C22 /* UIButton+WebCache.m in Sources */,
@@ -1287,11 +1290,12 @@
 				8CC4EFD51AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */,
 				8CC4EFE91AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
 				8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */,
-				8C0D37321AA8E2D1004B0120 /* BSAchivementVC.m in Sources */,
+				8C0D37321AA8E2D1004B0120 /* BSAchivementUnlockedVC.m in Sources */,
 				8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */,
 				8C1657AF1AA8C004006555B1 /* LICENCE.md in Sources */,
 				8CC4EEAE1AA1EE2E00AD6C22 /* AMSlideMenuLeftTableViewController.m in Sources */,
 				8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */,
+				8C0D37451AA99E40004B0120 /* BSAchivementsVC.m in Sources */,
 				8C6001B91A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 				8CC4EFD91AA236DE00AD6C22 /* SDWebImageCompat.m in Sources */,
 			);
@@ -1483,7 +1487,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1505,7 +1509,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

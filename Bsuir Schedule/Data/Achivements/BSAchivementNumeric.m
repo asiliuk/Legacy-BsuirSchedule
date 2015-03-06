@@ -28,10 +28,21 @@
     return self;
 }
 
+- (NSString*)achivementDescription {
+    NSString *descr = [super achivementDescription];
+    if (![self unlocked]) {
+        NSString *triggersStr = [NSString stringWithFormat:@" (%ld/%ld)", (long)[self currentTriggerCount], (long)self.triggerCount];
+        descr = [descr stringByAppendingString:triggersStr];
+    }
+    return descr;
+}
+- (NSInteger)currentTriggerCount {
+    return [[[FXKeychain defaultKeychain] objectForKey:self.achivementKey] integerValue];
+}
 - (BOOL)trigger {
     BOOL getTriggered = NO;
     if (![self unlocked]) {
-        NSInteger currentTriggerCount = [[[FXKeychain defaultKeychain] objectForKey:self.achivementKey] integerValue];
+        NSInteger currentTriggerCount = [self currentTriggerCount];
         currentTriggerCount++;
         [[FXKeychain defaultKeychain] setObject:@(currentTriggerCount) forKey:self.achivementKey];
         getTriggered = currentTriggerCount >= self.triggerCount;
@@ -39,6 +50,6 @@
     return getTriggered;
 }
 - (BOOL)unlocked {
-    return [[[FXKeychain defaultKeychain] objectForKey:self.achivementKey] integerValue] >= self.triggerCount;
+    return [self currentTriggerCount] >= self.triggerCount;
 }
 @end

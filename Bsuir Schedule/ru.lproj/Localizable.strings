@@ -37,6 +37,7 @@
 "Суббота" = "Суббота";
 
 "L_Settings" = "Настройки";
+"L_Achivements" = "Достижения";
 "L_Feedback" = "Обратная связь";
 "L_Info" = "Справка";
 "L_Groups" = "Группы";
@@ -62,7 +63,7 @@
 "L_SocialAchivement" = "Social";
 "L_SocialAchivementDescription" = "Расскажи друзьям про приложение";
 "L_WatcherAchivement" = "Watcher";
-"L_WatcherAchivementDescription" = "Открой 200 фотографий преподавателей";
+"L_WatcherAchivementDescription" = "Открой %ld фотографий преподавателей";
 "L_WerewolfAchivement" = "Wherewolf";
 "L_WerewolfAchivementDescription" = "Открой расписание точно в 00:00";
 "L_SupporterAchivement" = "Supporter";
@@ -73,3 +74,5 @@
 "L_PurchaseRestore" = "Восстановление покупок";
 "L_PurchaseRestoreSuccess" = "Все покупки успешно восстановлены.";
 "L_PurchaseRestoreError" = "Произошла ошибка во время восстановления покупок.";
+
+"L_AchivementUnlocked" = "Достижение разблокировано";

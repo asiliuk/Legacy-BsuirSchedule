@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BSAchivement.h"
 
+extern NSString * const kAchivementCellID;
 @interface BSAchivementCell : UITableViewCell
 - (void)setupWithAchivement:(BSAchivement*)achivement;
 @end

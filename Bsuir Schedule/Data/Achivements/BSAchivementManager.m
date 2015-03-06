@@ -52,11 +52,13 @@
                                                             achivementKey:[self keyForAchivementType:BSAchivementTypeSocial]];
         achivementsData[@(BSAchivementTypeSocial)] = social;
         
+        NSInteger watcherPhotoCount = 10;
         BSAchivementNumeric *watcher = [[BSAchivementNumeric alloc] initWithName:LZD(@"L_WatcherAchivement")
-                                                               description:LZD(@"L_WatcherAchivementDescription")
-                                                                 imageName:@"watcher"
-                                                             achivementKey:[self keyForAchivementType:BSAchivementTypeWatcher]
-                                                                    triggerCount:10];
+                                                                     description:[NSString stringWithFormat:LZD(@"L_WatcherAchivementDescription"),
+                                                                                  (long)watcherPhotoCount]
+                                                                       imageName:@"watcher"
+                                                                   achivementKey:[self keyForAchivementType:BSAchivementTypeWatcher]
+                                                                        triggerCount:watcherPhotoCount];
         achivementsData[@(BSAchivementTypeWatcher)] = watcher;
         
         BSAchivementOnce *werewolf = [[BSAchivementOnce alloc] initWithName:LZD(@"L_WerewolfAchivement")

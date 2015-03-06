@@ -36,6 +36,7 @@
 "Суббота" = "Saturday";
 
 "L_Schedule" = "Schedule";
+"L_Achivements" = "Achivements";
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";
 "L_Info" = "Info";
@@ -62,7 +63,7 @@
 "L_SocialAchivement" = "Social";
 "L_SocialAchivementDescription" = "Tell friends about app";
 "L_WatcherAchivement" = "Watcher";
-"L_WatcherAchivementDescription" = "Open 200 lecturers pictures";
+"L_WatcherAchivementDescription" = "Open %ld lecturers pictures";
 "L_WerewolfAchivement" = "Wherewolf";
 "L_WerewolfAchivementDescription" = "Open schedule exactly at 00:00";
 "L_SupporterAchivement" = "Supporter";
@@ -73,3 +74,5 @@
 "L_PurchaseRestore" = "Purchase restore";
 "L_PurchaseRestoreSuccess" = "All purchases were successfully restored.";
 "L_PurchaseRestoreError" = "Error while restoring purchases.";
+
+"L_AchivementUnlocked" = "Achivement unlocked";

@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 Saute. All rights reserved.
 //
 
-#import "BSAchivementVC.h"
+#import "BSAchivementUnlockedVC.h"
 #import "UIView+Screenshot.h"
+#import "BSConstants.h"
 
-@interface BSAchivementVC ()
+@interface BSAchivementUnlockedVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *achivementImage;
 @property (weak, nonatomic) IBOutlet UILabel *achivementNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *achivementUnlockedLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *okBtn;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backIV;
 @property (weak, nonatomic) IBOutlet UIView *centerView;
@@ -19,7 +23,7 @@
 @property (strong, nonatomic) BSAchivement *achivement;
 @end
 
-@implementation BSAchivementVC
+@implementation BSAchivementUnlockedVC
 
 - (instancetype)initWithAchivement:(BSAchivement*)achivement {
     self = [self initWithNibName:NSStringFromClass([self class]) bundle:nil];
@@ -32,15 +36,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
-    
     [self.achivementImage setImage:[self.achivement image]];
     [self.achivementNameLabel setText:self.achivement.name];
     
     self.centerView.layer.masksToBounds = NO;
     self.centerView.layer.cornerRadius = 5.0;
     
-    self.backIV.alpha = 0.0;
+    self.okBtn.layer.masksToBounds = NO;
+    self.okBtn.layer.cornerRadius = 5.0;
+    
+    [self.achivementUnlockedLabel setText:LZD(@"L_AchivementUnlocked")];
+    [self.okBtn setTitle:LZD(@"L_Ok") forState:UIControlStateNormal];
+    [self.okBtn setTitle:LZD(@"L_Ok") forState:UIControlStateNormal | UIControlStateHighlighted];
+    
     [self replaceCenterConstraintOnView:self.centerView withConstant:self.view.bounds.size.height];
     
 }
@@ -50,6 +58,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
+    self.backIV.alpha = 0.0;
     [self replaceCenterConstraintOnView:self.centerView withConstant:0.0];
 
     __weak typeof(self) weakself = self;

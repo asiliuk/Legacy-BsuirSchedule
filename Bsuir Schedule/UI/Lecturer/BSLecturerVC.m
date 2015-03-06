@@ -12,7 +12,7 @@
 #import <ParseUI/ParseUI.h>
 #import "BSLecturer+Thumbnail.h"
 
-#import "BSAchivementVC.h"
+#import "BSAchivementUnlockedVC.h"
 #import "BSAchivementManager.h"
 
 #import "UIViewController+Achivements.h"

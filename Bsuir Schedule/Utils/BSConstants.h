@@ -60,6 +60,8 @@
 static NSString * const kSupporterAchivementID = @"com.saute.BsuirSchedule.supporter";
 static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.supersupporter";
 
+static NSString * const kMenuDidClose = @"kMenuDidClose";
+
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
 
 static NSString * const kWidgetID = @"com.saute.Bsuir-Schedule.Schedule";
@@ -96,7 +98,6 @@ static NSString * const kLecturerLastName = @"lastName";
 static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
-static NSString * const kDidComeFromBackground = @"kDidComeFromBackground";
 static NSString * const kSchedulesGetUpdated = @"kSchedulesGetUpdated";
 
 static NSString * const kParseApplicationID = @"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo";

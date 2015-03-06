@@ -22,7 +22,7 @@
 #import "BSScheduleParser.h"
 #import "BSAchivementManager.h"
 #import "BSLecturerVC.h"
-#import "BSAchivementVC.h"
+#import "BSAchivementUnlockedVC.h"
 
 #import "BSDay.h"
 
@@ -156,7 +156,6 @@ static NSString * const kCellID = @"Pair cell id";
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
     [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
     [self setNavBarLabel];
     [self getScheduleData];
@@ -173,7 +172,10 @@ static NSString * const kCellID = @"Pair cell id";
                                              selector:@selector(applicationBecomeActive)
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
-    self.mainSlideMenu.slideMenuDelegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leftMenuDidClose)
+                                                 name:kMenuDidClose
+                                               object:nil];
 }
 
 - (void)leftMenuDidClose {
@@ -194,6 +196,8 @@ static NSString * const kCellID = @"Pair cell id";
     if (dateComponents.hour == 0 && dateComponents.minute == 0) {
         [self triggerAchivementWithType:BSAchivementTypeWerewolf];
     }
+//    [self triggerAchivementWithType:BSAchivementTypeSocial];
+    [self updateUI];
 }
 
 - (void)setNavBarLabel {
@@ -498,6 +502,7 @@ static NSString * const kCellID = @"Pair cell id";
     if (![day isEqualToDayWithWeekNum:self.dayToHighlight]) {
         [self updateSchedule];
     }
+    [self.tableView reloadData];
 }
 
 
