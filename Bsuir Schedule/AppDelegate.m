@@ -16,11 +16,11 @@
 #import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
+#import "BSAchivementManager.h"
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
-
 @interface AppDelegate ()
 @property (strong, nonatomic) BSMainVC *mainVC;
 @end
@@ -59,6 +59,8 @@
         NSString *groupNum = [[self paramsFromURL:[launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]] objectForKey:@"group"];
         [self.mainVC showVCForGroupNumber:groupNum];
     }
+    
+//    [[BSAchivementManager sharedInstance] dismissAllAchivements];
     
     return YES;
 }
@@ -133,7 +135,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidComeFromBackground object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

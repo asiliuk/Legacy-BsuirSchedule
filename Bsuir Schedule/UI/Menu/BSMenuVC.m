@@ -11,6 +11,7 @@
 #import "BSScheduleVC.h"
 #import "BSTutorialVC.h"
 #import "BSSettingsVC.h"
+#import "BSAchivementsVC.h"
 #import "BSDataManager.h"
 
 #import "BSConstants.h"
@@ -122,6 +123,11 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
     [self removeFixView];
 }
 
+- (void)leftMenuDidClose {
+    [self selectCellAtIndexPath:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMenuDidClose object:self];
+}
+
 - (void)leftMenuDidOpen {
     [self addFixView];
     
@@ -178,12 +184,12 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
         [menuItems addObject:itemData];
     }
 
-    
-    itemData = @{kBSMenuItemType: @(BSMenuItemFeedback),
-                 kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
+    itemData = @{kBSMenuItemType: @(BSMenuItemAchivements),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Achivements", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_achivements"],
+                 kBSMenuItemClass: [BSAchivementsVC class]};
     [menuItems addObject:itemData];
-
+    
     itemData = @{kBSMenuItemType: @(BSMenuItemSettings),
                  kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"],
@@ -194,6 +200,11 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
                  kBSMenuItemTitle: NSLocalizedString(@"L_Info", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_info"],
                  kBSMenuItemClass: [BSTutorialVC class]};
+    [menuItems addObject:itemData];
+    
+    itemData = @{kBSMenuItemType: @(BSMenuItemFeedback),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
     [menuItems addObject:itemData];
 
     self.menuItems = menuItems;

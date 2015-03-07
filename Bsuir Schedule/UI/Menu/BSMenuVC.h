@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     BSMenuItemSettings       = 2,
     BSMenuItemInfo           = 3,
     BSMenuItemSchedule       = 4,
-    
+    BSMenuItemAchivements    = 5,
+
 };
 
 extern NSString * const kBSMenuItemType;

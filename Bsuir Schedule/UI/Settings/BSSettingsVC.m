@@ -21,6 +21,10 @@
 
 #import "BSUtils.h"
 
+#import <Parse/Parse.h>
+
+#import "UIViewController+Achivements.h"
+
 @interface BSSettingsVC () <UITableViewDataSource,  UITableViewDelegate, MGSwipeTableCellDelegate, BSScheduleAddVCDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -59,7 +63,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = LZD(@"L_Groups");
+    self.title = LZD(@"L_Settings");
     
     self.sharedDefaults = [NSUserDefaults sharedDefaults];
     UIBarButtonItem *addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -73,13 +77,14 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     }
     self.navigationItem.rightBarButtonItem = addBarButtonItem;
     [self.tableView registerClass:[MGSwipeTableCell class] forCellReuseIdentifier:kScheduleCellID];
-    
+
     self.schedules = [[[BSDataManager sharedInstance] schelules] mutableCopy];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
 }
+
 - (void)addGroup {
     BSScheduleAddVC *scheduleAddVC = [[BSScheduleAddVC alloc] init];
     for (MGSwipeTableCell *cell in [self.tableView visibleCells]) {
@@ -220,6 +225,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     return [self.schedules count];
 }
 
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MGSwipeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kScheduleCellID forIndexPath:indexPath];
     BSSchedule *schedule = [self.schedules objectAtIndex:indexPath.row];
@@ -228,6 +234,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
     cell.delegate = self;
     return cell;
 }
+
 
 
 @end
