@@ -63,7 +63,7 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = LZD(@"L_Settings");
+    self.title = LZD(@"L_Groups");
     
     self.sharedDefaults = [NSUserDefaults sharedDefaults];
     UIBarButtonItem *addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
