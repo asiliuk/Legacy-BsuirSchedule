@@ -11,5 +11,6 @@
 
 extern NSString * const kAchivementCellID;
 @interface BSAchivementCell : UITableViewCell
+@property (strong, readonly, nonatomic) BSAchivement *achivement;
 - (void)setupWithAchivement:(BSAchivement*)achivement;
 @end

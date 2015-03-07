@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSAchivement.h"
+@class BSAchivement;
 typedef NS_ENUM(NSInteger, BSAchivementType) {
     BSAchivementTypeScroller,
     BSAchivementTypeSocial,

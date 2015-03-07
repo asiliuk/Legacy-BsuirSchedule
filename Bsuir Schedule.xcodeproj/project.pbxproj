@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0391031AAA265E002B86F4 /* BSAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0391011AAA265E002B86F4 /* BSAchivementCell.m */; };
+		8C0391041AAA265E002B86F4 /* BSAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0391021AAA265E002B86F4 /* BSAchivementCell.xib */; };
+		8C03910A1AAA27C1002B86F4 /* BSSocialAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0391091AAA27C1002B86F4 /* BSSocialAchivement.m */; };
+		8C03910D1AAA28AA002B86F4 /* BSSocialAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C03910C1AAA28AA002B86F4 /* BSSocialAchivementCell.m */; };
+		8C03910F1AAA28B7002B86F4 /* BSSocialAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C03910E1AAA28B7002B86F4 /* BSSocialAchivementCell.xib */; };
 		8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */; };
 		8C05141F1A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
 		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
@@ -18,16 +23,10 @@
 		8C0D37411AA8FCF9004B0120 /* UIViewController+Achivements.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37401AA8FCF9004B0120 /* UIViewController+Achivements.m */; };
 		8C0D37451AA99E40004B0120 /* BSAchivementsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */; };
 		8C0D37461AA99E40004B0120 /* BSAchivementsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */; };
-		8C0D37491AA9A039004B0120 /* BSAchivementsDnDS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */; };
 		8C1657A31AA8BA2D006555B1 /* Achivements.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */; };
-		8C1657A71AA8BB69006555B1 /* BSAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */; };
-		8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */; };
 		8C1657AC1AA8BFDF006555B1 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */; };
 		8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */; };
-		8C1657AF1AA8C004006555B1 /* LICENCE.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AE1AA8C004006555B1 /* LICENCE.md */; };
-		8C1657B01AA8C004006555B1 /* LICENCE.md in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657AE1AA8C004006555B1 /* LICENCE.md */; };
 		8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */; };
-		8C1657D81AA8C20D006555B1 /* BSAchivementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */; };
 		8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */; };
 		8C1657DA1AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BB1AA8C20D006555B1 /* BSDayOfWeek+Number.m */; };
 		8C1657DB1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657BD1AA8C20D006555B1 /* BSLecturer+Thumbnail.m */; };
@@ -57,11 +56,8 @@
 		8C1657F31AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
 		8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
 		8C1657F71AA8C31E006555B1 /* BSAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657F61AA8C31E006555B1 /* BSAchivement.m */; };
-		8C1657F81AA8C31E006555B1 /* BSAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657F61AA8C31E006555B1 /* BSAchivement.m */; };
 		8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */; };
-		8C1657FC1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */; };
 		8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */; };
-		8C1658001AA8C763006555B1 /* BSAchivementNumeric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */; };
 		8C342AA71A8A1C6F0020AE99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CFCA211A311A3100083221 /* UIImage+ImageEffects.m */; };
 		8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */; };
@@ -77,6 +73,9 @@
 		8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */; };
 		8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
 		8C6001BC1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */; };
+		8C75E8DA1AAB9D6B00166192 /* BSPurchaseAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8D81AAB9D6B00166192 /* BSPurchaseAchivementCell.m */; };
+		8C75E8DB1AAB9D6B00166192 /* BSPurchaseAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C75E8D91AAB9D6B00166192 /* BSPurchaseAchivementCell.xib */; };
+		8C75E8DE1AAB9F7100166192 /* BSPurchaseAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8DD1AAB9F7100166192 /* BSPurchaseAchivement.m */; };
 		8C7793621A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793601A84CEC3007AB2EF /* BSLecturerVC.m */; };
@@ -239,6 +238,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C0391001AAA265E002B86F4 /* BSAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementCell.h; sourceTree = "<group>"; };
+		8C0391011AAA265E002B86F4 /* BSAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementCell.m; sourceTree = "<group>"; };
+		8C0391021AAA265E002B86F4 /* BSAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementCell.xib; sourceTree = "<group>"; };
+		8C0391081AAA27C1002B86F4 /* BSSocialAchivement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSocialAchivement.h; sourceTree = "<group>"; };
+		8C0391091AAA27C1002B86F4 /* BSSocialAchivement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSocialAchivement.m; sourceTree = "<group>"; };
+		8C03910B1AAA28AA002B86F4 /* BSSocialAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSocialAchivementCell.h; sourceTree = "<group>"; };
+		8C03910C1AAA28AA002B86F4 /* BSSocialAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSocialAchivementCell.m; sourceTree = "<group>"; };
+		8C03910E1AAA28B7002B86F4 /* BSSocialAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSSocialAchivementCell.xib; sourceTree = "<group>"; };
 		8C04C4E01AA2A90B002A8BAD /* AYVibrantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYVibrantButton.h; sourceTree = "<group>"; };
 		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
 		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -253,15 +260,9 @@
 		8C0D37421AA99E40004B0120 /* BSAchivementsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementsVC.h; sourceTree = "<group>"; };
 		8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementsVC.m; sourceTree = "<group>"; };
 		8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementsVC.xib; sourceTree = "<group>"; };
-		8C0D37471AA9A039004B0120 /* BSAchivementsDnDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementsDnDS.h; sourceTree = "<group>"; };
-		8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementsDnDS.m; sourceTree = "<group>"; };
 		8C1657A21AA8BA2D006555B1 /* Achivements.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Achivements.xcassets; sourceTree = "<group>"; };
-		8C1657A41AA8BB69006555B1 /* BSAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementCell.h; sourceTree = "<group>"; };
-		8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementCell.m; sourceTree = "<group>"; };
-		8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementCell.xib; sourceTree = "<group>"; };
 		8C1657AA1AA8BFDF006555B1 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXKeychain.h; sourceTree = "<group>"; };
 		8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXKeychain.m; sourceTree = "<group>"; };
-		8C1657AE1AA8C004006555B1 /* LICENCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENCE.md; sourceTree = "<group>"; };
 		8C1657B61AA8C20D006555B1 /* BSAchivementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementManager.h; sourceTree = "<group>"; };
 		8C1657B71AA8C20D006555B1 /* BSAchivementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementManager.m; sourceTree = "<group>"; };
 		8C1657B91AA8C20D006555B1 /* BSDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDay.h; sourceTree = "<group>"; };
@@ -314,6 +315,11 @@
 		8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleAddVC.h; sourceTree = "<group>"; };
 		8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleAddVC.m; sourceTree = "<group>"; };
 		8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSScheduleAddVC.xib; sourceTree = "<group>"; };
+		8C75E8D71AAB9D6B00166192 /* BSPurchaseAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPurchaseAchivementCell.h; sourceTree = "<group>"; };
+		8C75E8D81AAB9D6B00166192 /* BSPurchaseAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPurchaseAchivementCell.m; sourceTree = "<group>"; };
+		8C75E8D91AAB9D6B00166192 /* BSPurchaseAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSPurchaseAchivementCell.xib; sourceTree = "<group>"; };
+		8C75E8DC1AAB9F7100166192 /* BSPurchaseAchivement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPurchaseAchivement.h; sourceTree = "<group>"; };
+		8C75E8DD1AAB9F7100166192 /* BSPurchaseAchivement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPurchaseAchivement.m; sourceTree = "<group>"; };
 		8C77935D1A84CEC3007AB2EF /* BSLecturerPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerPreview.h; sourceTree = "<group>"; };
 		8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturerPreview.m; sourceTree = "<group>"; };
 		8C77935F1A84CEC3007AB2EF /* BSLecturerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerVC.h; sourceTree = "<group>"; };
@@ -515,6 +521,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C0390FF1AAA265E002B86F4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8C0391001AAA265E002B86F4 /* BSAchivementCell.h */,
+				8C0391011AAA265E002B86F4 /* BSAchivementCell.m */,
+				8C0391021AAA265E002B86F4 /* BSAchivementCell.xib */,
+				8C03910B1AAA28AA002B86F4 /* BSSocialAchivementCell.h */,
+				8C03910C1AAA28AA002B86F4 /* BSSocialAchivementCell.m */,
+				8C03910E1AAA28B7002B86F4 /* BSSocialAchivementCell.xib */,
+				8C75E8D71AAB9D6B00166192 /* BSPurchaseAchivementCell.h */,
+				8C75E8D81AAB9D6B00166192 /* BSPurchaseAchivementCell.m */,
+				8C75E8D91AAB9D6B00166192 /* BSPurchaseAchivementCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		8C04C4DF1AA2A90B002A8BAD /* AYVibrantButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,14 +549,13 @@
 		8C0D372E1AA8E2BD004B0120 /* Achivements */ = {
 			isa = PBXGroup;
 			children = (
+				8C0390FF1AAA265E002B86F4 /* Cells */,
 				8C0D372F1AA8E2D1004B0120 /* BSAchivementUnlockedVC.h */,
 				8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */,
 				8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */,
 				8C0D37421AA99E40004B0120 /* BSAchivementsVC.h */,
 				8C0D37431AA99E40004B0120 /* BSAchivementsVC.m */,
 				8C0D37441AA99E40004B0120 /* BSAchivementsVC.xib */,
-				8C0D37471AA9A039004B0120 /* BSAchivementsDnDS.h */,
-				8C0D37481AA9A039004B0120 /* BSAchivementsDnDS.m */,
 			);
 			path = Achivements;
 			sourceTree = "<group>";
@@ -542,7 +563,6 @@
 		8C1657A91AA8BFDF006555B1 /* FXKeychain */ = {
 			isa = PBXGroup;
 			children = (
-				8C1657AE1AA8C004006555B1 /* LICENCE.md */,
 				8C1657AA1AA8BFDF006555B1 /* FXKeychain.h */,
 				8C1657AB1AA8BFDF006555B1 /* FXKeychain.m */,
 			);
@@ -560,6 +580,10 @@
 				8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */,
 				8C1657FD1AA8C763006555B1 /* BSAchivementNumeric.h */,
 				8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */,
+				8C0391081AAA27C1002B86F4 /* BSSocialAchivement.h */,
+				8C0391091AAA27C1002B86F4 /* BSSocialAchivement.m */,
+				8C75E8DC1AAB9F7100166192 /* BSPurchaseAchivement.h */,
+				8C75E8DD1AAB9F7100166192 /* BSPurchaseAchivement.m */,
 			);
 			path = Achivements;
 			sourceTree = "<group>";
@@ -665,9 +689,6 @@
 				8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */,
 				8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */,
 				8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */,
-				8C1657A41AA8BB69006555B1 /* BSAchivementCell.h */,
-				8C1657A51AA8BB69006555B1 /* BSAchivementCell.m */,
-				8C1657A61AA8BB69006555B1 /* BSAchivementCell.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1134,9 +1155,11 @@
 				D1085FC81A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				D1085FC61A2A9C1000D0C62B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				D1085FC41A2A9C1000D0C62B /* OpenSans-ExtraBold.ttf in Resources */,
+				8C75E8DB1AAB9D6B00166192 /* BSPurchaseAchivementCell.xib in Resources */,
 				8C7793711A84CECE007AB2EF /* BSPairCell.xib in Resources */,
+				8C03910F1AAA28B7002B86F4 /* BSSocialAchivementCell.xib in Resources */,
+				8C0391041AAA265E002B86F4 /* BSAchivementCell.xib in Resources */,
 				8C6001BB1A8BFF120076BD36 /* BSScheduleAddVC.xib in Resources */,
-				8C1657A81AA8BB69006555B1 /* BSAchivementCell.xib in Resources */,
 				8C7793A11A84F2DC007AB2EF /* BSMenuVC.xib in Resources */,
 				8C0D37461AA99E40004B0120 /* BSAchivementsVC.xib in Resources */,
 			);
@@ -1174,7 +1197,6 @@
 			files = (
 				8C1657DE1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
 				8C1657EC1AA8C20D006555B1 /* BSLecturer.m in Sources */,
-				8C1657D81AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
 				8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
 				8C77938F1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
@@ -1182,7 +1204,6 @@
 				8C77938D1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */,
 				D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */,
-				8C1657B01AA8C004006555B1 /* LICENCE.md in Sources */,
 				8CC4EFEA1AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
 				8C1657F01AA8C20D006555B1 /* BSSchedule.m in Sources */,
 				8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
@@ -1192,15 +1213,12 @@
 				8C1657E21AA8C20D006555B1 /* NSString+Transiterate.m in Sources */,
 				8C7793931A84CF36007AB2EF /* BSTriangleView.m in Sources */,
 				8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
-				8C1658001AA8C763006555B1 /* BSAchivementNumeric.m in Sources */,
 				8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */,
-				8C1657FC1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */,
 				8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
 				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 				8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */,
 				8CC4EFD81AA236DE00AD6C22 /* SDImageCache.m in Sources */,
-				8C1657F81AA8C31E006555B1 /* BSAchivement.m in Sources */,
 				8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
 				8C1657E01AA8C20D006555B1 /* BSPair+Type.m in Sources */,
 				8CC4EFEC1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
@@ -1225,7 +1243,9 @@
 				D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				8C6001B21A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
 				8C1657F11AA8C20D006555B1 /* BSSubject.m in Sources */,
+				8C03910D1AAA28AA002B86F4 /* BSSocialAchivementCell.m in Sources */,
 				8CC4EFE31AA236DE00AD6C22 /* SDWebImagePrefetcher.m in Sources */,
+				8C75E8DA1AAB9D6B00166192 /* BSPurchaseAchivementCell.m in Sources */,
 				8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */,
@@ -1237,7 +1257,6 @@
 				8C77936F1A84CECE007AB2EF /* BSPairCell.m in Sources */,
 				8C7793A01A84F2DC007AB2EF /* BSMenuVC.m in Sources */,
 				8C1657AC1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
-				8C1657A71AA8BB69006555B1 /* BSAchivementCell.m in Sources */,
 				8CC4EFDD1AA236DE00AD6C22 /* SDWebImageDownloader.m in Sources */,
 				8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */,
 				8C1657E31AA8C20D006555B1 /* BSAuditory.m in Sources */,
@@ -1248,7 +1267,6 @@
 				8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
 				8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */,
 				8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */,
-				8C0D37491AA9A039004B0120 /* BSAchivementsDnDS.m in Sources */,
 				8CC4EFE71AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
 				8CC4EFE51AA236DE00AD6C22 /* UIButton+WebCache.m in Sources */,
@@ -1265,6 +1283,7 @@
 				8C1657DD1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
 				D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */,
 				8C1657DB1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */,
+				8C03910A1AAA27C1002B86F4 /* BSSocialAchivement.m in Sources */,
 				8C77938C1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C78E3701A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
 				8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */,
@@ -1282,7 +1301,9 @@
 				8C77938E1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
 				8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
 				8CC4EFEB1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
+				8C75E8DE1AAB9F7100166192 /* BSPurchaseAchivement.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
+				8C0391031AAA265E002B86F4 /* BSAchivementCell.m in Sources */,
 				8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */,
 				8C6001B41A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */,
@@ -1292,7 +1313,6 @@
 				8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */,
 				8C0D37321AA8E2D1004B0120 /* BSAchivementUnlockedVC.m in Sources */,
 				8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */,
-				8C1657AF1AA8C004006555B1 /* LICENCE.md in Sources */,
 				8CC4EEAE1AA1EE2E00AD6C22 /* AMSlideMenuLeftTableViewController.m in Sources */,
 				8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */,
 				8C0D37451AA99E40004B0120 /* BSAchivementsVC.m in Sources */,
@@ -1478,12 +1498,11 @@
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 					AMSlideMenuWithoutStoryboards,
 				);
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
@@ -1505,7 +1524,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = AMSlideMenuWithoutStoryboards;
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";

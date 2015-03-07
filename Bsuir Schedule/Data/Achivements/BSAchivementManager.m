@@ -7,8 +7,11 @@
 //
 
 #import "BSAchivementManager.h"
-#import "BSAchivementOnce.h"
+
 #import "BSAchivementNumeric.h"
+
+#import "BSSocialAchivement.h"
+#import "BSPurchaseAchivement.h"
 
 #import "BSConstants.h"
 #import "FXKeychain.h"
@@ -46,13 +49,14 @@
                                                               achivementKey:[self keyForAchivementType:BSAchivementTypeScroller]];
         achivementsData[@(BSAchivementTypeScroller)] = scroller;
         
-        BSAchivementOnce *social = [[BSAchivementOnce alloc] initWithName:LZD(@"L_SocialAchivement")
-                                                              description:LZD(@"L_SocialAchivementDescription")
-                                                                imageName:@"social"
-                                                            achivementKey:[self keyForAchivementType:BSAchivementTypeSocial]];
+        BSSocialAchivement *social = [[BSSocialAchivement alloc] initWithName:LZD(@"L_SocialAchivement")
+                                                                description:LZD(@"L_SocialAchivementDescription")
+                                                                  imageName:@"social"
+                                                              achivementKey:[self keyForAchivementType:BSAchivementTypeSocial]
+                                                                    shareText:LZD(@"L_AppShare")];
         achivementsData[@(BSAchivementTypeSocial)] = social;
         
-        NSInteger watcherPhotoCount = 10;
+        NSInteger watcherPhotoCount = 200;
         BSAchivementNumeric *watcher = [[BSAchivementNumeric alloc] initWithName:LZD(@"L_WatcherAchivement")
                                                                      description:[NSString stringWithFormat:LZD(@"L_WatcherAchivementDescription"),
                                                                                   (long)watcherPhotoCount]
@@ -67,16 +71,18 @@
                                                                achivementKey:[self keyForAchivementType:BSAchivementTypeWerewolf]];
         achivementsData[@(BSAchivementTypeWerewolf)] = werewolf;
         
-        BSAchivementOnce *supporter = [[BSAchivementOnce alloc] initWithName:LZD(@"L_SupporterAchivement")
-                                                                 description:LZD(@"L_SupporterAchivementDescription")
-                                                                   imageName:@"supporter"
-                                                               achivementKey:[self keyForAchivementType:BSAchivementTypeSupporter]];
+        BSAchivementOnce *supporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SupporterAchivement")
+                                                                     description:LZD(@"L_SupporterAchivementDescription")
+                                                                       imageName:@"supporter"
+                                                                   achivementKey:[self keyForAchivementType:BSAchivementTypeSupporter]
+                                                                      purchaseID:kSupporterAchivementID];
         achivementsData[@(BSAchivementTypeSupporter)] = supporter;
         
-        BSAchivementOnce *superSupporter = [[BSAchivementOnce alloc] initWithName:LZD(@"L_SuperSupporterAchivement")
-                                                                      description:LZD(@"L_SuperSupporterAchivementDescription")
-                                                                        imageName:@"super_supporter"
-                                                                    achivementKey:[self keyForAchivementType:BSAchivementTypeSuperSupporter]];
+        BSAchivementOnce *superSupporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SuperSupporterAchivement")
+                                                                          description:LZD(@"L_SuperSupporterAchivementDescription")
+                                                                            imageName:@"super_supporter"
+                                                                        achivementKey:[self keyForAchivementType:BSAchivementTypeSuperSupporter]
+                                                                           purchaseID:kSuperSupporterAchivementID];
         achivementsData[@(BSAchivementTypeSuperSupporter)] = superSupporter;
         
         _achivementsData = [NSDictionary dictionaryWithDictionary:achivementsData];
@@ -106,7 +112,11 @@
 
 - (BOOL)triggerAchivementWithType:(BSAchivementType)achivementType {
     BSAchivement *achivement = [self achivementWithType:achivementType];
-    return [achivement trigger];
+    BOOL achivementTriggered = [achivement trigger];
+    if (achivementTriggered) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAchivementUnlocked object:nil userInfo:nil];
+    }
+    return achivementTriggered;
 }
 
 - (NSString*)keyForAchivementType:(BSAchivementType)achivementType {

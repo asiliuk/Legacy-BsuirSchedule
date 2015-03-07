@@ -18,6 +18,9 @@
 "L_StarMeaning" = "In widget";
 "L_SubgroupMeaning" = "By subgroups";
 "L_OpenApp" = "Open app";
+"L_NotAvailable" = "Not available";
+"L_Buy" = "Buy";
+"L_Restore" = "Restore";
 
 "Sh_Воскресенье" = "Sun.";
 "Sh_Понедельник" = "Mon.";
@@ -76,3 +79,5 @@
 "L_PurchaseRestoreError" = "Error while restoring purchases.";
 
 "L_AchivementUnlocked" = "Achivement unlocked";
+
+"L_AppShare" = "Если ты студент БГУИР-а, поспеши скачать мобильное расписание.";

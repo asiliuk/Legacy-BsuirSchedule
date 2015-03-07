@@ -16,11 +16,11 @@
 #import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
+#import "BSAchivementManager.h"
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
-#import "BSAchivementManager.h"
 @interface AppDelegate ()
 @property (strong, nonatomic) BSMainVC *mainVC;
 @end
@@ -60,7 +60,7 @@
         [self.mainVC showVCForGroupNumber:groupNum];
     }
     
-    [[BSAchivementManager sharedInstance] dismissAllAchivements];
+//    [[BSAchivementManager sharedInstance] dismissAllAchivements];
     
     return YES;
 }

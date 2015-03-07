@@ -57,6 +57,10 @@
 
 //-------------------------------SCHEDULE KEYS---------------------------------
 
+static NSString * const kAppURL = @"http://itunes.apple.com/app/id944151090";
+
+static NSString * const kAchivementUnlocked = @"kAchivementUnlocked";
+
 static NSString * const kSupporterAchivementID = @"com.saute.BsuirSchedule.supporter";
 static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.supersupporter";
 

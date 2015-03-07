@@ -22,6 +22,7 @@ NSString * const kAchivementCellID = @"kAchivementCellID";
     [self.nameLabel setText:achivement.name];
     [self.descriptionLabel setText:achivement.achivementDescription];
     [self.imageIV setImage:[achivement image]];
+    _achivement = achivement;
 }
 - (void)awakeFromNib {
     // Initialization code
