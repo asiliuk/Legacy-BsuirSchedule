@@ -60,7 +60,7 @@
         [self.mainVC showVCForGroupNumber:groupNum];
     }
     
-    [[BSAchivementManager sharedInstance] dismissAllAchivements];
+//    [[BSAchivementManager sharedInstance] dismissAllAchivements];
     
     return YES;
 }
