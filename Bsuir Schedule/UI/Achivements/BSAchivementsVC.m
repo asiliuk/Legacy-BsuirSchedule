@@ -96,9 +96,8 @@ BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
 }
 
 - (void)restorePurchases {
-    [self triggerAchivementWithType:BSAchivementTypeScroller];
-//    [self showLoadingView];
-//    [PFPurchase restore];
+    [self showLoadingView];
+    [PFPurchase restore];
 }
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     [self hideLoadingView];
