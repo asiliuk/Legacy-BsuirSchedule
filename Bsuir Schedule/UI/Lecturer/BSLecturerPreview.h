@@ -16,4 +16,5 @@
 @property (strong, nonatomic) UILabel *lecturerNameLabel;
 
 - (void)setupWithLecturer:(BSLecturer*)lecturer;
+- (void)updateWithLecturer:(BSLecturer*)lecturer;
 @end

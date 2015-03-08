@@ -70,16 +70,6 @@ NSString * const kBSMenuCell = @"kBSMenuCell";
     if (!self.fixView) {
         self.fixView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
         self.fixView.backgroundColor = [UIColor darkGrayColor];
-        
-        UIWindow *toastDisplaywindow = [[[UIApplication sharedApplication] delegate] window];;
-        for (UIWindow *testWindow in [[UIApplication sharedApplication] windows])
-        {
-            if (![[testWindow class] isEqual:[UIWindow class]])
-            {
-                toastDisplaywindow = testWindow;
-                break;
-            }
-        }
         [self.mainVC.view insertSubview:self.fixView aboveSubview:self.view];
     }
 }

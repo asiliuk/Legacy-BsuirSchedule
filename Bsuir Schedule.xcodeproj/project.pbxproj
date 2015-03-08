@@ -76,6 +76,8 @@
 		8C75E8DA1AAB9D6B00166192 /* BSPurchaseAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8D81AAB9D6B00166192 /* BSPurchaseAchivementCell.m */; };
 		8C75E8DB1AAB9D6B00166192 /* BSPurchaseAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C75E8D91AAB9D6B00166192 /* BSPurchaseAchivementCell.xib */; };
 		8C75E8DE1AAB9F7100166192 /* BSPurchaseAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8DD1AAB9F7100166192 /* BSPurchaseAchivement.m */; };
+		8C75E8EB1AABCDD400166192 /* UIImage+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8EA1AABCDD400166192 /* UIImage+Thumbnail.m */; };
+		8C75E8EC1AABCDD400166192 /* UIImage+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C75E8EA1AABCDD400166192 /* UIImage+Thumbnail.m */; };
 		8C7793621A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */; };
 		8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7793601A84CEC3007AB2EF /* BSLecturerVC.m */; };
@@ -320,6 +322,8 @@
 		8C75E8D91AAB9D6B00166192 /* BSPurchaseAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSPurchaseAchivementCell.xib; sourceTree = "<group>"; };
 		8C75E8DC1AAB9F7100166192 /* BSPurchaseAchivement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPurchaseAchivement.h; sourceTree = "<group>"; };
 		8C75E8DD1AAB9F7100166192 /* BSPurchaseAchivement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPurchaseAchivement.m; sourceTree = "<group>"; };
+		8C75E8E91AABCDD400166192 /* UIImage+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Thumbnail.h"; sourceTree = "<group>"; };
+		8C75E8EA1AABCDD400166192 /* UIImage+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Thumbnail.m"; sourceTree = "<group>"; };
 		8C77935D1A84CEC3007AB2EF /* BSLecturerPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerPreview.h; sourceTree = "<group>"; };
 		8C77935E1A84CEC3007AB2EF /* BSLecturerPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturerPreview.m; sourceTree = "<group>"; };
 		8C77935F1A84CEC3007AB2EF /* BSLecturerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturerVC.h; sourceTree = "<group>"; };
@@ -602,6 +606,8 @@
 				8C1657C11AA8C20D006555B1 /* BSPair+Type.m */,
 				8C1657C21AA8C20D006555B1 /* NSString+Transiterate.h */,
 				8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */,
+				8C75E8E91AABCDD400166192 /* UIImage+Thumbnail.h */,
+				8C75E8EA1AABCDD400166192 /* UIImage+Thumbnail.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1215,6 +1221,7 @@
 				8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
 				8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */,
 				8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
+				8C75E8EC1AABCDD400166192 /* UIImage+Thumbnail.m in Sources */,
 				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 				8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */,
@@ -1301,6 +1308,7 @@
 				8C77938E1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
 				8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
 				8CC4EFEB1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
+				8C75E8EB1AABCDD400166192 /* UIImage+Thumbnail.m in Sources */,
 				8C75E8DE1AAB9F7100166192 /* BSPurchaseAchivement.m in Sources */,
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
 				8C0391031AAA265E002B86F4 /* BSAchivementCell.m in Sources */,

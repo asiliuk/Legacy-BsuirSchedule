@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (Presentation)
+@interface UIViewController (Presentation) <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
 - (void)presentVCInCurrentContext:(UIViewController*)vc animated:(BOOL)animated;
 @end

@@ -30,7 +30,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" id="2nJ-Zn-bFy">
                     <rect key="frame" x="25" y="94" width="270" height="380"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gD7-sA-Gts">
                             <rect key="frame" x="0.0" y="0.0" width="270" height="305"/>

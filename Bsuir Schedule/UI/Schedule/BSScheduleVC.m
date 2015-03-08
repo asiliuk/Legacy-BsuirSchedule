@@ -18,6 +18,7 @@
 #import "UIView+Screenshot.h"
 #import "UIViewController+Achivements.h"
 #import "NSUserDefaults+Share.h"
+#import "UIViewController+Presentation.h"
 
 #import "BSScheduleParser.h"
 #import "BSAchivementManager.h"
@@ -36,7 +37,8 @@
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSPairCellDelegate, AMSlideMenuDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,
+BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
@@ -45,10 +47,10 @@ static NSString * const kCellID = @"Pair cell id";
 @property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
 
 @property (strong, nonatomic) NSArray *easterEggStrings;
+
 @end
 
 @implementation BSScheduleVC
-
 
 - (NSArray*)easterEggStrings {
     if (!_easterEggStrings) {
@@ -146,6 +148,7 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UIView* bview = [[UIView alloc] init];
     bview.backgroundColor = BS_LIGHT_GRAY;
     [self.tableView setBackgroundView:bview];   
@@ -509,22 +512,14 @@ static NSString * const kCellID = @"Pair cell id";
 - (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
     if (lecturer) {
         BSLecturerVC *lecturerVC = [[BSLecturerVC alloc] initWithLecturer:lecturer startFrame:startFrame];
-        [self presentVCInCurrentContext:lecturerVC];
+        [self presentVCInCurrentContext:lecturerVC animated:NO];
     }
-}
-
-- (void)presentVCInCurrentContext:(UIViewController*)vc {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    } else {
-        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    }
-    [self presentViewController:vc animated:NO completion:nil];
 }
 
 
 //===============================================LOADING SCREEN===========================================
 #pragma mark - Loading screen
+
 - (void)showLoadingView {
     if (self.loadindicatorView.hidden) {
         self.loadindicatorView.hidden = NO;

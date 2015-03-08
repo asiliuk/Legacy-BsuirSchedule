@@ -56,14 +56,14 @@
     } else {
         self.backIV.backgroundColor = [UIColor blackColor];
     }
-    [self.lecturer loadLecturerImageIn:self.lecturerIV];
+    [self.lecturer loadLecturerImageIn:self.lecturerIV thumb:NO];
     self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
                                    self.lecturer.lastName,
                                    self.lecturer.firstName,
                                    self.lecturer.middleName];
     
     self.previewIV = [[UIImageView alloc] initWithFrame:self.startFrame];
-    [self.lecturer loadLecturerImageIn:self.previewIV];
+    [self.lecturer loadLecturerImageIn:self.previewIV thumb:NO];
     self.previewIV.contentMode = UIViewContentModeScaleAspectFill;
     self.previewIV.layer.cornerRadius = self.previewIV.frame.size.width / 2.0;
     self.previewIV.layer.masksToBounds = YES;
@@ -96,7 +96,15 @@
     
     [self triggerAchivementWithType:BSAchivementTypeWatcher];
 }
+static CGFloat const iPhoneWidth = 270.0f;
+static CGFloat const iPadWidth = 350.0f;
+static CGFloat const ratio = 1.407f;
+
 - (void)showCenterView {
+    CGFloat width = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? iPadWidth : iPhoneWidth;
+    CGFloat height = width * ratio;
+    self.centerView.frame = CGRectMake(0, 0, width, height);
+    self.centerView.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0);
     __weak typeof(self) weakself = self;
     [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
         typeof(weakself) self = weakself;

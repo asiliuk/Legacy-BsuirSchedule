@@ -3,6 +3,7 @@
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <view contentMode="scaleToFill" verticalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="G4w-HD-Tq3">
-                    <rect key="frame" x="40" y="154" width="241" height="261"/>
+                    <rect key="frame" x="40" y="-431" width="241" height="261"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E5l-Xv-dLJ">
                             <rect key="frame" x="45" y="8" width="150" height="150"/>
@@ -43,13 +44,13 @@
                                 <constraint firstAttribute="height" constant="150" id="s0e-SS-xX2"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uchivement unlocked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5z-mP-un7">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Uchivement unlocked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5z-mP-un7">
                             <rect key="frame" x="8" y="187" width="232" height="20"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKL-Rt-hMR">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKL-Rt-hMR">
                             <rect key="frame" x="8" y="158" width="225" height="29"/>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="21"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -103,7 +104,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="UqU-pD-j1p" secondAttribute="trailing" id="PkN-uP-Eeg"/>
-                <constraint firstAttribute="centerY" secondItem="G4w-HD-Tq3" secondAttribute="centerY" id="ROn-hn-jdo"/>
+                <constraint firstAttribute="top" secondItem="G4w-HD-Tq3" secondAttribute="centerY" constant="300" id="ROn-hn-jdo"/>
                 <constraint firstItem="UqU-pD-j1p" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ToZ-tU-1ti"/>
                 <constraint firstItem="G4w-HD-Tq3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" priority="900" constant="40" id="VA6-WW-ctS"/>
                 <constraint firstAttribute="centerX" secondItem="G4w-HD-Tq3" secondAttribute="centerX" id="VtO-mY-bcC"/>

@@ -49,18 +49,17 @@
     [self.okBtn setTitle:LZD(@"L_Ok") forState:UIControlStateNormal];
     [self.okBtn setTitle:LZD(@"L_Ok") forState:UIControlStateNormal | UIControlStateHighlighted];
     
-    [self replaceCenterConstraintOnView:self.centerView withConstant:self.view.bounds.size.height];
-    
 }
+
 
 #define DEFAULT_ANIMATION_DURATION 0.4
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    
     self.backIV.image = [[[UIApplication sharedApplication] keyWindow] bluredScreenshot];
     self.backIV.alpha = 0.0;
-    [self replaceCenterConstraintOnView:self.centerView withConstant:0.0];
+    [self replaceCenterConstraintOnView:self.centerView withConstant:-self.view.bounds.size.height/2.0];
 
     __weak typeof(self) weakself = self;
     [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
@@ -68,12 +67,13 @@
         [self.view layoutIfNeeded];
         self.backIV.alpha = 1.0;
     }];
+    [super viewDidAppear:animated];
 }
 
 - (void)replaceCenterConstraintOnView:(UIView *)view withConstant:(float)constant
 {
     [self.view.constraints enumerateObjectsUsingBlock:^(NSLayoutConstraint *constraint, NSUInteger idx, BOOL *stop) {
-        if ((constraint.secondItem == view) && (constraint.firstAttribute == NSLayoutAttributeCenterY)) {
+        if ((constraint.secondItem == view) && (constraint.secondAttribute == NSLayoutAttributeCenterY)) {
             constraint.constant = constant;
         }
     }];
@@ -82,7 +82,7 @@
 
 
 - (IBAction)dismiss:(id)sender {
-    [self replaceCenterConstraintOnView:self.centerView withConstant:self.view.bounds.size.height];
+    [self replaceCenterConstraintOnView:self.centerView withConstant:self.centerView.bounds.size.height / 2.0];
     __weak typeof(self) weakself = self;
     [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
         typeof(weakself) self = weakself;
