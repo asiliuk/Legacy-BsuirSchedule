@@ -241,14 +241,22 @@
         NSInteger lecturerIndex = [lecturers indexOfObject:lecturer];
         NSInteger lecturerReverseIndex = [lecturers count] - lecturerIndex;
         CGFloat lecturerOffset = lecturerReverseIndex *OFFSET;
-        BSLecturerPreview *lecturerPreview = [[BSLecturerPreview alloc] init];
-        [self.pairView addSubview:lecturerPreview];
+        
+        BSLecturerPreview *lecturerPreview;
+//        if ([self.lecturersPreviews count] > lecturerIndex) {
+//            lecturerPreview = [self.lecturersPreviews objectAtIndex:lecturerIndex];
+//            [lecturerPreview updateWithLecturer:lecturer];
+//        } else {
+            lecturerPreview = [[BSLecturerPreview alloc] init];
+            [self.pairView addSubview:lecturerPreview];
+            
+            lecturerPreview.translatesAutoresizingMaskIntoConstraints = NO;
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lecturerPreview(width)]-offset-|" options:0 metrics:@{@"offset": @(lecturerOffset), @"width": @(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(lecturerPreview)]];
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[lecturerPreview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lecturerPreview)]];
+            [lecturerPreview setupWithLecturer:lecturer];
+            [self.lecturersPreviews addObject:lecturerPreview];
+//        }
 
-        lecturerPreview.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lecturerPreview(width)]-offset-|" options:0 metrics:@{@"offset": @(lecturerOffset), @"width": @(LECTURER_IMAGE_WIDTH)} views:NSDictionaryOfVariableBindings(lecturerPreview)]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[lecturerPreview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lecturerPreview)]];
-        [lecturerPreview setupWithLecturer:lecturer];
-        [self.lecturersPreviews addObject:lecturerPreview];
 
     }
     

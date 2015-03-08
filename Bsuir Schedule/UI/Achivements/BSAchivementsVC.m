@@ -26,7 +26,7 @@
 @import Twitter;
 @import MessageUI;
 
-@interface BSAchivementsVC () <SKPaymentTransactionObserver, MFMailComposeViewControllerDelegate,
+@interface BSAchivementsVC () <SKPaymentTransactionObserver, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
 BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -96,8 +96,9 @@ BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
 }
 
 - (void)restorePurchases {
-    [self showLoadingView];
-    [PFPurchase restore];
+    [self triggerAchivementWithType:BSAchivementTypeScroller];
+//    [self showLoadingView];
+//    [PFPurchase restore];
 }
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     [self hideLoadingView];
@@ -176,6 +177,7 @@ static CGFloat const achivementCellHeight = 140.0f;
     }
     return _loadindicatorView;
 }
+
 //===============================================PURCHASE CELL DELEGATE===========================================
 #pragma mark - Purchase Cell delegate
 

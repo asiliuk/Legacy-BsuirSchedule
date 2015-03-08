@@ -12,4 +12,5 @@
 
 @interface BSLecturer (Thumbnail)
 - (void)loadLecturerImageIn:(UIImageView*)imageView;
+- (void)loadLecturerImageIn:(UIImageView *)imageView thumb:(BOOL)thumb;
 @end
