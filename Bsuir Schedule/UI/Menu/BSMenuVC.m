@@ -7,41 +7,30 @@
 //
 
 #import "BSMenuVC.h"
-#import "SlideNavigationController.h"
 #import "BSMenuCell.h"
 #import "BSScheduleVC.h"
 #import "BSTutorialVC.h"
 #import "BSSettingsVC.h"
+#import "BSAchivementsVC.h"
 #import "BSDataManager.h"
 
 #import "BSConstants.h"
 @import MessageUI;
 
-static NSString * const kBSMenuItemType = @"kBSMenuItemType";
+NSString * const kBSMenuItemType = @"kBSMenuItemType";
 
-static NSString * const kBSMenuItemTitle = @"kBSMenuItemTitle";
-static NSString * const kBSMenuItemImage = @"kBSMenuItemImage";
-static NSString * const kBSMenuItemBadgeCount = @"kBSMenuItemBadgeCount";
-static NSString * const kBSMenuItemClass = @"kBSMenuItemClass";
+NSString * const kBSMenuItemTitle = @"kBSMenuItemTitle";
+NSString * const kBSMenuItemImage = @"kBSMenuItemImage";
+NSString * const kBSMenuItemBadgeCount = @"kBSMenuItemBadgeCount";
+NSString * const kBSMenuItemClass = @"kBSMenuItemClass";
 
-static NSString * const kBSMenuItemSchedule = @"kBSMenuItemSchedule";
+NSString * const kBSMenuItemSchedule = @"kBSMenuItemSchedule";
 
-static NSString * const kBSMenuCell = @"kBSMenuCell";
+NSString * const kBSMenuCell = @"kBSMenuCell";
 
-typedef NS_ENUM(NSInteger, BSMenuItem) {
-    BSMenuItemFeedback       = 1,
-    BSMenuItemSettings       = 2,
-    BSMenuItemInfo           = 3,
-    BSMenuItemSchedule       = 4,
 
-};
 
-@interface BSMenuVC () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
-
-@property (strong, nonatomic) NSArray *menuItems;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIView *statusBarFixView;
-
+@interface BSMenuVC () <UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, AMSlideMenuDelegate>
 @property (strong, nonatomic) UIView *fixView;
 @end
 
@@ -60,34 +49,78 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
     [super viewDidLoad];
     [self updateMenuItems];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kBSMenuCell];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSMenuCell class]) bundle:nil] forCellReuseIdentifier:kBSMenuCell];
 
     self.tableView.backgroundColor = [UIColor darkGrayColor];
     self.view.backgroundColor = [UIColor darkGrayColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(leftMenuDidOpen)
-                                                 name:SlideNavigationControllerDidOpen
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(schedulesUpdate)
                                                  name:kSchedulesGetUpdated
                                                object:nil];
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
-        [self.statusBarFixView removeFromSuperview];
-    }
+    self.mainVC.slideMenuDelegate = self;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)addFixView {
+    
+    if (!self.fixView) {
+        self.fixView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+        self.fixView.backgroundColor = [UIColor darkGrayColor];
+        [self.mainVC.view insertSubview:self.fixView aboveSubview:self.view];
+    }
+}
+
+- (void)removeFixView {
+    [self.fixView removeFromSuperview];
+    self.fixView = nil;
+}
+
+//===============================================INDEX METHODS===========================================
+#pragma mark - Index methods
+- (NSIndexPath*)indexPathForGroupNumber:(NSString*)groupNumber {
+    NSIndexPath *indexPath;
+    for (NSDictionary* menuItemData in self.menuItems) {
+        if ([menuItemData[kBSMenuItemType] isEqual:@(BSMenuItemSchedule)]) {
+            if (!groupNumber || [[[menuItemData[kBSMenuItemSchedule] group] groupNumber] isEqual:groupNumber]) {
+                indexPath = [NSIndexPath indexPathForRow:[self.menuItems indexOfObject:menuItemData] inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
+- (NSIndexPath*)settingsIndexPath {
+    NSIndexPath *indexPath;
+    for (NSDictionary* menuItemData in self.menuItems) {
+        if ([menuItemData[kBSMenuItemType] isEqual:@(BSMenuItemSettings)]) {
+            indexPath = [NSIndexPath indexPathForRow:[self.menuItems indexOfObject:menuItemData] inSection:0];
+            break;
+        }
+    }
+    return indexPath;
+}
+- (void)openVCAtIndexPath:(NSIndexPath*)indexPath {
+    [self showVcForMenuItemData:self.menuItems[indexPath.row]];
+}
 //===============================================SLIDE MENU DELEGATE===========================================
 #pragma mark - Slide menu delegate
 
+- (void)leftMenuWillClose {
+    [self removeFixView];
+}
+
+- (void)leftMenuDidClose {
+    [self selectCellAtIndexPath:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMenuDidClose object:self];
+}
 
 - (void)leftMenuDidOpen {
+    [self addFixView];
+    
     NSIndexPath *currVCIndexPath = [self currentControllerIndexPath];
     if (currVCIndexPath) {
         [self selectCellAtIndexPath:currVCIndexPath];
@@ -96,7 +129,7 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 
 - (NSIndexPath*)currentControllerIndexPath {
     NSIndexPath *currentControllerIndexPath;
-    UIViewController *currentController = [SlideNavigationController sharedInstance].topViewController;
+    UIViewController *currentController = self.mainVC.currentActiveNVC.topViewController;
     BSSchedule *currentSchedule;
     if ([currentController isKindOfClass:[BSScheduleVC class]]) {
         currentSchedule = [(BSScheduleVC*)currentController schedule];
@@ -141,12 +174,12 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
         [menuItems addObject:itemData];
     }
 
-    
-    itemData = @{kBSMenuItemType: @(BSMenuItemFeedback),
-                 kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
-                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
+    itemData = @{kBSMenuItemType: @(BSMenuItemAchivements),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Achivements", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_achivements"],
+                 kBSMenuItemClass: [BSAchivementsVC class]};
     [menuItems addObject:itemData];
-
+    
     itemData = @{kBSMenuItemType: @(BSMenuItemSettings),
                  kBSMenuItemTitle: NSLocalizedString(@"L_Settings", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_settings"],
@@ -157,6 +190,11 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
                  kBSMenuItemTitle: NSLocalizedString(@"L_Info", @"menu item title"),
                  kBSMenuItemImage: [UIImage imageNamed:@"menu_info"],
                  kBSMenuItemClass: [BSTutorialVC class]};
+    [menuItems addObject:itemData];
+    
+    itemData = @{kBSMenuItemType: @(BSMenuItemFeedback),
+                 kBSMenuItemTitle: NSLocalizedString(@"L_Feedback", @"menu item title"),
+                 kBSMenuItemImage: [UIImage imageNamed:@"menu_feedback"]};
     [menuItems addObject:itemData];
 
     self.menuItems = menuItems;
@@ -220,8 +258,6 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self selectCellAtIndexPath:indexPath];
     NSDictionary *menuItemData = self.menuItems[indexPath.row];
-    NSIndexPath *selectedCell = [self currentControllerIndexPath];
-    [SlideNavigationController sharedInstance].avoidSwitchingToSameClassViewController = selectedCell.row == indexPath.row;
     [self showVcForMenuItemData:menuItemData];
 }
 
@@ -243,9 +279,10 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
         }
     }
     if (rootVC) {
-        [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:rootVC withCompletion:nil];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+        [self openContentNavigationController:nvc];
     } else {
-        [[SlideNavigationController sharedInstance] closeMenuWithCompletion:nil];
+        [self.mainVC closeLeftMenuAnimated:YES];
     }
 }
 
@@ -258,14 +295,16 @@ typedef NS_ENUM(NSInteger, BSMenuItem) {
         
         [mailCont setSubject:@"Bsuir Schedule app"];
         [mailCont setToRecipients:[NSArray arrayWithObject:@"devbudgged@gmail.com"]];
-        [[SlideNavigationController sharedInstance] presentViewController:mailCont animated:YES completion:nil];
+        [self presentViewController:mailCont animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
     }
 }
 
 
 // Then implement the delegate method
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    [[SlideNavigationController sharedInstance] dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

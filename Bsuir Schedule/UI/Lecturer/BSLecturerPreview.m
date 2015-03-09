@@ -7,6 +7,8 @@
 //
 
 #import "BSLecturerPreview.h"
+#import <Parse/Parse.h>
+#import <Bolts/Bolts.h>
 
 @implementation BSLecturerPreview
 
@@ -20,7 +22,9 @@
 
 - (void)setupWithLecturer:(BSLecturer*)lecturer {
     self.lecturerIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
-    self.lecturerIV.image = [lecturer thumbnail];
+
+    [lecturer loadLecturerImageIn:self.lecturerIV];
+    
     self.lecturerIV.contentMode = UIViewContentModeScaleAspectFill;
     [self.lecturerIV.layer setCornerRadius:LECTURER_IMAGE_WIDTH / 2.0];
     self.lecturerIV.layer.masksToBounds = YES;
@@ -48,5 +52,10 @@
     self.lecturerNameLabel = lecturerLastNameLabel;
     
     self.lecturer = lecturer;
+}
+
+- (void)updateWithLecturer:(BSLecturer *)lecturer {
+    [lecturer loadLecturerImageIn:self.lecturerIV];
+    [self.lecturerNameLabel setText:lecturer.lastName];
 }
 @end

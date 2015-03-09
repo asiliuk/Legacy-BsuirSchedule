@@ -9,6 +9,13 @@
 #import "BSLecturerVC.h"
 #import "UIView+Screenshot.h"
 #import "BSConstants.h"
+#import <ParseUI/ParseUI.h>
+#import "BSLecturer+Thumbnail.h"
+
+#import "BSAchivementUnlockedVC.h"
+#import "BSAchivementManager.h"
+
+#import "UIViewController+Achivements.h"
 
 @interface BSLecturerVC ()
 @property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
@@ -29,6 +36,7 @@
 @property (nonatomic) UIDynamicItemBehavior *itemBehavior;
 
 @property (assign, nonatomic) BOOL dismissing;
+@property (assign, nonatomic) BOOL showCenterFinished;
 @end
 
 @implementation BSLecturerVC
@@ -48,14 +56,14 @@
     } else {
         self.backIV.backgroundColor = [UIColor blackColor];
     }
-    self.lecturerIV.image = [self.lecturer thumbnail];
+    [self.lecturer loadLecturerImageIn:self.lecturerIV thumb:NO];
     self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
                                    self.lecturer.lastName,
                                    self.lecturer.firstName,
                                    self.lecturer.middleName];
     
     self.previewIV = [[UIImageView alloc] initWithFrame:self.startFrame];
-    self.previewIV.image = [self.lecturer thumbnail];
+    [self.lecturer loadLecturerImageIn:self.previewIV thumb:NO];
     self.previewIV.contentMode = UIViewContentModeScaleAspectFill;
     self.previewIV.layer.cornerRadius = self.previewIV.frame.size.width / 2.0;
     self.previewIV.layer.masksToBounds = YES;
@@ -85,18 +93,32 @@
     [self showCenterView];
     self.originalBounds = self.centerView.bounds;
     self.originalCenter = self.centerView.center;
-
+    
+    [self triggerAchivementWithType:BSAchivementTypeWatcher];
 }
+static CGFloat const iPhoneWidth = 270.0f;
+static CGFloat const iPadWidth = 350.0f;
+static CGFloat const ratio = 1.407f;
+
 - (void)showCenterView {
+    CGFloat width = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? iPadWidth : iPhoneWidth;
+    CGFloat height = width * ratio;
+    self.centerView.frame = CGRectMake(0, 0, width, height);
+    self.centerView.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0);
+    __weak typeof(self) weakself = self;
     [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+        typeof(weakself) self = weakself;
         self.previewIV.frame = [self.view convertRect:self.lecturerIV.frame fromView:self.centerView];
         self.previewIV.layer.cornerRadius = 0.0;
         self.backIV.alpha = (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? 1.0 : 0.8;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:LECTURER_NAME_ANIMATION_DURATION animations:^{
+            typeof(weakself) self = weakself;
             self.centerView.alpha = 1.0;
         } completion:^(BOOL finished) {
+            typeof(weakself) self = weakself;
             [self.previewIV removeFromSuperview];
+            self.showCenterFinished = YES;
         }];
     }];
 }
@@ -104,13 +126,15 @@
 - (void)dismiss {
     if (!self.dismissing) {
         self.dismissing = YES;
+        __weak typeof(self) weakself = self;
         [UIView animateWithDuration:LECTURER_VC_ANIMATION_DURATION animations:^{
+            typeof(weakself) self = weakself;
             if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
                 self.centerView.alpha = 0.0;
             }
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
-            [self dismissViewControllerAnimated:NO completion:nil];
+            [weakself dismissViewControllerAnimated:NO completion:nil];
         }];
     }
 }
@@ -127,6 +151,9 @@ static const CGFloat ThrowingVelocityPadding = 35;
 
 - (IBAction) handleAttachmentGesture:(UIPanGestureRecognizer*)gesture
 {
+    if (!self.showCenterFinished) {
+        return;
+    }
     CGPoint location = [gesture locationInView:self.view];
     CGPoint boxLocation = [gesture locationInView:self.centerView];
 

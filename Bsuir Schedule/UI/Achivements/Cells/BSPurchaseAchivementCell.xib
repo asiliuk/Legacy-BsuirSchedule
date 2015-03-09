@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment version="2048" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vrg-Yn-tG3" customClass="BSPurchaseAchivementCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vrg-Yn-tG3" id="Iyt-YV-HTE">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-wf-T4h">
+                        <rect key="frame" x="170" y="0.0" width="150" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="cBM-wf-T4h" secondAttribute="height" multiplier="1:1" id="5bU-dF-AfX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy6-7e-5Y8">
+                        <rect key="frame" x="13" y="8" width="149" height="24"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="If you don't want to create " lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHA-df-rtU">
+                        <rect key="frame" x="13" y="37" width="149" height="41"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGn-8V-iug">
+                        <rect key="frame" x="13" y="81" width="43" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="ELl-sk-yPf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <state key="normal" title="Buy">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="buyPressed:" destination="vrg-Yn-tG3" eventType="touchUpInside" id="VV9-Ld-UTf"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pHA-df-rtU" firstAttribute="trailing" secondItem="Wy6-7e-5Y8" secondAttribute="trailing" id="DdL-SH-ZoP"/>
+                    <constraint firstItem="cBM-wf-T4h" firstAttribute="leading" secondItem="Wy6-7e-5Y8" secondAttribute="trailing" constant="8" id="FXr-Et-kjW"/>
+                    <constraint firstItem="Wy6-7e-5Y8" firstAttribute="top" secondItem="Iyt-YV-HTE" secondAttribute="topMargin" id="H8d-Os-Wod"/>
+                    <constraint firstItem="cBM-wf-T4h" firstAttribute="top" secondItem="Iyt-YV-HTE" secondAttribute="topMargin" constant="-8" id="IkA-GN-2fh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cBM-wf-T4h" secondAttribute="trailing" constant="-8" id="NpO-Bk-9c4"/>
+                    <constraint firstItem="pHA-df-rtU" firstAttribute="leading" secondItem="Wy6-7e-5Y8" secondAttribute="leading" id="Ves-Ea-OAF"/>
+                    <constraint firstItem="NGn-8V-iug" firstAttribute="leading" secondItem="pHA-df-rtU" secondAttribute="leading" id="axX-kh-Xlf"/>
+                    <constraint firstItem="Wy6-7e-5Y8" firstAttribute="leading" secondItem="Iyt-YV-HTE" secondAttribute="leadingMargin" constant="5" id="cqr-O3-a31"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cBM-wf-T4h" secondAttribute="bottom" constant="-8.5" id="dnV-ng-G6K"/>
+                    <constraint firstItem="NGn-8V-iug" firstAttribute="top" secondItem="pHA-df-rtU" secondAttribute="bottom" constant="3" id="ngz-V2-GRy"/>
+                    <constraint firstItem="pHA-df-rtU" firstAttribute="top" secondItem="Wy6-7e-5Y8" secondAttribute="bottom" constant="5" id="uha-6w-AzI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buyButton" destination="NGn-8V-iug" id="qBO-ZE-APl"/>
+                <outlet property="descriptionLabel" destination="pHA-df-rtU" id="kvh-ji-9fo"/>
+                <outlet property="imageIV" destination="cBM-wf-T4h" id="lnB-8b-Xh3"/>
+                <outlet property="nameLabel" destination="Wy6-7e-5Y8" id="xW4-e8-uRJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

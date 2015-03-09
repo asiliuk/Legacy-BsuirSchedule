@@ -16,22 +16,29 @@
 #import "NSString+Transiterate.h"
 #import "NSDate+Compare.h"
 #import "UIView+Screenshot.h"
+#import "UIViewController+Achivements.h"
+#import "NSUserDefaults+Share.h"
+#import "UIViewController+Presentation.h"
 
 #import "BSScheduleParser.h"
+#import "BSAchivementManager.h"
 #import "BSLecturerVC.h"
-#import "NSUserDefaults+Share.h"
+#import "BSAchivementUnlockedVC.h"
 
-#import "SlideNavigationController.h"
 #import "BSDay.h"
 
 #import "BSDayOfWeek+Number.h"
 #import "BSDayWithWeekNum.h"
 
+#import "UIViewController+AMSlideMenu.h"
+
+#import "BSUtils.h"
 
 static NSString * const kCellID = @"Pair cell id";
 
 
-@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, BSPairCellDelegate, SlideNavigationControllerDelegate>
+@interface BSScheduleVC () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,
+BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
@@ -40,6 +47,7 @@ static NSString * const kCellID = @"Pair cell id";
 @property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
 
 @property (strong, nonatomic) NSArray *easterEggStrings;
+
 @end
 
 @implementation BSScheduleVC
@@ -140,20 +148,59 @@ static NSString * const kCellID = @"Pair cell id";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     UIView* bview = [[UIView alloc] init];
     bview.backgroundColor = BS_LIGHT_GRAY;
-    [self.tableView setBackgroundView:bview];   
+    [self.tableView setBackgroundView:bview];
 
-    
+
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:kDidComeFromBackground object:nil];
+
     [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
     [self setNavBarLabel];
     [self getScheduleData];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+
+    if ([BSScheduleParser scheduleExpiresForGroup:self.schedule.group]) {
+        __weak typeof(self) weakself = self;
+        [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
+            [weakself updateSchedule];
+        } failure:nil];
+    }
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leftMenuDidClose)
+                                                 name:kMenuDidClose
+                                               object:nil];
+}
+
+- (void)leftMenuDidClose {
+    [self applicationBecomeActive];
+}
+
+- (void)applicationBecomeActive {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSUInteger preservedComponents;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        preservedComponents = (NSCalendarUnitHour | NSCalendarUnitMinute);
+    } else {
+        preservedComponents = (NSHourCalendarUnit | NSMinuteCalendarUnit);
+    }
+    NSDateComponents *dateComponents = [calendar components:preservedComponents fromDate:now];
+
+    if (dateComponents.hour == 0 && dateComponents.minute == 0) {
+        [self triggerAchivementWithType:BSAchivementTypeWerewolf];
+    }
+//    [self triggerAchivementWithType:BSAchivementTypeSocial];
+    [self updateUI];
 }
 
 - (void)setNavBarLabel {
@@ -171,7 +218,7 @@ static NSString * const kCellID = @"Pair cell id";
     [titleString appendAttributedString:groupString];
     label.attributedText = titleString;
     self.navigationItem.titleView = label;
-    
+
 }
 
 
@@ -208,7 +255,7 @@ static NSString * const kCellID = @"Pair cell id";
     [self hideLoadingView];
 
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:self.weekFormat];
-    
+
     self.days = nil;
     if (self.weekFormat) {
         [self loadWeekSchedule];
@@ -216,7 +263,7 @@ static NSString * const kCellID = @"Pair cell id";
         [self loadScheduleForDaysCount:PREVIOUS_DAY_COUNT backwards:YES];
         [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
     }
-    
+
     [self.tableView reloadData];
     NSInteger highlightedSectionIndex = 0;
     for (NSInteger index = 0; index < [self.days count]; index++) {
@@ -247,7 +294,7 @@ static NSString * const kCellID = @"Pair cell id";
 }
 
 #define MAAX_TRY_COUNT 100
-- (void)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
+- (NSInteger)loadScheduleForDaysCount:(NSInteger)daysCount backwards:(BOOL)backwards {
     NSDate *now = [NSDate date];
     NSDate *dayDate = now; // to show two previous days
     if ([self.days count] > 0) {
@@ -273,6 +320,7 @@ static NSString * const kCellID = @"Pair cell id";
         tryies ++;
         dayDate = [dayDate dateByAddingTimeInterval:(backwards ? -1 : 1)*DAY_IN_SECONDS];
     }
+    return daysAdded;
 }
 
 - (NSURL *)applicationDocumentsDirectory {
@@ -314,7 +362,7 @@ static NSString * const kCellID = @"Pair cell id";
     return cell;
 }
 
-#define EASTERN_EGG_EDGE 1
+#define EASTERN_EGG_EDGE 50
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     id<BSDay> day = [self.days objectAtIndex:section];
@@ -333,7 +381,7 @@ static NSString * const kCellID = @"Pair cell id";
     }
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
-    
+
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, HEADER_HEIGHT)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(HEADER_LABEL_OFFSET_X, HEADER_LABEL_OFFSET_Y,
                                                                tableView.frame.size.width, HEADER_HEIGHT)];
@@ -374,6 +422,9 @@ static NSString * const kCellID = @"Pair cell id";
             easterEggMode = YES;
         }
     }
+    if (easterEggMode) {
+        [self triggerAchivementWithType:BSAchivementTypeScroller];
+    }
     if ([[NSUserDefaults sharedDefaults] boolForKey:kEasterEggMode] != easterEggMode) {
         [[NSUserDefaults sharedDefaults] setBool:easterEggMode forKey:kEasterEggMode];
     }
@@ -413,12 +464,12 @@ static NSString * const kCellID = @"Pair cell id";
     if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.bounds.size.height)) {
         if (!self.weekFormat) {
             NSLog(@"load more rows");
-            [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.days.count - DAYS_LOAD_STEP, DAYS_LOAD_STEP)];
+            NSInteger daysLoad = [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.days.count - daysLoad, daysLoad)];
             [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
         }
     }
-    
+
 }
 
 //-------------------------------Lecturer name view---------------------------------
@@ -454,28 +505,21 @@ static NSString * const kCellID = @"Pair cell id";
     if (![day isEqualToDayWithWeekNum:self.dayToHighlight]) {
         [self updateSchedule];
     }
+    [self.tableView reloadData];
 }
 
 
 - (void)showLecturerVCForLecturer:(BSLecturer*)lecturer withStartFrame:(CGRect)startFrame{
     if (lecturer) {
         BSLecturerVC *lecturerVC = [[BSLecturerVC alloc] initWithLecturer:lecturer startFrame:startFrame];
-        [self presentVCInCurrentContext:lecturerVC];
+        [self presentVCInCurrentContext:lecturerVC animated:NO];
     }
-}
-
-- (void)presentVCInCurrentContext:(UIViewController*)vc {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    } else {
-        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    }
-    [self presentViewController:vc animated:NO completion:nil];
 }
 
 
 //===============================================LOADING SCREEN===========================================
 #pragma mark - Loading screen
+
 - (void)showLoadingView {
     if (self.loadindicatorView.hidden) {
         self.loadindicatorView.hidden = NO;
@@ -508,11 +552,8 @@ static NSString * const kCellID = @"Pair cell id";
     }
 }
 
-#pragma mark - SlideNavigationController Methods -
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
-{
-    return YES;
 }
 
 @end

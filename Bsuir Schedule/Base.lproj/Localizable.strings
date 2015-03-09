@@ -17,6 +17,10 @@
 "L_SettingsSwipe" = "Swipe left in settings for options";
 "L_StarMeaning" = "In widget";
 "L_SubgroupMeaning" = "By subgroups";
+"L_OpenApp" = "Open app";
+"L_NotAvailable" = "Not available";
+"L_Buy" = "Buy";
+"L_Restore" = "Restore";
 
 "Sh_Воскресенье" = "Sun.";
 "Sh_Понедельник" = "Mon.";
@@ -35,6 +39,7 @@
 "Суббота" = "Saturday";
 
 "L_Schedule" = "Schedule";
+"L_Achivements" = "Achievements";
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";
 "L_Info" = "Info";
@@ -55,3 +60,24 @@
 "L_Housing" = "Housing";
 "L_StartTime" = "start";
 "L_EndTime" = "end";
+
+"L_ScrollerAchivement" = "Scroller";
+"L_ScrollerAchivementDescription" = "Scroll till the end...";
+"L_SocialAchivement" = "Social";
+"L_SocialAchivementDescription" = "Tell friends about app";
+"L_WatcherAchivement" = "Watcher";
+"L_WatcherAchivementDescription" = "Open %ld lecturers pictures";
+"L_WerewolfAchivement" = "Wherewolf";
+"L_WerewolfAchivementDescription" = "Open schedule exactly at 00:00";
+"L_SupporterAchivement" = "Supporter";
+"L_SupporterAchivementDescription" = "Support developer ($0.99)";
+"L_SuperSupporterAchivement" = "Super supporter";
+"L_SuperSupporterAchivementDescription" = "Make it rain, support developer ($2.99)";
+
+"L_PurchaseRestore" = "Purchase restore";
+"L_PurchaseRestoreSuccess" = "All purchases were successfully restored.";
+"L_PurchaseRestoreError" = "Error while restoring purchases.";
+
+"L_AchivementUnlocked" = "Achievement unlocked";
+
+"L_AppShare" = "Если ты студент БГУИР-а, поспеши скачать мобильное расписание.";

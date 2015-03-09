@@ -13,15 +13,18 @@
 
 #import "BSConstants.h"
 
-#import "SlideNavigationController.h"
-#import "BSMenuVC.h"
+#import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "BSAchivementManager.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import <Parse/Parse.h>
 @interface AppDelegate ()
-
+@property (strong, nonatomic) BSMainVC *mainVC;
 @end
 
 @implementation AppDelegate
@@ -31,51 +34,59 @@
 //    [self updateOldDatabaseForMultipleGroups];
     [Fabric with:@[CrashlyticsKit]];
 
+    [Parse enableLocalDatastore];
+
+    [Parse setApplicationId:kParseApplicationID
+                  clientKey:kParseClientKey];
+
+
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    UIViewController *mainVC;
-    BSSchedule *sch = [[[BSDataManager sharedInstance] schelules] firstObject];
-    if (sch) {
-        mainVC = [[BSScheduleVC alloc] initWithSchedule:sch];
-    } else {
-        mainVC = [[BSSettingsVC alloc] init];
-    }
-    SlideNavigationController *slideNavController = [[SlideNavigationController alloc] initWithRootViewController:mainVC];
-    [self customizeSlideNavigationController:slideNavController];
-    self.window.rootViewController = slideNavController;
+    self.mainVC = [[BSMainVC alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.mainVC];
     [self.window makeKeyAndVisible];
-    
+
     [[NSUserDefaults sharedDefaults] setBool:NO forKey:kEasterEggMode];
+
+    [[UINavigationBar appearance] setBarTintColor:BS_BLUE];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                      NSFontAttributeName: titleFont}];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    if ([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+        NSString *groupNum = [[self paramsFromURL:[launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]] objectForKey:@"group"];
+        [self.mainVC showVCForGroupNumber:groupNum];
+    }
+
+//    [[BSAchivementManager sharedInstance] dismissAllAchivements];
+
     return YES;
 }
 
-- (void)customizeSlideNavigationController:(SlideNavigationController*)slideNavController {
-    slideNavController.avoidSwitchingToSameClassViewController = NO;
-    slideNavController.leftMenu = [[BSMenuVC alloc] init];
-    
-    slideNavController.navigationBar.barStyle = UIBarStyleBlack;
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [[UINavigationBar appearance] setBarTintColor:BS_BLUE];
-        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-    } else {
-        [[UINavigationBar appearance] setTintColor:BS_BLUE];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString *groupNum = [[self paramsFromURL:url] objectForKey:@"group"];
+    if (groupNum && ![groupNum isEqual:@""]) {
+        [self.mainVC showVCForGroupNumber:groupNum];
     }
-    UIFont *titleFont = [UIFont fontWithName:@"OpenSans" size:20.0f];
-    [slideNavController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                               NSFontAttributeName: titleFont}];
-    
-    
-    UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"menu_burger"] forState:UIControlStateNormal];
-    [button addTarget:slideNavController action:@selector(toggleLeftMenu) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    slideNavController.leftBarButtonItem = leftBarButtonItem;
-    slideNavController.enableShadow = NO;
+    return YES;
+}
+
+- (NSDictionary*)paramsFromURL:(NSURL*)url {
+    NSString * q = [url query];
+    NSArray * pairs = [q componentsSeparatedByString:@"&"];
+    NSMutableDictionary * kvPairs = [NSMutableDictionary dictionary];
+    for (NSString * pair in pairs) {
+        NSArray * bits = [pair componentsSeparatedByString:@"="];
+        NSString * key = [[bits objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString * value = [[bits objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [kvPairs setObject:value forKey:key];
+    }
+    return kvPairs;
 }
 
 //- (void)updateOldDatabaseForMultipleGroups {
@@ -94,17 +105,17 @@
 //                [pair addGroupsObject:schedule.group];
 //            }
 //        }
-//        
+//
 //        [shared setObject:nil forKey:kCurrentScheduleGroup];
 //        [shared setObject:nil forKey:kUserSubgroup];
 //        [shared setObject:nil forKey:kUserGroup];
-//        
+//
 //        [shared setObject:nil forKey:kLastUpdate];
 //        [shared setObject:nil forKey:kDatabaseStamp];
-//        
+//
 //        [shared setObject:groupNumber forKey:kWidgetGroup];
 //        [shared setInteger:subgroup forKey:kWidgetSubgroup];
-//        
+//
 //        [[BSDataManager sharedInstance] saveContext];
 //    }
 //}
@@ -126,7 +137,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidComeFromBackground object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

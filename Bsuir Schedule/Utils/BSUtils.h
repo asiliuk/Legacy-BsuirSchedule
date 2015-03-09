@@ -17,4 +17,5 @@
 
 @interface BSUtils : NSObject
 + (void)showAlertWithTitle:(NSString*)title message:(NSString*)message inVC:(UIViewController*)vc;
++ (NSDate*)midnight;
 @end

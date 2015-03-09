@@ -56,6 +56,16 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 //-------------------------------SCHEDULE KEYS---------------------------------
+
+static NSString * const kAppURL = @"http://itunes.apple.com/app/id944151090";
+
+static NSString * const kAchivementUnlocked = @"kAchivementUnlocked";
+
+static NSString * const kSupporterAchivementID = @"com.saute.BsuirSchedule.supporter";
+static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.supersupporter";
+
+static NSString * const kMenuDidClose = @"kMenuDidClose";
+
 static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/schedule/";
 
 static NSString * const kWidgetID = @"com.saute.Bsuir-Schedule.Schedule";
@@ -92,8 +102,10 @@ static NSString * const kLecturerLastName = @"lastName";
 static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
-static NSString * const kDidComeFromBackground = @"kDidComeFromBackground";
 static NSString * const kSchedulesGetUpdated = @"kSchedulesGetUpdated";
+
+static NSString * const kParseApplicationID = @"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo";
+static NSString * const kParseClientKey = @"1Lv4keabSCqMmhDSOQWeOsfvKi7zsegPxs2pxRpE";
 
 
 #endif

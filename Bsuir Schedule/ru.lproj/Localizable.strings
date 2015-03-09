@@ -18,6 +18,10 @@
 "L_SettingsSwipe" = "Сделайте \"swipe\" влево в настройках чтобы показать кнопки";
 "L_StarMeaning" = "В виджет";
 "L_SubgroupMeaning" = "По подгруппам";
+"L_OpenApp" = "Открыть программу";
+"L_NotAvailable" = "Недоступно";
+"L_Buy" = "Купить";
+"L_Restore" = "Восстановить";
 
 "Sh_Воскресенье" = "Вскр.";
 "Sh_Понедельник" = "Пон.";
@@ -36,6 +40,7 @@
 "Суббота" = "Суббота";
 
 "L_Settings" = "Настройки";
+"L_Achivements" = "Достижения";
 "L_Feedback" = "Обратная связь";
 "L_Info" = "Справка";
 "L_Groups" = "Группы";
@@ -55,3 +60,24 @@
 "L_Housing" = "Корпус";
 "L_StartTime" = "начало";
 "L_EndTime" = "конец";
+
+"L_ScrollerAchivement" = "Scroller";
+"L_ScrollerAchivementDescription" = "Долистай расписание до конца...";
+"L_SocialAchivement" = "Social";
+"L_SocialAchivementDescription" = "Расскажи друзьям про приложение";
+"L_WatcherAchivement" = "Watcher";
+"L_WatcherAchivementDescription" = "Открой %ld фотографий преподавателей";
+"L_WerewolfAchivement" = "Wherewolf";
+"L_WerewolfAchivementDescription" = "Открой расписание точно в 00:00";
+"L_SupporterAchivement" = "Supporter";
+"L_SupporterAchivementDescription" = "Поддержи разработчика ($0.99)";
+"L_SuperSupporterAchivement" = "Super supporter";
+"L_SuperSupporterAchivementDescription" = "Сделай денежный дождь, поддержи разработчика ($2.99)";
+
+"L_PurchaseRestore" = "Восстановление покупок";
+"L_PurchaseRestoreSuccess" = "Все покупки успешно восстановлены.";
+"L_PurchaseRestoreError" = "Произошла ошибка во время восстановления покупок.";
+
+"L_AchivementUnlocked" = "Достижение разблокировано";
+
+"L_AppShare" = "Если ты студент БГУИР-а, поспеши скачать мобильное расписание.";
