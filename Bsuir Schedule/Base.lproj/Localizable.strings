@@ -39,7 +39,7 @@
 "Суббота" = "Saturday";
 
 "L_Schedule" = "Schedule";
-"L_Achivements" = "Achivements";
+"L_Achivements" = "Achievements";
 "L_Settings" = "Settings";
 "L_Feedback" = "Feedback";
 "L_Info" = "Info";
@@ -78,6 +78,6 @@
 "L_PurchaseRestoreSuccess" = "All purchases were successfully restored.";
 "L_PurchaseRestoreError" = "Error while restoring purchases.";
 
-"L_AchivementUnlocked" = "Achivement unlocked";
+"L_AchivementUnlocked" = "Achievement unlocked";
 
 "L_AppShare" = "Если ты студент БГУИР-а, поспеши скачать мобильное расписание.";

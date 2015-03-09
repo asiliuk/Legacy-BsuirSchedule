@@ -1,0 +1,36 @@
+{
+  "en-US": {
+    "title": "Bsuir Schedule",
+    "description": "Simple schedule app for BSUIR students. Information is loaded from http://www.bsuir.by/schedule/rest/schedule/",
+    "software_url": "",
+    "support_url": "http://saute.by",
+    "privacy_url": "",
+    "keywords": [
+      "BSUIR",
+      "bsuir",
+      "minsk",
+      "schedule",
+      "belarus",
+      "минск",
+      "БГУИР",
+      "расписание"
+    ]
+  },
+  "ru-RU": {
+    "title": "Bsuir Schedule",
+    "description": "Простое и понятное расписание для студентов БГУИР. Информация загружается с http://www.bsuir.by/schedule/rest/schedule/",
+    "software_url": "",
+    "support_url": "http://saute.by",
+    "privacy_url": "",
+    "keywords": [
+      "BSUIR",
+      "bsuir",
+      "minsk",
+      "schedule",
+      "belarus",
+      "минск",
+      "БГУИР",
+      "расписание"
+    ]
+  }
+}
