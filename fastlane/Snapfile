@@ -3,10 +3,15 @@
 # A list of devices you want to take the screenshots from
 devices([
   "iPhone 6",
+  "iPhone 5",
+  "iPhone 4s",
+  "iPhone 6 Plus",
+  "iPad Air"
 ])
 
 languages([
-  'en-US'
+  'en-US',
+  'ru-RU'
 ])
 
 # Where should the resulting screenshots be stored?
