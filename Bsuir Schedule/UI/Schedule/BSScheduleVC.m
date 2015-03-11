@@ -225,9 +225,11 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
 - (void)setupFormatChangeButtonForWeekFormat:(BOOL)weekFormat {
     UIButton *formatChangeButtonButton = [UIButton buttonWithType:UIButtonTypeCustom];
     formatChangeButtonButton.frame = CGRectMake(0, 0, 40, 40);
-    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? @"daily" : @"weekly"]
+    BSWeekNumber *currentWeekNum = [[BSDataManager sharedInstance] currentWeek];
+    NSString *daylyIconName = [NSString stringWithFormat:@"daily_%ld",[currentWeekNum.weekNumber longValue]];
+    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? daylyIconName : @"weekly"]
                               forState:UIControlStateNormal];
-    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? @"daily" : @"weekly"]
+    [formatChangeButtonButton setImage:[UIImage imageNamed:(weekFormat) ? daylyIconName : @"weekly"]
                               forState:UIControlStateNormal | UIControlStateHighlighted];
     [formatChangeButtonButton addTarget:self action:@selector(changeWeekType) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *formatChangeBarButton = [[UIBarButtonItem alloc] initWithCustomView:formatChangeButtonButton];

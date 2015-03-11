@@ -64,7 +64,7 @@
     self.title = LZD(@"L_Info");
     
     [self.weeklyIcon setImage:[[UIImage imageNamed:@"weekly"] imageWithOverlayColor:BS_DARK]];
-    [self.dailyIcon setImage:[[UIImage imageNamed:@"daily"] imageWithOverlayColor:BS_DARK]];
+    [self.dailyIcon setImage:[[UIImage imageNamed:@"daily_1"] imageWithOverlayColor:BS_DARK]];
 
     self.lecturerIV.layer.masksToBounds = YES;
     self.lecturerIV.layer.cornerRadius = self.lecturerIV.frame.size.width/2.0;
