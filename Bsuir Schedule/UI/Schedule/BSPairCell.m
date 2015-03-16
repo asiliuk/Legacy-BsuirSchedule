@@ -232,21 +232,25 @@
     }
     [self.auditoryLabel setText:auditoryString];
     
-    [self clearLecturersPreviews];
+//    [self clearLecturersPreviews];
+//    for (BSLecturerPreview *preview in self.lecturersPreviews) {
+//        [preview removeFromSuperview];
+//    }
     for (BSLecturerPreview *preview in self.lecturersPreviews) {
-        [preview removeFromSuperview];
+        preview.hidden = YES;
     }
     NSArray *lecturers = [[pair.lecturers allObjects] sortedArrayUsingDescriptors:@[nameSort]];
     for (BSLecturer *lecturer in lecturers) {
         NSInteger lecturerIndex = [lecturers indexOfObject:lecturer];
         NSInteger lecturerReverseIndex = [lecturers count] - lecturerIndex;
         CGFloat lecturerOffset = lecturerReverseIndex *OFFSET;
-        
+
         BSLecturerPreview *lecturerPreview;
-//        if ([self.lecturersPreviews count] > lecturerIndex) {
-//            lecturerPreview = [self.lecturersPreviews objectAtIndex:lecturerIndex];
-//            [lecturerPreview updateWithLecturer:lecturer];
-//        } else {
+        if ([self.lecturersPreviews count] > lecturerIndex) {
+            lecturerPreview = [self.lecturersPreviews objectAtIndex:lecturerIndex];
+            lecturerPreview.hidden = NO;
+            [lecturerPreview updateWithLecturer:lecturer];
+        } else {
             lecturerPreview = [[BSLecturerPreview alloc] init];
             [self.pairView addSubview:lecturerPreview];
             
@@ -255,8 +259,7 @@
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[lecturerPreview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lecturerPreview)]];
             [lecturerPreview setupWithLecturer:lecturer];
             [self.lecturersPreviews addObject:lecturerPreview];
-//        }
-
+        }
 
     }
     
@@ -289,7 +292,10 @@
     if ([day isKindOfClass:[BSDayWithWeekNum class]]) {
         cellForCurrentDay = [now isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
     }
-    
+    if (!cellForCurrentDay) {
+        self.triangleView.hidden = YES;
+        return;
+    }
     NSArray *pairs = [day pairsForSchedule:schedule weekFormat:weekMode];
     NSDate *startOfTimeInterval = pair.startTime;
     NSDate *endOfTimeInterval = pair.endTime;
@@ -375,15 +381,17 @@
     }
 }
 - (void)handleThumbnailTap:(UITapGestureRecognizer*)sender {
-    if ([self.lecturersPreviews count] < 2) {
-        BSLecturerPreview *lecturerPreview = [self.lecturersPreviews lastObject];
+    NSPredicate *visible = [NSPredicate predicateWithFormat:@"hidden = NO"];
+    NSArray *visibleLecturers = [self.lecturersPreviews filteredArrayUsingPredicate:visible];
+    if ([visibleLecturers count] < 2) {
+        BSLecturerPreview *lecturerPreview = [visibleLecturers lastObject];
         CGRect thumbFrame = [self convertRect:lecturerPreview.lecturerIV.frame fromView:lecturerPreview];
         [self.delegate thumbnailForLecturer:lecturerPreview.lecturer withStartFrame:thumbFrame getTappedOnCell:self];
     } else {
         if (self.showingLecturers) {
             BOOL findObject = NO;
             CGPoint tapPoint = [sender locationInView:self];
-            for (BSLecturerPreview *lecturerPreview in self.lecturersPreviews) {
+            for (BSLecturerPreview *lecturerPreview in visibleLecturers) {
                 if (CGRectContainsPoint(lecturerPreview.frame, tapPoint)) {
                     CGRect thumbFrame = [self convertRect:lecturerPreview.lecturerIV.frame fromView:lecturerPreview];
                     [self.delegate thumbnailForLecturer:lecturerPreview.lecturer withStartFrame:thumbFrame getTappedOnCell:self];
