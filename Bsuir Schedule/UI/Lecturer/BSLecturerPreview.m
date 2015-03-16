@@ -55,6 +55,7 @@
 }
 
 - (void)updateWithLecturer:(BSLecturer *)lecturer {
+    self.lecturer = lecturer;
     [lecturer loadLecturerImageIn:self.lecturerIV];
     [self.lecturerNameLabel setText:lecturer.lastName];
 }

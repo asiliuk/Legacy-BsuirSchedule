@@ -29,9 +29,12 @@ static NSString * const kNoavatar = @"noavatar";
     }
     NSString *imageName = [[NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName] toLatinWithDictionary];
     NSString *thumbName = [imageName stringByAppendingString:@"_thumb"];
-    
-    if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:(thumb) ? thumbName : imageName]) {
-        [imageView setImage:[[SDImageCache sharedImageCache] imageFromDiskCacheForKey:(thumb) ? thumbName : imageName]];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:(thumb) ? thumbName : imageName];
+    if (image) {
+        [imageView setImage:image];
+    }  else if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:(thumb) ? thumbName : imageName]) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:(thumb) ? thumbName : imageName];
+        [imageView setImage:image];
     } else {
         UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         av.center = CGPointMake(imageView.bounds.size.width / 2.0, imageView.bounds.size.height / 2.0);
