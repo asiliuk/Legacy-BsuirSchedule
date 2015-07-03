@@ -13,10 +13,6 @@
 		8C03910D1AAA28AA002B86F4 /* BSSocialAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C03910C1AAA28AA002B86F4 /* BSSocialAchivementCell.m */; };
 		8C03910F1AAA28B7002B86F4 /* BSSocialAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C03910E1AAA28B7002B86F4 /* BSSocialAchivementCell.xib */; };
 		8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */; };
-		8C05141F1A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
-		8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C05141E1A9B532B0097BE52 /* Crashlytics.framework */; };
-		8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
-		8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0514211A9B538E0097BE52 /* Fabric.framework */; };
 		8C0D37321AA8E2D1004B0120 /* BSAchivementUnlockedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */; };
 		8C0D37331AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */; };
 		8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D373D1AA8EA52004B0120 /* UIViewController+Presentation.m */; };
@@ -105,6 +101,10 @@
 		8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
 		8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
+		8C9AC42A1B47561C00B89403 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4281B47561C00B89403 /* Fabric.framework */; };
+		8C9AC42B1B47561C00B89403 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4281B47561C00B89403 /* Fabric.framework */; };
+		8C9AC42C1B47561C00B89403 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4291B47561C00B89403 /* Crashlytics.framework */; };
+		8C9AC42D1B47561C00B89403 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4291B47561C00B89403 /* Crashlytics.framework */; };
 		8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */; };
 		8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EE9E1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.m */; };
 		8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA01AA1EE2D00AD6C22 /* AMSlideMenuLeftMenuSegue.m */; };
@@ -251,8 +251,6 @@
 		8C03910E1AAA28B7002B86F4 /* BSSocialAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSSocialAchivementCell.xib; sourceTree = "<group>"; };
 		8C04C4E01AA2A90B002A8BAD /* AYVibrantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYVibrantButton.h; sourceTree = "<group>"; };
 		8C04C4E11AA2A90B002A8BAD /* AYVibrantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYVibrantButton.m; sourceTree = "<group>"; };
-		8C05141E1A9B532B0097BE52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		8C0514211A9B538E0097BE52 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		8C0D372F1AA8E2D1004B0120 /* BSAchivementUnlockedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementUnlockedVC.h; sourceTree = "<group>"; };
 		8C0D37301AA8E2D1004B0120 /* BSAchivementUnlockedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementUnlockedVC.m; sourceTree = "<group>"; };
 		8C0D37311AA8E2D1004B0120 /* BSAchivementUnlockedVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementUnlockedVC.xib; sourceTree = "<group>"; };
@@ -355,6 +353,8 @@
 		8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLabelWithImage.h; sourceTree = "<group>"; };
 		8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLabelWithImage.m; sourceTree = "<group>"; };
+		8C9AC4281B47561C00B89403 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		8C9AC4291B47561C00B89403 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8CAC66361A8CBD4A00BF4C2C /* BSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSUtils.h; sourceTree = "<group>"; };
 		8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSUtils.m; sourceTree = "<group>"; };
 		8CC4EE9D1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
@@ -484,11 +484,11 @@
 				8CC4EEDE1AA2009B00AD6C22 /* QuartzCore.framework in Frameworks */,
 				8CC4EEC41AA2001B00AD6C22 /* ParseUI.framework in Frameworks */,
 				8CC4EEDB1AA2009B00AD6C22 /* SystemConfiguration.framework in Frameworks */,
-				8C0514201A9B532B0097BE52 /* Crashlytics.framework in Frameworks */,
 				D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */,
-				8C0514231A9B538E0097BE52 /* Fabric.framework in Frameworks */,
 				8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
+				8C9AC42D1B47561C00B89403 /* Crashlytics.framework in Frameworks */,
 				8CC4EEDD1AA2009B00AD6C22 /* Security.framework in Frameworks */,
+				8C9AC42B1B47561C00B89403 /* Fabric.framework in Frameworks */,
 				8CC4EEDF1AA2009B00AD6C22 /* MobileCoreServices.framework in Frameworks */,
 				8CC4EEE41AA2009E00AD6C22 /* libsqlite3.dylib in Frameworks */,
 				8CC4EEC21AA2001B00AD6C22 /* Parse.framework in Frameworks */,
@@ -500,20 +500,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC4EEDA1AA2008300AD6C22 /* libsqlite3.dylib in Frameworks */,
+				8C9AC42C1B47561C00B89403 /* Crashlytics.framework in Frameworks */,
 				8CC4EED81AA2007C00AD6C22 /* libz.dylib in Frameworks */,
 				8CC4EED61AA2007500AD6C22 /* SystemConfiguration.framework in Frameworks */,
 				8CC4EED21AA2006900AD6C22 /* Security.framework in Frameworks */,
 				8CC4EED01AA2006400AD6C22 /* QuartzCore.framework in Frameworks */,
 				8CC4EECE1AA2005E00AD6C22 /* MobileCoreServices.framework in Frameworks */,
 				8CC4EECC1AA2005800AD6C22 /* CoreLocation.framework in Frameworks */,
+				8C9AC42A1B47561C00B89403 /* Fabric.framework in Frameworks */,
 				8CC4EECA1AA2005100AD6C22 /* CoreGraphics.framework in Frameworks */,
 				8CC4EEC81AA2004A00AD6C22 /* CFNetwork.framework in Frameworks */,
 				8CC4EEC61AA2004500AD6C22 /* AudioToolbox.framework in Frameworks */,
 				8CC4EEBF1AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
-				8C05141F1A9B532B0097BE52 /* Crashlytics.framework in Frameworks */,
 				8CC4EEC31AA2001B00AD6C22 /* ParseUI.framework in Frameworks */,
 				8CC4EEC11AA2001B00AD6C22 /* Parse.framework in Frameworks */,
-				8C0514221A9B538E0097BE52 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,14 +913,14 @@
 		D19EB2471A18249C0055B0D3 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
+				8C9AC4281B47561C00B89403 /* Fabric.framework */,
+				8C9AC4291B47561C00B89403 /* Crashlytics.framework */,
 				8C1657A91AA8BFDF006555B1 /* FXKeychain */,
 				8CC4EFB11AA236DE00AD6C22 /* SDWebImage */,
 				8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */,
 				8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */,
 				8CC4EEBE1AA2001B00AD6C22 /* ParseUI.framework */,
 				8CC4EE9C1AA1EE2D00AD6C22 /* AMSlideMenu */,
-				8C0514211A9B538E0097BE52 /* Fabric.framework */,
-				8C05141E1A9B532B0097BE52 /* Crashlytics.framework */,
 				8C6001AD1A8BFAA80076BD36 /* MGSwipeTableCell */,
 				D19EB2481A18249C0055B0D3 /* XMLDictionary */,
 			);
@@ -1388,6 +1388,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
+					"$(PROJECT_DIR)/Bsuir",
+					Schedule/3rd,
+					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1411,6 +1414,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
+					"$(PROJECT_DIR)/Bsuir",
+					Schedule/3rd,
+					party,
 				);
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1508,6 +1514,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
+					"$(PROJECT_DIR)/Bsuir",
+					Schedule/3rd,
+					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1533,6 +1542,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
+					"$(PROJECT_DIR)/Bsuir",
+					Schedule/3rd,
+					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = AMSlideMenuWithoutStoryboards;
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
