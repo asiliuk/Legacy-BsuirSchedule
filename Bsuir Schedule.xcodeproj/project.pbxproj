@@ -164,6 +164,7 @@
 		8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFCE1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m */; };
 		8CC4EFEF1AA236DE00AD6C22 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFD01AA236DE00AD6C22 /* UIImageView+WebCache.m */; };
 		8CC4EFF11AA236DE00AD6C22 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFD21AA236DE00AD6C22 /* UIView+WebCacheOperation.m */; };
+		8CD394001B3A16BA00090DBC /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CD393FF1B3A16BA00090DBC /* LaunchView.xib */; };
 		8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE85B391A895EF00043D896 /* Images.xcassets */; };
 		D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D10448531A267F2E00670898 /* BSScheduleParser.m */; };
 		D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1085FB31A2A9C1000D0C62B /* LICENSE.txt */; };
@@ -420,6 +421,7 @@
 		8CC4EFD01AA236DE00AD6C22 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		8CC4EFD11AA236DE00AD6C22 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		8CC4EFD21AA236DE00AD6C22 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		8CD393FF1B3A16BA00090DBC /* LaunchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
 		8CE85B391A895EF00043D896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D10448411A267D5100670898 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D10448521A267F2E00670898 /* BSScheduleParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleParser.h; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 				8C7793681A84CECE007AB2EF /* Schedule */,
 				8C77935C1A84CEC3007AB2EF /* Lecturer */,
 				D1085FB21A2A9C1000D0C62B /* Fonts */,
+				8CD393FF1B3A16BA00090DBC /* LaunchView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1144,6 +1147,7 @@
 				8C7793661A84CEC3007AB2EF /* BSLecturerVC.xib in Resources */,
 				D1085FCA1A2A9C1000D0C62B /* OpenSans-Light.ttf in Resources */,
 				8C342AC01A8A552C0020AE99 /* BSSettingsVC.xib in Resources */,
+				8CD394001B3A16BA00090DBC /* LaunchView.xib in Resources */,
 				D1085FCC1A2A9C1000D0C62B /* OpenSans-LightItalic.ttf in Resources */,
 				D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */,
 				D1085FD01A2A9C1000D0C62B /* OpenSans-Semibold.ttf in Resources */,
@@ -1393,7 +1397,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2977779a-b427-4c4d-ac66-73250e99f2d1";
+				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1412,7 +1416,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2977779a-b427-4c4d-ac66-73250e99f2d1";
+				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1513,7 +1517,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6af29ea9-0723-4201-b124-4607eabf383c";
+				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1535,7 +1539,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6af29ea9-0723-4201-b124-4607eabf383c";
+				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
