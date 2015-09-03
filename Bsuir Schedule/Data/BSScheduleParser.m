@@ -13,6 +13,11 @@
 #import "BSDataManager.h"
 #import "NSUserDefaults+Share.h"
 #import "NSData+MD5.h"
+
+static NSString * const kGroupName = @"name";
+static NSString * const kGroupID = @"id";
+
+
 @implementation BSScheduleParser
 
 
@@ -129,9 +134,40 @@
 //===============================================HELPERS===========================================
 #pragma mark - Helpers  
 
++ (NSString*)groupIDForGroup:(BSGroup*)group {
+    NSString *groupID;
+    NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
+    NSDictionary *groupsData = [self loadDataFromURL:url];
+    NSArray *groups = groupsData[GROUPS_PATH];
+    if ([groups isKindOfClass:[NSArray class]]) {
+        NSPredicate *groupPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            BOOL keep = NO;
+            if ([evaluatedObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *groupData = evaluatedObject;
+                NSString *groupName = [groupData objectForKey:kGroupName];
+                keep = [groupName isEqual:group.groupNumber];
+            }
+            return keep;
+        }];
+        NSArray *groupsWithGroupName = [groups filteredArrayUsingPredicate:groupPredicate];
+        groupID = [[groupsWithGroupName firstObject] objectForKey:kGroupID];
+    }
+    return groupID;
+}
+
 + (NSDictionary*)scheduleDicitonaryForGroup:(BSGroup*)group {
+    NSDictionary *scheduleDict;
+    NSString *groupID = [self groupIDForGroup:group];
+    if (groupID) {
+        NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingPathComponent:SCHEDULE_PATH]
+                                           stringByAppendingPathComponent:groupID]];
+        scheduleDict = [self loadDataFromURL:url];
+    }
+    return scheduleDict;
+}
+
++ (NSDictionary*)loadDataFromURL:(NSURL*)url {
     NSData *data;
-    NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingString:group.groupNumber]];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     data = [NSData dataWithContentsOfURL:url];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

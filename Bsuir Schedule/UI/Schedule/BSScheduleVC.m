@@ -148,29 +148,29 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     UIView* bview = [[UIView alloc] init];
     bview.backgroundColor = BS_LIGHT_GRAY;
-    [self.tableView setBackgroundView:bview];   
+    [self.tableView setBackgroundView:bview];
 
-    
+
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     [self.navigationController.view addSubview:self.loadindicatorView];
     self.loadindicatorView.hidden = YES;
-    
+
     [self setupFormatChangeButtonForWeekFormat:self.weekFormat];
     [self setNavBarLabel];
     [self getScheduleData];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    
+
     if ([BSScheduleParser scheduleExpiresForGroup:self.schedule.group]) {
         __weak typeof(self) weakself = self;
         [BSScheduleParser scheduleForGroup:self.schedule.group withSuccess:^{
             [weakself updateSchedule];
         } failure:nil];
     }
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationBecomeActive)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -195,7 +195,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
         preservedComponents = (NSHourCalendarUnit | NSMinuteCalendarUnit);
     }
     NSDateComponents *dateComponents = [calendar components:preservedComponents fromDate:now];
-    
+
     if (dateComponents.hour == 0 && dateComponents.minute == 0) {
         [self triggerAchivementWithType:BSAchivementTypeWerewolf];
     }
@@ -218,7 +218,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
     [titleString appendAttributedString:groupString];
     label.attributedText = titleString;
     self.navigationItem.titleView = label;
-    
+
 }
 
 
@@ -257,7 +257,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
     [self hideLoadingView];
 
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:self.weekFormat];
-    
+
     self.days = nil;
     if (self.weekFormat) {
         [self loadWeekSchedule];
@@ -265,7 +265,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
         [self loadScheduleForDaysCount:PREVIOUS_DAY_COUNT backwards:YES];
         [self loadScheduleForDaysCount:DAYS_LOAD_STEP backwards:NO];
     }
-    
+
     [self.tableView reloadData];
     NSInteger highlightedSectionIndex = 0;
     for (NSInteger index = 0; index < [self.days count]; index++) {
@@ -383,7 +383,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
     }
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.YY"];
-    
+
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, HEADER_HEIGHT)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(HEADER_LABEL_OFFSET_X, HEADER_LABEL_OFFSET_Y,
                                                                tableView.frame.size.width, HEADER_HEIGHT)];
@@ -471,7 +471,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
             [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationBottom];
         }
     }
-    
+
 }
 
 //-------------------------------Lecturer name view---------------------------------
@@ -555,7 +555,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
 }
 
 @end
