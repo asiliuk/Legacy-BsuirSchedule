@@ -1514,9 +1514,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1542,9 +1539,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = AMSlideMenuWithoutStoryboards;
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
