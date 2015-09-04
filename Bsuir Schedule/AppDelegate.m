@@ -13,8 +13,8 @@
 
 #import "BSConstants.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+//#import <Fabric/Fabric.h>
+//#import <Crashlytics/Crashlytics.h>
 
 #import "BSMainVC.h"
 #import "BSScheduleVC.h"
@@ -31,7 +31,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [self updateOldDatabaseForMultipleGroups];
-    [Fabric with:@[CrashlyticsKit]];
+//    [Fabric with:@[CrashlyticsKit]];
 
     [Parse enableLocalDatastore];
 

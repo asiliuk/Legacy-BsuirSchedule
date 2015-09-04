@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "BSGroup.h"
 
+extern NSString * const kGroupName;
+extern NSString * const kGroupID;
+
 @interface BSScheduleParser : NSObject
 + (BOOL)scheduleExpiresForGroup:(BSGroup*)group;
 + (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure;
++ (void)allGroupsWithSuccess:(void (^)(NSArray *groups))success failure:(void (^)(NSError*))failure;
 @end

@@ -15,4 +15,6 @@
 
 @interface BSScheduleAddVC : UIViewController
 @property (weak, nonatomic) id<BSScheduleAddVCDelegate> delegate;
+
+- (instancetype)initWithGroupName:(NSString*)groupName delehate:(id<BSScheduleAddVCDelegate>)delegate;
 @end

@@ -13,6 +13,7 @@
 #import "NSUserDefaults+Share.h"
 
 #import "BSScheduleAddVC.h"
+#import "BSGroupSelectVC.h"
 #import "AppDelegate.h"
 
 #import "MGSwipeTableCell.h"
@@ -86,12 +87,12 @@ static NSString * const kScheduleCellID = @"kScheduleCellID";
 }
 
 - (void)addGroup {
-    BSScheduleAddVC *scheduleAddVC = [[BSScheduleAddVC alloc] init];
     for (MGSwipeTableCell *cell in [self.tableView visibleCells]) {
         [cell hideSwipeAnimated:YES];
     }
-    scheduleAddVC.delegate = self;
-    [self.navigationController pushViewController:scheduleAddVC animated:YES];
+    BSGroupSelectVC *groupSelectVC = [[BSGroupSelectVC alloc] init];
+    groupSelectVC.delegate = self;
+    [self.navigationController pushViewController:groupSelectVC animated:YES];
 }
 
 //===============================================MG SWYPE CELL===========================================

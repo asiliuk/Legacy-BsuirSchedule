@@ -14,8 +14,8 @@
 #import "NSUserDefaults+Share.h"
 #import "NSData+MD5.h"
 
-static NSString * const kGroupName = @"name";
-static NSString * const kGroupID = @"id";
+NSString * const kGroupName = @"name";
+NSString * const kGroupID = @"id";
 
 
 @implementation BSScheduleParser
@@ -131,13 +131,28 @@ static NSString * const kGroupID = @"id";
     });
 }
 
++ (void)allGroupsWithSuccess:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
+        NSError *error;
+        NSDictionary *groupsData = [self loadDataFromURL:url error:&error];
+        NSArray *groups = groupsData[GROUPS_PATH];
+        if (!error && groups) {
+            if (success) success(groups);
+        } else {
+            if (failure) failure(error);
+        }
+    });
+}
+
 //===============================================HELPERS===========================================
-#pragma mark - Helpers  
+#pragma mark - Helpers
 
 + (NSString*)groupIDForGroup:(BSGroup*)group {
     NSString *groupID;
+    
     NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
-    NSDictionary *groupsData = [self loadDataFromURL:url];
+    NSDictionary *groupsData = [self loadDataFromURL:url error:nil];
     NSArray *groups = groupsData[GROUPS_PATH];
     if ([groups isKindOfClass:[NSArray class]]) {
         NSPredicate *groupPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -161,15 +176,15 @@ static NSString * const kGroupID = @"id";
     if (groupID) {
         NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingPathComponent:SCHEDULE_PATH]
                                            stringByAppendingPathComponent:groupID]];
-        scheduleDict = [self loadDataFromURL:url];
+        scheduleDict = [self loadDataFromURL:url error:nil];
     }
     return scheduleDict;
 }
 
-+ (NSDictionary*)loadDataFromURL:(NSURL*)url {
++ (NSDictionary*)loadDataFromURL:(NSURL*)url error:(NSError**)error {
     NSData *data;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    data = [NSData dataWithContentsOfURL:url];
+    data = [NSData dataWithContentsOfURL:url options:0 error:error];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     return [NSDictionary dictionaryWithXMLData:data];
 }

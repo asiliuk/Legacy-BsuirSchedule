@@ -12,12 +12,19 @@
 @property (weak, nonatomic) IBOutlet UITextField *groupNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *subgroupTF;
 
+@property (strong, nonatomic) NSString *groupName;
 @end
 
 @implementation BSScheduleAddVC
 
-- (instancetype)init {
-    return [self initWithNibName:NSStringFromClass([self class]) bundle:nil];
+- (instancetype)initWithGroupName:(NSString*)groupName delehate:(id<BSScheduleAddVCDelegate>)delegate
+{
+    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    if (self) {
+        self.delegate = delegate;
+        self.groupName = groupName;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -36,6 +43,11 @@
     }
     self.navigationItem.rightBarButtonItem = addBarButtonItem;
     [self customizeSlideNavigationController:self.navigationController];
+    
+    if (self.groupName) {
+        self.groupNumberTF.text = self.groupName;
+        self.groupNumberTF.userInteractionEnabled = NO;
+    }
 }
 
 - (void)customizeSlideNavigationController:(UINavigationController*)slideNavController {

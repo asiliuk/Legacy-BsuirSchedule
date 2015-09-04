@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="OpenSans-Light.ttf">
@@ -61,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="САММиОД" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKY-uT-781" userLabel="subject" customClass="BSLabelWithImage">
-                                <rect key="frame" x="79" y="13" width="88" height="21"/>
+                                <rect key="frame" x="79" y="13" width="87.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ejW-HC-q23"/>
                                 </constraints>
@@ -119,10 +118,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="nAR-Nx-IUU" secondAttribute="bottom" constant="-7.5" id="PCk-Ki-54g"/>
-                    <constraint firstItem="nAR-Nx-IUU" firstAttribute="leading" secondItem="yfa-NC-q6p" secondAttribute="leadingMargin" constant="-8" id="TDd-Ls-epD"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="nAR-Nx-IUU" secondAttribute="trailing" constant="-8" id="UzP-xX-KMx"/>
-                    <constraint firstItem="nAR-Nx-IUU" firstAttribute="top" secondItem="yfa-NC-q6p" secondAttribute="topMargin" constant="-6" id="uuy-5l-Ej2"/>
+                    <constraint firstAttribute="bottom" secondItem="nAR-Nx-IUU" secondAttribute="bottom" constant="1" id="3EB-cD-A4D"/>
+                    <constraint firstItem="nAR-Nx-IUU" firstAttribute="top" secondItem="yfa-NC-q6p" secondAttribute="top" constant="2" id="B4c-S7-x3e"/>
+                    <constraint firstAttribute="trailing" secondItem="nAR-Nx-IUU" secondAttribute="trailing" id="ZKa-tI-f7J"/>
+                    <constraint firstItem="nAR-Nx-IUU" firstAttribute="leading" secondItem="yfa-NC-q6p" secondAttribute="leading" id="sg2-yr-vIH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -135,7 +134,7 @@
                 <outlet property="triangleView" destination="uyY-p1-8rO" id="084-ZV-XuG"/>
                 <outlet property="weeksLabel" destination="DL5-7d-kZz" id="59p-Ng-Z7E"/>
             </connections>
-            <point key="canvasLocation" x="144" y="422"/>
+            <point key="canvasLocation" x="188" y="395"/>
         </tableViewCell>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

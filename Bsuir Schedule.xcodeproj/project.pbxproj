@@ -59,8 +59,8 @@
 		8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */; };
 		8C342ABE1A8A3B8F0020AE99 /* BSTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C342ABD1A8A3B8F0020AE99 /* BSTutorialVC.xib */; };
 		8C342AC01A8A552C0020AE99 /* BSSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C342ABF1A8A552C0020AE99 /* BSSettingsVC.xib */; };
-		8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6001831A8B45A50076BD36 /* BSGroupAddVC.xib */; };
-		8C6001861A8B45A50076BD36 /* BSGroupAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001841A8B45A50076BD36 /* BSGroupAddVC.m */; };
+		8C57F8521B998D0E00223A82 /* BSGroupSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C57F8501B998D0E00223A82 /* BSGroupSelectVC.m */; };
+		8C57F8531B998D0E00223A82 /* BSGroupSelectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C57F8511B998D0E00223A82 /* BSGroupSelectVC.xib */; };
 		8C6001B21A8BFAA80076BD36 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */; };
 		8C6001B31A8BFAA80076BD36 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */; };
 		8C6001B41A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6001B11A8BFAA80076BD36 /* MGSwipeTableCell.m */; };
@@ -305,9 +305,9 @@
 		8C342AAB1A8A24930020AE99 /* BSTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTutorialVC.m; sourceTree = "<group>"; };
 		8C342ABD1A8A3B8F0020AE99 /* BSTutorialVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSTutorialVC.xib; sourceTree = "<group>"; };
 		8C342ABF1A8A552C0020AE99 /* BSSettingsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSSettingsVC.xib; sourceTree = "<group>"; };
-		8C6001821A8B45A50076BD36 /* BSGroupAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGroupAddVC.h; sourceTree = "<group>"; };
-		8C6001831A8B45A50076BD36 /* BSGroupAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSGroupAddVC.xib; sourceTree = "<group>"; };
-		8C6001841A8B45A50076BD36 /* BSGroupAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroupAddVC.m; sourceTree = "<group>"; };
+		8C57F84F1B998D0E00223A82 /* BSGroupSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGroupSelectVC.h; sourceTree = "<group>"; };
+		8C57F8501B998D0E00223A82 /* BSGroupSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroupSelectVC.m; sourceTree = "<group>"; };
+		8C57F8511B998D0E00223A82 /* BSGroupSelectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSGroupSelectVC.xib; sourceTree = "<group>"; };
 		8C6001881A8B53ED0076BD36 /* ScheduleData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 3.xcdatamodel"; sourceTree = "<group>"; };
 		8C6001AE1A8BFAA80076BD36 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
 		8C6001AF1A8BFAA80076BD36 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
@@ -688,15 +688,15 @@
 		8C7793771A84CEE4007AB2EF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8C6001821A8B45A50076BD36 /* BSGroupAddVC.h */,
-				8C6001841A8B45A50076BD36 /* BSGroupAddVC.m */,
-				8C6001831A8B45A50076BD36 /* BSGroupAddVC.xib */,
 				8C77937A1A84CEE4007AB2EF /* BSSettingsVC.h */,
 				8C77937B1A84CEE4007AB2EF /* BSSettingsVC.m */,
 				8C342ABF1A8A552C0020AE99 /* BSSettingsVC.xib */,
 				8C6001B61A8BFF120076BD36 /* BSScheduleAddVC.h */,
 				8C6001B71A8BFF120076BD36 /* BSScheduleAddVC.m */,
 				8C6001B81A8BFF120076BD36 /* BSScheduleAddVC.xib */,
+				8C57F84F1B998D0E00223A82 /* BSGroupSelectVC.h */,
+				8C57F8501B998D0E00223A82 /* BSGroupSelectVC.m */,
+				8C57F8511B998D0E00223A82 /* BSGroupSelectVC.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1158,10 +1158,10 @@
 				8C7793751A84CECE007AB2EF /* BSScheduleVC.xib in Resources */,
 				D1085FC21A2A9C1000D0C62B /* OpenSans-BoldItalic.ttf in Resources */,
 				8C342ABE1A8A3B8F0020AE99 /* BSTutorialVC.xib in Resources */,
-				8C6001851A8B45A50076BD36 /* BSGroupAddVC.xib in Resources */,
 				D1085FCE1A2A9C1000D0C62B /* OpenSans-Regular.ttf in Resources */,
 				8CE85B3A1A895EF00043D896 /* Images.xcassets in Resources */,
 				D1085FBE1A2A9C1000D0C62B /* LICENSE.txt in Resources */,
+				8C57F8531B998D0E00223A82 /* BSGroupSelectVC.xib in Resources */,
 				D1085FC81A2A9C1000D0C62B /* OpenSans-Italic.ttf in Resources */,
 				D1085FC61A2A9C1000D0C62B /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				D1085FC41A2A9C1000D0C62B /* OpenSans-ExtraBold.ttf in Resources */,
@@ -1257,11 +1257,11 @@
 				8C03910D1AAA28AA002B86F4 /* BSSocialAchivementCell.m in Sources */,
 				8CC4EFE31AA236DE00AD6C22 /* SDWebImagePrefetcher.m in Sources */,
 				8C75E8DA1AAB9D6B00166192 /* BSPurchaseAchivementCell.m in Sources */,
+				8C57F8521B998D0E00223A82 /* BSGroupSelectVC.m in Sources */,
 				8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */,
 				8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */,
 				8CC4EEB11AA1EE2E00AD6C22 /* AMSlideMenuRightTableViewController.m in Sources */,
-				8C6001861A8B45A50076BD36 /* BSGroupAddVC.m in Sources */,
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
 				8C1657DF1AA8C20D006555B1 /* BSPair+Type.m in Sources */,
 				8C1657E51AA8C20D006555B1 /* BSDayOfWeek.m in Sources */,
