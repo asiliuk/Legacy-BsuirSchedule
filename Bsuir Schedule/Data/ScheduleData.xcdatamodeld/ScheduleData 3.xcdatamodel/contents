@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="BSAuditory" representedClassName="BSAuditory" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="subjectsSchedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="auditories" inverseEntity="BSPair" syncable="YES"/>
@@ -10,7 +10,7 @@
     </entity>
     <entity name="BSGroup" representedClassName="BSGroup" syncable="YES">
         <attribute name="groupNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="scheduleStamp" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="groups" inverseEntity="BSPair" syncable="YES"/>
         <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSSchedule" inverseName="group" inverseEntity="BSSchedule" syncable="YES"/>
@@ -19,15 +19,15 @@
         <attribute name="academicDepartment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lecturerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lecturerID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="lecturers" inverseEntity="BSPair" syncable="YES"/>
     </entity>
     <entity name="BSPair" representedClassName="BSPair" syncable="YES">
-        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="pairType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="subgroupNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pairType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="subgroupNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="auditories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSAuditory" inverseName="subjectsSchedule" inverseEntity="BSAuditory" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSDayOfWeek" inverseName="pairs" inverseEntity="BSDayOfWeek" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSGroup" inverseName="pairs" inverseEntity="BSGroup" syncable="YES"/>
@@ -36,8 +36,8 @@
         <relationship name="weeks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSWeekNumber" inverseName="pairs" inverseEntity="BSWeekNumber" syncable="YES"/>
     </entity>
     <entity name="BSSchedule" representedClassName="BSSchedule" syncable="YES">
-        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="subgroup" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="subgroup" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BSGroup" inverseName="schedules" inverseEntity="BSGroup" syncable="YES"/>
     </entity>
     <entity name="BSSubject" representedClassName="BSSubject" syncable="YES">
@@ -45,14 +45,14 @@
         <relationship name="daysSchedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="subject" inverseEntity="BSPair" syncable="YES"/>
     </entity>
     <entity name="BSWeekNumber" representedClassName="BSWeekNumber" syncable="YES">
-        <attribute name="weekNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="weekNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="pairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BSPair" inverseName="weeks" inverseEntity="BSPair" syncable="YES"/>
     </entity>
     <elements>
         <element name="BSAuditory" positionX="-36" positionY="27" width="128" height="73"/>
         <element name="BSDayOfWeek" positionX="-18" positionY="36" width="128" height="73"/>
         <element name="BSGroup" positionX="-27" positionY="99" width="128" height="118"/>
-        <element name="BSLecturer" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="BSLecturer" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="BSPair" positionX="0" positionY="63" width="128" height="195"/>
         <element name="BSSchedule" positionX="-18" positionY="117" width="128" height="88"/>
         <element name="BSSubject" positionX="-54" positionY="-9" width="128" height="73"/>

@@ -21,7 +21,6 @@ NSString * const kBSMenuItemType = @"kBSMenuItemType";
 
 NSString * const kBSMenuItemTitle = @"kBSMenuItemTitle";
 NSString * const kBSMenuItemImage = @"kBSMenuItemImage";
-NSString * const kBSMenuItemBadgeCount = @"kBSMenuItemBadgeCount";
 NSString * const kBSMenuItemClass = @"kBSMenuItemClass";
 
 NSString * const kBSMenuItemSchedule = @"kBSMenuItemSchedule";

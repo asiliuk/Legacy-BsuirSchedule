@@ -15,7 +15,6 @@
 #import "NSUserDefaults+Share.h"
 
 #import "BSDayWithWeekNum.h"
-#import <Parse/Parse.h>
 
 #import "AYVibrantButton.h"
 
@@ -35,12 +34,6 @@ static NSString * const kCellID = @"today view cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![Parse isLocalDatastoreEnabled]) {
-        [Parse enableLocalDatastore];
-    
-        [Parse setApplicationId:kParseApplicationID
-                      clientKey:kParseClientKey];
-    }
     
     self.title = @"saasa";
     NSUserDefaults *shared = [NSUserDefaults sharedDefaults];

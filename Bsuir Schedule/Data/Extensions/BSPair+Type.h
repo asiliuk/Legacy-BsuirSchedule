@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "BSPair.h"
+#import "BSPair+CoreDataProperties.h"
 
 typedef enum {
     BSPairTypePractical,

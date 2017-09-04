@@ -9,7 +9,6 @@
 #import "BSLecturerVC.h"
 #import "UIView+Screenshot.h"
 #import "BSConstants.h"
-#import <ParseUI/ParseUI.h>
 #import "BSLecturer+Thumbnail.h"
 
 #import "BSAchivementUnlockedVC.h"

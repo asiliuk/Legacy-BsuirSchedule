@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Saute. All rights reserved.
 //
 
-#import "BSDayOfWeek.h"
+#import "BSDayOfWeek+CoreDataProperties.h"
 #import "BSDay.h"
 
 @interface BSDayOfWeek (Number) <BSDay>

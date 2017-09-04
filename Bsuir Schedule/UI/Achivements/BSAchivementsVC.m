@@ -20,13 +20,12 @@
 #import "BSConstants.h"
 #import "BSUtils.h"
 
-#import <Parse/Parse.h>
 #import "UIViewController+Achivements.h"
 
 @import Twitter;
 @import MessageUI;
 
-@interface BSAchivementsVC () <SKPaymentTransactionObserver, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
+@interface BSAchivementsVC () <MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
 BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -58,9 +57,7 @@ BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
          forCellReuseIdentifier:kPurchaseAchivementCellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(achivementUnlocked) name:kAchivementUnlocked object:nil];
-    
-    [self registerPurchasesLogic];
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LZD(@"L_Restore")
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
@@ -69,45 +66,6 @@ BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
 
 - (void)achivementUnlocked {
     [self.tableView reloadData];
-}
-
-//===============================================PURCHASES===========================================
-#pragma mark - TransactionsDeleagte
-- (void)registerPurchasesLogic {
-    [PFPurchase addObserverForProduct:kSupporterAchivementID block:^(SKPaymentTransaction *transaction) {
-        if (transaction.transactionState == SKPaymentTransactionStatePurchased) {
-            [self triggerAchivementWithType:BSAchivementTypeSupporter];
-        } else if (transaction.transactionState == SKPaymentTransactionStateRestored) {
-            [[BSAchivementManager sharedInstance] triggerAchivementWithType:BSAchivementTypeSupporter];
-        }
-    }];
-    [PFPurchase addObserverForProduct:kSuperSupporterAchivementID block:^(SKPaymentTransaction *transaction) {
-        if (transaction.transactionState == SKPaymentTransactionStatePurchased) {
-            [self triggerAchivementWithType:BSAchivementTypeSuperSupporter];
-        } else if (transaction.transactionState == SKPaymentTransactionStateRestored) {
-            [[BSAchivementManager sharedInstance] triggerAchivementWithType:BSAchivementTypeSuperSupporter];
-        }
-    }];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-}
-
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
-{
-}
-
-- (void)restorePurchases {
-    [self showLoadingView];
-    [PFPurchase restore];
-}
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
-    [self hideLoadingView];
-    [BSUtils showAlertWithTitle:LZD(@"L_PurchaseRestore") message:LZD(@"L_PurchaseRestoreSuccess") inVC:self];
-}
-
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
-    [self hideLoadingView];
-    [BSUtils showAlertWithTitle:LZD(@"L_Error") message:[LZD(@"L_PurchaseRestoreError") stringByAppendingString:error.localizedDescription] inVC:self];
-    
 }
 
 //===============================================TABLE VIEW===========================================
@@ -184,10 +142,6 @@ static CGFloat const achivementCellHeight = 140.0f;
     [self showLoadingView];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     BSPurchaseAchivement *achivement = [self.achivements objectAtIndex:indexPath.row];
-    __weak typeof(self) weakself = self;
-    [PFPurchase buyProduct:achivement.purchaseID block:^(NSError *error) {
-        [weakself hideLoadingView];
-    }];
 }
 
 //===============================================SOCIAL CELL DELEGATE===========================================

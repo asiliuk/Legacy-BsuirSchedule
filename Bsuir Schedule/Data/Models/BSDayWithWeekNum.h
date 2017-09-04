@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSWeekNumber.h"
-#import "BSDayOfWeek.h"
+#import "BSWeekNumber+CoreDataProperties.h"
+#import "BSDayOfWeek+CoreDataProperties.h"
 #import "BSDay.h"
-#import "BSSchedule.h"
+#import "BSSchedule+CoreDataProperties.h"
 
 @interface BSDayWithWeekNum : NSObject <BSDay>
 @property (strong, nonatomic) BSWeekNumber *weekNumber;

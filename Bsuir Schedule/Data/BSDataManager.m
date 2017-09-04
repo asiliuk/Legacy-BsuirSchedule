@@ -249,6 +249,7 @@
                              lastName:(NSString *)lastName
                            department:(NSString *)department
                            lecturerID:(NSInteger)lecturerID
+                              avatarURL:(NSString *)avatarURL
 {
     BSLecturer *lecturer = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([BSLecturer class]) inManagedObjectContext:self.managedObjectContext];
     lecturer.firstName = firstName;
@@ -256,6 +257,7 @@
     lecturer.lastName = lastName;
     lecturer.lecturerID = @(lecturerID);
     lecturer.academicDepartment = department;
+    lecturer.avatarURL = ([avatarURL isKindOfClass:[NSNull class]]) ? nil : avatarURL;
     return lecturer;
 }
 

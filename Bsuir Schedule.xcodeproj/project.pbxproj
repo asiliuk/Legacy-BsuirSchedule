@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		278DF896999E594D7AA67486 /* libPods-Schedule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B64ECFB08BA4DC01324ECE55 /* libPods-Schedule.a */; };
+		3D98824BFF7FBB2214326F59 /* libPods-Bsuir Schedule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE68F76DD476D5C4253B8A72 /* libPods-Bsuir Schedule.a */; };
 		8C0391031AAA265E002B86F4 /* BSAchivementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0391011AAA265E002B86F4 /* BSAchivementCell.m */; };
 		8C0391041AAA265E002B86F4 /* BSAchivementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0391021AAA265E002B86F4 /* BSAchivementCell.xib */; };
 		8C03910A1AAA27C1002B86F4 /* BSSocialAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0391091AAA27C1002B86F4 /* BSSocialAchivement.m */; };
@@ -33,24 +35,6 @@
 		8C1657E01AA8C20D006555B1 /* BSPair+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C11AA8C20D006555B1 /* BSPair+Type.m */; };
 		8C1657E11AA8C20D006555B1 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */; };
 		8C1657E21AA8C20D006555B1 /* NSString+Transiterate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */; };
-		8C1657E31AA8C20D006555B1 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C61AA8C20D006555B1 /* BSAuditory.m */; };
-		8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C61AA8C20D006555B1 /* BSAuditory.m */; };
-		8C1657E51AA8C20D006555B1 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */; };
-		8C1657E61AA8C20D006555B1 /* BSDayOfWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */; };
-		8C1657E71AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */; };
-		8C1657E81AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */; };
-		8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CC1AA8C20D006555B1 /* BSGroup.m */; };
-		8C1657EA1AA8C20D006555B1 /* BSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CC1AA8C20D006555B1 /* BSGroup.m */; };
-		8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CE1AA8C20D006555B1 /* BSLecturer.m */; };
-		8C1657EC1AA8C20D006555B1 /* BSLecturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657CE1AA8C20D006555B1 /* BSLecturer.m */; };
-		8C1657ED1AA8C20D006555B1 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D01AA8C20D006555B1 /* BSPair.m */; };
-		8C1657EE1AA8C20D006555B1 /* BSPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D01AA8C20D006555B1 /* BSPair.m */; };
-		8C1657EF1AA8C20D006555B1 /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D21AA8C20D006555B1 /* BSSchedule.m */; };
-		8C1657F01AA8C20D006555B1 /* BSSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D21AA8C20D006555B1 /* BSSchedule.m */; };
-		8C1657F11AA8C20D006555B1 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D41AA8C20D006555B1 /* BSSubject.m */; };
-		8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D41AA8C20D006555B1 /* BSSubject.m */; };
-		8C1657F31AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
-		8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */; };
 		8C1657F71AA8C31E006555B1 /* BSAchivement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657F61AA8C31E006555B1 /* BSAchivement.m */; };
 		8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FA1AA8C6D8006555B1 /* BSAchivementOnce.m */; };
 		8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1657FE1AA8C763006555B1 /* BSAchivementNumeric.m */; };
@@ -101,10 +85,6 @@
 		8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */; };
 		8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
 		8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */; };
-		8C9AC42A1B47561C00B89403 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4281B47561C00B89403 /* Fabric.framework */; };
-		8C9AC42B1B47561C00B89403 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4281B47561C00B89403 /* Fabric.framework */; };
-		8C9AC42C1B47561C00B89403 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4291B47561C00B89403 /* Crashlytics.framework */; };
-		8C9AC42D1B47561C00B89403 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9AC4291B47561C00B89403 /* Crashlytics.framework */; };
 		8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */; };
 		8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EE9E1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.m */; };
 		8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEA01AA1EE2D00AD6C22 /* AMSlideMenuLeftMenuSegue.m */; };
@@ -116,10 +96,6 @@
 		8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEB41AA1EEAF00AD6C22 /* BSMainVC.m */; };
 		8CC4EEBF1AA2001B00AD6C22 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */; };
 		8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */; };
-		8CC4EEC11AA2001B00AD6C22 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */; };
-		8CC4EEC21AA2001B00AD6C22 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */; };
-		8CC4EEC31AA2001B00AD6C22 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBE1AA2001B00AD6C22 /* ParseUI.framework */; };
-		8CC4EEC41AA2001B00AD6C22 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEBE1AA2001B00AD6C22 /* ParseUI.framework */; };
 		8CC4EEC61AA2004500AD6C22 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEC51AA2004500AD6C22 /* AudioToolbox.framework */; };
 		8CC4EEC81AA2004A00AD6C22 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEC71AA2004A00AD6C22 /* CFNetwork.framework */; };
 		8CC4EECA1AA2005100AD6C22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEC91AA2005100AD6C22 /* CoreGraphics.framework */; };
@@ -140,7 +116,6 @@
 		8CC4EEE31AA2009B00AD6C22 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EEC51AA2004500AD6C22 /* AudioToolbox.framework */; };
 		8CC4EEE41AA2009E00AD6C22 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED91AA2008300AD6C22 /* libsqlite3.dylib */; };
 		8CC4EEE51AA200A000AD6C22 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC4EED71AA2007C00AD6C22 /* libz.dylib */; };
-		8CC4EEEA1AA20EBB00AD6C22 /* ParsetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EEE91AA20EBB00AD6C22 /* ParsetTest.m */; };
 		8CC4EFD31AA236DE00AD6C22 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFB31AA236DE00AD6C22 /* MKAnnotationView+WebCache.m */; };
 		8CC4EFD51AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFB51AA236DE00AD6C22 /* NSData+ImageContentType.m */; };
 		8CC4EFD61AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4EFB51AA236DE00AD6C22 /* NSData+ImageContentType.m */; };
@@ -198,7 +173,6 @@
 		D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
 		D19EB2211A1824900055B0D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2201A1824900055B0D3 /* main.m */; };
 		D19EB2241A1824900055B0D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2231A1824900055B0D3 /* AppDelegate.m */; };
-		D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */; };
 		D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB24B1A18249C0055B0D3 /* XMLDictionary.m */; };
 		D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
 		D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AEAD841A366A9C00FD0F97 /* NSUserDefaults+Share.m */; };
@@ -207,6 +181,40 @@
 		D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D275521A67176400D38C2D /* NSData+MD5.m */; };
 		D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E34FE01A3339F9003459E6 /* InfoPlist.strings */; };
 		D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E873DE1A1EBB3C007F056F /* Localizable.strings */; };
+		E6BA19CE1F5D740A00157861 /* BSLecturer+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19CB1F5D740A00157861 /* BSLecturer+CoreDataClass.m */; };
+		E6BA19CF1F5D740A00157861 /* BSLecturer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19CD1F5D740A00157861 /* BSLecturer+CoreDataProperties.m */; };
+		E6BA19EC1F5D760D00157861 /* BSAuditory+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D11F5D760D00157861 /* BSAuditory+CoreDataClass.m */; };
+		E6BA19ED1F5D760D00157861 /* BSAuditory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D31F5D760D00157861 /* BSAuditory+CoreDataProperties.m */; };
+		E6BA19EE1F5D760D00157861 /* BSGroup+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D51F5D760D00157861 /* BSGroup+CoreDataClass.m */; };
+		E6BA19EF1F5D760D00157861 /* BSGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D71F5D760D00157861 /* BSGroup+CoreDataProperties.m */; };
+		E6BA19F01F5D760D00157861 /* BSPair+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D91F5D760D00157861 /* BSPair+CoreDataClass.m */; };
+		E6BA19F11F5D760D00157861 /* BSPair+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DB1F5D760D00157861 /* BSPair+CoreDataProperties.m */; };
+		E6BA19F21F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DD1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m */; };
+		E6BA19F31F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DF1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m */; };
+		E6BA19F41F5D760D00157861 /* BSSubject+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E11F5D760D00157861 /* BSSubject+CoreDataClass.m */; };
+		E6BA19F51F5D760D00157861 /* BSSubject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E31F5D760D00157861 /* BSSubject+CoreDataProperties.m */; };
+		E6BA19F61F5D760D00157861 /* BSSchedule+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E51F5D760D00157861 /* BSSchedule+CoreDataClass.m */; };
+		E6BA19F71F5D760D00157861 /* BSSchedule+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E71F5D760D00157861 /* BSSchedule+CoreDataProperties.m */; };
+		E6BA19F81F5D760D00157861 /* BSWeekNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E91F5D760D00157861 /* BSWeekNumber+CoreDataClass.m */; };
+		E6BA19F91F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19EB1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m */; };
+		E6BA19FC1F5D765900157861 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19FB1F5D765900157861 /* BSDayWithWeekNum.m */; };
+		E6BA19FD1F5D770B00157861 /* BSDayWithWeekNum.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19FB1F5D765900157861 /* BSDayWithWeekNum.m */; };
+		E6BA19FE1F5D770B00157861 /* BSAuditory+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D11F5D760D00157861 /* BSAuditory+CoreDataClass.m */; };
+		E6BA19FF1F5D770B00157861 /* BSAuditory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D31F5D760D00157861 /* BSAuditory+CoreDataProperties.m */; };
+		E6BA1A001F5D770B00157861 /* BSGroup+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D51F5D760D00157861 /* BSGroup+CoreDataClass.m */; };
+		E6BA1A011F5D770B00157861 /* BSGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D71F5D760D00157861 /* BSGroup+CoreDataProperties.m */; };
+		E6BA1A021F5D770B00157861 /* BSPair+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19D91F5D760D00157861 /* BSPair+CoreDataClass.m */; };
+		E6BA1A031F5D770B00157861 /* BSPair+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DB1F5D760D00157861 /* BSPair+CoreDataProperties.m */; };
+		E6BA1A041F5D770B00157861 /* BSDayOfWeek+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DD1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m */; };
+		E6BA1A051F5D770B00157861 /* BSDayOfWeek+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19DF1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m */; };
+		E6BA1A061F5D770B00157861 /* BSSubject+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E11F5D760D00157861 /* BSSubject+CoreDataClass.m */; };
+		E6BA1A071F5D770B00157861 /* BSSubject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E31F5D760D00157861 /* BSSubject+CoreDataProperties.m */; };
+		E6BA1A081F5D770B00157861 /* BSSchedule+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E51F5D760D00157861 /* BSSchedule+CoreDataClass.m */; };
+		E6BA1A091F5D770B00157861 /* BSSchedule+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E71F5D760D00157861 /* BSSchedule+CoreDataProperties.m */; };
+		E6BA1A0A1F5D770B00157861 /* BSWeekNumber+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19E91F5D760D00157861 /* BSWeekNumber+CoreDataClass.m */; };
+		E6BA1A0B1F5D770B00157861 /* BSWeekNumber+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19EB1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m */; };
+		E6BA1A0C1F5D770B00157861 /* BSLecturer+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19CB1F5D740A00157861 /* BSLecturer+CoreDataClass.m */; };
+		E6BA1A0D1F5D770B00157861 /* BSLecturer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19CD1F5D740A00157861 /* BSLecturer+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,13 +224,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D196D02B1A2A967D00EA6901;
 			remoteInfo = Schedule;
-		};
-		D19EB2381A1824910055B0D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D19EB2131A1824900055B0D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D19EB21A1A1824900055B0D3;
-			remoteInfo = "Bsuir Schedule";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -241,6 +242,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13A8F63D453DCD59BB7F150E /* Pods-Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schedule/Pods-Schedule.release.xcconfig"; sourceTree = "<group>"; };
+		1F21A0BB1F0F54B8039A1E41 /* Pods-Bsuir Schedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bsuir Schedule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bsuir Schedule/Pods-Bsuir Schedule.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0391001AAA265E002B86F4 /* BSAchivementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementCell.h; sourceTree = "<group>"; };
 		8C0391011AAA265E002B86F4 /* BSAchivementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivementCell.m; sourceTree = "<group>"; };
 		8C0391021AAA265E002B86F4 /* BSAchivementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSAchivementCell.xib; sourceTree = "<group>"; };
@@ -277,24 +280,6 @@
 		8C1657C11AA8C20D006555B1 /* BSPair+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+Type.m"; sourceTree = "<group>"; };
 		8C1657C21AA8C20D006555B1 /* NSString+Transiterate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Transiterate.h"; sourceTree = "<group>"; };
 		8C1657C31AA8C20D006555B1 /* NSString+Transiterate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Transiterate.m"; sourceTree = "<group>"; };
-		8C1657C51AA8C20D006555B1 /* BSAuditory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAuditory.h; sourceTree = "<group>"; };
-		8C1657C61AA8C20D006555B1 /* BSAuditory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAuditory.m; sourceTree = "<group>"; };
-		8C1657C71AA8C20D006555B1 /* BSDayOfWeek.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayOfWeek.h; sourceTree = "<group>"; };
-		8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayOfWeek.m; sourceTree = "<group>"; };
-		8C1657C91AA8C20D006555B1 /* BSDayWithWeekNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayWithWeekNum.h; sourceTree = "<group>"; };
-		8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayWithWeekNum.m; sourceTree = "<group>"; };
-		8C1657CB1AA8C20D006555B1 /* BSGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSGroup.h; sourceTree = "<group>"; };
-		8C1657CC1AA8C20D006555B1 /* BSGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSGroup.m; sourceTree = "<group>"; };
-		8C1657CD1AA8C20D006555B1 /* BSLecturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLecturer.h; sourceTree = "<group>"; };
-		8C1657CE1AA8C20D006555B1 /* BSLecturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLecturer.m; sourceTree = "<group>"; };
-		8C1657CF1AA8C20D006555B1 /* BSPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPair.h; sourceTree = "<group>"; };
-		8C1657D01AA8C20D006555B1 /* BSPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSPair.m; sourceTree = "<group>"; };
-		8C1657D11AA8C20D006555B1 /* BSSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSchedule.h; sourceTree = "<group>"; };
-		8C1657D21AA8C20D006555B1 /* BSSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSchedule.m; sourceTree = "<group>"; };
-		8C1657D31AA8C20D006555B1 /* BSSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSSubject.h; sourceTree = "<group>"; };
-		8C1657D41AA8C20D006555B1 /* BSSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSSubject.m; sourceTree = "<group>"; };
-		8C1657D51AA8C20D006555B1 /* BSWeekNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWeekNumber.h; sourceTree = "<group>"; };
-		8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWeekNumber.m; sourceTree = "<group>"; };
 		8C1657F51AA8C31E006555B1 /* BSAchivement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivement.h; sourceTree = "<group>"; };
 		8C1657F61AA8C31E006555B1 /* BSAchivement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAchivement.m; sourceTree = "<group>"; };
 		8C1657F91AA8C6D8006555B1 /* BSAchivementOnce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAchivementOnce.h; sourceTree = "<group>"; };
@@ -353,8 +338,6 @@
 		8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8C98CDA61A891E1D00A37540 /* BSLabelWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLabelWithImage.h; sourceTree = "<group>"; };
 		8C98CDA71A891E1D00A37540 /* BSLabelWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLabelWithImage.m; sourceTree = "<group>"; };
-		8C9AC4281B47561C00B89403 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		8C9AC4291B47561C00B89403 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8CAC66361A8CBD4A00BF4C2C /* BSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSUtils.h; sourceTree = "<group>"; };
 		8CAC66371A8CBD4A00BF4C2C /* BSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSUtils.m; sourceTree = "<group>"; };
 		8CC4EE9D1AA1EE2D00AD6C22 /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
@@ -375,8 +358,6 @@
 		8CC4EEB31AA1EEAF00AD6C22 /* BSMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMainVC.h; sourceTree = "<group>"; };
 		8CC4EEB41AA1EEAF00AD6C22 /* BSMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMainVC.m; sourceTree = "<group>"; };
 		8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		8CC4EEBE1AA2001B00AD6C22 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		8CC4EEC51AA2004500AD6C22 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8CC4EEC71AA2004A00AD6C22 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8CC4EEC91AA2005100AD6C22 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -423,6 +404,9 @@
 		8CC4EFD21AA236DE00AD6C22 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8CD393FF1B3A16BA00090DBC /* LaunchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchView.xib; sourceTree = "<group>"; };
 		8CE85B391A895EF00043D896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B64ECFB08BA4DC01324ECE55 /* libPods-Schedule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Schedule.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD86203E3CEDE2F0AC4BEC36 /* Pods-Schedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Schedule/Pods-Schedule.debug.xcconfig"; sourceTree = "<group>"; };
+		CE68F76DD476D5C4253B8A72 /* libPods-Bsuir Schedule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bsuir Schedule.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10448411A267D5100670898 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D10448521A267F2E00670898 /* BSScheduleParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSScheduleParser.h; sourceTree = "<group>"; };
 		D10448531A267F2E00670898 /* BSScheduleParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSScheduleParser.m; sourceTree = "<group>"; };
@@ -451,7 +435,6 @@
 		D19EB2201A1824900055B0D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D19EB2221A1824900055B0D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D19EB2231A1824900055B0D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D19EB2371A1824910055B0D3 /* Bsuir ScheduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bsuir ScheduleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19EB23C1A1824910055B0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D19EB23D1A1824910055B0D3 /* Bsuir_ScheduleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bsuir_ScheduleTests.m; sourceTree = "<group>"; };
 		D19EB2491A18249C0055B0D3 /* Bsuir Schedule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bsuir Schedule-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -469,6 +452,42 @@
 		D1E34FE11A3339FB003459E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1E873DD1A1EBB3C007F056F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D1E873DF1A1EBBEC007F056F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E6BA19C91F5D73A800157861 /* ScheduleData 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScheduleData 4.xcdatamodel"; sourceTree = "<group>"; };
+		E6BA19CA1F5D740A00157861 /* BSLecturer+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19CB1F5D740A00157861 /* BSLecturer+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19CC1F5D740A00157861 /* BSLecturer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSLecturer+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19CD1F5D740A00157861 /* BSLecturer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSLecturer+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19D01F5D760D00157861 /* BSAuditory+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSAuditory+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19D11F5D760D00157861 /* BSAuditory+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSAuditory+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19D21F5D760D00157861 /* BSAuditory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSAuditory+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19D31F5D760D00157861 /* BSAuditory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSAuditory+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19D41F5D760D00157861 /* BSGroup+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSGroup+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19D51F5D760D00157861 /* BSGroup+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSGroup+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19D61F5D760D00157861 /* BSGroup+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSGroup+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19D71F5D760D00157861 /* BSGroup+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSGroup+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19D81F5D760D00157861 /* BSPair+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19D91F5D760D00157861 /* BSPair+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19DA1F5D760D00157861 /* BSPair+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSPair+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19DB1F5D760D00157861 /* BSPair+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSPair+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19DC1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayOfWeek+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19DD1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayOfWeek+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19DE1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSDayOfWeek+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19DF1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSDayOfWeek+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19E01F5D760D00157861 /* BSSubject+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSSubject+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19E11F5D760D00157861 /* BSSubject+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSSubject+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19E21F5D760D00157861 /* BSSubject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSSubject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19E31F5D760D00157861 /* BSSubject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSSubject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19E41F5D760D00157861 /* BSSchedule+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSSchedule+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19E51F5D760D00157861 /* BSSchedule+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSSchedule+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19E61F5D760D00157861 /* BSSchedule+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSSchedule+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19E71F5D760D00157861 /* BSSchedule+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSSchedule+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19E81F5D760D00157861 /* BSWeekNumber+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSWeekNumber+CoreDataClass.h"; sourceTree = "<group>"; };
+		E6BA19E91F5D760D00157861 /* BSWeekNumber+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSWeekNumber+CoreDataClass.m"; sourceTree = "<group>"; };
+		E6BA19EA1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSWeekNumber+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E6BA19EB1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BSWeekNumber+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E6BA19FA1F5D765900157861 /* BSDayWithWeekNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDayWithWeekNum.h; sourceTree = "<group>"; };
+		E6BA19FB1F5D765900157861 /* BSDayWithWeekNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDayWithWeekNum.m; sourceTree = "<group>"; };
+		FBD8FFC72A3892031E18B2B1 /* Pods-Bsuir Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bsuir Schedule.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bsuir Schedule/Pods-Bsuir Schedule.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,16 +501,13 @@
 				8CC4EEE51AA200A000AD6C22 /* libz.dylib in Frameworks */,
 				8CC4EEE21AA2009B00AD6C22 /* CFNetwork.framework in Frameworks */,
 				8CC4EEDE1AA2009B00AD6C22 /* QuartzCore.framework in Frameworks */,
-				8CC4EEC41AA2001B00AD6C22 /* ParseUI.framework in Frameworks */,
 				8CC4EEDB1AA2009B00AD6C22 /* SystemConfiguration.framework in Frameworks */,
 				D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */,
 				8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
-				8C9AC42D1B47561C00B89403 /* Crashlytics.framework in Frameworks */,
 				8CC4EEDD1AA2009B00AD6C22 /* Security.framework in Frameworks */,
-				8C9AC42B1B47561C00B89403 /* Fabric.framework in Frameworks */,
 				8CC4EEDF1AA2009B00AD6C22 /* MobileCoreServices.framework in Frameworks */,
 				8CC4EEE41AA2009E00AD6C22 /* libsqlite3.dylib in Frameworks */,
-				8CC4EEC21AA2001B00AD6C22 /* Parse.framework in Frameworks */,
+				278DF896999E594D7AA67486 /* libPods-Schedule.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,27 +516,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC4EEDA1AA2008300AD6C22 /* libsqlite3.dylib in Frameworks */,
-				8C9AC42C1B47561C00B89403 /* Crashlytics.framework in Frameworks */,
 				8CC4EED81AA2007C00AD6C22 /* libz.dylib in Frameworks */,
 				8CC4EED61AA2007500AD6C22 /* SystemConfiguration.framework in Frameworks */,
 				8CC4EED21AA2006900AD6C22 /* Security.framework in Frameworks */,
 				8CC4EED01AA2006400AD6C22 /* QuartzCore.framework in Frameworks */,
 				8CC4EECE1AA2005E00AD6C22 /* MobileCoreServices.framework in Frameworks */,
 				8CC4EECC1AA2005800AD6C22 /* CoreLocation.framework in Frameworks */,
-				8C9AC42A1B47561C00B89403 /* Fabric.framework in Frameworks */,
 				8CC4EECA1AA2005100AD6C22 /* CoreGraphics.framework in Frameworks */,
 				8CC4EEC81AA2004A00AD6C22 /* CFNetwork.framework in Frameworks */,
 				8CC4EEC61AA2004500AD6C22 /* AudioToolbox.framework in Frameworks */,
 				8CC4EEBF1AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
-				8CC4EEC31AA2001B00AD6C22 /* ParseUI.framework in Frameworks */,
-				8CC4EEC11AA2001B00AD6C22 /* Parse.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D19EB2341A1824910055B0D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				3D98824BFF7FBB2214326F59 /* libPods-Bsuir Schedule.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,24 +623,40 @@
 		8C1657C41AA8C20D006555B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8C1657C51AA8C20D006555B1 /* BSAuditory.h */,
-				8C1657C61AA8C20D006555B1 /* BSAuditory.m */,
-				8C1657C71AA8C20D006555B1 /* BSDayOfWeek.h */,
-				8C1657C81AA8C20D006555B1 /* BSDayOfWeek.m */,
-				8C1657C91AA8C20D006555B1 /* BSDayWithWeekNum.h */,
-				8C1657CA1AA8C20D006555B1 /* BSDayWithWeekNum.m */,
-				8C1657CB1AA8C20D006555B1 /* BSGroup.h */,
-				8C1657CC1AA8C20D006555B1 /* BSGroup.m */,
-				8C1657CD1AA8C20D006555B1 /* BSLecturer.h */,
-				8C1657CE1AA8C20D006555B1 /* BSLecturer.m */,
-				8C1657CF1AA8C20D006555B1 /* BSPair.h */,
-				8C1657D01AA8C20D006555B1 /* BSPair.m */,
-				8C1657D11AA8C20D006555B1 /* BSSchedule.h */,
-				8C1657D21AA8C20D006555B1 /* BSSchedule.m */,
-				8C1657D31AA8C20D006555B1 /* BSSubject.h */,
-				8C1657D41AA8C20D006555B1 /* BSSubject.m */,
-				8C1657D51AA8C20D006555B1 /* BSWeekNumber.h */,
-				8C1657D61AA8C20D006555B1 /* BSWeekNumber.m */,
+				E6BA19FA1F5D765900157861 /* BSDayWithWeekNum.h */,
+				E6BA19FB1F5D765900157861 /* BSDayWithWeekNum.m */,
+				E6BA19D01F5D760D00157861 /* BSAuditory+CoreDataClass.h */,
+				E6BA19D11F5D760D00157861 /* BSAuditory+CoreDataClass.m */,
+				E6BA19D21F5D760D00157861 /* BSAuditory+CoreDataProperties.h */,
+				E6BA19D31F5D760D00157861 /* BSAuditory+CoreDataProperties.m */,
+				E6BA19D41F5D760D00157861 /* BSGroup+CoreDataClass.h */,
+				E6BA19D51F5D760D00157861 /* BSGroup+CoreDataClass.m */,
+				E6BA19D61F5D760D00157861 /* BSGroup+CoreDataProperties.h */,
+				E6BA19D71F5D760D00157861 /* BSGroup+CoreDataProperties.m */,
+				E6BA19D81F5D760D00157861 /* BSPair+CoreDataClass.h */,
+				E6BA19D91F5D760D00157861 /* BSPair+CoreDataClass.m */,
+				E6BA19DA1F5D760D00157861 /* BSPair+CoreDataProperties.h */,
+				E6BA19DB1F5D760D00157861 /* BSPair+CoreDataProperties.m */,
+				E6BA19DC1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.h */,
+				E6BA19DD1F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m */,
+				E6BA19DE1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.h */,
+				E6BA19DF1F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m */,
+				E6BA19E01F5D760D00157861 /* BSSubject+CoreDataClass.h */,
+				E6BA19E11F5D760D00157861 /* BSSubject+CoreDataClass.m */,
+				E6BA19E21F5D760D00157861 /* BSSubject+CoreDataProperties.h */,
+				E6BA19E31F5D760D00157861 /* BSSubject+CoreDataProperties.m */,
+				E6BA19E41F5D760D00157861 /* BSSchedule+CoreDataClass.h */,
+				E6BA19E51F5D760D00157861 /* BSSchedule+CoreDataClass.m */,
+				E6BA19E61F5D760D00157861 /* BSSchedule+CoreDataProperties.h */,
+				E6BA19E71F5D760D00157861 /* BSSchedule+CoreDataProperties.m */,
+				E6BA19E81F5D760D00157861 /* BSWeekNumber+CoreDataClass.h */,
+				E6BA19E91F5D760D00157861 /* BSWeekNumber+CoreDataClass.m */,
+				E6BA19EA1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.h */,
+				E6BA19EB1F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m */,
+				E6BA19CA1F5D740A00157861 /* BSLecturer+CoreDataClass.h */,
+				E6BA19CB1F5D740A00157861 /* BSLecturer+CoreDataClass.m */,
+				E6BA19CC1F5D740A00157861 /* BSLecturer+CoreDataProperties.h */,
+				E6BA19CD1F5D740A00157861 /* BSLecturer+CoreDataProperties.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -800,6 +822,8 @@
 				8CC4EEC71AA2004A00AD6C22 /* CFNetwork.framework */,
 				8CC4EEC51AA2004500AD6C22 /* AudioToolbox.framework */,
 				D10448411A267D5100670898 /* NotificationCenter.framework */,
+				CE68F76DD476D5C4253B8A72 /* libPods-Bsuir Schedule.a */,
+				B64ECFB08BA4DC01324ECE55 /* libPods-Schedule.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -852,6 +876,7 @@
 				D196D02E1A2A967D00EA6901 /* Schedule */,
 				D10448401A267D5100670898 /* Frameworks */,
 				D19EB21C1A1824900055B0D3 /* Products */,
+				EFE1BE7312C98613299DCE27 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -859,7 +884,6 @@
 			isa = PBXGroup;
 			children = (
 				D19EB21B1A1824900055B0D3 /* Bsuir Schedule.app */,
-				D19EB2371A1824910055B0D3 /* Bsuir ScheduleTests.xctest */,
 				D196D02C1A2A967D00EA6901 /* Schedule.appex */,
 			);
 			name = Products;
@@ -913,13 +937,9 @@
 		D19EB2471A18249C0055B0D3 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
-				8C9AC4281B47561C00B89403 /* Fabric.framework */,
-				8C9AC4291B47561C00B89403 /* Crashlytics.framework */,
 				8C1657A91AA8BFDF006555B1 /* FXKeychain */,
 				8CC4EFB11AA236DE00AD6C22 /* SDWebImage */,
 				8CC4EEBC1AA2001B00AD6C22 /* Bolts.framework */,
-				8CC4EEBD1AA2001B00AD6C22 /* Parse.framework */,
-				8CC4EEBE1AA2001B00AD6C22 /* ParseUI.framework */,
 				8CC4EE9C1AA1EE2D00AD6C22 /* AMSlideMenu */,
 				8C6001AD1A8BFAA80076BD36 /* MGSwipeTableCell */,
 				D19EB2481A18249C0055B0D3 /* XMLDictionary */,
@@ -997,6 +1017,17 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		EFE1BE7312C98613299DCE27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1F21A0BB1F0F54B8039A1E41 /* Pods-Bsuir Schedule.debug.xcconfig */,
+				FBD8FFC72A3892031E18B2B1 /* Pods-Bsuir Schedule.release.xcconfig */,
+				CD86203E3CEDE2F0AC4BEC36 /* Pods-Schedule.debug.xcconfig */,
+				13A8F63D453DCD59BB7F150E /* Pods-Schedule.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1004,9 +1035,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D196D03B1A2A967E00EA6901 /* Build configuration list for PBXNativeTarget "Schedule" */;
 			buildPhases = (
+				065C02D162CA299EEB469572 /* [CP] Check Pods Manifest.lock */,
 				D196D0281A2A967D00EA6901 /* Sources */,
 				D196D0291A2A967D00EA6901 /* Frameworks */,
 				D196D02A1A2A967D00EA6901 /* Resources */,
+				B804204F6A383FB9BC193D92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1021,11 +1054,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D19EB2411A1824910055B0D3 /* Build configuration list for PBXNativeTarget "Bsuir Schedule" */;
 			buildPhases = (
+				289C03ECEC70DA1CEA9E8049 /* [CP] Check Pods Manifest.lock */,
 				D19EB2171A1824900055B0D3 /* Sources */,
 				D19EB2181A1824900055B0D3 /* Frameworks */,
 				D19EB2191A1824900055B0D3 /* Resources */,
 				D10448511A267D5100670898 /* Embed App Extensions */,
-				8C1E29741A93FE0400B69BA1 /* ShellScript */,
+				D72C642DCE20FD25F188B56F /* [CP] Embed Pods Frameworks */,
+				4D96B8E2A11779F9469DA2EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1037,31 +1072,13 @@
 			productReference = D19EB21B1A1824900055B0D3 /* Bsuir Schedule.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D19EB2361A1824910055B0D3 /* Bsuir ScheduleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D19EB2441A1824910055B0D3 /* Build configuration list for PBXNativeTarget "Bsuir ScheduleTests" */;
-			buildPhases = (
-				D19EB2331A1824910055B0D3 /* Sources */,
-				D19EB2341A1824910055B0D3 /* Frameworks */,
-				D19EB2351A1824910055B0D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D19EB2391A1824910055B0D3 /* PBXTargetDependency */,
-			);
-			name = "Bsuir ScheduleTests";
-			productName = "Bsuir ScheduleTests";
-			productReference = D19EB2371A1824910055B0D3 /* Bsuir ScheduleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D19EB2131A1824900055B0D3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Saute;
 				TargetAttributes = {
 					D196D02B1A2A967D00EA6901 = {
@@ -1085,10 +1102,6 @@
 							};
 						};
 					};
-					D19EB2361A1824910055B0D3 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = D19EB21A1A1824900055B0D3;
-					};
 				};
 			};
 			buildConfigurationList = D19EB2161A1824900055B0D3 /* Build configuration list for PBXProject "Bsuir Schedule" */;
@@ -1106,7 +1119,6 @@
 			projectRoot = "";
 			targets = (
 				D19EB21A1A1824900055B0D3 /* Bsuir Schedule */,
-				D19EB2361A1824910055B0D3 /* Bsuir ScheduleTests */,
 				D196D02B1A2A967D00EA6901 /* Schedule */,
 			);
 		};
@@ -1175,28 +1187,83 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D19EB2351A1824910055B0D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8C1E29741A93FE0400B69BA1 /* ShellScript */ = {
+		065C02D162CA299EEB469572 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 347dc04ab4708a1c015cf47b6ec9fc40a30a42ed 9b0574d26b07e7d0a612cf44646f9d172e0d8afb3f4fc74c80ab822a09bff5db";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		289C03ECEC70DA1CEA9E8049 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4D96B8E2A11779F9469DA2EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bsuir Schedule/Pods-Bsuir Schedule-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B804204F6A383FB9BC193D92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Schedule/Pods-Schedule-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D72C642DCE20FD25F188B56F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bsuir Schedule/Pods-Bsuir Schedule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1205,44 +1272,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6BA19FE1F5D770B00157861 /* BSAuditory+CoreDataClass.m in Sources */,
+				E6BA1A0C1F5D770B00157861 /* BSLecturer+CoreDataClass.m in Sources */,
+				E6BA1A091F5D770B00157861 /* BSSchedule+CoreDataProperties.m in Sources */,
 				8C1657DE1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
-				8C1657EC1AA8C20D006555B1 /* BSLecturer.m in Sources */,
 				8C98CDA91A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				D196D03E1A2A96C600EA6901 /* BSDataManager.m in Sources */,
+				E6BA1A041F5D770B00157861 /* BSDayOfWeek+CoreDataClass.m in Sources */,
 				8C77938F1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
+				E6BA19FD1F5D770B00157861 /* BSDayWithWeekNum.m in Sources */,
 				8C342AA81A8A20E60020AE99 /* UIImage+ImageEffects.m in Sources */,
+				E6BA1A061F5D770B00157861 /* BSSubject+CoreDataClass.m in Sources */,
 				8C77938D1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C04C4E21AA2A90B002A8BAD /* AYVibrantButton.m in Sources */,
+				E6BA1A051F5D770B00157861 /* BSDayOfWeek+CoreDataProperties.m in Sources */,
+				E6BA1A0D1F5D770B00157861 /* BSLecturer+CoreDataProperties.m in Sources */,
 				D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */,
+				E6BA1A011F5D770B00157861 /* BSGroup+CoreDataProperties.m in Sources */,
+				E6BA1A0B1F5D770B00157861 /* BSWeekNumber+CoreDataProperties.m in Sources */,
 				8CC4EFEA1AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
-				8C1657F01AA8C20D006555B1 /* BSSchedule.m in Sources */,
 				8C7793631A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
 				8C1657DA1AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
+				E6BA1A071F5D770B00157861 /* BSSubject+CoreDataProperties.m in Sources */,
+				E6BA1A001F5D770B00157861 /* BSGroup+CoreDataClass.m in Sources */,
+				E6BA1A0A1F5D770B00157861 /* BSWeekNumber+CoreDataClass.m in Sources */,
 				8C6001B31A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
 				8CC4EFE81AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
 				8C1657E21AA8C20D006555B1 /* NSString+Transiterate.m in Sources */,
 				8C7793931A84CF36007AB2EF /* BSTriangleView.m in Sources */,
-				8C1657F41AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
-				8C1657F21AA8C20D006555B1 /* BSSubject.m in Sources */,
 				8C1657AD1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
 				8C75E8EC1AABCDD400166192 /* UIImage+Thumbnail.m in Sources */,
 				D1AEAD861A366B9900FD0F97 /* NSUserDefaults+Share.m in Sources */,
+				E6BA1A031F5D770B00157861 /* BSPair+CoreDataProperties.m in Sources */,
 				8C6001BA1A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
-				8C1657E41AA8C20D006555B1 /* BSAuditory.m in Sources */,
 				8CC4EFD81AA236DE00AD6C22 /* SDImageCache.m in Sources */,
 				8C78E3711A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
 				8C1657E01AA8C20D006555B1 /* BSPair+Type.m in Sources */,
+				E6BA1A081F5D770B00157861 /* BSSchedule+CoreDataClass.m in Sources */,
 				8CC4EFEC1AA236DE00AD6C22 /* UIImage+WebP.m in Sources */,
-				8C1657E81AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */,
 				8C6001B51A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8C7793701A84CECE007AB2EF /* BSPairCell.m in Sources */,
+				E6BA19FF1F5D770B00157861 /* BSAuditory+CoreDataProperties.m in Sources */,
 				8CC4EFDC1AA236DE00AD6C22 /* SDWebImageDecoder.m in Sources */,
-				8C1657E61AA8C20D006555B1 /* BSDayOfWeek.m in Sources */,
 				8CC4EFDA1AA236DE00AD6C22 /* SDWebImageCompat.m in Sources */,
-				8C1657EE1AA8C20D006555B1 /* BSPair.m in Sources */,
 				8CC4EFD61AA236DE00AD6C22 /* NSData+ImageContentType.m in Sources */,
-				8C1657EA1AA8C20D006555B1 /* BSGroup.m in Sources */,
 				8C1657DC1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */,
+				E6BA1A021F5D770B00157861 /* BSPair+CoreDataClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,48 +1328,53 @@
 				8C7793641A84CEC3007AB2EF /* BSLecturerVC.m in Sources */,
 				D1AEAD851A366A9C00FD0F97 /* NSUserDefaults+Share.m in Sources */,
 				8C6001B21A8BFAA80076BD36 /* MGSwipeButton.m in Sources */,
-				8C1657F11AA8C20D006555B1 /* BSSubject.m in Sources */,
+				E6BA19EE1F5D760D00157861 /* BSGroup+CoreDataClass.m in Sources */,
 				8C03910D1AAA28AA002B86F4 /* BSSocialAchivementCell.m in Sources */,
 				8CC4EFE31AA236DE00AD6C22 /* SDWebImagePrefetcher.m in Sources */,
 				8C75E8DA1AAB9D6B00166192 /* BSPurchaseAchivementCell.m in Sources */,
 				8C57F8521B998D0E00223A82 /* BSGroupSelectVC.m in Sources */,
 				8C98CDA81A891E1D00A37540 /* BSLabelWithImage.m in Sources */,
 				8CC4EEAD1AA1EE2E00AD6C22 /* AMSlideMenuLeftMenuSegue.m in Sources */,
-				8C1657E91AA8C20D006555B1 /* BSGroup.m in Sources */,
+				E6BA19F41F5D760D00157861 /* BSSubject+CoreDataClass.m in Sources */,
 				8CC4EEB11AA1EE2E00AD6C22 /* AMSlideMenuRightTableViewController.m in Sources */,
 				D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */,
 				8C1657DF1AA8C20D006555B1 /* BSPair+Type.m in Sources */,
-				8C1657E51AA8C20D006555B1 /* BSDayOfWeek.m in Sources */,
+				E6BA19CF1F5D740A00157861 /* BSLecturer+CoreDataProperties.m in Sources */,
 				8C77936F1A84CECE007AB2EF /* BSPairCell.m in Sources */,
+				E6BA19F01F5D760D00157861 /* BSPair+CoreDataClass.m in Sources */,
 				8C7793A01A84F2DC007AB2EF /* BSMenuVC.m in Sources */,
 				8C1657AC1AA8BFDF006555B1 /* FXKeychain.m in Sources */,
 				8CC4EFDD1AA236DE00AD6C22 /* SDWebImageDownloader.m in Sources */,
 				8C1657FB1AA8C6D8006555B1 /* BSAchivementOnce.m in Sources */,
-				8C1657E31AA8C20D006555B1 /* BSAuditory.m in Sources */,
-				8C1657F31AA8C20D006555B1 /* BSWeekNumber.m in Sources */,
 				8C1657E11AA8C20D006555B1 /* NSString+Transiterate.m in Sources */,
 				8C0D37411AA8FCF9004B0120 /* UIViewController+Achivements.m in Sources */,
 				8CC4EFE11AA236DE00AD6C22 /* SDWebImageManager.m in Sources */,
 				8C1657D91AA8C20D006555B1 /* BSDayOfWeek+Number.m in Sources */,
-				8C1657EB1AA8C20D006555B1 /* BSLecturer.m in Sources */,
 				8CC4EEAC1AA1EE2E00AD6C22 /* AMSlideMenuContentSegue.m in Sources */,
+				E6BA19CE1F5D740A00157861 /* BSLecturer+CoreDataClass.m in Sources */,
+				E6BA19EC1F5D760D00157861 /* BSAuditory+CoreDataClass.m in Sources */,
 				8CC4EFE71AA236DE00AD6C22 /* UIImage+GIF.m in Sources */,
 				D19EB24C1A18249C0055B0D3 /* XMLDictionary.m in Sources */,
 				8CC4EFE51AA236DE00AD6C22 /* UIButton+WebCache.m in Sources */,
-				8C1657ED1AA8C20D006555B1 /* BSPair.m in Sources */,
+				E6BA19F51F5D760D00157861 /* BSSubject+CoreDataProperties.m in Sources */,
 				8CC4EFDF1AA236DE00AD6C22 /* SDWebImageDownloaderOperation.m in Sources */,
+				E6BA19F61F5D760D00157861 /* BSSchedule+CoreDataClass.m in Sources */,
 				D10448541A267F2E00670898 /* BSScheduleParser.m in Sources */,
+				E6BA19F21F5D760D00157861 /* BSDayOfWeek+CoreDataClass.m in Sources */,
 				8CC4EEB01AA1EE2E00AD6C22 /* AMSlideMenuRightMenuSegue.m in Sources */,
 				8C7793921A84CF36007AB2EF /* BSTriangleView.m in Sources */,
-				8C1657E71AA8C20D006555B1 /* BSDayWithWeekNum.m in Sources */,
+				E6BA19F91F5D760D00157861 /* BSWeekNumber+CoreDataProperties.m in Sources */,
 				8CC4EFF11AA236DE00AD6C22 /* UIView+WebCacheOperation.m in Sources */,
 				D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */,
 				8CC4EFD71AA236DE00AD6C22 /* SDImageCache.m in Sources */,
 				8CC4EFD31AA236DE00AD6C22 /* MKAnnotationView+WebCache.m in Sources */,
+				E6BA19F71F5D760D00157861 /* BSSchedule+CoreDataProperties.m in Sources */,
 				8C1657DD1AA8C20D006555B1 /* BSPair+Color.m in Sources */,
 				D1CFCA221A311A3100083221 /* UIImage+ImageEffects.m in Sources */,
 				8C1657DB1AA8C20D006555B1 /* BSLecturer+Thumbnail.m in Sources */,
 				8C03910A1AAA27C1002B86F4 /* BSSocialAchivement.m in Sources */,
+				E6BA19F31F5D760D00157861 /* BSDayOfWeek+CoreDataProperties.m in Sources */,
+				E6BA19F11F5D760D00157861 /* BSPair+CoreDataProperties.m in Sources */,
 				8C77938C1A84CF24007AB2EF /* BSTextField.m in Sources */,
 				8C78E3701A6F0DB700718027 /* ScheduleData.xcdatamodeld in Sources */,
 				8C1657FF1AA8C763006555B1 /* BSAchivementNumeric.m in Sources */,
@@ -1305,9 +1385,9 @@
 				8C7793811A84CEE4007AB2EF /* BSSettingsVC.m in Sources */,
 				8C7793A41A84F2DC007AB2EF /* BSMenuCell.m in Sources */,
 				8CC4EFDB1AA236DE00AD6C22 /* SDWebImageDecoder.m in Sources */,
-				8C1657EF1AA8C20D006555B1 /* BSSchedule.m in Sources */,
 				8CC4EEB21AA1EE2E00AD6C22 /* UIViewController+AMSlideMenu.m in Sources */,
 				8CC4EFEF1AA236DE00AD6C22 /* UIImageView+WebCache.m in Sources */,
+				E6BA19EF1F5D760D00157861 /* BSGroup+CoreDataProperties.m in Sources */,
 				8C7793621A84CEC3007AB2EF /* BSLecturerPreview.m in Sources */,
 				8C77938E1A84CF24007AB2EF /* NSDate+Compare.m in Sources */,
 				8C1657D71AA8C20D006555B1 /* BSAchivementManager.m in Sources */,
@@ -1317,6 +1397,7 @@
 				D19EB2211A1824900055B0D3 /* main.m in Sources */,
 				8C0391031AAA265E002B86F4 /* BSAchivementCell.m in Sources */,
 				8C0D373E1AA8EA52004B0120 /* UIViewController+Presentation.m in Sources */,
+				E6BA19ED1F5D760D00157861 /* BSAuditory+CoreDataProperties.m in Sources */,
 				8C6001B41A8BFAA80076BD36 /* MGSwipeTableCell.m in Sources */,
 				8CAC66381A8CBD4A00BF4C2C /* BSUtils.m in Sources */,
 				D1CFCA1F1A31193600083221 /* UIView+Screenshot.m in Sources */,
@@ -1324,21 +1405,14 @@
 				8CC4EFE91AA236DE00AD6C22 /* UIImage+MultiFormat.m in Sources */,
 				8CC4EFED1AA236DE00AD6C22 /* UIImageView+HighlightedWebCache.m in Sources */,
 				8C0D37321AA8E2D1004B0120 /* BSAchivementUnlockedVC.m in Sources */,
+				E6BA19FC1F5D765900157861 /* BSDayWithWeekNum.m in Sources */,
+				E6BA19F81F5D760D00157861 /* BSWeekNumber+CoreDataClass.m in Sources */,
 				8C342AAD1A8A24930020AE99 /* BSTutorialVC.m in Sources */,
 				8CC4EEAE1AA1EE2E00AD6C22 /* AMSlideMenuLeftTableViewController.m in Sources */,
 				8CC4EEB51AA1EEAF00AD6C22 /* BSMainVC.m in Sources */,
 				8C0D37451AA99E40004B0120 /* BSAchivementsVC.m in Sources */,
 				8C6001B91A8BFF120076BD36 /* BSScheduleAddVC.m in Sources */,
 				8CC4EFD91AA236DE00AD6C22 /* SDWebImageCompat.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D19EB2331A1824910055B0D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC4EEEA1AA20EBB00AD6C22 /* ParsetTest.m in Sources */,
-				D19EB23E1A1824910055B0D3 /* Bsuir_ScheduleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,11 +1423,6 @@
 			isa = PBXTargetDependency;
 			target = D196D02B1A2A967D00EA6901 /* Schedule */;
 			targetProxy = D196D0361A2A967D00EA6901 /* PBXContainerItemProxy */;
-		};
-		D19EB2391A1824910055B0D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D19EB21A1A1824900055B0D3 /* Bsuir Schedule */;
-			targetProxy = D19EB2381A1824910055B0D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1381,10 +1450,12 @@
 /* Begin XCBuildConfiguration section */
 		D196D0391A2A967E00EA6901 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD86203E3CEDE2F0AC4BEC36 /* Pods-Schedule.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Anton Siliuk (U4AMXKRJ6L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anton Siliuk (U4AMXKRJ6L)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
@@ -1399,6 +1470,7 @@
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.saute.Bsuir-Schedule.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
@@ -1407,10 +1479,12 @@
 		};
 		D196D03A1A2A967E00EA6901 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13A8F63D453DCD59BB7F150E /* Pods-Schedule.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Schedule/Schedule.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Anton Siliuk (636FUHDF2R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anton Siliuk (636FUHDF2R)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
@@ -1421,8 +1495,9 @@
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.saute.Bsuir-Schedule.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f5bdb90-26fd-4f3b-b3d1-a912eb46081f";
+				PROVISIONING_PROFILE = "3ac51872-5ad3-44dd-8f3f-4c161243482f";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1447,6 +1522,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1505,12 +1581,14 @@
 		};
 		D19EB2421A1824910055B0D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F21A0BB1F0F54B8039A1E41 /* Pods-Bsuir Schedule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Bsuir Schedule/Bsuir Schedule.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Anton Siliuk (U4AMXKRJ6L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
@@ -1522,6 +1600,7 @@
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.saute.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1530,12 +1609,14 @@
 		};
 		D19EB2431A1824910055B0D3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBD8FFC72A3892031E18B2B1 /* Pods-Bsuir Schedule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Bsuir Schedule/Bsuir Schedule.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Anton Siliuk (636FUHDF2R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
@@ -1544,43 +1625,10 @@
 				INFOPLIST_FILE = "Bsuir Schedule/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.saute.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "83bf36e8-831e-45ce-8ad9-156bbec296c8";
+				PROVISIONING_PROFILE = "454a4b49-24e5-4d7f-b208-41fa2dbe2d4e";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D19EB2451A1824910055B0D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Bsuir ScheduleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bsuir Schedule.app/Bsuir Schedule";
-			};
-			name = Debug;
-		};
-		D19EB2461A1824910055B0D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Bsuir ScheduleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bsuir Schedule.app/Bsuir Schedule";
 			};
 			name = Release;
 		};
@@ -1614,26 +1662,18 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D19EB2441A1824910055B0D3 /* Build configuration list for PBXNativeTarget "Bsuir ScheduleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D19EB2451A1824910055B0D3 /* Debug */,
-				D19EB2461A1824910055B0D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
 		8C78E36E1A6F0DB700718027 /* ScheduleData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E6BA19C91F5D73A800157861 /* ScheduleData 4.xcdatamodel */,
 				8C6001881A8B53ED0076BD36 /* ScheduleData 3.xcdatamodel */,
 				8C78E3721A6F0DC300718027 /* ScheduleData 2.xcdatamodel */,
 				8C78E36F1A6F0DB700718027 /* ScheduleData.xcdatamodel */,
 			);
-			currentVersion = 8C6001881A8B53ED0076BD36 /* ScheduleData 3.xcdatamodel */;
+			currentVersion = E6BA19C91F5D73A800157861 /* ScheduleData 4.xcdatamodel */;
 			path = ScheduleData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

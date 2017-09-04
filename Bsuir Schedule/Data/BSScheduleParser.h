@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BSGroup.h"
+#import "BSGroup+CoreDataProperties.h"
 
 extern NSString * const kGroupName;
 extern NSString * const kGroupID;

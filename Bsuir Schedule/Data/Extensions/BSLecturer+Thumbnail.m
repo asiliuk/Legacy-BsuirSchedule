@@ -27,13 +27,15 @@ static NSString * const kNoavatar = @"noavatar";
         [imageView setImage:[UIImage imageNamed:@"my_face.jpg"]];
         return;
     }
-    NSString *imageName = [[NSString stringWithFormat:@"%@_%@_%@", self.lastName, self.firstName, self.middleName] toLatinWithDictionary];
-    NSString *thumbName = [imageName stringByAppendingString:@"_thumb"];
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:(thumb) ? thumbName : imageName];
+
+    NSString *imageURL = self.avatarURL ?: @"";
+    NSString *thumbName = [imageURL stringByAppendingString:@"_thumb"];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:(thumb) ? thumbName : imageURL];
+    
     if (image) {
         [imageView setImage:image];
-    }  else if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:(thumb) ? thumbName : imageName]) {
-        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:(thumb) ? thumbName : imageName];
+    }  else if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:(thumb) ? thumbName : imageURL]) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:(thumb) ? thumbName : imageURL];
         [imageView setImage:image];
     } else {
         UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -41,37 +43,23 @@ static NSString * const kNoavatar = @"noavatar";
         [imageView addSubview:av];
         [av startAnimating];        
         [imageView setImage:[UIImage imageNamed:kNoavatar]];
-        PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([BSLecturer class])];
-        [query whereKey:@"lecturerID" equalTo:self.lecturerID];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 
-                if ([objects count] > 0) {
-                    PFObject *lecturer = [objects firstObject];
-                    PFFile *imageFile = lecturer[@"image"];
-                    NSData *imageData = [imageFile getData];
-                    UIImage *image = [UIImage imageNamed:kNoavatar];
-                    if (imageData.length > 0) {
-                        image = [UIImage imageWithData:imageData];
-                    } else if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:imageName]){
-                        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imageName];
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIImage *thumb = [image thumbnail];
-                        [[SDImageCache sharedImageCache] storeImage:image forKey:imageName toDisk:YES];
-                        [[SDImageCache sharedImageCache] storeImage:thumb forKey:thumbName toDisk:YES];
-
-                        [imageView setImage:(thumb) ? thumb : image];
-                        [av removeFromSuperview];
-                    });
-
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [av removeFromSuperview];
-                    });
-                }
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:imageURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [av removeFromSuperview];
             });
-        }];
+
+            UIImage *image = [UIImage imageWithData:data];
+
+            if (!image || error) { return; }
+
+            UIImage *thumb = [image thumbnail];
+            [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL toDisk:YES];
+            [[SDImageCache sharedImageCache] storeImage:thumb forKey:thumbName toDisk:YES];
+
+            [imageView setImage:(thumb) ? thumb : image];
+
+        }] resume];
     }
     
 }

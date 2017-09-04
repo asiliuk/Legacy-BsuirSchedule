@@ -76,7 +76,7 @@ NSString * const kGroupID = @"id";
             NSDate *startTime;
             NSDate *endTime;
             [BSScheduleParser getStartTime:&startTime endTime:&endTime fromTimeString:subjectData[kSubjectTime]];
-            NSInteger subgroupNumber = [BSScheduleParser subgroupNumberFromString:subjectData[kSubjectNumSubgroup]];
+            NSInteger subgroupNumber = [BSScheduleParser subgroupNumberFromString:[subjectData[kSubjectNumSubgroup] stringValue]];
             NSString *pairType = subjectData[kSubjectType];
             NSArray *auditories = [BSScheduleParser auditoriesFromAuditoriesData:subjectData[kSubjectAuditory]];
             BSDayOfWeek *day = [[BSDataManager sharedInstance] dayWithName:dayName createIfNotExists:YES];
@@ -102,8 +102,7 @@ NSString * const kGroupID = @"id";
 }
 
 + (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDictionary *dict = [BSScheduleParser scheduleDicitonaryForGroup:group];
+    [BSScheduleParser scheduleDicitonaryForGroup:group completion:^(NSDictionary *dict, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (dict && [dict[kScheduleModel] count] > 0) {
                 NSString *loadedScheduleStamp = [[NSKeyedArchiver archivedDataWithRootObject:dict] MD5];
@@ -111,11 +110,11 @@ NSString * const kGroupID = @"id";
                 if (![loadedScheduleStamp isEqual:savedScheduleStamp]) {
                     //reset if group exist and loaded schedule is newer
                     [[BSDataManager sharedInstance] resetSceduleForGroup:group];
-                    
+
                     //parse schedule
                     NSArray *scheduleData = dict[kScheduleModel];
                     [BSScheduleParser parseScheduleData:scheduleData forGroup:group];
-                    
+
                     //update stamps
                     group.lastUpdate = [NSDate date];
                     group.scheduleStamp = loadedScheduleStamp;
@@ -128,65 +127,68 @@ NSString * const kGroupID = @"id";
                 failure();
             }
         });
-    });
+    }];
 }
 
 + (void)allGroupsWithSuccess:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
-        NSError *error;
-        NSDictionary *groupsData = [self loadDataFromURL:url error:&error];
-        NSArray *groups = groupsData[GROUPS_PATH];
+    NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
+    [self loadDataFromURL:url completion:^(id data, NSError *error) {
+        NSArray *groups = data;
         if (!error && groups) {
             if (success) success(groups);
         } else {
             if (failure) failure(error);
         }
-    });
+    }];
 }
 
 //===============================================HELPERS===========================================
 #pragma mark - Helpers
 
-+ (NSString*)groupIDForGroup:(BSGroup*)group {
-    NSString *groupID;
-    
++ (void)groupIDForGroup:(BSGroup*)group completion:(void(^)(NSString *groupID, NSError *error))completion {
+
     NSURL *url = [NSURL URLWithString:[BASE_URL stringByAppendingPathComponent:GROUPS_PATH]];
-    NSDictionary *groupsData = [self loadDataFromURL:url error:nil];
-    NSArray *groups = groupsData[GROUPS_PATH];
-    if ([groups isKindOfClass:[NSArray class]]) {
-        NSPredicate *groupPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-            BOOL keep = NO;
-            if ([evaluatedObject isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *groupData = evaluatedObject;
-                NSString *groupName = [groupData objectForKey:kGroupName];
-                keep = [groupName isEqual:group.groupNumber];
-            }
-            return keep;
-        }];
-        NSArray *groupsWithGroupName = [groups filteredArrayUsingPredicate:groupPredicate];
-        groupID = [[groupsWithGroupName firstObject] objectForKey:kGroupID];
-    }
-    return groupID;
+    [self loadDataFromURL:url completion:^(id data, NSError *error) {
+        if (error) {
+            return completion(nil, error);
+        }
+
+        NSString *groupID;
+        NSArray *groups = data;
+        if ([groups isKindOfClass:[NSArray class]]) {
+            NSPredicate *groupPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+                BOOL keep = NO;
+                if ([evaluatedObject isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *groupData = evaluatedObject;
+                    NSString *groupName = [groupData objectForKey:kGroupName];
+                    keep = [groupName isEqual:group.groupNumber];
+                }
+                return keep;
+            }];
+            NSArray *groupsWithGroupName = [groups filteredArrayUsingPredicate:groupPredicate];
+            groupID = [[[groupsWithGroupName firstObject] objectForKey:kGroupID] stringValue];
+        }
+
+        completion(groupID, nil);
+    }];
 }
 
-+ (NSDictionary*)scheduleDicitonaryForGroup:(BSGroup*)group {
-    NSDictionary *scheduleDict;
-    NSString *groupID = [self groupIDForGroup:group];
-    if (groupID) {
-        NSURL *url = [NSURL URLWithString:[[BASE_URL stringByAppendingPathComponent:SCHEDULE_PATH]
-                                           stringByAppendingPathComponent:groupID]];
-        scheduleDict = [self loadDataFromURL:url error:nil];
-    }
-    return scheduleDict;
++ (void)scheduleDicitonaryForGroup:(BSGroup*)group completion:(void(^)(NSDictionary *group, NSError *error))completion {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?studentGroup=%@", BASE_URL, SCHEDULE_PATH, group.groupNumber]];
+    [self loadDataFromURL:url completion:completion];
 }
 
-+ (NSDictionary*)loadDataFromURL:(NSURL*)url error:(NSError**)error {
-    NSData *data;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    data = [NSData dataWithContentsOfURL:url options:0 error:error];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    return [NSDictionary dictionaryWithXMLData:data];
++ (void)loadDataFromURL:(NSURL*)url completion:(void(^)(id data, NSError *error))completion {
+
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            completion(result, jsonError);
+        } else {
+            completion(nil, error);
+        }
+    }] resume];
 }
 
 + (NSArray*)lecturersFromLecturersData:(NSArray*)lecturersData {
@@ -203,7 +205,8 @@ NSString * const kGroupID = @"id";
                                                                           midleName:lecturerData[kLecturerMiddleName]
                                                                            lastName:lecturerData[kLecturerLastName]
                                                                          department:@""//lecturerData[kLecturerDepartment]
-                                                                         lecturerID:[lecturerData[kLecturerID] integerValue]];
+                                                                         lecturerID:[lecturerData[kLecturerID] integerValue]
+                                                                          avatarURL:lecturerData[kLecturerAvatarURL]];
                 
             }
         }

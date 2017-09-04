@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "BSSubject.h"
-#import "BSLecturer.h"
+#import "BSSubject+CoreDataProperties.h"
+#import "BSLecturer+CoreDataProperties.h"
 #import "BSDayOfWeek+Number.h"
-#import "BSAuditory.h"
+#import "BSAuditory+CoreDataProperties.h"
 #import "BSPair+Type.h"
 #import "BSPair+Color.h"
-#import "BSWeekNumber.h"
+#import "BSWeekNumber+CoreDataProperties.h"
 #import "BSDayWithWeekNum.h"
-#import "BSGroup.h"
-#import "BSSchedule.h"
+#import "BSGroup+CoreDataProperties.h"
+#import "BSSchedule+CoreDataProperties.h"
 
 @interface BSDataManager : NSObject
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -55,10 +55,11 @@
                           lastName:(NSString*)lastName;
 
 - (BSLecturer*)addLecturerWithFirstName:(NSString*)firstName
-                            midleName:(NSString*)middleName
-                             lastName:(NSString*)lastName
-                           department:(NSString*)department
-                           lecturerID:(NSInteger)lecturerID;
+                              midleName:(NSString*)middleName
+                               lastName:(NSString*)lastName
+                             department:(NSString*)department
+                             lecturerID:(NSInteger)lecturerID
+                              avatarURL:(NSString *)avatarURL;
 //-------------------------------Day---------------------------------
 - (NSArray*)days;
 - (NSNumber*)dayNumberForDay:(BSDayOfWeek*)dayOfWeek;

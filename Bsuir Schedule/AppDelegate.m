@@ -13,15 +13,14 @@
 
 #import "BSConstants.h"
 
-//#import <Fabric/Fabric.h>
-//#import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #import "BSMainVC.h"
 #import "BSScheduleVC.h"
 #import "BSSettingsVC.h"
 #import "BSAchivementManager.h"
 
-#import <Parse/Parse.h>
 @interface AppDelegate ()
 @property (strong, nonatomic) BSMainVC *mainVC;
 @end
@@ -30,14 +29,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [self updateOldDatabaseForMultipleGroups];
-//    [Fabric with:@[CrashlyticsKit]];
-
-    [Parse enableLocalDatastore];
-
-    [Parse setApplicationId:kParseApplicationID
-                  clientKey:kParseClientKey];
-
+    [self updateOldDatabaseForMultipleGroups];
+    [Fabric with:@[CrashlyticsKit]];
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -88,36 +81,36 @@
     return kvPairs;
 }
 
-//- (void)updateOldDatabaseForMultipleGroups {
-//    NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
-//    NSString *groupNumber = [shared objectForKey:kCurrentScheduleGroup];
-//    NSInteger subgroup = [shared integerForKey:kUserSubgroup];
-//    if (groupNumber) {
-//        NSDate *lastUpdate = [shared objectForKey:kLastUpdate];
-//        NSString *scheduleStamp = [shared objectForKey:kDatabaseStamp];
-//        BSSchedule *schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:YES];
-//        schedule.group.lastUpdate = lastUpdate;
-//        schedule.group.scheduleStamp = scheduleStamp;
-//        NSArray *pairs = [[BSDataManager sharedInstance] pairs];
-//        for (BSPair *pair in pairs) {
-//            if (![pair.groups containsObject:schedule.group]) {
-//                [pair addGroupsObject:schedule.group];
-//            }
-//        }
-//
-//        [shared setObject:nil forKey:kCurrentScheduleGroup];
-//        [shared setObject:nil forKey:kUserSubgroup];
-//        [shared setObject:nil forKey:kUserGroup];
-//
-//        [shared setObject:nil forKey:kLastUpdate];
-//        [shared setObject:nil forKey:kDatabaseStamp];
-//
-//        [shared setObject:groupNumber forKey:kWidgetGroup];
-//        [shared setInteger:subgroup forKey:kWidgetSubgroup];
-//
-//        [[BSDataManager sharedInstance] saveContext];
-//    }
-//}
+- (void)updateOldDatabaseForMultipleGroups {
+    NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
+    NSString *groupNumber = [shared objectForKey:kCurrentScheduleGroup];
+    NSInteger subgroup = [shared integerForKey:kUserSubgroup];
+    if (groupNumber) {
+        NSDate *lastUpdate = [shared objectForKey:kLastUpdate];
+        NSString *scheduleStamp = [shared objectForKey:kDatabaseStamp];
+        BSSchedule *schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:YES];
+        schedule.group.lastUpdate = lastUpdate;
+        schedule.group.scheduleStamp = scheduleStamp;
+        NSArray *pairs = [[BSDataManager sharedInstance] pairs];
+        for (BSPair *pair in pairs) {
+            if (![pair.groups containsObject:schedule.group]) {
+                [pair addGroupsObject:schedule.group];
+            }
+        }
+
+        [shared setObject:nil forKey:kCurrentScheduleGroup];
+        [shared setObject:nil forKey:kUserSubgroup];
+        [shared setObject:nil forKey:kUserGroup];
+
+        [shared setObject:nil forKey:kLastUpdate];
+        [shared setObject:nil forKey:kDatabaseStamp];
+
+        [shared setObject:groupNumber forKey:kWidgetGroup];
+        [shared setInteger:subgroup forKey:kWidgetSubgroup];
+
+        [[BSDataManager sharedInstance] saveContext];
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     [[BSDataManager sharedInstance] saveContext];

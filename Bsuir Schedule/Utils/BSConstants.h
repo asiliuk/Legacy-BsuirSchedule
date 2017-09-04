@@ -66,9 +66,9 @@ static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.
 
 static NSString * const kMenuDidClose = @"kMenuDidClose";
 
-static NSString * const BASE_URL = @"http://www.bsuir.by/schedule/rest/";
-static NSString * const SCHEDULE_PATH = @"schedule";
-static NSString * const GROUPS_PATH = @"studentGroup";
+static NSString * const BASE_URL = @"https://students.bsuir.by/api/v1/";
+static NSString * const SCHEDULE_PATH = @"studentGroup/schedule";
+static NSString * const GROUPS_PATH = @"groups";
 
 static NSString * const kWidgetID = @"com.saute.Bsuir-Schedule.Schedule";
 static NSString * const kWidgetGroup = @"kWidgetGroup";
@@ -84,7 +84,7 @@ static NSString * const kCurrentScheduleGroup = @"Current schedule group";
 static NSString * const kUserGroup = @"user group number";
 static NSString * const kUserSubgroup = @"user subgroup number";
 
-static NSString * const kScheduleModel = @"scheduleModel";
+static NSString * const kScheduleModel = @"schedules";
 
 static NSString * const kDayName = @"weekDay";
 static NSString * const kDaySchedule = @"schedule";
@@ -99,15 +99,12 @@ static NSString * const kSubjectWeeks = @"weekNumber";
 static NSString * const kLecturer = @"employee";
 static NSString * const kLecturerID = @"id";
 static NSString * const kLecturerDepartment = @"academicDepartment";
+static NSString * const kLecturerAvatarURL = @"photoLink";
 
 static NSString * const kLecturerLastName = @"lastName";
 static NSString * const kLecturerMiddleName = @"middleName";
 static NSString * const kLecturerFirstName = @"firstName";
 
 static NSString * const kSchedulesGetUpdated = @"kSchedulesGetUpdated";
-
-static NSString * const kParseApplicationID = @"NSKMaa9xOL2Loav0Eaj1KtvmwBEWpR2AN3ZcwWzo";
-static NSString * const kParseClientKey = @"1Lv4keabSCqMmhDSOQWeOsfvKi7zsegPxs2pxRpE";
-
 
 #endif

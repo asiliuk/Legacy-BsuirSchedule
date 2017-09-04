@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BSSchedule.h"
+#import "BSSchedule+CoreDataProperties.h"
 
 @interface BSScheduleVC : UIViewController
 @property (nonatomic) BOOL weekFormat;

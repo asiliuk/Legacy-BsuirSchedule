@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Saute. All rights reserved.
 //
 
-#import "BSLecturer.h"
+#import "BSLecturer+CoreDataProperties.h"
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
 
 @interface BSLecturer (Thumbnail)
 - (void)loadLecturerImageIn:(UIImageView*)imageView;

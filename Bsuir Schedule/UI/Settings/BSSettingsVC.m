@@ -22,8 +22,6 @@
 
 #import "BSUtils.h"
 
-#import <Parse/Parse.h>
-
 #import "UIViewController+Achivements.h"
 
 @interface BSSettingsVC () <UITableViewDataSource,  UITableViewDelegate, MGSwipeTableCellDelegate, BSScheduleAddVCDelegate>
