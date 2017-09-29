@@ -104,7 +104,11 @@ NSString * const kGroupID = @"id";
 + (void)scheduleForGroup:(BSGroup *)group withSuccess:(void (^)(void))success failure:(void (^)(void))failure {
     [BSScheduleParser scheduleDicitonaryForGroup:group completion:^(NSDictionary *dict, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (dict && [dict[kScheduleModel] count] > 0) {
+            NSArray *scheduleData = dict[kScheduleModel];
+            if (scheduleData == nil || [scheduleData count] == 0) {
+                scheduleData = dict[kScheduleExamModel];
+            }
+            if (dict && [scheduleData count] > 0) {
                 NSString *loadedScheduleStamp = [[NSKeyedArchiver archivedDataWithRootObject:dict] MD5];
                 NSString *savedScheduleStamp = group.scheduleStamp;
                 if (![loadedScheduleStamp isEqual:savedScheduleStamp]) {
@@ -112,7 +116,6 @@ NSString * const kGroupID = @"id";
                     [[BSDataManager sharedInstance] resetSceduleForGroup:group];
 
                     //parse schedule
-                    NSArray *scheduleData = dict[kScheduleModel];
                     [BSScheduleParser parseScheduleData:scheduleData forGroup:group];
 
                     //update stamps

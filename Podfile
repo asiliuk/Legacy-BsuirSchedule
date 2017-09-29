@@ -9,6 +9,7 @@ target 'Bsuir Schedule' do
 
   pod 'Fabric', '~> 1.6'
   pod 'Crashlytics'
+  pod 'SDWebImage'
 end
 
 target 'Schedule' do

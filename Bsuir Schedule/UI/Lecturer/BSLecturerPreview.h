@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BSLecturer+Thumbnail.h"
+#import "BSLecturer+CoreDataProperties.h"
 
 #define LECTURER_IMAGE_WIDTH 50.0f
 @interface BSLecturerPreview : UIView

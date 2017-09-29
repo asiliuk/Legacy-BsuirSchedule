@@ -76,7 +76,7 @@ static NSString * const kWidgetSubgroup = @"kWidgetSubgroup";
 
 static NSString * const kEasterEggMode = @"kEasterEggMode";
 
-static NSString * const kAppGroup = @"group.schedule_container";
+static NSString * const kAppGroup = @"group.shared.schedule";
 
 static NSString * const kLastUpdate = @"last update";
 static NSString * const kDatabaseStamp = @"kDatabaseStamp";
@@ -85,6 +85,7 @@ static NSString * const kUserGroup = @"user group number";
 static NSString * const kUserSubgroup = @"user subgroup number";
 
 static NSString * const kScheduleModel = @"schedules";
+static NSString * const kScheduleExamModel = @"examSchedules";
 
 static NSString * const kDayName = @"weekDay";
 static NSString * const kDaySchedule = @"schedule";

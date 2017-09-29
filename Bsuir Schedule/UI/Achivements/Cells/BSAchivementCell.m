@@ -24,9 +24,6 @@ NSString * const kAchivementCellID = @"kAchivementCellID";
     [self.imageIV setImage:[achivement image]];
     _achivement = achivement;
 }
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

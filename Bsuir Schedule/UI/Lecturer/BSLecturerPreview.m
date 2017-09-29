@@ -8,6 +8,7 @@
 
 #import "BSLecturerPreview.h"
 #import <Bolts/Bolts.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation BSLecturerPreview
 
@@ -22,8 +23,8 @@
 - (void)setupWithLecturer:(BSLecturer*)lecturer {
     self.lecturerIV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LECTURER_IMAGE_WIDTH, LECTURER_IMAGE_WIDTH)];
 
-    [lecturer loadLecturerImageIn:self.lecturerIV];
-    
+    [self loadImageForLecturer:lecturer];
+
     self.lecturerIV.contentMode = UIViewContentModeScaleAspectFill;
     [self.lecturerIV.layer setCornerRadius:LECTURER_IMAGE_WIDTH / 2.0];
     self.lecturerIV.layer.masksToBounds = YES;
@@ -55,7 +56,13 @@
 
 - (void)updateWithLecturer:(BSLecturer *)lecturer {
     self.lecturer = lecturer;
-    [lecturer loadLecturerImageIn:self.lecturerIV];
+    [self loadImageForLecturer:lecturer];
     [self.lecturerNameLabel setText:lecturer.lastName];
 }
+
+- (void)loadImageForLecturer:(BSLecturer *)lecturer {
+    NSURL *url = [NSURL URLWithString:lecturer.avatarURL];
+    [self.lecturerIV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"noavatar"]];
+}
+
 @end

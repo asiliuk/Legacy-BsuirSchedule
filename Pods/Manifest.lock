@@ -2,15 +2,20 @@ PODS:
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.12)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric (~> 1.6)
+  - SDWebImage
 
 SPEC CHECKSUMS:
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
 
-PODFILE CHECKSUM: daac3a70b1ad9b19f4fc852e90250e2d597fd924
+PODFILE CHECKSUM: 5b322e367e16c0551c422a48569794467491fdad
 
 COCOAPODS: 1.2.1

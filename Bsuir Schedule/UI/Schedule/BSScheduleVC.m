@@ -12,7 +12,6 @@
 #import "BSPairCell.h"
 #import "BSDayWithWeekNum.h"
 
-#import "BSLecturer+Thumbnail.h"
 #import "NSString+Transiterate.h"
 #import "NSDate+Compare.h"
 #import "UIView+Screenshot.h"
@@ -376,8 +375,8 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
         tomorrow = [[now dateByAddingTimeInterval:DAY_IN_SECONDS] isEqualToDateWithoutTime:[(BSDayWithWeekNum*)day date]];
     } else if ([day isKindOfClass:[BSDayOfWeek class]]){
         BSDayOfWeek *dayOfWeek = [[BSDataManager sharedInstance] dayWithDate:now];
-        NSInteger dayOfWeekNumber = [[[BSDataManager sharedInstance]dayNumberForDay:dayOfWeek] integerValue];
-        NSInteger dayNumber = [[[BSDataManager sharedInstance]dayNumberForDay:day] integerValue];
+        NSInteger dayOfWeekNumber = [[[BSDataManager sharedInstance] dayNumberForDay:dayOfWeek] integerValue];
+        NSInteger dayNumber = [[[BSDataManager sharedInstance] dayNumberForDay:(BSDayOfWeek*)day] integerValue];
         currentDay = dayOfWeekNumber == dayNumber;
         tomorrow = dayOfWeekNumber + 1 == dayNumber;
     }

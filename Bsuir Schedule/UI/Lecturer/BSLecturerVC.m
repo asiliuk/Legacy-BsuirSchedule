@@ -9,12 +9,13 @@
 #import "BSLecturerVC.h"
 #import "UIView+Screenshot.h"
 #import "BSConstants.h"
-#import "BSLecturer+Thumbnail.h"
 
 #import "BSAchivementUnlockedVC.h"
 #import "BSAchivementManager.h"
 
 #import "UIViewController+Achivements.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BSLecturerVC ()
 @property (strong, nonatomic) IBOutlet UIImageView *lecturerIV;
@@ -55,14 +56,17 @@
     } else {
         self.backIV.backgroundColor = [UIColor blackColor];
     }
-    [self.lecturer loadLecturerImageIn:self.lecturerIV thumb:NO];
+
+    NSURL *url = [NSURL URLWithString:self.lecturer.avatarURL];
+
+    [self.lecturerIV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"noavatar"]];
     self.lecturerNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@",
                                    self.lecturer.lastName,
                                    self.lecturer.firstName,
                                    self.lecturer.middleName];
     
     self.previewIV = [[UIImageView alloc] initWithFrame:self.startFrame];
-    [self.lecturer loadLecturerImageIn:self.previewIV thumb:NO];
+    [self.previewIV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"noavatar"]];
     self.previewIV.contentMode = UIViewContentModeScaleAspectFill;
     self.previewIV.layer.cornerRadius = self.previewIV.frame.size.width / 2.0;
     self.previewIV.layer.masksToBounds = YES;

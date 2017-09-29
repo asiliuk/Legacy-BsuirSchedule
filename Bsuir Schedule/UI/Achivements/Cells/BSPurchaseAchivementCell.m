@@ -18,6 +18,7 @@ NSString * const kPurchaseAchivementCellID = @"kPurchaseAchivementCellID";
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.buyButton.layer.masksToBounds = YES;
     self.buyButton.layer.cornerRadius = 5.0;
     

@@ -4,9 +4,18 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "736h",
-      "filename" : "screen@3x.png",
+      "filename" : "screen@3x-1.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
+      "scale" : "3x"
+    },
+    {
+      "extent" : "full-screen",
+      "idiom" : "iphone",
+      "subtype" : "736h",
+      "filename" : "screen@3x.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "landscape",
       "scale" : "3x"
     },
     {
@@ -21,9 +30,9 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "screen-iph4@2x.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "screen-iph4@2x.png",
       "scale" : "2x"
     },
     {
@@ -38,38 +47,45 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "iPad - Portrait.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "iPad - Portrait.png",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "filename" : "iPad - Portrait — копия.png",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
+      "filename" : "iPad - Portrait@2x.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "iPad - Portrait@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "filename" : "iPad - Portrait@2x — копия.png",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "screen-iph4-1.png",
-      "scale" : "1x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "screen-iph4@2x-1.png",
+      "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "screen-iph5@2x-1.png",
+      "minimum-system-version" : "7.0",
       "subtype" : "retina4",
       "scale" : "2x"
     }

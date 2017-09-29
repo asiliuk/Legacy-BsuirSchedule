@@ -46,7 +46,7 @@
     
     if (self.groupName) {
         self.groupNumberTF.text = self.groupName;
-        self.groupNumberTF.userInteractionEnabled = NO;
+//        self.groupNumberTF.userInteractionEnabled = NO;
     }
 }
 

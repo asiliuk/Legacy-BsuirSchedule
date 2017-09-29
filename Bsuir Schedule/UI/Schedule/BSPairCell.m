@@ -46,6 +46,7 @@
 
 #define CORNER_RADIUS 0.0
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
     
     [self.pairView.layer setCornerRadius:CORNER_RADIUS];
