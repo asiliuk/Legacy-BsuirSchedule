@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OpenSans-Regular.ttf">
+        <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Today View Controller-->
@@ -23,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="100" verticalHuggingPriority="200" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="200" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
-                                <rect key="frame" x="20" y="3" width="292" height="22"/>
+                                <rect key="frame" x="8" y="3" width="304" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="jsp-1h-Hf1"/>
                                 </constraints>
@@ -32,8 +36,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-Hn-0pl">
-                                <rect key="frame" x="8" y="27" width="304" height="229"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="27" width="320" height="229"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="M4Y-Lb-cyx" id="SzO-gU-iO0"/>
                                     <outlet property="delegate" destination="M4Y-Lb-cyx" id="iYH-lb-Ntb"/>
@@ -41,13 +45,13 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-8" id="3K9-V2-xDC"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="3" id="M0U-85-9DH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="MaB-Dt-rMf"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="Qiy-Hn-0pl" secondAttribute="leading" constant="8" id="4Dp-wa-vfS"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="trailing" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="Fgc-ow-rsC"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" priority="800" constant="3" id="M0U-85-9DH"/>
+                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="Mko-OE-yWy"/>
                             <constraint firstItem="Qiy-Hn-0pl" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="2" id="T5A-UZ-MBa"/>
+                            <constraint firstItem="Qiy-Hn-0pl" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="width" id="Ygr-kb-eXJ"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" constant="44" id="bab-AA-RLX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="-8" id="xiO-IO-POf"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="4" id="zrT-nb-Fmm"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -66,9 +70,4 @@
             <point key="canvasLocation" x="516" y="285"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

@@ -48,6 +48,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
+
+    self.triangleView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.pairView.layer setCornerRadius:CORNER_RADIUS];
     self.pairView.layer.masksToBounds = YES;
@@ -264,13 +266,13 @@
 
     }
     
-    CGRect subjectNameFrame = self.subjectNameLabel.frame;
-    subjectNameFrame.size.width = CGRectGetMaxX(self.frame) - subjectNameFrame.origin.x - OFFSET;
+//    CGRect subjectNameFrame = self.subjectNameLabel.frame;
+//    subjectNameFrame.size.width = CGRectGetMaxX(self.frame) - subjectNameFrame.origin.x - OFFSET;
 //    if (thumbnail != nil) {
 //        subjectNameFrame.size.width -= (CGRectGetWidth(self.lecturerIV.frame) + OFFSET);
 //    }
-    self.subjectNameLabel.frame = subjectNameFrame;
-    
+//    self.subjectNameLabel.frame = subjectNameFrame;
+
     self.pairTypeIndicatorColor = [pair colorForPairType];
     [self setupTriangleForPair:pair inDay:day forSchedule:schedule weekMode:weekMode];
     

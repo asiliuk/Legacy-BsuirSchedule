@@ -27,21 +27,37 @@ static NSString * const kCellID = @"today view cell";
 @property (strong, nonatomic) BSDayWithWeekNum *dayToHighlight;
 
 @property (strong, nonatomic) BSSchedule *schedule;
+
+@property (readonly, assign, nonatomic) CGSize maxSize;
+
+@property (strong, nonatomic) NSArray *pairs;
+
 @end
 
 @implementation TodayViewController
 
+- (CGSize)maxSize {
+    return CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [self.pairs count] * CELL_HEIGHT + 40.0);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"saasa";
+
     NSUserDefaults *shared = [NSUserDefaults sharedDefaults];
     NSString *groupNumber = [shared objectForKey:kWidgetGroup];
     NSInteger subgroup = [shared integerForKey:kWidgetSubgroup];
+
     self.schedule = [[BSDataManager sharedInstance] scheduleWithGroupNumber:groupNumber andSubgroup:subgroup createIfNotExists:NO];
     self.dayToHighlight = [[BSDataManager sharedInstance] dayToHighlightInSchedule:self.schedule weekMode:NO];
-    self.preferredContentSize = CGSizeMake(0, CGRectGetMinY(self.tableView.frame) + [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count] * CELL_HEIGHT + 40.0);
+    self.pairs = [self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO];
+
+    if (SYSTEM_VERSION_LESS_THAN(@"10.0")) {
+        self.preferredContentSize = self.maxSize;
+    } else {
+        self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
+        self.preferredContentSize = [self widgetMaximumSizeForDisplayMode: self.extensionContext.widgetActiveDisplayMode];
+    }
+
     [self.view layoutSubviews];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([BSPairCell class]) bundle:nil] forCellReuseIdentifier:kCellID];
     BOOL hasDataToDisplay = NO;
@@ -73,10 +89,15 @@ static NSString * const kCellID = @"today view cell";
     [effectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[invertButton(220)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(invertButton)]];
     [effectView.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[invertButton(30)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(invertButton)]];
     
-    
     [invertButton addTarget:self action:@selector(openApp:) forControlEvents:UIControlEventTouchUpInside];
-}
 
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+        self.tableView.rowHeight = 72;
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -127,18 +148,25 @@ static NSString * const kCellID = @"today view cell";
     [self.extensionContext openURL:url completionHandler:nil];
 }
 
+- (void)widgetActiveDisplayModeDidChange:(NCWidgetDisplayMode)activeDisplayMode withMaximumSize:(CGSize)maxSize {
+    self.preferredContentSize = [self widgetMaximumSizeForDisplayMode:activeDisplayMode];
+}
+
+- (CGSize)widgetMaximumSizeForDisplayMode:(NCWidgetDisplayMode)displayMode {
+    return self.maxSize;
+}
+
 //===============================================TABLE VIEW===========================================
 #pragma mark - Table view
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO] count];
+    return [self.pairs count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BSPairCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID forIndexPath:indexPath];
-    NSArray *pairs = [self.dayToHighlight pairsForSchedule:self.schedule weekFormat:NO];
-    BSPair *pair = [pairs objectAtIndex:indexPath.row];
+    BSPair *pair = [self.pairs objectAtIndex:indexPath.row];
     [cell setupWithPair:pair inDay:self.dayToHighlight forSchedule:self.schedule widgetMode:YES];
     return cell;
 }

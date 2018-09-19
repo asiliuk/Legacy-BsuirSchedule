@@ -57,9 +57,8 @@
             NSDate *todayLastPairEnd = [[pairs lastObject] endTime]; //need pairs of 'today' to highlight tomorrow section header
             BOOL todayPairsEnded = [todayLastPairEnd compareTime:now] == NSOrderedAscending || [dayWithWeekNum.pairs count] == 0;
             if (!(today && (todayPairsEnded || dayWithWeekNum.dayOfWeek == nil))) {
-                    dayToHighlight = dayWithWeekNum;
-                    break;
-    
+                dayToHighlight = dayWithWeekNum;
+                break;
             }
         }
     }
