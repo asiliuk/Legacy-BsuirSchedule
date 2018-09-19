@@ -137,7 +137,6 @@
 		D1085FD21A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1085FBD1A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf */; };
 		D1085FD31A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1085FBD1A2A9C1000D0C62B /* OpenSans-SemiboldItalic.ttf */; };
 		D1608FBC1A18C0FA008B3216 /* BSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1608FBB1A18C0FA008B3216 /* BSDataManager.m */; };
-		D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10448411A267D5100670898 /* NotificationCenter.framework */; };
 		D196D0331A2A967D00EA6901 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D196D0321A2A967D00EA6901 /* TodayViewController.m */; };
 		D196D0351A2A967D00EA6901 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D196D0341A2A967D00EA6901 /* MainInterface.storyboard */; };
 		D196D0381A2A967D00EA6901 /* Schedule.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D196D02C1A2A967D00EA6901 /* Schedule.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -153,6 +152,7 @@
 		D1D275531A67176400D38C2D /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D275521A67176400D38C2D /* NSData+MD5.m */; };
 		D1E34FDE1A3339F9003459E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E34FE01A3339F9003459E6 /* InfoPlist.strings */; };
 		D1E873DC1A1EBB3C007F056F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1E873DE1A1EBB3C007F056F /* Localizable.strings */; };
+		E600DDB621529F570031FAFE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10448411A267D5100670898 /* NotificationCenter.framework */; };
 		E638A7F91F5DE67B002633E4 /* LaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E638A7F81F5DE67B002633E4 /* LaunchView.xib */; };
 		E64E27871F5DE99E00E55F21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E64E27861F5DE99E00E55F21 /* Images.xcassets */; };
 		E6BA19CE1F5D740A00157861 /* BSLecturer+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA19CB1F5D740A00157861 /* BSLecturer+CoreDataClass.m */; };
@@ -434,6 +434,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E600DDB621529F570031FAFE /* NotificationCenter.framework in Frameworks */,
 				8CC4EEE11AA2009B00AD6C22 /* CoreGraphics.framework in Frameworks */,
 				8CC4EEE01AA2009B00AD6C22 /* CoreLocation.framework in Frameworks */,
 				8CC4EEE31AA2009B00AD6C22 /* AudioToolbox.framework in Frameworks */,
@@ -441,7 +442,6 @@
 				8CC4EEE21AA2009B00AD6C22 /* CFNetwork.framework in Frameworks */,
 				8CC4EEDE1AA2009B00AD6C22 /* QuartzCore.framework in Frameworks */,
 				8CC4EEDB1AA2009B00AD6C22 /* SystemConfiguration.framework in Frameworks */,
-				D196D02D1A2A967D00EA6901 /* NotificationCenter.framework in Frameworks */,
 				8CC4EEC01AA2001B00AD6C22 /* Bolts.framework in Frameworks */,
 				8CC4EEDD1AA2009B00AD6C22 /* Security.framework in Frameworks */,
 				8CC4EEDF1AA2009B00AD6C22 /* MobileCoreServices.framework in Frameworks */,
@@ -1290,9 +1290,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1322,9 +1319,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bsuir\\ Schedule/3rd\\ party/**",
-					"$(PROJECT_DIR)/Bsuir",
-					Schedule/3rd,
-					party,
 				);
 				INFOPLIST_FILE = Schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
