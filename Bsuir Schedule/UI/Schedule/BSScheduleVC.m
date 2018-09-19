@@ -53,13 +53,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
 
 - (NSArray*)easterEggStrings {
     if (!_easterEggStrings) {
-        _easterEggStrings = @[@"MISS ME?",
-                              @"MISS ME?",
-                              @"MISS ME?",
-                              @"MISS ME?",
-                              @"MISS ME?",
-                              @"MISS ME?",
-                              @"Остановись",
+        _easterEggStrings = @[@"Остановись",
                               @"Подумай о будущем",
                               @"Не делай этого",
                               @"У тебя еще вся жизнь впереди",
@@ -118,7 +112,15 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
                               @"Еще чуть чуть",
                               @"Еще чуть чуть.",
                               @"Еще чуть чуть..",
-                              @"Еще чуть чуть..."];
+                              @"Еще чуть чуть...",
+                              @"Немного нравоучений",
+                              @"Будь добрым",
+                              @"Помогай собакам и котам",
+                              @"Возьми собаку из приюта",
+                              @"Перестань есть других животных",
+                              @"Не производи лишний муссор",
+                              @"Будь вежливым",
+                              @"Думай"];
     }
     return _easterEggStrings;
 }
