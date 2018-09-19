@@ -57,11 +57,6 @@ BSSocialAchivementCellDelegate, BSPurchaseAchivementCellDelegate>
          forCellReuseIdentifier:kPurchaseAchivementCellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(achivementUnlocked) name:kAchivementUnlocked object:nil];
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LZD(@"L_Restore")
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(restorePurchases)];
 }
 
 - (void)achivementUnlocked {

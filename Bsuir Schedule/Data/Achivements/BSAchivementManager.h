@@ -13,8 +13,8 @@ typedef NS_ENUM(NSInteger, BSAchivementType) {
     BSAchivementTypeSocial,
     BSAchivementTypeWatcher,
     BSAchivementTypeWerewolf,
-    BSAchivementTypeSupporter,
-    BSAchivementTypeSuperSupporter
+//    BSAchivementTypeSupporter,
+//    BSAchivementTypeSuperSupporter
 };
 
 

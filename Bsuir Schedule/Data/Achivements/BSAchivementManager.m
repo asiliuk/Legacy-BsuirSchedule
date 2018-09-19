@@ -71,20 +71,20 @@
                                                                achivementKey:[self keyForAchivementType:BSAchivementTypeWerewolf]];
         achivementsData[@(BSAchivementTypeWerewolf)] = werewolf;
         
-        BSAchivementOnce *supporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SupporterAchivement")
-                                                                     description:LZD(@"L_SupporterAchivementDescription")
-                                                                       imageName:@"supporter"
-                                                                   achivementKey:[self keyForAchivementType:BSAchivementTypeSupporter]
-                                                                      purchaseID:kSupporterAchivementID];
-        achivementsData[@(BSAchivementTypeSupporter)] = supporter;
-        
-        BSAchivementOnce *superSupporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SuperSupporterAchivement")
-                                                                          description:LZD(@"L_SuperSupporterAchivementDescription")
-                                                                            imageName:@"super_supporter"
-                                                                        achivementKey:[self keyForAchivementType:BSAchivementTypeSuperSupporter]
-                                                                           purchaseID:kSuperSupporterAchivementID];
-        achivementsData[@(BSAchivementTypeSuperSupporter)] = superSupporter;
-        
+//        BSAchivementOnce *supporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SupporterAchivement")
+//                                                                     description:LZD(@"L_SupporterAchivementDescription")
+//                                                                       imageName:@"supporter"
+//                                                                   achivementKey:[self keyForAchivementType:BSAchivementTypeSupporter]
+//                                                                      purchaseID:kSupporterAchivementID];
+//        achivementsData[@(BSAchivementTypeSupporter)] = supporter;
+//
+//        BSAchivementOnce *superSupporter = [[BSPurchaseAchivement alloc] initWithName:LZD(@"L_SuperSupporterAchivement")
+//                                                                          description:LZD(@"L_SuperSupporterAchivementDescription")
+//                                                                            imageName:@"super_supporter"
+//                                                                        achivementKey:[self keyForAchivementType:BSAchivementTypeSuperSupporter]
+//                                                                           purchaseID:kSuperSupporterAchivementID];
+//        achivementsData[@(BSAchivementTypeSuperSupporter)] = superSupporter;
+
         _achivementsData = [NSDictionary dictionaryWithDictionary:achivementsData];
     }
     return _achivementsData;
@@ -94,7 +94,7 @@
         NSMutableArray *achivements = [NSMutableArray array];
         NSArray *achivementsTypes = @[@(BSAchivementTypeScroller), @(BSAchivementTypeWatcher),
                                       @(BSAchivementTypeWerewolf), @(BSAchivementTypeSocial),
-                                      @(BSAchivementTypeSupporter), @(BSAchivementTypeSuperSupporter)];
+                                      /*@(BSAchivementTypeSupporter), @(BSAchivementTypeSuperSupporter)*/];
         for (NSNumber *achivementType in achivementsTypes) {
             [achivements addObject:self.achivementsData[achivementType]];
         }
@@ -134,12 +134,12 @@
         case BSAchivementTypeWerewolf:
             achivementKey = @"BSAchivementTypeWherewolf";
             break;
-        case BSAchivementTypeSupporter:
-            achivementKey = @"BSAchivementTypeSupporter";
-            break;
-        case BSAchivementTypeSuperSupporter:
-            achivementKey = @"BSAchivementTypeSuperSupporter";
-            break;
+//        case BSAchivementTypeSupporter:
+//            achivementKey = @"BSAchivementTypeSupporter";
+//            break;
+//        case BSAchivementTypeSuperSupporter:
+//            achivementKey = @"BSAchivementTypeSuperSupporter";
+//            break;
         default:
             achivementKey = @"unknown";
             break;
@@ -150,7 +150,7 @@
 - (void)dismissAllAchivements {
     for (NSNumber *ach in @[@(BSAchivementTypeScroller), @(BSAchivementTypeWatcher),
                             @(BSAchivementTypeWerewolf), @(BSAchivementTypeSocial),
-                            @(BSAchivementTypeSupporter), @(BSAchivementTypeSuperSupporter)]) {
+                            /*@(BSAchivementTypeSupporter), @(BSAchivementTypeSuperSupporter)*/]) {
         [[FXKeychain defaultKeychain] setObject:@(0) forKey:[self keyForAchivementType:[ach integerValue]]];
     }
 }
