@@ -349,7 +349,6 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
 #pragma mark - Table View
 
 - (NSArray*)pairsForDay:(id<BSDay>)day {
-
     return [day pairsForSchedule:self.schedule weekFormat:self.weekFormat];
 }
 
@@ -357,6 +356,7 @@ BSPairCellDelegate, AMSlideMenuDelegate, UIViewControllerTransitioningDelegate, 
     return [self.days count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section >= self.days.count ) { return 0; }
     return [[self pairsForDay:[self.days objectAtIndex:section]] count];
 }
 
