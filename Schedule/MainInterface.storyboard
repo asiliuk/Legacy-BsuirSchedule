@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-Hn-0pl">
-                                <rect key="frame" x="0.0" y="27" width="320" height="229"/>
+                                <rect key="frame" x="0.0" y="27" width="320" height="273"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="M4Y-Lb-cyx" id="SzO-gU-iO0"/>
@@ -47,11 +47,11 @@
                         <constraints>
                             <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="Qiy-Hn-0pl" secondAttribute="leading" constant="8" id="4Dp-wa-vfS"/>
                             <constraint firstItem="GcN-lo-r42" firstAttribute="trailing" secondItem="Qiy-Hn-0pl" secondAttribute="trailing" constant="-8" id="Fgc-ow-rsC"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" priority="800" constant="3" id="M0U-85-9DH"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" priority="800" constant="3" id="M0U-85-9DH"/>
                             <constraint firstItem="Qiy-Hn-0pl" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="Mko-OE-yWy"/>
                             <constraint firstItem="Qiy-Hn-0pl" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="2" id="T5A-UZ-MBa"/>
                             <constraint firstItem="Qiy-Hn-0pl" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="width" id="Ygr-kb-eXJ"/>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" constant="44" id="bab-AA-RLX"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="Qiy-Hn-0pl" secondAttribute="bottom" id="bab-AA-RLX"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -62,12 +62,13 @@
                     <size key="freeformSize" width="320" height="300"/>
                     <connections>
                         <outlet property="dayInfoLabel" destination="GcN-lo-r42" id="zK4-op-yL8"/>
+                        <outlet property="tableBottomConstraint" destination="bab-AA-RLX" id="LQq-Kc-APV"/>
                         <outlet property="tableView" destination="Qiy-Hn-0pl" id="7m8-5O-3TI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="285"/>
+            <point key="canvasLocation" x="825.60000000000002" y="256.37181409295357"/>
         </scene>
     </scenes>
 </document>
