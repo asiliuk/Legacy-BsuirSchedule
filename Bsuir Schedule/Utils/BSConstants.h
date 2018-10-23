@@ -66,7 +66,7 @@ static NSString * const kSuperSupporterAchivementID = @"com.saute.BsuirSchedule.
 
 static NSString * const kMenuDidClose = @"kMenuDidClose";
 
-static NSString * const BASE_URL = @"https://students.bsuir.by/api/v1/";
+static NSString * const BASE_URL = @"https://journal.bsuir.by/api/v1/";
 static NSString * const SCHEDULE_PATH = @"studentGroup/schedule";
 static NSString * const GROUPS_PATH = @"groups";
 
