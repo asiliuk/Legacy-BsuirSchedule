@@ -510,28 +510,24 @@
 - (BSWeekNumber*)weekNumberWithDate:(NSDate *)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
-    NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
-    dateComponents.day -= [dateComponents weekday];
-    
-    NSDateComponents *lastDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
+
+    NSDateComponents *lastDay = [gregorian components:calendarUnits fromDate:[NSDate date]];
     lastDay.day =  END_DAY;
     lastDay.month = END_MONTH;
     NSDate *lastDayDate = [gregorian dateFromComponents:lastDay];
-    
-    NSDateComponents *firstDay = [gregorian components:calendarUnits  fromDate:[NSDate date]];
+
+    NSDateComponents *firstDay = [gregorian components:calendarUnits fromDate:[NSDate date]];
     firstDay.day =  START_DAY;
     firstDay.month = START_MONTH;
     NSDate *firstDayDate = [gregorian dateFromComponents:firstDay];
     firstDay = [gregorian components:calendarUnits fromDate:firstDayDate]; // to reload weekDay unit
     firstDay.day -= [firstDay weekday];
-    
-    NSTimeInterval timePased = [[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]];
-    if (timePased < 0 && [[NSDate date] compare:lastDayDate] == NSOrderedAscending) {
+
+    if ([date compare:firstDayDate] == NSOrderedAscending && [[NSDate date] compare:lastDayDate] == NSOrderedAscending) {
         firstDay.year -= 1;
     }
-    timePased = fabs([[gregorian dateFromComponents:dateComponents] timeIntervalSinceDate:[gregorian dateFromComponents:firstDay]]);
-    NSInteger weeksPast = timePased / (7*24*3600);
-    NSInteger weekNum = (weeksPast % 4) + 1;
+    NSDateComponents *weeksPast = [gregorian components:NSCalendarUnitWeekOfYear fromDate:[gregorian dateFromComponents:firstDay] toDate:date options:0];
+    NSInteger weekNum = ([weeksPast weekOfYear] % 4) + 1;
     return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
 }
 //===============================================CORE DATA STACK===========================================

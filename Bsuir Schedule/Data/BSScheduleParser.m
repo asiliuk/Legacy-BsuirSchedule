@@ -29,7 +29,7 @@ NSString * const kGroupID = @"id";
 + (BOOL)scheduleExpiresForGroup:(BSGroup*)group {
     NSDate *lastUpdate = group.lastUpdate;
     NSInteger timeInterval = [[NSDate date] timeIntervalSinceDate:lastUpdate];
-    return  !(lastUpdate && timeInterval <= UPDATE_INTERVAL);
+    return !(lastUpdate && timeInterval <= UPDATE_INTERVAL);
 }
 //+ (void)employeesWithSuccess:(void (^)(void))success failure:(void (^)(void))failure {
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
