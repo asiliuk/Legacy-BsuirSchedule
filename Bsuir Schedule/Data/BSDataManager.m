@@ -511,6 +511,10 @@
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
 
+    NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
+    dateComponents.day -= [dateComponents weekday];
+    date = [gregorian dateFromComponents:dateComponents];
+
     NSDateComponents *lastDay = [gregorian components:calendarUnits fromDate:[NSDate date]];
     lastDay.day =  END_DAY;
     lastDay.month = END_MONTH;
@@ -520,13 +524,16 @@
     firstDay.day =  START_DAY;
     firstDay.month = START_MONTH;
     NSDate *firstDayDate = [gregorian dateFromComponents:firstDay];
-    firstDay = [gregorian components:calendarUnits fromDate:firstDayDate]; // to reload weekDay unit
-    firstDay.day -= [firstDay weekday];
 
     if ([date compare:firstDayDate] == NSOrderedAscending && [[NSDate date] compare:lastDayDate] == NSOrderedAscending) {
-        firstDay.year -= 1;
+        firstDayDate = [gregorian dateByAddingUnit:NSCalendarUnitYear value:-1 toDate:firstDayDate options:0];
     }
-    NSDateComponents *weeksPast = [gregorian components:NSCalendarUnitWeekOfYear fromDate:[gregorian dateFromComponents:firstDay] toDate:date options:0];
+
+    NSDateComponents *firstDayDateComponents = [gregorian components:calendarUnits fromDate:firstDayDate];
+    firstDayDateComponents.day -= [firstDayDateComponents weekday];
+    firstDayDate = [gregorian dateFromComponents:firstDayDateComponents];
+
+    NSDateComponents *weeksPast = [gregorian components:NSCalendarUnitWeekOfYear fromDate:firstDayDate toDate:date options:0];
     NSInteger weekNum = ([weeksPast weekOfYear] % 4) + 1;
     return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
 }
