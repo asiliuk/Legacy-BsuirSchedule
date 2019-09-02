@@ -508,33 +508,28 @@
 
 
 - (BSWeekNumber*)weekNumberWithDate:(NSDate *)date {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.locale = [NSLocale localeWithLocaleIdentifier:@"ru_BY"];
     NSCalendarUnit calendarUnits = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitWeekday;
 
-    NSDateComponents *dateComponents = [gregorian components:calendarUnits fromDate:date];
-    dateComponents.day -= [dateComponents weekday];
-    date = [gregorian dateFromComponents:dateComponents];
-
-    NSDateComponents *lastDay = [gregorian components:calendarUnits fromDate:[NSDate date]];
+    NSDateComponents *lastDay = [calendar components:calendarUnits fromDate:[NSDate date]];
     lastDay.day =  END_DAY;
     lastDay.month = END_MONTH;
-    NSDate *lastDayDate = [gregorian dateFromComponents:lastDay];
+    NSDate *lastDayDate = [calendar dateFromComponents:lastDay];
 
-    NSDateComponents *firstDay = [gregorian components:calendarUnits fromDate:[NSDate date]];
+    NSDateComponents *firstDay = [calendar components:calendarUnits fromDate:[NSDate date]];
     firstDay.day =  START_DAY;
     firstDay.month = START_MONTH;
-    NSDate *firstDayDate = [gregorian dateFromComponents:firstDay];
+    NSDate *firstDayDate = [calendar dateFromComponents:firstDay];
 
     if ([date compare:firstDayDate] == NSOrderedAscending && [[NSDate date] compare:lastDayDate] == NSOrderedAscending) {
-        firstDayDate = [gregorian dateByAddingUnit:NSCalendarUnitYear value:-1 toDate:firstDayDate options:0];
+        firstDayDate = [calendar dateByAddingUnit:NSCalendarUnitYear value:-1 toDate:firstDayDate options:0];
     }
 
-    NSDateComponents *firstDayDateComponents = [gregorian components:calendarUnits fromDate:firstDayDate];
-    firstDayDateComponents.day -= [firstDayDateComponents weekday];
-    firstDayDate = [gregorian dateFromComponents:firstDayDateComponents];
+    NSUInteger dateWeekOfYear = [calendar component:NSCalendarUnitWeekOfYear fromDate:date];
+    NSUInteger firstDateWeekOfYear = [calendar component:NSCalendarUnitWeekOfYear fromDate:firstDayDate];
 
-    NSDateComponents *weeksPast = [gregorian components:NSCalendarUnitWeekOfYear fromDate:firstDayDate toDate:date options:0];
-    NSInteger weekNum = ([weeksPast weekOfYear] % 4) + 1;
+    NSInteger weekNum = (ABS(dateWeekOfYear - firstDateWeekOfYear) % 4) + 1;
     return [self weekNumberWithNumber:weekNum createIfNotExists:YES];
 }
 //===============================================CORE DATA STACK===========================================
